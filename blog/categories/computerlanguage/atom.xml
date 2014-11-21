@@ -2,10 +2,10 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
 
   <title><![CDATA[Category: Computerlanguage | Kevin Hu's Blog]]></title>
-  <link href="http://yoursite.com/blog/categories/computerlanguage/atom.xml" rel="self"/>
-  <link href="http://yoursite.com/"/>
-  <updated>2014-11-20T21:32:08-05:00</updated>
-  <id>http://yoursite.com/</id>
+  <link href="http://kevinhu.me/blog//blog/categories/computerlanguage/atom.xml" rel="self"/>
+  <link href="http://kevinhu.me/blog//"/>
+  <updated>2014-11-20T23:16:51-05:00</updated>
+  <id>http://kevinhu.me/blog//</id>
   <author>
     <name><![CDATA[Kevin Hu]]></name>
     
@@ -15,9 +15,9 @@
   
   <entry>
     <title type="html"><![CDATA[A Dive Into PLY]]></title>
-    <link href="http://yoursite.com/blog/2014/10/11/a-dive-into-ply/"/>
+    <link href="http://kevinhu.me/blog//blog/2014/10/11/a-dive-into-ply/"/>
     <updated>2014-10-11T21:50:24-04:00</updated>
-    <id>http://yoursite.com/blog/2014/10/11/a-dive-into-ply</id>
+    <id>http://kevinhu.me/blog//blog/2014/10/11/a-dive-into-ply</id>
     <content type="html"><![CDATA[<p>I&rsquo;ve been auditing a course in computer language implementation and particularly interested in parser generator. Just spent an afternoon reading about the Python parser generator <a href="http://www.dabeaz.com/ply/">PLY</a>. It&rsquo;s a pure Python Implementation of Lex and Yacc. And <a href="http://www.dabeaz.com/ply/ply.html#ply_nn4">here</a> is the PLY documentation I&rsquo;ve been reading the whole afternoon.</p>
 
 <!--more-->
