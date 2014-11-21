@@ -2,10 +2,10 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
 
   <title><![CDATA[Category: Codereading | Kevin Hu's Blog]]></title>
-  <link href="http://kevinhu.me/blog//blog/categories/codereading/atom.xml" rel="self"/>
-  <link href="http://kevinhu.me/blog//"/>
-  <updated>2014-11-20T23:16:51-05:00</updated>
-  <id>http://kevinhu.me/blog//</id>
+  <link href="http://kevinhu.me//blog/categories/codereading/atom.xml" rel="self"/>
+  <link href="http://kevinhu.me//"/>
+  <updated>2014-11-20T23:22:32-05:00</updated>
+  <id>http://kevinhu.me//</id>
   <author>
     <name><![CDATA[Kevin Hu]]></name>
     
@@ -15,9 +15,9 @@
   
   <entry>
     <title type="html"><![CDATA[More on Passwd]]></title>
-    <link href="http://kevinhu.me/blog//blog/2014/10/31/more-on-passwd/"/>
+    <link href="http://kevinhu.me//blog/2014/10/31/more-on-passwd/"/>
     <updated>2014-10-31T22:30:45-04:00</updated>
-    <id>http://kevinhu.me/blog//blog/2014/10/31/more-on-passwd</id>
+    <id>http://kevinhu.me//blog/2014/10/31/more-on-passwd</id>
     <content type="html"><![CDATA[<p>A little bit more interesting discoveries while digging into the passwd code file.</p>
 
 <h2>The &rsquo;s&#8217; flag in file permission</h2>
@@ -64,9 +64,9 @@ if (lrename (buf, db-&gt;filename) != 0){...}
   
   <entry>
     <title type="html"><![CDATA[A Dive Into Password]]></title>
-    <link href="http://kevinhu.me/blog//blog/2014/10/13/a-dive-into-password/"/>
+    <link href="http://kevinhu.me//blog/2014/10/13/a-dive-into-password/"/>
     <updated>2014-10-13T22:08:55-04:00</updated>
-    <id>http://kevinhu.me/blog//blog/2014/10/13/a-dive-into-password</id>
+    <id>http://kevinhu.me//blog/2014/10/13/a-dive-into-password</id>
     <content type="html"><![CDATA[<h2>Passwd</h2>
 
 <p>The passwd is program on Unix systems to manage users&#8217; passwords. The user and password information on most Unix systems is stored in two separate files: /etc/passwd for user information, and /etc/shadow for password information, including encrypted password value, expiration data, UID, GID, and etc.. The

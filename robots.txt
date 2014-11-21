@@ -1,4 +1,4 @@
 User-agent: *
 Disallow: 
 
-Sitemap: http://kevinhu.me/blog//sitemap.xml 
+Sitemap: http://kevinhu.me//sitemap.xml 

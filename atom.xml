@@ -2,10 +2,10 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
 
   <title><![CDATA[Kevin Hu's Blog]]></title>
-  <link href="http://kevinhu.me/blog//atom.xml" rel="self"/>
-  <link href="http://kevinhu.me/blog//"/>
-  <updated>2014-11-20T23:16:51-05:00</updated>
-  <id>http://kevinhu.me/blog//</id>
+  <link href="http://kevinhu.me//atom.xml" rel="self"/>
+  <link href="http://kevinhu.me//"/>
+  <updated>2014-11-20T23:22:32-05:00</updated>
+  <id>http://kevinhu.me//</id>
   <author>
     <name><![CDATA[Kevin Hu]]></name>
     
@@ -15,9 +15,9 @@
   
   <entry>
     <title type="html"><![CDATA[More on Passwd]]></title>
-    <link href="http://kevinhu.me/blog//blog/2014/10/31/more-on-passwd/"/>
+    <link href="http://kevinhu.me//blog/2014/10/31/more-on-passwd/"/>
     <updated>2014-10-31T22:30:45-04:00</updated>
-    <id>http://kevinhu.me/blog//blog/2014/10/31/more-on-passwd</id>
+    <id>http://kevinhu.me//blog/2014/10/31/more-on-passwd</id>
     <content type="html"><![CDATA[<p>A little bit more interesting discoveries while digging into the passwd code file.</p>
 
 <h2>The &rsquo;s&#8217; flag in file permission</h2>
@@ -82,9 +82,9 @@
   
   <entry>
     <title type="html"><![CDATA[A Dive Into Password]]></title>
-    <link href="http://kevinhu.me/blog//blog/2014/10/13/a-dive-into-password/"/>
+    <link href="http://kevinhu.me//blog/2014/10/13/a-dive-into-password/"/>
     <updated>2014-10-13T22:08:55-04:00</updated>
-    <id>http://kevinhu.me/blog//blog/2014/10/13/a-dive-into-password</id>
+    <id>http://kevinhu.me//blog/2014/10/13/a-dive-into-password</id>
     <content type="html"><![CDATA[<h2>Passwd</h2>
 
 <p>The passwd is program on Unix systems to manage users&#8217; passwords. The user and password information on most Unix systems is stored in two separate files: /etc/passwd for user information, and /etc/shadow for password information, including encrypted password value, expiration data, UID, GID, and etc.. The
@@ -442,9 +442,9 @@ The nsp data structure would then carry this encrypted password to the shadow fi
   
   <entry>
     <title type="html"><![CDATA[A Dive Into PLY]]></title>
-    <link href="http://kevinhu.me/blog//blog/2014/10/11/a-dive-into-ply/"/>
+    <link href="http://kevinhu.me//blog/2014/10/11/a-dive-into-ply/"/>
     <updated>2014-10-11T21:50:24-04:00</updated>
-    <id>http://kevinhu.me/blog//blog/2014/10/11/a-dive-into-ply</id>
+    <id>http://kevinhu.me//blog/2014/10/11/a-dive-into-ply</id>
     <content type="html"><![CDATA[<p>I&rsquo;ve been auditing a course in computer language implementation and particularly interested in parser generator. Just spent an afternoon reading about the Python parser generator <a href="http://www.dabeaz.com/ply/">PLY</a>. It&rsquo;s a pure Python Implementation of Lex and Yacc. And <a href="http://www.dabeaz.com/ply/ply.html#ply_nn4">here</a> is the PLY documentation I&rsquo;ve been reading the whole afternoon.</p>
 
 <!--more-->
@@ -633,9 +633,9 @@ The nsp data structure would then carry this encrypted password to the shadow fi
   
   <entry>
     <title type="html"><![CDATA[A New Blog for My Tech Notes]]></title>
-    <link href="http://kevinhu.me/blog//blog/2014/10/08/a-new-blog-for-my-tech-notes/"/>
+    <link href="http://kevinhu.me//blog/2014/10/08/a-new-blog-for-my-tech-notes/"/>
     <updated>2014-10-08T21:47:44-04:00</updated>
-    <id>http://kevinhu.me/blog//blog/2014/10/08/a-new-blog-for-my-tech-notes</id>
+    <id>http://kevinhu.me//blog/2014/10/08/a-new-blog-for-my-tech-notes</id>
     <content type="html"><![CDATA[<p>Hello World!</p>
 
 <p>It’s been a while since the last time I ever wrote some serious blog posts. After some thought I now decide to separate my everyday chit-chat blog from a more tech-oriented blog, so that contents from either sides won’t get entwined with each other, especially when I decide to blog in both languages.</p>

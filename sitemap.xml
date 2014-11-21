@@ -1,40 +1,40 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9 http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd" xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
-    <loc>http://kevinhu.me/blog//blog/2014/10/31/more-on-passwd/</loc>
+    <loc>http://kevinhu.me//blog/2014/10/31/more-on-passwd/</loc>
     <lastmod>2014-10-31T22:30:45-04:00</lastmod>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>http://kevinhu.me/blog//blog/2014/10/13/a-dive-into-password/</loc>
+    <loc>http://kevinhu.me//blog/2014/10/13/a-dive-into-password/</loc>
     <lastmod>2014-10-13T22:08:55-04:00</lastmod>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>http://kevinhu.me/blog//blog/2014/10/11/a-dive-into-ply/</loc>
+    <loc>http://kevinhu.me//blog/2014/10/11/a-dive-into-ply/</loc>
     <lastmod>2014-10-11T21:50:24-04:00</lastmod>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>http://kevinhu.me/blog//blog/2014/10/08/a-new-blog-for-my-tech-notes/</loc>
+    <loc>http://kevinhu.me//blog/2014/10/08/a-new-blog-for-my-tech-notes/</loc>
     <lastmod>2014-10-08T21:47:44-04:00</lastmod>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>http://kevinhu.me/blog//</loc>
-    <lastmod>2014-11-20T23:16:51-05:00</lastmod>
+    <loc>http://kevinhu.me//</loc>
+    <lastmod>2014-11-20T23:22:32-05:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>1.0</priority>
   </url>
   <url>
-    <loc>http://kevinhu.me/blog//blog/archives/</loc>
-    <lastmod>2014-11-20T23:16:51-05:00</lastmod>
+    <loc>http://kevinhu.me//blog/archives/</loc>
+    <lastmod>2014-11-20T23:22:32-05:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>http://kevinhu.me/blog//About/</loc>
-    <lastmod>2014-11-20T23:16:51-05:00</lastmod>
+    <loc>http://kevinhu.me//About/</loc>
+    <lastmod>2014-11-20T23:22:32-05:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
