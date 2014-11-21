@@ -1,0 +1,574 @@
+
+<!DOCTYPE html>
+<!--[if IEMobile 7 ]><html class="no-js iem7"><![endif]-->
+<!--[if lt IE 9]><html class="no-js lte-ie8"><![endif]-->
+<!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <title>A Dive Into Password - Kevin Hu&#8217;s Blog</title>
+  <meta name="author" content="Kevin Hu">
+
+  
+  <meta name="description" content="Passwd The passwd is program on Unix systems to manage users' passwords. The user and password information on most Unix systems is stored in two &hellip;">
+  
+
+  <!-- http://t.co/dKP3o1e -->
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  
+  <link rel="canonical" href="http://yoursite.com/blog/2014/10/13/a-dive-into-password">
+  <link href="/favicon.png" rel="icon">
+  <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
+  <link href="/atom.xml" rel="alternate" title="Kevin Hu's Blog" type="application/atom+xml">
+  <script src="/javascripts/modernizr-2.0.js"></script>
+  <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+  <script>!window.jQuery && document.write(unescape('%3Cscript src="./javascripts/libs/jquery.min.js"%3E%3C/script%3E'))</script>
+  <script src="/javascripts/octopress.js" type="text/javascript"></script>
+  <!--Fonts from Google"s Web font directory at http://google.com/webfonts -->
+<link href="//fonts.googleapis.com/css?family=PT+Serif:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+<link href="//fonts.googleapis.com/css?family=PT+Sans:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+
+  
+
+</head>
+
+<body   >
+  <header role="banner"><hgroup>
+  <h1><a href="/">Kevin Hu&#8217;s Blog</a></h1>
+  
+    <h2>A Hungry Fool</h2>
+  
+</hgroup>
+
+</header>
+  <nav role="navigation"><ul class="subscription" data-subscription="rss">
+  <li><a href="/atom.xml" rel="subscribe-rss" title="subscribe via RSS">RSS</a></li>
+  
+</ul>
+  
+<form action="https://www.google.com/search" method="get">
+  <fieldset role="search">
+    <input type="hidden" name="q" value="site:yoursite.com" />
+    <input class="search" type="text" name="q" results="0" placeholder="Search"/>
+  </fieldset>
+</form>
+  
+<ul class="main-navigation">
+  <li><a href="/">Blog</a></li>
+  <li><a href="/blog/archives">Archives</a></li>
+</ul>
+
+</nav>
+  <div id="main">
+    <div id="content">
+      <div>
+<article class="hentry" role="article">
+  
+  <header>
+    
+      <h1 class="entry-title">A Dive Into Password</h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+<time class='entry-date' datetime='2014-10-13T22:08:55-04:00'><span class='date'><span class='date-month'>Oct</span> <span class='date-day'>13</span><span class='date-suffix'>th</span>, <span class='date-year'>2014</span></span> <span class='time'>10:08 pm</span></time>
+        
+      </p>
+    
+  </header>
+
+
+<div class="entry-content"><h2>Passwd</h2>
+
+<p>The passwd is program on Unix systems to manage users&#8217; passwords. The user and password information on most Unix systems is stored in two separate files: /etc/passwd for user information, and /etc/shadow for password information, including encrypted password value, expiration data, UID, GID, and etc.. The
+rationale behind storing information in separate files is discussed in <a href="http://www.tldp.org/HOWTO/Shadow-Password-HOWTO-2.html">Why shadow your passwd file?</a></p>
+
+<!--more-->
+
+
+<p>The passwd program is a part of the shadow-utils, which includes a series of programs to manage user accounts, group accounts, and converting plain passwords to shadow password format, such as: groupadd, useradd, usermod, login, passwd, su, and etc..</p>
+
+<p>The source file of <code>passwd</code> is available in <a href="http://pkg-shadow.alioth.debian.org/">Debian Alioth Page</a> and <a href="https://packages.debian.org/source/wheezy/shadow">Debian Package Information Page</a>. I downloaded the 4.1.5 original source for my study. See opensource isn&rsquo;t just a campaign slogan, it&rsquo;s something real!</p>
+
+<p>Basically, what passwd does is to manage passwords, like updating passwords,  setting minimum and maximum password expiration date, and all these information is saved to the /etc/passwd and /etc/shadow files, and password information in particular, needs an encryption library for protection, instead of being saved as plain text.</p>
+
+<p>Below is a <strong>NON</strong>-comprehensive list of code files required by the passwd program in the shadow-utils code base:</p>
+
+<pre>
+src/passwd.c
+lib/defines.h
+lib/getdef.(h/c)
+lib/shadow.(h/c)
+lib/shadowio.(h/c)
+lib/commonio.(h/c)
+lib/sgetspent.c
+</pre>
+
+
+<h2>How we change our password</h2>
+
+<h3>Data structure definitions first?</h3>
+
+<ul>
+<li><strong>Shadow passwd struct</strong>:
+Defined in shadow.h in linux include directory. Defines the structure of the shadow file. The pointer in the main function is defined as:</li>
+</ul>
+
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='c'><span class='line'><span class="k">const</span> <span class="k">struct</span> <span class="n">spwd</span> <span class="o">*</span><span class="n">sp</span><span class="p">;</span>  <span class="cm">/* Shadow file entry for user   */</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+</pre></td><td class='code'><pre><code class='c'><span class='line'><span class="cm">/* Structure of the password file.  */</span>
+</span><span class='line'><span class="k">struct</span> <span class="n">spwd</span>
+</span><span class='line'><span class="p">{</span>
+</span><span class='line'>    <span class="kt">char</span> <span class="o">*</span><span class="n">sp_namp</span><span class="p">;</span>              <span class="cm">/* Login name.  */</span>
+</span><span class='line'>    <span class="kt">char</span> <span class="o">*</span><span class="n">sp_pwdp</span><span class="p">;</span>              <span class="cm">/* Encrypted password.  */</span>
+</span><span class='line'>    <span class="kt">long</span> <span class="kt">int</span> <span class="n">sp_lstchg</span><span class="p">;</span>         <span class="cm">/* Date of last change.  */</span>
+</span><span class='line'>    <span class="kt">long</span> <span class="kt">int</span> <span class="n">sp_min</span><span class="p">;</span>            <span class="cm">/* Minimum number of days between changes.  */</span>
+</span><span class='line'>    <span class="kt">long</span> <span class="kt">int</span> <span class="n">sp_max</span><span class="p">;</span>            <span class="cm">/* Maximum number of days between changes.  */</span>
+</span><span class='line'>    <span class="kt">long</span> <span class="kt">int</span> <span class="n">sp_warn</span><span class="p">;</span>           <span class="cm">/* Number of days to warn user to change</span>
+</span><span class='line'><span class="cm">    the password.  */</span>
+</span><span class='line'>    <span class="kt">long</span> <span class="kt">int</span> <span class="n">sp_inact</span><span class="p">;</span>          <span class="cm">/* Number of days the account may be</span>
+</span><span class='line'><span class="cm">    inactive.  */</span>
+</span><span class='line'>    <span class="kt">long</span> <span class="kt">int</span> <span class="n">sp_expire</span><span class="p">;</span>         <span class="cm">/* Number of days since 1970-01-01 until</span>
+</span><span class='line'><span class="cm">    account expires.  */</span>
+</span><span class='line'>    <span class="kt">unsigned</span> <span class="kt">long</span> <span class="kt">int</span> <span class="n">sp_flag</span><span class="p">;</span>  <span class="cm">/* Reserved.  */</span>
+</span><span class='line'>    <span class="p">};</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<ul>
+<li><strong>Passwd Structure</strong>:
+Defined in pwd.h in linux include directory. Defines the <code>/etc/passwd</code> file structure. The pointer in the main function is defined:</li>
+</ul>
+
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='c'><span class='line'><span class="k">const</span> <span class="k">struct</span> <span class="n">passwd</span> <span class="o">*</span><span class="n">pw</span><span class="p">;</span>  <span class="cm">/* Password file entry for user      */</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+</pre></td><td class='code'><pre><code class='c'><span class='line'><span class="cm">/* The passwd structure.  */</span>
+</span><span class='line'><span class="k">struct</span> <span class="n">passwd</span>
+</span><span class='line'><span class="p">{</span>
+</span><span class='line'>    <span class="kt">char</span> <span class="o">*</span><span class="n">pw_name</span><span class="p">;</span>                <span class="cm">/* Username.  */</span>
+</span><span class='line'>    <span class="kt">char</span> <span class="o">*</span><span class="n">pw_passwd</span><span class="p">;</span>              <span class="cm">/* Password.  */</span>
+</span><span class='line'>    <span class="kt">__uid_t</span> <span class="n">pw_uid</span><span class="p">;</span>               <span class="cm">/* User ID.  */</span>
+</span><span class='line'>    <span class="kt">__gid_t</span> <span class="n">pw_gid</span><span class="p">;</span>               <span class="cm">/* Group ID.  */</span>
+</span><span class='line'>    <span class="kt">char</span> <span class="o">*</span><span class="n">pw_gecos</span><span class="p">;</span>               <span class="cm">/* Real name.  */</span>
+</span><span class='line'>    <span class="kt">char</span> <span class="o">*</span><span class="n">pw_dir</span><span class="p">;</span>                 <span class="cm">/* Home directory.  */</span>
+</span><span class='line'>    <span class="kt">char</span> <span class="o">*</span><span class="n">pw_shell</span><span class="p">;</span>               <span class="cm">/* Shell program.  */</span>
+</span><span class='line'>    <span class="p">};</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<ul>
+<li><p><strong>Shadow_db structure</strong>: Defined in <code>lib/shadowio.c</code>. It&rsquo;s a doubly linked list, storing information for all the shadow file entries. It&rsquo;s declared with a type called <code>struct commonio_db</code>, defined in <code>commonio.h</code>.</p>
+
+<p>  Shadow library has <code>commonio.c</code> for all the common io data structures and operations, and <code>shadowio.c</code>, which could be seen as a wrapper around common io for all shadow file data structure and operations.</p>
+
+<p>  The <code>shadow_db</code> defined as below. The <code>SHADOW_FILE</code> as you might have already guessed, is a macro defined as <code>"/etc/shadow"</code>.</p></li>
+</ul>
+
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+</pre></td><td class='code'><pre><code class='c'><span class='line'><span class="k">static</span> <span class="k">struct</span> <span class="n">commonio_db</span> <span class="n">shadow_db</span> <span class="o">=</span> <span class="p">{</span>
+</span><span class='line'>    <span class="n">SHADOW_FILE</span><span class="p">,</span>            <span class="cm">/* filename */</span>
+</span><span class='line'>    <span class="o">&amp;</span><span class="n">shadow_ops</span><span class="p">,</span>            <span class="cm">/* ops */</span>
+</span><span class='line'>    <span class="nb">NULL</span><span class="p">,</span>                   <span class="cm">/* fp */</span>
+</span><span class='line'>    <span class="cp">#ifdef WITH_SELINUX</span>
+</span><span class='line'>    <span class="nb">NULL</span><span class="p">,</span>                   <span class="cm">/* scontext */</span>
+</span><span class='line'>    <span class="cp">#endif</span>
+</span><span class='line'>    <span class="nb">NULL</span><span class="p">,</span>                   <span class="cm">/* head */</span>
+</span><span class='line'>    <span class="nb">NULL</span><span class="p">,</span>                   <span class="cm">/* tail */</span>
+</span><span class='line'>    <span class="nb">NULL</span><span class="p">,</span>                   <span class="cm">/* cursor */</span>
+</span><span class='line'>    <span class="nb">false</span><span class="p">,</span>                  <span class="cm">/* changed */</span>
+</span><span class='line'>    <span class="nb">false</span><span class="p">,</span>                  <span class="cm">/* isopen */</span>
+</span><span class='line'>    <span class="nb">false</span><span class="p">,</span>                  <span class="cm">/* locked */</span>
+</span><span class='line'>    <span class="nb">false</span>                   <span class="cm">/* readonly */</span>
+</span><span class='line'><span class="p">};</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<ul>
+<li>Some important global variables</li>
+</ul>
+
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+</pre></td><td class='code'><pre><code class='c'><span class='line'><span class="k">static</span> <span class="kt">char</span> <span class="o">*</span><span class="n">name</span><span class="p">;</span>   <span class="cm">/* The name of user whose password is being changed */</span>
+</span><span class='line'><span class="k">static</span> <span class="kt">char</span> <span class="o">*</span><span class="n">myname</span><span class="p">;</span> <span class="cm">/* The current user&#39;s name */</span>
+</span><span class='line'><span class="k">static</span> <span class="kt">bool</span> <span class="n">amroot</span><span class="p">;</span>  <span class="cm">/* The caller&#39;s real UID was 0 */</span>
+</span><span class='line'><span class="k">static</span> <span class="kt">char</span> <span class="n">crypt_passwd</span><span class="p">[</span><span class="mi">256</span><span class="p">];</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<h3>Main function</h3>
+
+<p>Though the whole password update procedure could be simply described as &ldquo;reading and updating the <code>/etc/passwd</code> and <code>/etc/shadow</code> file&rdquo;, the shadow library uses piles of code to check identity, permission, and several layers of function calls for encryption, and finally updating files. It needs to consider every aspect of the problem, which makes the code size larger than you  might expect.</p>
+
+<p>Also, passwd libray took <a href="http://www.wikiwand.com/en/Linux_PAM">PAM</a>, <a href="http://www.wikiwand.com/en/Trusted_computing_base">TCB</a> and <a href="http://www.wikiwand.com/en/Security-Enhanced_Linux">SELinux</a> into considerations. I would skip these here for I don&rsquo;t yet have time to study all.</p>
+
+<p>A good place to start reading is the <code>main()</code> entry of the <code>passwd.c</code>. The procedures could be summarized as follows:</p>
+
+<ul>
+<li><strong>Initialization</strong>:
+Init data structures (<code>const struct passwd *pw</code>, <code>const struct spwd *sp</code>, etc.), sanitize environment, check if the user is root, &hellip;;</li>
+<li><strong>Parse parameters</strong>:
+A large switch case for all parameters. As I&rsquo;m now only interested in updating my password, I would follow the execution path where no parameters are given;</li>
+<li><strong>Get username, check permissions</strong>:</li>
+</ul>
+
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='c'><span class='line'><span class="n">pw</span> <span class="o">=</span> <span class="n">get_my_pwent</span><span class="p">();</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='c'><span class='line'><span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="n">amroot</span> <span class="o">&amp;&amp;</span> <span class="p">(</span><span class="n">pw</span><span class="o">-&gt;</span><span class="n">pw_uid</span><span class="o">!=</span><span class="n">getuid</span><span class="p">())){...}</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='c'><span class='line'><span class="n">sp</span> <span class="o">=</span> <span class="n">getspnam</span><span class="p">(</span><span class="n">name</span><span class="p">);</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='c'><span class='line'><span class="n">check_password</span><span class="p">(</span><span class="n">pw</span><span class="p">,</span> <span class="n">sp</span><span class="p">);</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Get username, init pw and sp data structures, check if the user is root or if the user is trying to change his own password. Then it checks the validity of the user&rsquo;s account: is it expired, is its min password change time reached? These are in <code>check_password()</code> function.</p>
+
+<ul>
+<li><strong>Get new password</strong>:</li>
+</ul>
+
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='c'><span class='line'><span class="k">if</span> <span class="p">(</span><span class="n">new_password</span><span class="p">(</span><span class="n">pw</span><span class="p">)</span> <span class="o">!=</span> <span class="mi">0</span><span class="p">){...}</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Here&rsquo;s where there&rsquo;s most fun. It&#8217; when the <code>passwd</code> program prompts you for your old password, and tell you to input your new password. If you fail in trying too many times, the program would get upset and refuses to update password for you.
+Under the hood, it also does the following things:
+* Encrypt your input with <code>pw_encrypt()</code>(defined in <code>lib/encrypt.c</code>), then compare it with the old encrypted string. There must be a lot of fun to dig into the encryption method, but it&rsquo;s not in the scope of this blog;
+* Warns you of weak password;
+* Encrypt the password then immediately wipe the cleartext password, saves the encrypted password to the global variable <code>crypt_passwd</code>, which would then copied to other data structures, and then saves to the shadow file.</p>
+
+<ul>
+<li><strong>Update shadow file</strong>:</li>
+</ul>
+
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='c'><span class='line'><span class="n">update_shadow</span><span class="p">();</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>The program warns you the username you are changing password, then it calls the <code>update_shadow()</code> if you have shadow file. Otherwise, it calls <code>update_noshadow()</code>.</p>
+
+<p>The <code>update_shadow()</code> is going to the core of the program, and it&rsquo;s what I will observe closely.</p>
+
+<h3>update_shadow() function</h3>
+
+<p>Function <code>update_shadow()</code> is defined in <code>src/passwd.c</code>, and the summary of the procedures is:</p>
+
+<ul>
+<li><strong>Set a global lock</strong>:</li>
+</ul>
+
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='c'><span class='line'><span class="k">if</span> <span class="p">(</span><span class="n">spw_lock</span><span class="p">()</span> <span class="o">==</span> <span class="mi">0</span><span class="p">){...}</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Lock the shadow password file access. Spit an error if it&rsquo;s already locked.</p>
+
+<ul>
+<li><strong>Open the shadow file</strong>:</li>
+</ul>
+
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='c'><span class='line'><span class="k">if</span> <span class="p">(</span><span class="n">spw_open</span><span class="p">(</span><span class="n">O_RDWR</span><span class="p">)</span><span class="o">==</span><span class="mi">0</span><span class="p">){...}</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Taking a deeper look inside the <code>spw_open</code> in <code>lib/shadowio.c</code>, you could find that here is when it opens up the shadow file, reads it, and stores all the entries to the <code>shadow_db</code> doubly linked list.</p>
+
+<ul>
+<li><strong>Locate the entry by name</strong>:</li>
+</ul>
+
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='c'><span class='line'><span class="n">sp</span> <span class="o">=</span> <span class="n">spw_locate</span> <span class="p">(</span><span class="n">name</span><span class="p">);</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Also a function call in <code>lib/shadowio.c</code>. The <code>name</code> param is the current username.</p>
+
+<ul>
+<li><strong>Create nsp Data Structure</strong>:</li>
+</ul>
+
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='c'><span class='line'><span class="n">nsp</span> <span class="o">=</span> <span class="n">__spw_dup</span> <span class="p">(</span><span class="n">sp</span><span class="p">);</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>It copies the content in sp to a new pointer nsp;</p>
+
+<ul>
+<li><strong>Update the encrypted passwd</strong>:</li>
+</ul>
+
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='c'><span class='line'><span class="n">update_crypt_pw</span><span class="p">(</span><span class="n">nsp</span><span class="o">-&gt;</span><span class="n">sp_pwdp</span><span class="p">);</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Finally! The <code>crypted_passwd</code> is copied to the data structure, with:</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='c'><span class='line'><span class="n">cp</span><span class="o">=</span><span class="n">xstrdup</span><span class="p">(</span><span class="n">crypt_passwd</span><span class="p">)</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>inside of <code>update_crypt_pw()</code> function. This process is hidden so deep.
+The nsp data structure would then carry this encrypted password to the shadow file. The program would also update metadata, such as the expiration date and so on;</p>
+
+<ul>
+<li><strong>Update the shadow_db Data Structure</strong>:</li>
+</ul>
+
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+</pre></td><td class='code'><pre><code class='c'><span class='line'><span class="k">if</span> <span class="p">(</span><span class="n">spw_update</span><span class="p">(</span><span class="n">nsp</span><span class="p">)</span> <span class="o">==</span> <span class="mi">0</span><span class="p">){</span>
+</span><span class='line'>    <span class="k">return</span> <span class="n">commonio_update</span><span class="p">(</span><span class="o">&amp;</span><span class="n">shadow_db</span><span class="p">,</span> <span class="p">(</span><span class="k">const</span> <span class="kt">void</span> <span class="o">*</span><span class="p">)</span><span class="n">sp</span><span class="p">);</span>
+</span><span class='line'><span class="p">}</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>The <code>spw_update()</code>, again is a wrapper for the relating <code>commonio_update()</code>. Inside it would try to find the entry of the <code>shadow_db</code> data structure, or create new entry when not found. Then it saves all the information in the <code>sp</code> to the <code>shadow_db</code>.</p>
+
+<ul>
+<li><strong>Close the shadow file, unlock the global lock</strong>:</li>
+</ul>
+
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='c'><span class='line'><span class="n">spw_close</span><span class="p">();</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='c'><span class='line'><span class="n">spw_unlock</span><span class="p">();</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Close and saves the shadow file to its place. Unlock the global lock, concludes the whole process. Still, there&rsquo;s much interesting things to look at inside the <code>spw_close()</code> and <code>commonio_close()</code>, but I think I&rsquo;ve written long enough.</p>
+
+<h2>Afterthoughts</h2>
+
+<p>Reading code is fun, recording the whole process is even more so. It&rsquo;s a rewarding process, especially for some high-quality code as shadow library. It kinda teaches you how top-notch programmers tackles system-level problems. It&rsquo;s also tiring though, when you dig into all the function calls, variables (especially global variables) while tracking its execution path. At some point I really wish the code could be a little bit more commented.</p>
+
+<p>I might have the energy to blog all the code I will read, but I think I will definitely read more code before I start writing something similar. To conclude, it&rsquo;s actually fun experience that quenches your curiosity of &ldquo;How it actually works&rdquo;.</p>
+
+<blockquote><p>Written with <a href="https://stackedit.io/">StackEdit</a>.</p></blockquote>
+</div>
+
+
+  <footer>
+    <p class="meta">
+      
+  
+
+<span class="byline author vcard">Posted by <span class="fn">Kevin Hu</span></span>
+
+      
+
+
+
+
+<time class='entry-date' datetime='2014-10-13T22:08:55-04:00'><span class='date'><span class='date-month'>Oct</span> <span class='date-day'>13</span><span class='date-suffix'>th</span>, <span class='date-year'>2014</span></span> <span class='time'>10:08 pm</span></time>
+      
+
+<span class="categories">
+  
+    <a class='category' href='/blog/categories/codereading/'>codereading</a>
+  
+</span>
+
+
+    </p>
+    
+      <div class="sharing">
+  
+  <a href="//twitter.com/share" class="twitter-share-button" data-url="http://yoursite.com/blog/2014/10/13/a-dive-into-password/" data-via="" data-counturl="http://yoursite.com/blog/2014/10/13/a-dive-into-password/" >Tweet</a>
+  
+  
+  
+</div>
+
+    
+    <p class="meta">
+      
+        <a class="basic-alignment left" href="/blog/2014/10/11/a-dive-into-ply/" title="Previous Post: A Dive Into PLY">&laquo; A Dive Into PLY</a>
+      
+      
+        <a class="basic-alignment right" href="/blog/2014/10/31/more-on-passwd/" title="Next Post: More On Passwd">More On Passwd &raquo;</a>
+      
+    </p>
+  </footer>
+</article>
+
+  <section>
+    <h1>Comments</h1>
+    <div id="disqus_thread" aria-live="polite"><noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+</div>
+  </section>
+
+</div>
+
+<aside class="sidebar">
+  
+    <section>
+  <h1>Recent Posts</h1>
+  <ul id="recent_posts">
+    
+      <li class="post">
+        <a href="/blog/2014/10/31/more-on-passwd/">More on Passwd</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2014/10/13/a-dive-into-password/">A Dive Into Password</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2014/10/11/a-dive-into-ply/">A Dive Into PLY</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2014/10/08/a-new-blog-for-my-tech-notes/">A New Blog for My Tech Notes</a>
+      </li>
+    
+  </ul>
+</section>
+
+
+
+
+
+  
+</aside>
+
+
+    </div>
+  </div>
+  <footer role="contentinfo"><p>
+  Copyright &copy; 2014 - Kevin Hu -
+  <span class="credit">Powered by <a href="http://octopress.org">Octopress</a></span>
+</p>
+
+</footer>
+  
+
+<script type="text/javascript">
+      var disqus_shortname = 'kevinhusblog';
+      
+        
+        // var disqus_developer = 1;
+        var disqus_identifier = 'http://yoursite.com/blog/2014/10/13/a-dive-into-password/';
+        var disqus_url = 'http://yoursite.com/blog/2014/10/13/a-dive-into-password/';
+        var disqus_script = 'embed.js';
+      
+    (function () {
+      var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+      dsq.src = '//' + disqus_shortname + '.disqus.com/' + disqus_script;
+      (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    }());
+</script>
+
+
+
+
+
+
+
+  <script type="text/javascript">
+    (function(){
+      var twitterWidgets = document.createElement('script');
+      twitterWidgets.type = 'text/javascript';
+      twitterWidgets.async = true;
+      twitterWidgets.src = '//platform.twitter.com/widgets.js';
+      document.getElementsByTagName('head')[0].appendChild(twitterWidgets);
+    })();
+  </script>
+
+
+
+
+
+</body>
+</html>

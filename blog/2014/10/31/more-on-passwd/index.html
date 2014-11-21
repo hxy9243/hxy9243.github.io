@@ -1,0 +1,279 @@
+
+<!DOCTYPE html>
+<!--[if IEMobile 7 ]><html class="no-js iem7"><![endif]-->
+<!--[if lt IE 9]><html class="no-js lte-ie8"><![endif]-->
+<!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <title>More on Passwd - Kevin Hu&#8217;s Blog</title>
+  <meta name="author" content="Kevin Hu">
+
+  
+  <meta name="description" content="A little bit more interesting discoveries while digging into the passwd code file. The &rsquo;s' flag in file permission First, the file permission &hellip;">
+  
+
+  <!-- http://t.co/dKP3o1e -->
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  
+  <link rel="canonical" href="http://yoursite.com/blog/2014/10/31/more-on-passwd">
+  <link href="/favicon.png" rel="icon">
+  <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
+  <link href="/atom.xml" rel="alternate" title="Kevin Hu's Blog" type="application/atom+xml">
+  <script src="/javascripts/modernizr-2.0.js"></script>
+  <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+  <script>!window.jQuery && document.write(unescape('%3Cscript src="./javascripts/libs/jquery.min.js"%3E%3C/script%3E'))</script>
+  <script src="/javascripts/octopress.js" type="text/javascript"></script>
+  <!--Fonts from Google"s Web font directory at http://google.com/webfonts -->
+<link href="//fonts.googleapis.com/css?family=PT+Serif:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+<link href="//fonts.googleapis.com/css?family=PT+Sans:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+
+  
+
+</head>
+
+<body   >
+  <header role="banner"><hgroup>
+  <h1><a href="/">Kevin Hu&#8217;s Blog</a></h1>
+  
+    <h2>A Hungry Fool</h2>
+  
+</hgroup>
+
+</header>
+  <nav role="navigation"><ul class="subscription" data-subscription="rss">
+  <li><a href="/atom.xml" rel="subscribe-rss" title="subscribe via RSS">RSS</a></li>
+  
+</ul>
+  
+<form action="https://www.google.com/search" method="get">
+  <fieldset role="search">
+    <input type="hidden" name="q" value="site:yoursite.com" />
+    <input class="search" type="text" name="q" results="0" placeholder="Search"/>
+  </fieldset>
+</form>
+  
+<ul class="main-navigation">
+  <li><a href="/">Blog</a></li>
+  <li><a href="/blog/archives">Archives</a></li>
+</ul>
+
+</nav>
+  <div id="main">
+    <div id="content">
+      <div>
+<article class="hentry" role="article">
+  
+  <header>
+    
+      <h1 class="entry-title">More on Passwd</h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+<time class='entry-date' datetime='2014-10-31T22:30:45-04:00'><span class='date'><span class='date-month'>Oct</span> <span class='date-day'>31</span><span class='date-suffix'>st</span>, <span class='date-year'>2014</span></span> <span class='time'>10:30 pm</span></time>
+        
+      </p>
+    
+  </header>
+
+
+<div class="entry-content"><p>A little bit more interesting discoveries while digging into the passwd code file.</p>
+
+<h2>The &rsquo;s&#8217; flag in file permission</h2>
+
+<p>First, the file permission of passwd executable is <code>-rwsr-xr-x</code>. There&rsquo;s an &rsquo;s&#8217; flag which don&rsquo;t usually appear in common Unix files. The usage of the &rsquo;s&#8217; field is explained here:</p>
+
+<p><a href="http://en.wikipedia.org/wiki/Setuid">http://en.wikipedia.org/wiki/Setuid</a></p>
+
+<!--more-->
+
+
+<p>Which means when a user runs the passwd program, his effective uid will become the owner of the executable file, which is root in this case. While inside the passwd program, it uses <code>getuid</code>, which returns the user&rsquo;s real id instead of effective id.</p>
+
+<h2>On updating the shadow file</h2>
+
+<p>I also do notice that the whole passwd program would only require one Unix system capability: the <code>CAP_FCHOWN</code> capability, which is required when you&rsquo;re changing the owner of one file. Here&rsquo;s why the program needs it.</p>
+
+<p>As a matter of fact, the passwd program never actually directly writes into the <code>/etc/shadow</code> file. For some reason (perhaps security concerns), it writes into a temp file first, set the uid and gid of the temp file, and then rewrite the shadow file with the temp file.</p>
+
+<p>The code is defined in <code>commonio.c</code> file, <code>commonio_update</code> function. As described in the code bellow:</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+</pre></td><td class='code'><pre><code class='c'><span class='line'><span class="c1">// set the temp filename</span>
+</span><span class='line'><span class="n">snprintf</span> <span class="p">(</span><span class="n">buf</span><span class="p">,</span> <span class="k">sizeof</span> <span class="n">buf</span><span class="p">,</span> <span class="s">&quot;%s+&quot;</span><span class="p">,</span> <span class="n">db</span><span class="o">-&gt;</span><span class="n">filename</span><span class="p">);</span>
+</span><span class='line'>
+</span><span class='line'><span class="p">...</span>
+</span><span class='line'>
+</span><span class='line'><span class="c1">// open the file with name defined in buf, permissions defined in sb, returns the file pointer</span>
+</span><span class='line'><span class="n">db</span><span class="o">-&gt;</span><span class="n">fp</span> <span class="o">=</span> <span class="n">fopen_set_perms</span> <span class="p">(</span><span class="n">buf</span><span class="p">,</span> <span class="s">&quot;w&quot;</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">sb</span><span class="p">);</span>
+</span><span class='line'>
+</span><span class='line'><span class="p">...</span>
+</span><span class='line'>
+</span><span class='line'><span class="c1">// write all data to db-&gt;fp, the temp fp</span>
+</span><span class='line'><span class="k">if</span> <span class="p">(</span><span class="n">write_all</span> <span class="p">(</span><span class="n">db</span><span class="p">)</span> <span class="o">!=</span> <span class="mi">0</span><span class="p">){...}</span>
+</span><span class='line'>
+</span><span class='line'><span class="p">...</span>
+</span><span class='line'>
+</span><span class='line'><span class="c1">// Rename the temp filename in buf to db-&gt;filename, which is /etc/shadow</span>
+</span><span class='line'><span class="k">if</span> <span class="p">(</span><span class="n">lrename</span> <span class="p">(</span><span class="n">buf</span><span class="p">,</span> <span class="n">db</span><span class="o">-&gt;</span><span class="n">filename</span><span class="p">)</span> <span class="o">!=</span> <span class="mi">0</span><span class="p">){...}</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<blockquote><p>Written with <a href="https://stackedit.io/">StackEdit</a>.</p></blockquote>
+</div>
+
+
+  <footer>
+    <p class="meta">
+      
+  
+
+<span class="byline author vcard">Posted by <span class="fn">Kevin Hu</span></span>
+
+      
+
+
+
+
+<time class='entry-date' datetime='2014-10-31T22:30:45-04:00'><span class='date'><span class='date-month'>Oct</span> <span class='date-day'>31</span><span class='date-suffix'>st</span>, <span class='date-year'>2014</span></span> <span class='time'>10:30 pm</span></time>
+      
+
+<span class="categories">
+  
+    <a class='category' href='/blog/categories/codereading/'>codereading</a>
+  
+</span>
+
+
+    </p>
+    
+      <div class="sharing">
+  
+  <a href="//twitter.com/share" class="twitter-share-button" data-url="http://yoursite.com/blog/2014/10/31/more-on-passwd/" data-via="" data-counturl="http://yoursite.com/blog/2014/10/31/more-on-passwd/" >Tweet</a>
+  
+  
+  
+</div>
+
+    
+    <p class="meta">
+      
+        <a class="basic-alignment left" href="/blog/2014/10/13/a-dive-into-password/" title="Previous Post: A Dive Into Password">&laquo; A Dive Into Password</a>
+      
+      
+    </p>
+  </footer>
+</article>
+
+  <section>
+    <h1>Comments</h1>
+    <div id="disqus_thread" aria-live="polite"><noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+</div>
+  </section>
+
+</div>
+
+<aside class="sidebar">
+  
+    <section>
+  <h1>Recent Posts</h1>
+  <ul id="recent_posts">
+    
+      <li class="post">
+        <a href="/blog/2014/10/31/more-on-passwd/">More on Passwd</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2014/10/13/a-dive-into-password/">A Dive Into Password</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2014/10/11/a-dive-into-ply/">A Dive Into PLY</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2014/10/08/a-new-blog-for-my-tech-notes/">A New Blog for My Tech Notes</a>
+      </li>
+    
+  </ul>
+</section>
+
+
+
+
+
+  
+</aside>
+
+
+    </div>
+  </div>
+  <footer role="contentinfo"><p>
+  Copyright &copy; 2014 - Kevin Hu -
+  <span class="credit">Powered by <a href="http://octopress.org">Octopress</a></span>
+</p>
+
+</footer>
+  
+
+<script type="text/javascript">
+      var disqus_shortname = 'kevinhusblog';
+      
+        
+        // var disqus_developer = 1;
+        var disqus_identifier = 'http://yoursite.com/blog/2014/10/31/more-on-passwd/';
+        var disqus_url = 'http://yoursite.com/blog/2014/10/31/more-on-passwd/';
+        var disqus_script = 'embed.js';
+      
+    (function () {
+      var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+      dsq.src = '//' + disqus_shortname + '.disqus.com/' + disqus_script;
+      (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    }());
+</script>
+
+
+
+
+
+
+
+  <script type="text/javascript">
+    (function(){
+      var twitterWidgets = document.createElement('script');
+      twitterWidgets.type = 'text/javascript';
+      twitterWidgets.async = true;
+      twitterWidgets.src = '//platform.twitter.com/widgets.js';
+      document.getElementsByTagName('head')[0].appendChild(twitterWidgets);
+    })();
+  </script>
+
+
+
+
+
+</body>
+</html>
