@@ -4,7 +4,7 @@
   <title><![CDATA[Kevin Hu's Blog]]></title>
   <link href="http://kevinhu.me//atom.xml" rel="self"/>
   <link href="http://kevinhu.me//"/>
-  <updated>2014-11-20T23:34:26-05:00</updated>
+  <updated>2014-11-24T22:45:51-05:00</updated>
   <id>http://kevinhu.me//</id>
   <author>
     <name><![CDATA[Kevin Hu]]></name>
@@ -12,6 +12,66 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[What Parsers Are They Using?]]></title>
+    <link href="http://kevinhu.me//blog/2014/11/24/what-parsers-are-they-using/"/>
+    <updated>2014-11-24T18:29:00-05:00</updated>
+    <id>http://kevinhu.me//blog/2014/11/24/what-parsers-are-they-using</id>
+    <content type="html"><![CDATA[<p>This is a <del>quite boring</del> post on programming language trivia, which doesn&rsquo;t dig into anything deep.</p>
+
+<h2>GCC and Clang</h2>
+
+<p>The GCC is mostly implemented in C, and used to use Bison for parser generation, according to its <a href="http://en.wikipedia.org/wiki/GNU_bison">Wikipedia page</a>.
+By default, it generates right recursive table driven LALR parser.</p>
+
+<!--more-->
+
+
+<p>Somehow according to the <a href="http://en.wikipedia.org/wiki/GNU_bison#Where_is_it_used.3F">same page</a>, GCC has switched to <a href="http://dinosaur.compilertools.net/yacc/">YACC</a> before now switching to a hand-written recursive-descent parser for C/C++/Objective C. This could also be seen from GCC release notes <a href="https://gcc.gnu.org/gcc-3.4/changes.html#cplusplus">3.4</a> and <a href="https://gcc.gnu.org/gcc-4.1/changes.html">4.1</a>.</p>
+
+<p>Clang, as well as LLVM is implemented in C++. It also uses a unified recursive-descent parser for C, Objective C, C++ and Objective C++, according to the <a href="http://clang.llvm.org/features.html">LLVM Clang Page</a>. Both GCC and Clang now uses recursive-descent parser, claiming it provides with faster speed. On Clang page, it also states recursive-descent parser:</p>
+
+<blockquote><p> &hellip; makes it very easy for new developers to understand the code, it easily supports ad-hoc rules and other strange hacks required by C/C++, and makes it straight-forward to implement excellent diagnostics and error recovery.</p></blockquote>
+
+<h2>Python</h2>
+
+<p>Here Python refers to the CPython implementation. In its repo under <a href="https://github.com/python/cpython/tree/master/Parser">&ldquo;Parser&rdquo; directory</a>, it could be seen CPython actually uses <a href="http://asdl.sourceforge.net/">Zephyr ASDL</a> for syntax description. Zyphyr ASDL is also described in its <a href="https://www.cs.princeton.edu/research/techreps/TR-554-97">Princeton CS Dept. Page</a>.</p>
+
+<p>Python uses LL(1) grammar. Its AST file (Python-ast.c) isgenerated according to the ASDL description of the language. The detailed process is described in <a href="http://legacy.python.org/dev/peps/pep-0339/">PEP339</a>.</p>
+
+<h2>Ruby</h2>
+
+<p>Ruby MRI is implemented in C. According to <a href="http://en.wikipedia.org/wiki/GNU_bison#Where_is_it_used.3F">Bison Wikipedia Page</a>, Ruby also uses Bison for the parser generation, which should be a right-recursive parser.</p>
+
+<p>The source code for parser and syntax could be found in <a href="https://github.com/ruby/ruby/blob/trunk/parse.y">its repo</a>.</p>
+
+<h2>JavaScript</h2>
+
+<p>JavaScript v8 is implemented in C++. It claims to be using a hand-written top-down parser, according to <a href="http://www.quora.com/What-are-the-parsing-techniques-used-by-modern-compilers">this Quora post</a>.</p>
+
+<p>I have no time to dig in its code base at the moment. Also it&rsquo;s not in the scope of this post.</p>
+
+<h2>Haskell</h2>
+
+<p>According to the <a href="http://www.quora.com/What-are-the-parsing-techniques-used-by-modern-compilers">Quora post above</a>, GHC uses a generator called <a href="https://www.haskell.org/happy/">Happy</a>. From its official website, it looks like it&rsquo;s first created to generate parser specifically for GHC.</p>
+
+<p>Its syntax is defined in its codebase directory <a href="https://github.com/ghc/ghc/tree/master/compiler/parser">&ldquo;compiler/parser/Parser.y&rdquo;</a>.</p>
+
+<h2>Julia</h2>
+
+<p>Interestingly, after searching a while in its <a href="https://github.com/JuliaLang/julia/tree/master/src">GitHub codebase</a>, I found that Julia actually uses Scheme for its
+frontend and parser. Although most its other source files are in C.</p>
+
+<p>It looks like it also uses a recursive-descent parser.</p>
+
+<h2>Golang</h2>
+
+<p>Golang parser is now implemented in Golang itself now. (Wow!) Not only that, most Golang implementation is in Go, according to its <a href="https://github.com/jnwhiteh/golang">Github mirror repo</a>. By the time I checked it, it contains 75.7% Golang, 19.4% C, 3.0% Assembly, and 1.9% other.</p>
+
+<p>From its parser <a href="https://github.com/jnwhiteh/golang/blob/master/src/go/parser/parser.go">source code</a>, it looks like it also uses a recursive-descent parser.</p>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[More on Passwd]]></title>
