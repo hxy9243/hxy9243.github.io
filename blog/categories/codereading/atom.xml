@@ -1,0 +1,322 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: Codereading | Kevin Hu's Blog]]></title>
+  <link href="http://kevinhu.me//blog/categories/codereading/atom.xml" rel="self"/>
+  <link href="http://kevinhu.me//"/>
+  <updated>2014-11-24T22:45:51-05:00</updated>
+  <id>http://kevinhu.me//</id>
+  <author>
+    <name><![CDATA[Kevin Hu]]></name>
+    
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[More on Passwd]]></title>
+    <link href="http://kevinhu.me//blog/2014/10/31/more-on-passwd/"/>
+    <updated>2014-10-31T22:30:45-04:00</updated>
+    <id>http://kevinhu.me//blog/2014/10/31/more-on-passwd</id>
+    <content type="html"><![CDATA[<p>A little bit more interesting discoveries while digging into the passwd code file.</p>
+
+<h2>The &rsquo;s&#8217; flag in file permission</h2>
+
+<p>First, the file permission of passwd executable is <code>-rwsr-xr-x</code>. There&rsquo;s an &rsquo;s&#8217; flag which don&rsquo;t usually appear in common Unix files. The usage of the &rsquo;s&#8217; field is explained here:</p>
+
+<p><a href="http://en.wikipedia.org/wiki/Setuid">http://en.wikipedia.org/wiki/Setuid</a></p>
+
+<!--more-->
+
+
+<p>Which means when a user runs the passwd program, his effective uid will become the owner of the executable file, which is root in this case. While inside the passwd program, it uses <code>getuid</code>, which returns the user&rsquo;s real id instead of effective id.</p>
+
+<h2>On updating the shadow file</h2>
+
+<p>I also do notice that the whole passwd program would only require one Unix system capability: the <code>CAP_FCHOWN</code> capability, which is required when you&rsquo;re changing the owner of one file. Here&rsquo;s why the program needs it.</p>
+
+<p>As a matter of fact, the passwd program never actually directly writes into the <code>/etc/shadow</code> file. For some reason (perhaps security concerns), it writes into a temp file first, set the uid and gid of the temp file, and then rewrite the shadow file with the temp file.</p>
+
+<p>The code is defined in <code>commonio.c</code> file, <code>commonio_update</code> function. As described in the code bellow:</p>
+
+<pre><code class="c">// set the temp filename
+snprintf (buf, sizeof buf, "%s+", db-&gt;filename);
+
+...
+
+// open the file with name defined in buf, permissions defined in sb, returns the file pointer
+db-&gt;fp = fopen_set_perms (buf, "w", &amp;sb);
+
+...
+
+// write all data to db-&gt;fp, the temp fp
+if (write_all (db) != 0){...}
+
+...
+
+// Rename the temp filename in buf to db-&gt;filename, which is /etc/shadow
+if (lrename (buf, db-&gt;filename) != 0){...}
+</code></pre>
+
+<blockquote><p>Written with <a href="https://stackedit.io/">StackEdit</a>.</p></blockquote>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[A Dive Into Password]]></title>
+    <link href="http://kevinhu.me//blog/2014/10/13/a-dive-into-password/"/>
+    <updated>2014-10-13T22:08:55-04:00</updated>
+    <id>http://kevinhu.me//blog/2014/10/13/a-dive-into-password</id>
+    <content type="html"><![CDATA[<h2>Passwd</h2>
+
+<p>The passwd is program on Unix systems to manage users&#8217; passwords. The user and password information on most Unix systems is stored in two separate files: /etc/passwd for user information, and /etc/shadow for password information, including encrypted password value, expiration data, UID, GID, and etc.. The
+rationale behind storing information in separate files is discussed in <a href="http://www.tldp.org/HOWTO/Shadow-Password-HOWTO-2.html">Why shadow your passwd file?</a></p>
+
+<!--more-->
+
+
+<p>The passwd program is a part of the shadow-utils, which includes a series of programs to manage user accounts, group accounts, and converting plain passwords to shadow password format, such as: groupadd, useradd, usermod, login, passwd, su, and etc..</p>
+
+<p>The source file of <code>passwd</code> is available in <a href="http://pkg-shadow.alioth.debian.org/">Debian Alioth Page</a> and <a href="https://packages.debian.org/source/wheezy/shadow">Debian Package Information Page</a>. I downloaded the 4.1.5 original source for my study. See opensource isn&rsquo;t just a campaign slogan, it&rsquo;s something real!</p>
+
+<p>Basically, what passwd does is to manage passwords, like updating passwords,  setting minimum and maximum password expiration date, and all these information is saved to the /etc/passwd and /etc/shadow files, and password information in particular, needs an encryption library for protection, instead of being saved as plain text.</p>
+
+<p>Below is a <strong>NON</strong>-comprehensive list of code files required by the passwd program in the shadow-utils code base:</p>
+
+<pre>
+src/passwd.c
+lib/defines.h
+lib/getdef.(h/c)
+lib/shadow.(h/c)
+lib/shadowio.(h/c)
+lib/commonio.(h/c)
+lib/sgetspent.c
+</pre>
+
+
+<h2>How we change our password</h2>
+
+<h3>Data structure definitions first?</h3>
+
+<ul>
+<li><p><strong>Shadow passwd struct</strong>:
+Defined in shadow.h in linux include directory. Defines the structure of the shadow file. The pointer in the main function is defined as:
+<code>c
+const struct spwd *sp;  /* Shadow file entry for user   */
+</code>
+<code>c
+/* Structure of the password file.  */
+struct spwd
+{
+  char *sp_namp;              /* Login name.  */
+  char *sp_pwdp;              /* Encrypted password.  */
+  long int sp_lstchg;         /* Date of last change.  */
+  long int sp_min;            /* Minimum number of days between changes.  */
+  long int sp_max;            /* Maximum number of days between changes.  */
+  long int sp_warn;           /* Number of days to warn user to change
+  the password.  */
+  long int sp_inact;          /* Number of days the account may be
+  inactive.  */
+  long int sp_expire;         /* Number of days since 1970-01-01 until
+  account expires.  */
+  unsigned long int sp_flag;  /* Reserved.  */
+  };
+</code></p></li>
+<li><p><strong>Passwd Structure</strong>:
+Defined in pwd.h in linux include directory. Defines the <code>/etc/passwd</code> file structure. The pointer in the main function is defined:
+<code>c
+const struct passwd *pw;  /* Password file entry for user      */
+</code>
+<code>c
+/* The passwd structure.  */
+struct passwd
+{
+  char *pw_name;                /* Username.  */
+  char *pw_passwd;              /* Password.  */
+  __uid_t pw_uid;               /* User ID.  */
+  __gid_t pw_gid;               /* Group ID.  */
+  char *pw_gecos;               /* Real name.  */
+  char *pw_dir;                 /* Home directory.  */
+  char *pw_shell;               /* Shell program.  */
+  };
+</code></p></li>
+<li><p><strong>Shadow_db structure</strong>: Defined in <code>lib/shadowio.c</code>. It&rsquo;s a doubly linked list, storing information for all the shadow file entries. It&rsquo;s declared with a type called <code>struct commonio_db</code>, defined in <code>commonio.h</code>.</p>
+
+<p>  Shadow library has <code>commonio.c</code> for all the common io data structures and operations, and <code>shadowio.c</code>, which could be seen as a wrapper around common io for all shadow file data structure and operations.</p>
+
+<p>  The <code>shadow_db</code> defined as below. The <code>SHADOW_FILE</code> as you might have already guessed, is a macro defined as <code>"/etc/shadow"</code>.</p></li>
+</ul>
+
+
+<pre><code class="c">static struct commonio_db shadow_db = {
+    SHADOW_FILE,            /* filename */
+    &amp;shadow_ops,            /* ops */
+    NULL,                   /* fp */
+    #ifdef WITH_SELINUX
+    NULL,                   /* scontext */
+    #endif
+    NULL,                   /* head */
+    NULL,                   /* tail */
+    NULL,                   /* cursor */
+    false,                  /* changed */
+    false,                  /* isopen */
+    false,                  /* locked */
+    false                   /* readonly */
+};
+</code></pre>
+
+<ul>
+<li>Some important global variables
+&#8220;`c
+static char <em>name;   /</em> The name of user whose password is being changed <em>/
+static char </em>myname; /<em> The current user&rsquo;s name </em>/
+static bool amroot;  /<em> The caller&rsquo;s real UID was 0 </em>/
+static char crypt_passwd[256];</li>
+</ul>
+
+
+<pre><code>
+
+### Main function
+
+Though the whole password update procedure could be simply described as "reading and updating the ```/etc/passwd``` and ```/etc/shadow``` file", the shadow library uses piles of code to check identity, permission, and several layers of function calls for encryption, and finally updating files. It needs to consider every aspect of the problem, which makes the code size larger than you  might expect.
+
+Also, passwd libray took [PAM](http://www.wikiwand.com/en/Linux_PAM), [TCB](http://www.wikiwand.com/en/Trusted_computing_base) and [SELinux](http://www.wikiwand.com/en/Security-Enhanced_Linux) into considerations. I would skip these here for I don't yet have time to study all.
+
+A good place to start reading is the ```main()``` entry of the ```passwd.c```. The procedures could be summarized as follows:
+
+* __Initialization__:
+Init data structures (```const struct passwd *pw```, ```const struct spwd *sp```, etc.), sanitize environment, check if the user is root, ...;
+* __Parse parameters__:
+A large switch case for all parameters. As I'm now only interested in updating my password, I would follow the execution path where no parameters are given;
+* __Get username, check permissions__:
+</code></pre>
+
+<p>pw = get_my_pwent();
+<code>
+</code>c
+if (!amroot &amp;&amp; (pw->pw_uid!=getuid())){&hellip;}
+<code>
+</code>c
+sp = getspnam(name);
+<code>
+</code>c
+check_password(pw, sp);
+<code>
+Get username, init pw and sp data structures, check if the user is root or if the user is trying to change his own password. Then it checks the validity of the user's account: is it expired, is its min password change time reached? These are in</code>check_password()&#8220;` function.</p>
+
+<ul>
+<li><strong>Get new password</strong>:</li>
+</ul>
+
+
+<pre><code class="c">if (new_password(pw) != 0){...}
+</code></pre>
+
+<p>Here&rsquo;s where there&rsquo;s most fun. It&#8217; when the <code>passwd</code> program prompts you for your old password, and tell you to input your new password. If you fail in trying too many times, the program would get upset and refuses to update password for you.
+Under the hood, it also does the following things:
+* Encrypt your input with <code>pw_encrypt()</code>(defined in <code>lib/encrypt.c</code>), then compare it with the old encrypted string. There must be a lot of fun to dig into the encryption method, but it&rsquo;s not in the scope of this blog;
+* Warns you of weak password;
+* Encrypt the password then immediately wipe the cleartext password, saves the encrypted password to the global variable <code>crypt_passwd</code>, which would then copied to other data structures, and then saves to the shadow file.</p>
+
+<ul>
+<li><strong>Update shadow file</strong>:</li>
+</ul>
+
+
+<pre><code class="c">update_shadow();
+</code></pre>
+
+<p>The program warns you the username you are changing password, then it calls the <code>update_shadow()</code> if you have shadow file. Otherwise, it calls <code>update_noshadow()</code>.</p>
+
+<p>The <code>update_shadow()</code> is going to the core of the program, and it&rsquo;s what I will observe closely.</p>
+
+<h3>update_shadow() function</h3>
+
+<p>Function <code>update_shadow()</code> is defined in <code>src/passwd.c</code>, and the summary of the procedures is:</p>
+
+<ul>
+<li><strong>Set a global lock</strong>:</li>
+</ul>
+
+
+<pre><code class="c">if (spw_lock() == 0){...}
+</code></pre>
+
+<p>Lock the shadow password file access. Spit an error if it&rsquo;s already locked.</p>
+
+<ul>
+<li><strong>Open the shadow file</strong>:</li>
+</ul>
+
+
+<pre><code class="c">if (spw_open(O_RDWR)==0){...}
+</code></pre>
+
+<p>Taking a deeper look inside the <code>spw_open</code> in <code>lib/shadowio.c</code>, you could find that here is when it opens up the shadow file, reads it, and stores all the entries to the <code>shadow_db</code> doubly linked list.</p>
+
+<ul>
+<li><strong>Locate the entry by name</strong>:</li>
+</ul>
+
+
+<pre><code class="c">sp = spw_locate (name);
+</code></pre>
+
+<p>Also a function call in <code>lib/shadowio.c</code>. The <code>name</code> param is the current username.</p>
+
+<ul>
+<li><strong>Create nsp Data Structure</strong>:</li>
+</ul>
+
+
+<pre><code class="c">nsp = __spw_dup (sp);
+</code></pre>
+
+<p>It copies the content in sp to a new pointer nsp;</p>
+
+<ul>
+<li><strong>Update the encrypted passwd</strong>:</li>
+</ul>
+
+
+<pre><code class="c">update_crypt_pw(nsp-&gt;sp_pwdp);
+</code></pre>
+
+<p>Finally! The <code>crypted_passwd</code> is copied to the data structure, with:
+<code>c
+cp=xstrdup(crypt_passwd)
+</code>
+inside of <code>update_crypt_pw()</code> function. This process is hidden so deep.
+The nsp data structure would then carry this encrypted password to the shadow file. The program would also update metadata, such as the expiration date and so on;</p>
+
+<ul>
+<li><p><strong>Update the shadow_db Data Structure</strong>:
+<code>c
+if (spw_update(nsp) == 0){
+  return commonio_update(&amp;shadow_db, (const void *)sp);
+}
+</code>
+The <code>spw_update()</code>, again is a wrapper for the relating <code>commonio_update()</code>. Inside it would try to find the entry of the <code>shadow_db</code> data structure, or create new entry when not found. Then it saves all the information in the <code>sp</code> to the <code>shadow_db</code>.</p></li>
+<li><p><strong>Close the shadow file, unlock the global lock</strong>:
+<code>c
+spw_close();
+</code>
+<code>c
+spw_unlock();
+</code>
+Close and saves the shadow file to its place. Unlock the global lock, concludes the whole process. Still, there&rsquo;s much interesting things to look at inside the <code>spw_close()</code> and <code>commonio_close()</code>, but I think I&rsquo;ve written long enough.</p></li>
+</ul>
+
+
+<h2>Afterthoughts</h2>
+
+<p>Reading code is fun, recording the whole process is even more so. It&rsquo;s a rewarding process, especially for some high-quality code as shadow library. It kinda teaches you how top-notch programmers tackles system-level problems. It&rsquo;s also tiring though, when you dig into all the function calls, variables (especially global variables) while tracking its execution path. At some point I really wish the code could be a little bit more commented.</p>
+
+<p>I might have the energy to blog all the code I will read, but I think I will definitely read more code before I start writing something similar. To conclude, it&rsquo;s actually fun experience that quenches your curiosity of &ldquo;How it actually works&rdquo;.</p>
+
+<blockquote><p>Written with <a href="https://stackedit.io/">StackEdit</a>.</p></blockquote>
+]]></content>
+  </entry>
+  
+</feed>

@@ -1,0 +1,206 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: Computerlanguage | Kevin Hu's Blog]]></title>
+  <link href="http://kevinhu.me//blog/categories/computerlanguage/atom.xml" rel="self"/>
+  <link href="http://kevinhu.me//"/>
+  <updated>2014-11-24T22:45:51-05:00</updated>
+  <id>http://kevinhu.me//</id>
+  <author>
+    <name><![CDATA[Kevin Hu]]></name>
+    
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[A Dive Into PLY]]></title>
+    <link href="http://kevinhu.me//blog/2014/10/11/a-dive-into-ply/"/>
+    <updated>2014-10-11T21:50:24-04:00</updated>
+    <id>http://kevinhu.me//blog/2014/10/11/a-dive-into-ply</id>
+    <content type="html"><![CDATA[<p>I&rsquo;ve been auditing a course in computer language implementation and particularly interested in parser generator. Just spent an afternoon reading about the Python parser generator <a href="http://www.dabeaz.com/ply/">PLY</a>. It&rsquo;s a pure Python Implementation of Lex and Yacc. And <a href="http://www.dabeaz.com/ply/ply.html#ply_nn4">here</a> is the PLY documentation I&rsquo;ve been reading the whole afternoon.</p>
+
+<!--more-->
+
+
+<h2>PLY Lex</h2>
+
+<p>Basically, writing a tokenizer is to generate a finite automata.  It should be easy to implement with the assist of regular expressions. For PLY Lex, the following needs to be defined:</p>
+
+<ul>
+<li><strong>Tokens</strong>: The token types;</li>
+<li><strong>Token definition</strong>: You can define a token by a variable of regular expression, or a method whose docstring is regular expression definition. Naming convention follows: <code>t_TOKENNAME</code>, e.g. SYMBOL token should be defined by a variable or method with name <code>t_SYMBOL</code>;</li>
+<li><strong>Error method</strong>: define the <code>t_error()</code> method for error handling.</li>
+</ul>
+
+
+<p>Finally, run Lex build method to build the tokenizer. If you define all data structure in a class, point the module argument to that class.</p>
+
+<p>Code listed as following:
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+<span class='line-number'>22</span>
+<span class='line-number'>23</span>
+<span class='line-number'>24</span>
+<span class='line-number'>25</span>
+<span class='line-number'>26</span>
+<span class='line-number'>27</span>
+<span class='line-number'>28</span>
+<span class='line-number'>29</span>
+<span class='line-number'>30</span>
+<span class='line-number'>31</span>
+<span class='line-number'>32</span>
+<span class='line-number'>33</span>
+<span class='line-number'>34</span>
+<span class='line-number'>35</span>
+<span class='line-number'>36</span>
+<span class='line-number'>37</span>
+<span class='line-number'>38</span>
+<span class='line-number'>39</span>
+<span class='line-number'>40</span>
+<span class='line-number'>41</span>
+<span class='line-number'>42</span>
+<span class='line-number'>43</span>
+<span class='line-number'>44</span>
+<span class='line-number'>45</span>
+<span class='line-number'>46</span>
+<span class='line-number'>47</span>
+<span class='line-number'>48</span>
+<span class='line-number'>49</span>
+<span class='line-number'>50</span>
+<span class='line-number'>51</span>
+<span class='line-number'>52</span>
+<span class='line-number'>53</span>
+<span class='line-number'>54</span>
+<span class='line-number'>55</span>
+<span class='line-number'>56</span>
+<span class='line-number'>57</span>
+<span class='line-number'>58</span>
+<span class='line-number'>59</span>
+<span class='line-number'>60</span>
+<span class='line-number'>61</span>
+<span class='line-number'>62</span>
+<span class='line-number'>63</span>
+</pre></td><td class='code'><pre><code class='Python'><span class='line'><span class="k">class</span> <span class="nc">MyLexer</span><span class="p">:</span>
+</span><span class='line'>    <span class="n">tokens</span> <span class="o">=</span> <span class="p">(</span>
+</span><span class='line'>    <span class="o">&amp;</span><span class="n">ldquo</span><span class="p">;</span><span class="n">SYMBOL</span><span class="o">&amp;</span><span class="n">rdquo</span><span class="p">;,</span>
+</span><span class='line'>    <span class="o">&amp;</span><span class="n">ldquo</span><span class="p">;</span><span class="n">OP</span><span class="o">&amp;</span><span class="n">rdquo</span><span class="p">;,</span>
+</span><span class='line'>    <span class="o">&amp;</span><span class="n">ldquo</span><span class="p">;</span><span class="n">FIXNUM</span><span class="o">&amp;</span><span class="n">rdquo</span><span class="p">;,</span>
+</span><span class='line'>    <span class="o">&amp;</span><span class="n">ldquo</span><span class="p">;</span><span class="n">WS</span><span class="o">&amp;</span><span class="n">rdquo</span><span class="p">;</span>
+</span><span class='line'>    <span class="p">)</span><span class="o">&lt;/</span><span class="n">p</span><span class="o">&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="o">&lt;</span><span class="n">pre</span><span class="o">&gt;&lt;</span><span class="n">code</span><span class="o">&gt;</span><span class="n">t_SYMBOL</span> <span class="o">=</span> <span class="s">r&#39;[a-zA-Z_]+[a-zA-Z_0-9]+&#39;</span>
+</span><span class='line'>    <span class="n">t_OP</span> <span class="o">=</span> <span class="s">r&#39;\+|-|\*|/&#39;</span>
+</span><span class='line'>
+</span><span class='line'><span class="k">def</span> <span class="nf">t_WS</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">t</span><span class="p">):</span>
+</span><span class='line'>        <span class="s">r&#39;\s+&#39;</span>
+</span><span class='line'>        <span class="c"># input t is the input token class</span>
+</span><span class='line'>        <span class="k">pass</span>
+</span><span class='line'>
+</span><span class='line'><span class="k">def</span> <span class="nf">t_FIXNUM</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">t</span><span class="p">):</span>
+</span><span class='line'>        <span class="s">r&#39;\d+&#39;</span>
+</span><span class='line'>        <span class="n">t</span><span class="o">.</span><span class="n">value</span> <span class="o">=</span> <span class="nb">int</span> <span class="p">(</span><span class="n">t</span><span class="o">.</span><span class="n">value</span><span class="p">)</span>
+</span><span class='line'>        <span class="k">return</span> <span class="n">t</span>
+</span><span class='line'>
+</span><span class='line'><span class="k">def</span> <span class="nf">t_newline</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">t</span><span class="p">):</span>
+</span><span class='line'>        <span class="s">r&#39;\n+&#39;</span>
+</span><span class='line'>        <span class="c"># t.lexer points to the lexer class, which stores info for whole lexer</span>
+</span><span class='line'>        <span class="n">t</span><span class="o">.</span><span class="n">lexer</span><span class="o">.</span><span class="n">lineno</span> <span class="o">+=</span> <span class="nb">len</span><span class="p">(</span><span class="n">t</span><span class="o">.</span><span class="n">value</span><span class="p">)</span>
+</span><span class='line'>
+</span><span class='line'><span class="k">def</span> <span class="nf">t_error</span> <span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">t</span><span class="p">):</span>
+</span><span class='line'>        <span class="k">print</span> <span class="p">(</span><span class="s">&quot;Illegal&quot;</span><span class="p">)</span>
+</span><span class='line'>        <span class="n">t</span><span class="o">.</span><span class="n">lexer</span><span class="o">.</span><span class="n">skip</span> <span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+</span><span class='line'>
+</span><span class='line'><span class="k">def</span> <span class="nf">build</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+</span><span class='line'>        <span class="bp">self</span><span class="o">.</span><span class="n">lexer</span> <span class="o">=</span> <span class="n">ply</span><span class="o">.</span><span class="n">lex</span><span class="o">.</span><span class="n">lex</span><span class="p">(</span><span class="n">module</span><span class="o">=</span><span class="bp">self</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+</span><span class='line'>
+</span><span class='line'><span class="k">def</span> <span class="nf">run</span> <span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">data</span><span class="p">):</span>
+</span><span class='line'>        <span class="bp">self</span><span class="o">.</span><span class="n">lexer</span><span class="o">.</span><span class="n">input</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
+</span><span class='line'>        <span class="k">for</span> <span class="n">t</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">lexer</span><span class="p">:</span>
+</span><span class='line'>        <span class="k">print</span> <span class="p">(</span><span class="n">t</span><span class="p">)</span>
+</span><span class='line'><span class="o">&lt;/</span><span class="n">code</span><span class="o">&gt;&lt;/</span><span class="n">pre</span><span class="o">&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="o">&lt;</span><span class="n">p</span><span class="o">&gt;</span><span class="n">m</span> <span class="o">=</span> <span class="n">MyLexer</span> <span class="p">()</span><span class="o">&lt;/</span><span class="n">p</span><span class="o">&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="o">&lt;</span><span class="n">h1</span><span class="o">&gt;</span><span class="n">build</span> <span class="n">lexer</span> <span class="ow">and</span> <span class="n">init</span> <span class="n">data</span> <span class="n">structre</span><span class="o">&lt;/</span><span class="n">h1</span><span class="o">&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="o">&lt;</span><span class="n">p</span><span class="o">&gt;</span><span class="n">m</span><span class="o">.</span><span class="n">build</span> <span class="p">()</span>
+</span><span class='line'><span class="n">m</span><span class="o">.</span><span class="n">run</span> <span class="p">(</span><span class="o">&amp;</span><span class="n">ldquo</span><span class="p">;</span><span class="mi">3</span> <span class="o">+</span> <span class="mi">4</span> <span class="o">*</span> <span class="mi">6</span><span class="o">&amp;</span><span class="n">rdquo</span><span class="p">;)</span><span class="o">&lt;/</span><span class="n">p</span><span class="o">&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="o">&lt;</span><span class="n">pre</span><span class="o">&gt;&lt;</span><span class="n">code</span><span class="o">&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="c">## PLY Yacc</span>
+</span><span class='line'>
+</span><span class='line'><span class="n">Yacc</span> <span class="n">generates</span> <span class="n">a</span> <span class="n">table</span><span class="o">-</span><span class="n">driven</span> <span class="n">LR</span> <span class="n">parser</span><span class="p">,</span> <span class="ow">and</span> <span class="n">LALR</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span> <span class="n">by</span> <span class="n">default</span><span class="p">,</span> <span class="n">SLR</span> <span class="n">when</span> <span class="n">specified</span><span class="o">.</span>
+</span><span class='line'>
+</span><span class='line'><span class="n">Yacc</span> <span class="n">also</span> <span class="n">uses</span> <span class="n">docstring</span> <span class="n">to</span> <span class="n">define</span> <span class="n">Context</span> <span class="n">Free</span> <span class="n">Grammar</span><span class="o">.</span> <span class="n">Similarly</span><span class="p">,</span> <span class="n">grammar</span> <span class="n">definition</span> <span class="n">method</span> <span class="n">has</span> <span class="n">naming</span> <span class="n">convention</span> <span class="k">as</span> <span class="sb">```p_PRODUCT_NAME`` `</span><span class="o">.</span> <span class="n">It</span> <span class="n">also</span> <span class="n">generates</span> <span class="n">a</span> <span class="n">shift</span><span class="o">/</span><span class="nb">reduce</span> <span class="n">parser</span><span class="o">.</span><span class="n">out</span> <span class="n">output</span> <span class="k">for</span> <span class="n">debugging</span> <span class="n">purpose</span><span class="o">.</span>
+</span><span class='line'>
+</span><span class='line'><span class="n">Yacc</span> <span class="n">allows</span> <span class="n">ambiguous</span> <span class="n">grammar</span><span class="o">.</span> <span class="n">It</span> <span class="n">can</span> <span class="n">resolve</span> <span class="n">ambiguity</span> <span class="n">by</span> <span class="n">supporting</span> <span class="n">precedence</span><span class="o">.</span> <span class="n">One</span> <span class="n">example</span> <span class="k">for</span> <span class="n">arithmetic</span> <span class="n">operations</span> <span class="kn">from</span> <span class="nn">documentation</span><span class="p">:</span>
+</span><span class='line'><span class="o">&lt;/</span><span class="n">code</span><span class="o">&gt;&lt;/</span><span class="n">pre</span><span class="o">&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="o">&lt;</span><span class="n">p</span><span class="o">&gt;</span><span class="n">expression</span> <span class="p">:</span> <span class="n">expression</span> <span class="n">PLUS</span> <span class="n">expression</span>
+</span><span class='line'>           <span class="o">|</span> <span class="n">expression</span> <span class="n">MINUS</span> <span class="n">expression</span>
+</span><span class='line'>           <span class="o">|</span> <span class="n">expression</span> <span class="n">TIMES</span> <span class="n">expression</span>
+</span><span class='line'>           <span class="o">|</span> <span class="n">expression</span> <span class="n">DIVIDE</span> <span class="n">expression</span>
+</span><span class='line'>           <span class="o">|</span> <span class="o">&amp;</span><span class="n">lsquo</span><span class="p">;(</span><span class="o">&amp;</span><span class="n">rsquo</span><span class="p">;</span> <span class="n">expression</span> <span class="o">&amp;</span><span class="n">lsquo</span><span class="p">;)</span><span class="o">&amp;</span><span class="n">rsquo</span><span class="p">;</span>
+</span><span class='line'>           <span class="o">|</span> <span class="n">NUMBER</span>
+</span></code></pre></td></tr></table></div></figure></p>
+
+<p>Which creates ambiguity when parsing expressions like</p>
+
+<pre><code>3 + 4 * 5
+</code></pre>
+
+<p>With precedence, Yacc would always know to handle higher precedence operations than lower precedence ones.</p>
+
+<p>One example (from PLY offical release 3.14 examples) of expression definition with precedence defined:</p>
+
+<pre><code>precedence = (
+    ('left','+','-'),
+        ('left','*','/'),
+            ('right','UMINUS'),
+            )
+
+def p_expression_binop(p):
+    '''expression : expression '+' expression
+                  | expression '-' expression
+                  | expression '*' expression
+                  | expression '/' expression'''
+                  if p[2] == '+'  : p[0] = p[1] + p[3]
+                  elif p[2] == '-': p[0] = p[1] - p[3]
+                  elif p[2] == '*': p[0] = p[1] * p[3]
+                  elif p[2] == '/': p[0] = p[1] / p[3]
+</code></pre>
+
+<p>A collection of examples could be found in <a href="https://github.com/dabeaz/ply/tree/master/example">here</a>.</p>
+
+<h2>Afterthoughts</h2>
+
+<p>PLY is an interesting tool that I want to build something with. There&rsquo;s also a variation based on PLY called <a href="https://github.com/erezsh/plyplus">PLYPlus</a> that trys to provide a cleaner interface for programmers. Somehow I have a hunch that it could be done better.</p>
+
+<p>GCC used to use bison generated parser as frontend, but now it&rsquo;s using a hand-written recursive-descent parser for performance reasons. So is clang. For language generators as far as I know, Ruby uses Yacc as its parser, and Python uses <a href="http://www.cs.princeton.edu/research/techreps/TR-554-97">ASDL</a>, which are all worth digging when I have time.</p>
+
+<p>Somehow I wonder why not very many people claim to use PLY as a tool for language manipulations. It could be quite handy when you consider constructing something  with relatively complex grammar parsing,  requires faster development cycle, and is not performance critical. If I encounter any projects like that in future, I think PLY would be on the top list of my tool selections.</p>
+]]></content>
+  </entry>
+  
+</feed>

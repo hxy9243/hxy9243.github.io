@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: Diary | Kevin Hu's Blog]]></title>
+  <link href="http://kevinhu.me//blog/categories/diary/atom.xml" rel="self"/>
+  <link href="http://kevinhu.me//"/>
+  <updated>2014-11-24T22:45:51-05:00</updated>
+  <id>http://kevinhu.me//</id>
+  <author>
+    <name><![CDATA[Kevin Hu]]></name>
+    
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[A New Blog for My Tech Notes]]></title>
+    <link href="http://kevinhu.me//blog/2014/10/08/a-new-blog-for-my-tech-notes/"/>
+    <updated>2014-10-08T21:47:44-04:00</updated>
+    <id>http://kevinhu.me//blog/2014/10/08/a-new-blog-for-my-tech-notes</id>
+    <content type="html"><![CDATA[<p>Hello World!</p>
+
+<p>It’s been a while since the last time I ever wrote some serious blog posts. After some thought I now decide to separate my everyday chit-chat blog from a more tech-oriented blog, so that contents from either sides won’t get entwined with each other, especially when I decide to blog in both languages.</p>
+
+<p>For a more tech-oriented blog I’d like to keep everything in English. For I believe it’s a language most tech people could understand, even in China. And now I could publish all my discoveries, my thoughts, my ideas centered around technology in this blog, and welcome discussions. Blogging is a beautiful way of communication, and hopefully I could make friends with like-minded through keeping this blog.</p>
+
+<p>And there it goes. A brand new blogging journey!</p>
+]]></content>
+  </entry>
+  
+</feed>

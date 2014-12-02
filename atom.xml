@@ -1,0 +1,709 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Kevin Hu's Blog]]></title>
+  <link href="http://kevinhu.me//atom.xml" rel="self"/>
+  <link href="http://kevinhu.me//"/>
+  <updated>2014-11-24T22:45:51-05:00</updated>
+  <id>http://kevinhu.me//</id>
+  <author>
+    <name><![CDATA[Kevin Hu]]></name>
+    
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[What Parsers Are They Using?]]></title>
+    <link href="http://kevinhu.me//blog/2014/11/24/what-parsers-are-they-using/"/>
+    <updated>2014-11-24T18:29:00-05:00</updated>
+    <id>http://kevinhu.me//blog/2014/11/24/what-parsers-are-they-using</id>
+    <content type="html"><![CDATA[<p>This is a <del>quite boring</del> post on programming language trivia, which doesn&rsquo;t dig into anything deep.</p>
+
+<h2>GCC and Clang</h2>
+
+<p>The GCC is mostly implemented in C, and used to use Bison for parser generation, according to its <a href="http://en.wikipedia.org/wiki/GNU_bison">Wikipedia page</a>.
+By default, it generates right recursive table driven LALR parser.</p>
+
+<!--more-->
+
+
+<p>Somehow according to the <a href="http://en.wikipedia.org/wiki/GNU_bison#Where_is_it_used.3F">same page</a>, GCC has switched to <a href="http://dinosaur.compilertools.net/yacc/">YACC</a> before now switching to a hand-written recursive-descent parser for C/C++/Objective C. This could also be seen from GCC release notes <a href="https://gcc.gnu.org/gcc-3.4/changes.html#cplusplus">3.4</a> and <a href="https://gcc.gnu.org/gcc-4.1/changes.html">4.1</a>.</p>
+
+<p>Clang, as well as LLVM is implemented in C++. It also uses a unified recursive-descent parser for C, Objective C, C++ and Objective C++, according to the <a href="http://clang.llvm.org/features.html">LLVM Clang Page</a>. Both GCC and Clang now uses recursive-descent parser, claiming it provides with faster speed. On Clang page, it also states recursive-descent parser:</p>
+
+<blockquote><p> &hellip; makes it very easy for new developers to understand the code, it easily supports ad-hoc rules and other strange hacks required by C/C++, and makes it straight-forward to implement excellent diagnostics and error recovery.</p></blockquote>
+
+<h2>Python</h2>
+
+<p>Here Python refers to the CPython implementation. In its repo under <a href="https://github.com/python/cpython/tree/master/Parser">&ldquo;Parser&rdquo; directory</a>, it could be seen CPython actually uses <a href="http://asdl.sourceforge.net/">Zephyr ASDL</a> for syntax description. Zyphyr ASDL is also described in its <a href="https://www.cs.princeton.edu/research/techreps/TR-554-97">Princeton CS Dept. Page</a>.</p>
+
+<p>Python uses LL(1) grammar. Its AST file (Python-ast.c) isgenerated according to the ASDL description of the language. The detailed process is described in <a href="http://legacy.python.org/dev/peps/pep-0339/">PEP339</a>.</p>
+
+<h2>Ruby</h2>
+
+<p>Ruby MRI is implemented in C. According to <a href="http://en.wikipedia.org/wiki/GNU_bison#Where_is_it_used.3F">Bison Wikipedia Page</a>, Ruby also uses Bison for the parser generation, which should be a right-recursive parser.</p>
+
+<p>The source code for parser and syntax could be found in <a href="https://github.com/ruby/ruby/blob/trunk/parse.y">its repo</a>.</p>
+
+<h2>JavaScript</h2>
+
+<p>JavaScript v8 is implemented in C++. It claims to be using a hand-written top-down parser, according to <a href="http://www.quora.com/What-are-the-parsing-techniques-used-by-modern-compilers">this Quora post</a>.</p>
+
+<p>I have no time to dig in its code base at the moment. Also it&rsquo;s not in the scope of this post.</p>
+
+<h2>Haskell</h2>
+
+<p>According to the <a href="http://www.quora.com/What-are-the-parsing-techniques-used-by-modern-compilers">Quora post above</a>, GHC uses a generator called <a href="https://www.haskell.org/happy/">Happy</a>. From its official website, it looks like it&rsquo;s first created to generate parser specifically for GHC.</p>
+
+<p>Its syntax is defined in its codebase directory <a href="https://github.com/ghc/ghc/tree/master/compiler/parser">&ldquo;compiler/parser/Parser.y&rdquo;</a>.</p>
+
+<h2>Julia</h2>
+
+<p>Interestingly, after searching a while in its <a href="https://github.com/JuliaLang/julia/tree/master/src">GitHub codebase</a>, I found that Julia actually uses Scheme for its
+frontend and parser. Although most its other source files are in C.</p>
+
+<p>It looks like it also uses a recursive-descent parser.</p>
+
+<h2>Golang</h2>
+
+<p>Golang parser is now implemented in Golang itself now. (Wow!) Not only that, most Golang implementation is in Go, according to its <a href="https://github.com/jnwhiteh/golang">Github mirror repo</a>. By the time I checked it, it contains 75.7% Golang, 19.4% C, 3.0% Assembly, and 1.9% other.</p>
+
+<p>From its parser <a href="https://github.com/jnwhiteh/golang/blob/master/src/go/parser/parser.go">source code</a>, it looks like it also uses a recursive-descent parser.</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[More on Passwd]]></title>
+    <link href="http://kevinhu.me//blog/2014/10/31/more-on-passwd/"/>
+    <updated>2014-10-31T22:30:45-04:00</updated>
+    <id>http://kevinhu.me//blog/2014/10/31/more-on-passwd</id>
+    <content type="html"><![CDATA[<p>A little bit more interesting discoveries while digging into the passwd code file.</p>
+
+<h2>The &rsquo;s&#8217; flag in file permission</h2>
+
+<p>First, the file permission of passwd executable is <code>-rwsr-xr-x</code>. There&rsquo;s an &rsquo;s&#8217; flag which don&rsquo;t usually appear in common Unix files. The usage of the &rsquo;s&#8217; field is explained here:</p>
+
+<p><a href="http://en.wikipedia.org/wiki/Setuid">http://en.wikipedia.org/wiki/Setuid</a></p>
+
+<!--more-->
+
+
+<p>Which means when a user runs the passwd program, his effective uid will become the owner of the executable file, which is root in this case. While inside the passwd program, it uses <code>getuid</code>, which returns the user&rsquo;s real id instead of effective id.</p>
+
+<h2>On updating the shadow file</h2>
+
+<p>I also do notice that the whole passwd program would only require one Unix system capability: the <code>CAP_FCHOWN</code> capability, which is required when you&rsquo;re changing the owner of one file. Here&rsquo;s why the program needs it.</p>
+
+<p>As a matter of fact, the passwd program never actually directly writes into the <code>/etc/shadow</code> file. For some reason (perhaps security concerns), it writes into a temp file first, set the uid and gid of the temp file, and then rewrite the shadow file with the temp file.</p>
+
+<p>The code is defined in <code>commonio.c</code> file, <code>commonio_update</code> function. As described in the code bellow:</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+</pre></td><td class='code'><pre><code class='c'><span class='line'><span class="c1">// set the temp filename</span>
+</span><span class='line'><span class="n">snprintf</span> <span class="p">(</span><span class="n">buf</span><span class="p">,</span> <span class="k">sizeof</span> <span class="n">buf</span><span class="p">,</span> <span class="s">&quot;%s+&quot;</span><span class="p">,</span> <span class="n">db</span><span class="o">-&gt;</span><span class="n">filename</span><span class="p">);</span>
+</span><span class='line'>
+</span><span class='line'><span class="p">...</span>
+</span><span class='line'>
+</span><span class='line'><span class="c1">// open the file with name defined in buf, permissions defined in sb, returns the file pointer</span>
+</span><span class='line'><span class="n">db</span><span class="o">-&gt;</span><span class="n">fp</span> <span class="o">=</span> <span class="n">fopen_set_perms</span> <span class="p">(</span><span class="n">buf</span><span class="p">,</span> <span class="s">&quot;w&quot;</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">sb</span><span class="p">);</span>
+</span><span class='line'>
+</span><span class='line'><span class="p">...</span>
+</span><span class='line'>
+</span><span class='line'><span class="c1">// write all data to db-&gt;fp, the temp fp</span>
+</span><span class='line'><span class="k">if</span> <span class="p">(</span><span class="n">write_all</span> <span class="p">(</span><span class="n">db</span><span class="p">)</span> <span class="o">!=</span> <span class="mi">0</span><span class="p">){...}</span>
+</span><span class='line'>
+</span><span class='line'><span class="p">...</span>
+</span><span class='line'>
+</span><span class='line'><span class="c1">// Rename the temp filename in buf to db-&gt;filename, which is /etc/shadow</span>
+</span><span class='line'><span class="k">if</span> <span class="p">(</span><span class="n">lrename</span> <span class="p">(</span><span class="n">buf</span><span class="p">,</span> <span class="n">db</span><span class="o">-&gt;</span><span class="n">filename</span><span class="p">)</span> <span class="o">!=</span> <span class="mi">0</span><span class="p">){...}</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<blockquote><p>Written with <a href="https://stackedit.io/">StackEdit</a>.</p></blockquote>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[A Dive Into Password]]></title>
+    <link href="http://kevinhu.me//blog/2014/10/13/a-dive-into-password/"/>
+    <updated>2014-10-13T22:08:55-04:00</updated>
+    <id>http://kevinhu.me//blog/2014/10/13/a-dive-into-password</id>
+    <content type="html"><![CDATA[<h2>Passwd</h2>
+
+<p>The passwd is program on Unix systems to manage users&#8217; passwords. The user and password information on most Unix systems is stored in two separate files: /etc/passwd for user information, and /etc/shadow for password information, including encrypted password value, expiration data, UID, GID, and etc.. The
+rationale behind storing information in separate files is discussed in <a href="http://www.tldp.org/HOWTO/Shadow-Password-HOWTO-2.html">Why shadow your passwd file?</a></p>
+
+<!--more-->
+
+
+<p>The passwd program is a part of the shadow-utils, which includes a series of programs to manage user accounts, group accounts, and converting plain passwords to shadow password format, such as: groupadd, useradd, usermod, login, passwd, su, and etc..</p>
+
+<p>The source file of <code>passwd</code> is available in <a href="http://pkg-shadow.alioth.debian.org/">Debian Alioth Page</a> and <a href="https://packages.debian.org/source/wheezy/shadow">Debian Package Information Page</a>. I downloaded the 4.1.5 original source for my study. See opensource isn&rsquo;t just a campaign slogan, it&rsquo;s something real!</p>
+
+<p>Basically, what passwd does is to manage passwords, like updating passwords,  setting minimum and maximum password expiration date, and all these information is saved to the /etc/passwd and /etc/shadow files, and password information in particular, needs an encryption library for protection, instead of being saved as plain text.</p>
+
+<p>Below is a <strong>NON</strong>-comprehensive list of code files required by the passwd program in the shadow-utils code base:</p>
+
+<pre>
+src/passwd.c
+lib/defines.h
+lib/getdef.(h/c)
+lib/shadow.(h/c)
+lib/shadowio.(h/c)
+lib/commonio.(h/c)
+lib/sgetspent.c
+</pre>
+
+
+<h2>How we change our password</h2>
+
+<h3>Data structure definitions first?</h3>
+
+<ul>
+<li><strong>Shadow passwd struct</strong>:
+Defined in shadow.h in linux include directory. Defines the structure of the shadow file. The pointer in the main function is defined as:</li>
+</ul>
+
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='c'><span class='line'><span class="k">const</span> <span class="k">struct</span> <span class="n">spwd</span> <span class="o">*</span><span class="n">sp</span><span class="p">;</span>  <span class="cm">/* Shadow file entry for user   */</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+</pre></td><td class='code'><pre><code class='c'><span class='line'><span class="cm">/* Structure of the password file.  */</span>
+</span><span class='line'><span class="k">struct</span> <span class="n">spwd</span>
+</span><span class='line'><span class="p">{</span>
+</span><span class='line'>    <span class="kt">char</span> <span class="o">*</span><span class="n">sp_namp</span><span class="p">;</span>              <span class="cm">/* Login name.  */</span>
+</span><span class='line'>    <span class="kt">char</span> <span class="o">*</span><span class="n">sp_pwdp</span><span class="p">;</span>              <span class="cm">/* Encrypted password.  */</span>
+</span><span class='line'>    <span class="kt">long</span> <span class="kt">int</span> <span class="n">sp_lstchg</span><span class="p">;</span>         <span class="cm">/* Date of last change.  */</span>
+</span><span class='line'>    <span class="kt">long</span> <span class="kt">int</span> <span class="n">sp_min</span><span class="p">;</span>            <span class="cm">/* Minimum number of days between changes.  */</span>
+</span><span class='line'>    <span class="kt">long</span> <span class="kt">int</span> <span class="n">sp_max</span><span class="p">;</span>            <span class="cm">/* Maximum number of days between changes.  */</span>
+</span><span class='line'>    <span class="kt">long</span> <span class="kt">int</span> <span class="n">sp_warn</span><span class="p">;</span>           <span class="cm">/* Number of days to warn user to change</span>
+</span><span class='line'><span class="cm">    the password.  */</span>
+</span><span class='line'>    <span class="kt">long</span> <span class="kt">int</span> <span class="n">sp_inact</span><span class="p">;</span>          <span class="cm">/* Number of days the account may be</span>
+</span><span class='line'><span class="cm">    inactive.  */</span>
+</span><span class='line'>    <span class="kt">long</span> <span class="kt">int</span> <span class="n">sp_expire</span><span class="p">;</span>         <span class="cm">/* Number of days since 1970-01-01 until</span>
+</span><span class='line'><span class="cm">    account expires.  */</span>
+</span><span class='line'>    <span class="kt">unsigned</span> <span class="kt">long</span> <span class="kt">int</span> <span class="n">sp_flag</span><span class="p">;</span>  <span class="cm">/* Reserved.  */</span>
+</span><span class='line'>    <span class="p">};</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<ul>
+<li><strong>Passwd Structure</strong>:
+Defined in pwd.h in linux include directory. Defines the <code>/etc/passwd</code> file structure. The pointer in the main function is defined:</li>
+</ul>
+
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='c'><span class='line'><span class="k">const</span> <span class="k">struct</span> <span class="n">passwd</span> <span class="o">*</span><span class="n">pw</span><span class="p">;</span>  <span class="cm">/* Password file entry for user      */</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+</pre></td><td class='code'><pre><code class='c'><span class='line'><span class="cm">/* The passwd structure.  */</span>
+</span><span class='line'><span class="k">struct</span> <span class="n">passwd</span>
+</span><span class='line'><span class="p">{</span>
+</span><span class='line'>    <span class="kt">char</span> <span class="o">*</span><span class="n">pw_name</span><span class="p">;</span>                <span class="cm">/* Username.  */</span>
+</span><span class='line'>    <span class="kt">char</span> <span class="o">*</span><span class="n">pw_passwd</span><span class="p">;</span>              <span class="cm">/* Password.  */</span>
+</span><span class='line'>    <span class="kt">__uid_t</span> <span class="n">pw_uid</span><span class="p">;</span>               <span class="cm">/* User ID.  */</span>
+</span><span class='line'>    <span class="kt">__gid_t</span> <span class="n">pw_gid</span><span class="p">;</span>               <span class="cm">/* Group ID.  */</span>
+</span><span class='line'>    <span class="kt">char</span> <span class="o">*</span><span class="n">pw_gecos</span><span class="p">;</span>               <span class="cm">/* Real name.  */</span>
+</span><span class='line'>    <span class="kt">char</span> <span class="o">*</span><span class="n">pw_dir</span><span class="p">;</span>                 <span class="cm">/* Home directory.  */</span>
+</span><span class='line'>    <span class="kt">char</span> <span class="o">*</span><span class="n">pw_shell</span><span class="p">;</span>               <span class="cm">/* Shell program.  */</span>
+</span><span class='line'>    <span class="p">};</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<ul>
+<li><p><strong>Shadow_db structure</strong>: Defined in <code>lib/shadowio.c</code>. It&rsquo;s a doubly linked list, storing information for all the shadow file entries. It&rsquo;s declared with a type called <code>struct commonio_db</code>, defined in <code>commonio.h</code>.</p>
+
+<p>  Shadow library has <code>commonio.c</code> for all the common io data structures and operations, and <code>shadowio.c</code>, which could be seen as a wrapper around common io for all shadow file data structure and operations.</p>
+
+<p>  The <code>shadow_db</code> defined as below. The <code>SHADOW_FILE</code> as you might have already guessed, is a macro defined as <code>"/etc/shadow"</code>.</p></li>
+</ul>
+
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+</pre></td><td class='code'><pre><code class='c'><span class='line'><span class="k">static</span> <span class="k">struct</span> <span class="n">commonio_db</span> <span class="n">shadow_db</span> <span class="o">=</span> <span class="p">{</span>
+</span><span class='line'>    <span class="n">SHADOW_FILE</span><span class="p">,</span>            <span class="cm">/* filename */</span>
+</span><span class='line'>    <span class="o">&amp;</span><span class="n">shadow_ops</span><span class="p">,</span>            <span class="cm">/* ops */</span>
+</span><span class='line'>    <span class="nb">NULL</span><span class="p">,</span>                   <span class="cm">/* fp */</span>
+</span><span class='line'>    <span class="cp">#ifdef WITH_SELINUX</span>
+</span><span class='line'>    <span class="nb">NULL</span><span class="p">,</span>                   <span class="cm">/* scontext */</span>
+</span><span class='line'>    <span class="cp">#endif</span>
+</span><span class='line'>    <span class="nb">NULL</span><span class="p">,</span>                   <span class="cm">/* head */</span>
+</span><span class='line'>    <span class="nb">NULL</span><span class="p">,</span>                   <span class="cm">/* tail */</span>
+</span><span class='line'>    <span class="nb">NULL</span><span class="p">,</span>                   <span class="cm">/* cursor */</span>
+</span><span class='line'>    <span class="nb">false</span><span class="p">,</span>                  <span class="cm">/* changed */</span>
+</span><span class='line'>    <span class="nb">false</span><span class="p">,</span>                  <span class="cm">/* isopen */</span>
+</span><span class='line'>    <span class="nb">false</span><span class="p">,</span>                  <span class="cm">/* locked */</span>
+</span><span class='line'>    <span class="nb">false</span>                   <span class="cm">/* readonly */</span>
+</span><span class='line'><span class="p">};</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<ul>
+<li>Some important global variables</li>
+</ul>
+
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+</pre></td><td class='code'><pre><code class='c'><span class='line'><span class="k">static</span> <span class="kt">char</span> <span class="o">*</span><span class="n">name</span><span class="p">;</span>   <span class="cm">/* The name of user whose password is being changed */</span>
+</span><span class='line'><span class="k">static</span> <span class="kt">char</span> <span class="o">*</span><span class="n">myname</span><span class="p">;</span> <span class="cm">/* The current user&#39;s name */</span>
+</span><span class='line'><span class="k">static</span> <span class="kt">bool</span> <span class="n">amroot</span><span class="p">;</span>  <span class="cm">/* The caller&#39;s real UID was 0 */</span>
+</span><span class='line'><span class="k">static</span> <span class="kt">char</span> <span class="n">crypt_passwd</span><span class="p">[</span><span class="mi">256</span><span class="p">];</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<h3>Main function</h3>
+
+<p>Though the whole password update procedure could be simply described as &ldquo;reading and updating the <code>/etc/passwd</code> and <code>/etc/shadow</code> file&rdquo;, the shadow library uses piles of code to check identity, permission, and several layers of function calls for encryption, and finally updating files. It needs to consider every aspect of the problem, which makes the code size larger than you  might expect.</p>
+
+<p>Also, passwd libray took <a href="http://www.wikiwand.com/en/Linux_PAM">PAM</a>, <a href="http://www.wikiwand.com/en/Trusted_computing_base">TCB</a> and <a href="http://www.wikiwand.com/en/Security-Enhanced_Linux">SELinux</a> into considerations. I would skip these here for I don&rsquo;t yet have time to study all.</p>
+
+<p>A good place to start reading is the <code>main()</code> entry of the <code>passwd.c</code>. The procedures could be summarized as follows:</p>
+
+<ul>
+<li><strong>Initialization</strong>:
+Init data structures (<code>const struct passwd *pw</code>, <code>const struct spwd *sp</code>, etc.), sanitize environment, check if the user is root, &hellip;;</li>
+<li><strong>Parse parameters</strong>:
+A large switch case for all parameters. As I&rsquo;m now only interested in updating my password, I would follow the execution path where no parameters are given;</li>
+<li><strong>Get username, check permissions</strong>:</li>
+</ul>
+
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='c'><span class='line'><span class="n">pw</span> <span class="o">=</span> <span class="n">get_my_pwent</span><span class="p">();</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='c'><span class='line'><span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="n">amroot</span> <span class="o">&amp;&amp;</span> <span class="p">(</span><span class="n">pw</span><span class="o">-&gt;</span><span class="n">pw_uid</span><span class="o">!=</span><span class="n">getuid</span><span class="p">())){...}</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='c'><span class='line'><span class="n">sp</span> <span class="o">=</span> <span class="n">getspnam</span><span class="p">(</span><span class="n">name</span><span class="p">);</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='c'><span class='line'><span class="n">check_password</span><span class="p">(</span><span class="n">pw</span><span class="p">,</span> <span class="n">sp</span><span class="p">);</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Get username, init pw and sp data structures, check if the user is root or if the user is trying to change his own password. Then it checks the validity of the user&rsquo;s account: is it expired, is its min password change time reached? These are in <code>check_password()</code> function.</p>
+
+<ul>
+<li><strong>Get new password</strong>:</li>
+</ul>
+
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='c'><span class='line'><span class="k">if</span> <span class="p">(</span><span class="n">new_password</span><span class="p">(</span><span class="n">pw</span><span class="p">)</span> <span class="o">!=</span> <span class="mi">0</span><span class="p">){...}</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Here&rsquo;s where there&rsquo;s most fun. It&#8217; when the <code>passwd</code> program prompts you for your old password, and tell you to input your new password. If you fail in trying too many times, the program would get upset and refuses to update password for you.
+Under the hood, it also does the following things:
+* Encrypt your input with <code>pw_encrypt()</code>(defined in <code>lib/encrypt.c</code>), then compare it with the old encrypted string. There must be a lot of fun to dig into the encryption method, but it&rsquo;s not in the scope of this blog;
+* Warns you of weak password;
+* Encrypt the password then immediately wipe the cleartext password, saves the encrypted password to the global variable <code>crypt_passwd</code>, which would then copied to other data structures, and then saves to the shadow file.</p>
+
+<ul>
+<li><strong>Update shadow file</strong>:</li>
+</ul>
+
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='c'><span class='line'><span class="n">update_shadow</span><span class="p">();</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>The program warns you the username you are changing password, then it calls the <code>update_shadow()</code> if you have shadow file. Otherwise, it calls <code>update_noshadow()</code>.</p>
+
+<p>The <code>update_shadow()</code> is going to the core of the program, and it&rsquo;s what I will observe closely.</p>
+
+<h3>update_shadow() function</h3>
+
+<p>Function <code>update_shadow()</code> is defined in <code>src/passwd.c</code>, and the summary of the procedures is:</p>
+
+<ul>
+<li><strong>Set a global lock</strong>:</li>
+</ul>
+
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='c'><span class='line'><span class="k">if</span> <span class="p">(</span><span class="n">spw_lock</span><span class="p">()</span> <span class="o">==</span> <span class="mi">0</span><span class="p">){...}</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Lock the shadow password file access. Spit an error if it&rsquo;s already locked.</p>
+
+<ul>
+<li><strong>Open the shadow file</strong>:</li>
+</ul>
+
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='c'><span class='line'><span class="k">if</span> <span class="p">(</span><span class="n">spw_open</span><span class="p">(</span><span class="n">O_RDWR</span><span class="p">)</span><span class="o">==</span><span class="mi">0</span><span class="p">){...}</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Taking a deeper look inside the <code>spw_open</code> in <code>lib/shadowio.c</code>, you could find that here is when it opens up the shadow file, reads it, and stores all the entries to the <code>shadow_db</code> doubly linked list.</p>
+
+<ul>
+<li><strong>Locate the entry by name</strong>:</li>
+</ul>
+
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='c'><span class='line'><span class="n">sp</span> <span class="o">=</span> <span class="n">spw_locate</span> <span class="p">(</span><span class="n">name</span><span class="p">);</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Also a function call in <code>lib/shadowio.c</code>. The <code>name</code> param is the current username.</p>
+
+<ul>
+<li><strong>Create nsp Data Structure</strong>:</li>
+</ul>
+
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='c'><span class='line'><span class="n">nsp</span> <span class="o">=</span> <span class="n">__spw_dup</span> <span class="p">(</span><span class="n">sp</span><span class="p">);</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>It copies the content in sp to a new pointer nsp;</p>
+
+<ul>
+<li><strong>Update the encrypted passwd</strong>:</li>
+</ul>
+
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='c'><span class='line'><span class="n">update_crypt_pw</span><span class="p">(</span><span class="n">nsp</span><span class="o">-&gt;</span><span class="n">sp_pwdp</span><span class="p">);</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Finally! The <code>crypted_passwd</code> is copied to the data structure, with:</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='c'><span class='line'><span class="n">cp</span><span class="o">=</span><span class="n">xstrdup</span><span class="p">(</span><span class="n">crypt_passwd</span><span class="p">)</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>inside of <code>update_crypt_pw()</code> function. This process is hidden so deep.
+The nsp data structure would then carry this encrypted password to the shadow file. The program would also update metadata, such as the expiration date and so on;</p>
+
+<ul>
+<li><strong>Update the shadow_db Data Structure</strong>:</li>
+</ul>
+
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+</pre></td><td class='code'><pre><code class='c'><span class='line'><span class="k">if</span> <span class="p">(</span><span class="n">spw_update</span><span class="p">(</span><span class="n">nsp</span><span class="p">)</span> <span class="o">==</span> <span class="mi">0</span><span class="p">){</span>
+</span><span class='line'>    <span class="k">return</span> <span class="n">commonio_update</span><span class="p">(</span><span class="o">&amp;</span><span class="n">shadow_db</span><span class="p">,</span> <span class="p">(</span><span class="k">const</span> <span class="kt">void</span> <span class="o">*</span><span class="p">)</span><span class="n">sp</span><span class="p">);</span>
+</span><span class='line'><span class="p">}</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>The <code>spw_update()</code>, again is a wrapper for the relating <code>commonio_update()</code>. Inside it would try to find the entry of the <code>shadow_db</code> data structure, or create new entry when not found. Then it saves all the information in the <code>sp</code> to the <code>shadow_db</code>.</p>
+
+<ul>
+<li><strong>Close the shadow file, unlock the global lock</strong>:</li>
+</ul>
+
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='c'><span class='line'><span class="n">spw_close</span><span class="p">();</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='c'><span class='line'><span class="n">spw_unlock</span><span class="p">();</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Close and saves the shadow file to its place. Unlock the global lock, concludes the whole process. Still, there&rsquo;s much interesting things to look at inside the <code>spw_close()</code> and <code>commonio_close()</code>, but I think I&rsquo;ve written long enough.</p>
+
+<h2>Afterthoughts</h2>
+
+<p>Reading code is fun, recording the whole process is even more so. It&rsquo;s a rewarding process, especially for some high-quality code as shadow library. It kinda teaches you how top-notch programmers tackles system-level problems. It&rsquo;s also tiring though, when you dig into all the function calls, variables (especially global variables) while tracking its execution path. At some point I really wish the code could be a little bit more commented.</p>
+
+<p>I might have the energy to blog all the code I will read, but I think I will definitely read more code before I start writing something similar. To conclude, it&rsquo;s actually fun experience that quenches your curiosity of &ldquo;How it actually works&rdquo;.</p>
+
+<blockquote><p>Written with <a href="https://stackedit.io/">StackEdit</a>.</p></blockquote>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[A Dive Into PLY]]></title>
+    <link href="http://kevinhu.me//blog/2014/10/11/a-dive-into-ply/"/>
+    <updated>2014-10-11T21:50:24-04:00</updated>
+    <id>http://kevinhu.me//blog/2014/10/11/a-dive-into-ply</id>
+    <content type="html"><![CDATA[<p>I&rsquo;ve been auditing a course in computer language implementation and particularly interested in parser generator. Just spent an afternoon reading about the Python parser generator <a href="http://www.dabeaz.com/ply/">PLY</a>. It&rsquo;s a pure Python Implementation of Lex and Yacc. And <a href="http://www.dabeaz.com/ply/ply.html#ply_nn4">here</a> is the PLY documentation I&rsquo;ve been reading the whole afternoon.</p>
+
+<!--more-->
+
+
+<h2>PLY Lex</h2>
+
+<p>Basically, writing a tokenizer is to generate a finite automata.  It should be easy to implement with the assist of regular expressions. For PLY Lex, the following needs to be defined:</p>
+
+<ul>
+<li><strong>Tokens</strong>: The token types;</li>
+<li><strong>Token definition</strong>: You can define a token by a variable of regular expression, or a method whose docstring is regular expression definition. Naming convention follows: <code>t_TOKENNAME</code>, e.g. SYMBOL token should be defined by a variable or method with name <code>t_SYMBOL</code>;</li>
+<li><strong>Error method</strong>: define the <code>t_error()</code> method for error handling.</li>
+</ul>
+
+
+<p>Finally, run Lex build method to build the tokenizer. If you define all data structure in a class, point the module argument to that class.</p>
+
+<p>Code listed as following:</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+<span class='line-number'>22</span>
+<span class='line-number'>23</span>
+<span class='line-number'>24</span>
+<span class='line-number'>25</span>
+<span class='line-number'>26</span>
+<span class='line-number'>27</span>
+<span class='line-number'>28</span>
+<span class='line-number'>29</span>
+<span class='line-number'>30</span>
+<span class='line-number'>31</span>
+<span class='line-number'>32</span>
+<span class='line-number'>33</span>
+<span class='line-number'>34</span>
+<span class='line-number'>35</span>
+<span class='line-number'>36</span>
+<span class='line-number'>37</span>
+<span class='line-number'>38</span>
+<span class='line-number'>39</span>
+<span class='line-number'>40</span>
+<span class='line-number'>41</span>
+<span class='line-number'>42</span>
+</pre></td><td class='code'><pre><code class='Python'><span class='line'><span class="k">class</span> <span class="nc">MyLexer</span><span class="p">:</span>
+</span><span class='line'>    <span class="n">tokens</span> <span class="o">=</span> <span class="p">(</span>
+</span><span class='line'>    <span class="s">&quot;SYMBOL&quot;</span><span class="p">,</span>
+</span><span class='line'>    <span class="s">&quot;OP&quot;</span><span class="p">,</span>
+</span><span class='line'>    <span class="s">&quot;FIXNUM&quot;</span><span class="p">,</span>
+</span><span class='line'>    <span class="s">&quot;WS&quot;</span>
+</span><span class='line'>    <span class="p">)</span>
+</span><span class='line'>
+</span><span class='line'>    <span class="n">t_SYMBOL</span> <span class="o">=</span> <span class="s">r&#39;[a-zA-Z_]+[a-zA-Z_0-9]+&#39;</span>
+</span><span class='line'>        <span class="n">t_OP</span> <span class="o">=</span> <span class="s">r&#39;\+|-|\*|/&#39;</span>
+</span><span class='line'>
+</span><span class='line'>    <span class="k">def</span> <span class="nf">t_WS</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">t</span><span class="p">):</span>
+</span><span class='line'>            <span class="s">r&#39;\s+&#39;</span>
+</span><span class='line'>            <span class="c"># input t is the input token class</span>
+</span><span class='line'>            <span class="k">pass</span>
+</span><span class='line'>
+</span><span class='line'>    <span class="k">def</span> <span class="nf">t_FIXNUM</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">t</span><span class="p">):</span>
+</span><span class='line'>            <span class="s">r&#39;\d+&#39;</span>
+</span><span class='line'>            <span class="n">t</span><span class="o">.</span><span class="n">value</span> <span class="o">=</span> <span class="nb">int</span> <span class="p">(</span><span class="n">t</span><span class="o">.</span><span class="n">value</span><span class="p">)</span>
+</span><span class='line'>            <span class="k">return</span> <span class="n">t</span>
+</span><span class='line'>
+</span><span class='line'>    <span class="k">def</span> <span class="nf">t_newline</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">t</span><span class="p">):</span>
+</span><span class='line'>            <span class="s">r&#39;\n+&#39;</span>
+</span><span class='line'>            <span class="c"># t.lexer points to the lexer class, which stores info for whole lexer</span>
+</span><span class='line'>            <span class="n">t</span><span class="o">.</span><span class="n">lexer</span><span class="o">.</span><span class="n">lineno</span> <span class="o">+=</span> <span class="nb">len</span><span class="p">(</span><span class="n">t</span><span class="o">.</span><span class="n">value</span><span class="p">)</span>
+</span><span class='line'>
+</span><span class='line'>    <span class="k">def</span> <span class="nf">t_error</span> <span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">t</span><span class="p">):</span>
+</span><span class='line'>            <span class="k">print</span> <span class="p">(</span><span class="s">&quot;Illegal&quot;</span><span class="p">)</span>
+</span><span class='line'>            <span class="n">t</span><span class="o">.</span><span class="n">lexer</span><span class="o">.</span><span class="n">skip</span> <span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+</span><span class='line'>
+</span><span class='line'>    <span class="k">def</span> <span class="nf">build</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+</span><span class='line'>            <span class="bp">self</span><span class="o">.</span><span class="n">lexer</span> <span class="o">=</span> <span class="n">ply</span><span class="o">.</span><span class="n">lex</span><span class="o">.</span><span class="n">lex</span><span class="p">(</span><span class="n">module</span><span class="o">=</span><span class="bp">self</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+</span><span class='line'>
+</span><span class='line'>    <span class="k">def</span> <span class="nf">run</span> <span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">data</span><span class="p">):</span>
+</span><span class='line'>            <span class="bp">self</span><span class="o">.</span><span class="n">lexer</span><span class="o">.</span><span class="n">input</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
+</span><span class='line'>            <span class="k">for</span> <span class="n">t</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">lexer</span><span class="p">:</span>
+</span><span class='line'>            <span class="k">print</span> <span class="p">(</span><span class="n">t</span><span class="p">)</span>
+</span><span class='line'>
+</span><span class='line'><span class="n">m</span> <span class="o">=</span> <span class="n">MyLexer</span> <span class="p">()</span>
+</span><span class='line'><span class="c"># build lexer and init data structre</span>
+</span><span class='line'><span class="n">m</span><span class="o">.</span><span class="n">build</span> <span class="p">()</span>
+</span><span class='line'><span class="n">m</span><span class="o">.</span><span class="n">run</span> <span class="p">(</span><span class="s">&quot;3 + 4 * 6&quot;</span><span class="p">)</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<h2>PLY Yacc</h2>
+
+<p>Yacc generates a table-driven LR parser, and LALR(1) by default, SLR when specified.</p>
+
+<p>Yacc also uses docstring to define Context Free Grammar. Similarly, grammar definition method has naming convention as <code>`p_PRODUCT_NAME</code> `. It also generates a shift/reduce parser.out output for debugging purpose.</p>
+
+<p>Yacc allows ambiguous grammar. It can resolve ambiguity by supporting precedence. One example for arithmetic operations from documentation:</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+</pre></td><td class='code'><pre><code class='Python'><span class='line'><span class="n">expression</span> <span class="p">:</span> <span class="n">expression</span> <span class="n">PLUS</span> <span class="n">expression</span>
+</span><span class='line'>           <span class="o">|</span> <span class="n">expression</span> <span class="n">MINUS</span> <span class="n">expression</span>
+</span><span class='line'>           <span class="o">|</span> <span class="n">expression</span> <span class="n">TIMES</span> <span class="n">expression</span>
+</span><span class='line'>           <span class="o">|</span> <span class="n">expression</span> <span class="n">DIVIDE</span> <span class="n">expression</span>
+</span><span class='line'>           <span class="o">|</span> <span class="s">&#39;(&#39;</span> <span class="n">expression</span> <span class="s">&#39;)&#39;</span>
+</span><span class='line'>           <span class="o">|</span> <span class="n">NUMBER</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Which creates ambiguity when parsing expressions like</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='Python'><span class='line'><span class="mi">3</span> <span class="o">+</span> <span class="mi">4</span> <span class="o">*</span> <span class="mi">5</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>With precedence, Yacc would always know to handle higher precedence operations than lower precedence ones.</p>
+
+<p>One example (from PLY offical release 3.14 examples) of expression definition with precedence defined:</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+</pre></td><td class='code'><pre><code class='Python'><span class='line'><span class="n">precedence</span> <span class="o">=</span> <span class="p">(</span>
+</span><span class='line'>    <span class="p">(</span><span class="s">&#39;left&#39;</span><span class="p">,</span><span class="s">&#39;+&#39;</span><span class="p">,</span><span class="s">&#39;-&#39;</span><span class="p">),</span>
+</span><span class='line'>        <span class="p">(</span><span class="s">&#39;left&#39;</span><span class="p">,</span><span class="s">&#39;*&#39;</span><span class="p">,</span><span class="s">&#39;/&#39;</span><span class="p">),</span>
+</span><span class='line'>            <span class="p">(</span><span class="s">&#39;right&#39;</span><span class="p">,</span><span class="s">&#39;UMINUS&#39;</span><span class="p">),</span>
+</span><span class='line'>            <span class="p">)</span>
+</span><span class='line'>
+</span><span class='line'><span class="k">def</span> <span class="nf">p_expression_binop</span><span class="p">(</span><span class="n">p</span><span class="p">):</span>
+</span><span class='line'>    <span class="sd">&#39;&#39;&#39;expression : expression &#39;+&#39; expression</span>
+</span><span class='line'><span class="sd">                  | expression &#39;-&#39; expression</span>
+</span><span class='line'><span class="sd">                  | expression &#39;*&#39; expression</span>
+</span><span class='line'><span class="sd">                  | expression &#39;/&#39; expression&#39;&#39;&#39;</span>
+</span><span class='line'>                  <span class="k">if</span> <span class="n">p</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span> <span class="o">==</span> <span class="s">&#39;+&#39;</span>  <span class="p">:</span> <span class="n">p</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="n">p</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">+</span> <span class="n">p</span><span class="p">[</span><span class="mi">3</span><span class="p">]</span>
+</span><span class='line'>                  <span class="k">elif</span> <span class="n">p</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span> <span class="o">==</span> <span class="s">&#39;-&#39;</span><span class="p">:</span> <span class="n">p</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="n">p</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">-</span> <span class="n">p</span><span class="p">[</span><span class="mi">3</span><span class="p">]</span>
+</span><span class='line'>                  <span class="k">elif</span> <span class="n">p</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span> <span class="o">==</span> <span class="s">&#39;*&#39;</span><span class="p">:</span> <span class="n">p</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="n">p</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">*</span> <span class="n">p</span><span class="p">[</span><span class="mi">3</span><span class="p">]</span>
+</span><span class='line'>                  <span class="k">elif</span> <span class="n">p</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span> <span class="o">==</span> <span class="s">&#39;/&#39;</span><span class="p">:</span> <span class="n">p</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="n">p</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">/</span> <span class="n">p</span><span class="p">[</span><span class="mi">3</span><span class="p">]</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>A collection of examples could be found in <a href="https://github.com/dabeaz/ply/tree/master/example">here</a>.</p>
+
+<h2>Afterthoughts</h2>
+
+<p>PLY is an interesting tool that I want to build something with. There&rsquo;s also a variation based on PLY called <a href="https://github.com/erezsh/plyplus">PLYPlus</a> that trys to provide a cleaner interface for programmers. Somehow I have a hunch that it could be done better.</p>
+
+<p>GCC used to use bison generated parser as frontend, but now it&rsquo;s using a hand-written recursive-descent parser for performance reasons. So is clang. For language generators as far as I know, Ruby uses Yacc as its parser, and Python uses <a href="http://www.cs.princeton.edu/research/techreps/TR-554-97">ASDL</a>, which are all worth digging when I have time.</p>
+
+<p>Somehow I wonder why not very many people claim to use PLY as a tool for language manipulations. It could be quite handy when you consider constructing something  with relatively complex grammar parsing,  requires faster development cycle, and is not performance critical. If I encounter any projects like that in future, I think PLY would be on the top list of my tool selections.</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[A New Blog for My Tech Notes]]></title>
+    <link href="http://kevinhu.me//blog/2014/10/08/a-new-blog-for-my-tech-notes/"/>
+    <updated>2014-10-08T21:47:44-04:00</updated>
+    <id>http://kevinhu.me//blog/2014/10/08/a-new-blog-for-my-tech-notes</id>
+    <content type="html"><![CDATA[<p>Hello World!</p>
+
+<p>It’s been a while since the last time I ever wrote some serious blog posts. After some thought I now decide to separate my everyday chit-chat blog from a more tech-oriented blog, so that contents from either sides won’t get entwined with each other, especially when I decide to blog in both languages.</p>
+
+<p>For a more tech-oriented blog I’d like to keep everything in English. For I believe it’s a language most tech people could understand, even in China. And now I could publish all my discoveries, my thoughts, my ideas centered around technology in this blog, and welcome discussions. Blogging is a beautiful way of communication, and hopefully I could make friends with like-minded through keeping this blog.</p>
+
+<p>And there it goes. A brand new blogging journey!</p>
+]]></content>
+  </entry>
+  
+</feed>
