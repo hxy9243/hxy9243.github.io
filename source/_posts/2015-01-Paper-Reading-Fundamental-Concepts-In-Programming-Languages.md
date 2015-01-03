@@ -1,7 +1,7 @@
 layout: post
 title: Paper Reading - Fundamental Concepts In Programming Languages
 date: 2015-01-03 00:14:06
-categories: PaperReading
+categories: ProgrammingLanguage
 ---
 
 This is a holiday reading summary. I recently came across two interesting blogs on fundamental concepts in computer science, both with the title "10 Papers Every Programmer Should Read (At Least Twice)". One could be found in [here](http://web.archive.org/web/20121024173845/http:/blog.objectmentor.com/articles/2009/02/26/10-papers-every-programmer-should-read-at-least-twice), and another one in [Fogus' blog](http://blog.fogus.me/2011/09/08/10-technical-papers-every-programmer-should-read-at-least-twice/). Topics of these papers range from Programming Language theories, functional programming, to Lamport's distributed system theories. I will read and summarize some of them in my blog. It'll be 20 papers, and 40 paper-readings to do if I do read each one twice. So, it might be a long time before all is finished.
