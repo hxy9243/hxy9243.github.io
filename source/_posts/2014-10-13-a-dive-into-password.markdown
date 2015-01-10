@@ -4,6 +4,7 @@ title: "A Dive Into Password"
 date: 2014-10-13 21:08:55 -0500
 comments: true
 categories: CodeReading
+tags: [Password, CodeReading]
 ---
 
 ## Passwd

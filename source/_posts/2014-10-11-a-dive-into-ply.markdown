@@ -4,6 +4,7 @@ title: "A Dive Into PLY"
 date: 2014-10-11 20:50:24 -0500
 comments: true
 categories: ProgrammingLanguage
+tags: [ProgrammingLanguage]
 ---
 
 I've been auditing a course in computer language implementation and particularly interested in parser generator. Just spent an afternoon reading about the Python parser generator [PLY](http://www.dabeaz.com/ply/). It's a pure Python Implementation of Lex and Yacc. And [here](http://www.dabeaz.com/ply/ply.html#ply_nn4) is the PLY documentation I've been reading the whole afternoon.

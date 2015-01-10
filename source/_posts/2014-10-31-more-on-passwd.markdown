@@ -4,6 +4,7 @@ title: "More On Passwd"
 date: 2014-10-31 21:30:45 -0500
 comments: true
 categories: CodeReading
+tags: [CodeReading, Password]
 ---
 
 A little bit more interesting discoveries while digging into the passwd code file.
