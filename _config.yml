@@ -21,6 +21,12 @@ category_dir: categories
 code_dir: downloads/code
 permalink_defaults:
 
+# Feed
+feed:
+  type: atom
+  path: atom.xml
+  limit: 50
+
 # Directory
 source_dir: source
 public_dir: public
