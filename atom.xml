@@ -1,0 +1,636 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+  <title><![CDATA[Kevin Hu's Blog]]></title>
+  <subtitle><![CDATA[A Hugry Fool]]></subtitle>
+  <link href="/atom.xml" rel="self"/>
+  <link href="http://blog.kevinhu.me/"/>
+  <updated>2015-01-11T06:26:28.212Z</updated>
+  <id>http://blog.kevinhu.me/</id>
+  
+  <author>
+    <name><![CDATA[Kevin Hu]]></name>
+    
+  </author>
+  
+  <generator uri="http://zespia.tw/hexo/">Hexo</generator>
+  
+  <entry>
+    <title><![CDATA[Algorithm I Summary]]></title>
+    <link href="http://blog.kevinhu.me/2015/01/10/Algorithm-I-Summary/"/>
+    <id>http://blog.kevinhu.me/2015/01/10/Algorithm-I-Summary/</id>
+    <published>2015-01-10T06:54:07.000Z</published>
+    <updated>2015-01-11T03:17:49.000Z</updated>
+    <content type="html"><![CDATA[<p>Finally! All the lecture videos of “Algorithm I” Course from Coursera is now finished recently, and I believe now it’s a good time to review and summarize.<br><a id="more"></a></p>
+<p>All contents are based on Coursera course slides, as well as other helpful sites (Wikipedia, StackOverflow, <a href="http://algs4.cs.princeton.edu/home/" target="_blank" rel="external">Algorithm - 4th Edition</a> from Princeton U). All pictures are from the slides and the <a href="http://algs4.cs.princeton.edu/home/" target="_blank" rel="external">Algorithm - 4th Edition</a>.</p>
+<h2 id="Stacks_and_Queues">Stacks and Queues</h2>
+<p>Stacks and Queues are probably the most commonly seen data structures seen in the software. Stacks are “First-In-Last-Out”, while Queues are “First-In-First-Out”. The basic operations they support are push() and pop().</p>
+<p>The underlying implementations could be linked-list, arrays and etc.. Linked list provides with more flexible memory management, constant time operations, but brings more time overhead and memory overhead for the link operations. Arrays on the other hand, brings tricky issues of resizing, but the operations are also constant time, and has less memory overheads.</p>
+<h2 id="Priority_Queues_and_Heaps">Priority Queues and Heaps</h2>
+<h3 id="Priority_Queues">Priority Queues</h3>
+<p>Although often mentioned together, Priority Queue and Heap are <a href="http://en.wikipedia.org/wiki/Priority_queue" target="_blank" rel="external">different concepts</a>. Priority Queue is an abstract data type which is like a queue or stack data structure, but is often implemented in heaps, just like lists could be implemented as arrays or linked lists.</p>
+<p>Priority Queue, as its name suggests, could give the element with highest priority. Usually it requires O(1) performance for this operation as it’s crucial to many applications, to name a few (From course slides):</p>
+<ul>
+<li>Event-driven simulation [give the next event for simulation]</li>
+<li>Graph searching [Dijkstra’s Algorithm]</li>
+<li>Data compression</li>
+<li>Statistics [Maintain largest M values]</li>
+<li>Operating Systems [Load balancing, interrupt handling]</li>
+<li>…</li>
+</ul>
+<h3 id="Heap">Heap</h3>
+<p>Binary Heap is one most common implementation of Priority Heap. It uses a binary tree to maintain the data relationship, and could be implemented with arrays. As shown below. (Picture from slide of <a href="https://class.coursera.org/algs4partI-006" target="_blank" rel="external">Coursera Algorithm I Course</a>).</p>
+<p><img src="HeapRepresentation.png" alt="Binary Heap Representation"></p>
+<p>A Binary Heap has the following properties:</p>
+<ul>
+<li>Is a complete binary tree.</li>
+<li>Largest key is root node of binary tree, which is represented as list[1].</li>
+<li>In array representation, the 0 node is often a dummy node, therefore,</li>
+<li>Parent of node k is at k/2.</li>
+<li>Children of node k are at 2k and 2k+1</li>
+</ul>
+<p>The following operations are supported by Binary Heap:</p>
+<ul>
+<li><p><strong>Insertion</strong>: To insert, add a node at the end, then swim it up. Meaning: keep comparing it with its parent, if larger than parent, then switch position with it.</p>
+</li>
+<li><p><strong>Deletion</strong>: Binary heap supports deletion from the root node (extract the max element). It removes the root node, then replace the root node with the last element on the last level, then sink it. Meaning: keep switching position with the larger one of its children. </p>
+</li>
+</ul>
+<p>Binary Heaps, both insertion and deletion takes O(logN) time to swim or sink, which makes finding max M elements in N O(MlogN).</p>
+<p>For Heap Sort, I’d like to categorize it together with all the sorting algorithms, described as following.</p>
+<h2 id="Sorting_Algorithms">Sorting Algorithms</h2>
+<h2 id="Elementary_Sort">Elementary Sort</h2>
+<p>The elementary sorting algorithm part introduces <strong>Insertion Sort</strong>, <strong>Selection Sort</strong>, along with <strong>Shell Sort</strong>.</p>
+<p><strong>Selection Sort</strong>: As name suggests, selection sort traverse the unsorted part of the list to find the minimum element, and put it in the front of the unsorted part, and consider this element sorted.</p>
+<p>Selection Sort has O(N^2) of average time complexity, even when the list is almost sorted.</p>
+<p><strong>Insertion Sort</strong>: For each element, keep comparing it to the element in front of it and switch position if it’s smaller than the front element, until it’s the larger one.</p>
+<p>It has O(N^2) of average time complexity as well, but only ~N operations when the list is almost sorted, which makes it actually quite useful in certain cases.</p>
+<p><strong>Shell Sort</strong>: The algorithm starts with sorting elements h elements apart with insertion sort, then keep decreasing h to have the list “h-sorted”, until h reaches 1, and the whole list is sorted.</p>
+<p>With these two gap sequences, Shell Sort is known to have <a href="http://www.sorting-algorithms.com/shell-sort" target="_blank" rel="external">O(N^3/2) average time complexity</a>, <a href="http://www.sorting-algorithms.com/shell-sort" target="_blank" rel="external">O(Nlog(N)) time complexity</a> for nearly sorted lists, which gives it pretty good performance.The value of the gap h is commonly chosen by 3k+1, or an experiment found array of [1, 4, 10, 23, 57, 132, 301, 701]. Also as it doesn’t require function calls, it’s actually used in many cases such as embedded systems, and Linux kernel.</p>
+<h3 id="Merge_Sort">Merge Sort</h3>
+<p>Merge Sort is best described recursively. It takes the following procedures to the list of elements:</p>
+<ul>
+<li>Divide array into two halves.</li>
+<li>Recursively divide and sort each half.</li>
+<li>Merge two halves in order.</li>
+</ul>
+<p>One important feature of Merge Sort is that, it takes O(N) of extra memory space. Also, it has so much overhead for tiny subarrays. Therefore, for small sized subarrays, Merge Sort could use Insertion Sort for speed up.</p>
+<p>Time complexity for Merge Sort is O(NlogN). It is stable - meaning previously sorted items would not be rearranged by new sorts.</p>
+<h3 id="Quick_Sort">Quick Sort</h3>
+<p>The steps for quick sort are as follows:</p>
+<ul>
+<li>Choose an element of the list to be the pivot.</li>
+<li>Put all elements smaller than the pivot to the left, elements larger than the pivot to the right.</li>
+<li>Recursively sort the left and right partition.</li>
+<li>Join the left, pivot, and the right.</li>
+</ul>
+<p>Quick Sort, as its name suggests, has the <a href="http://rosettacode.org/wiki/Sorting_algorithms/Quicksort" target="_blank" rel="external">reputation for the fastest sort</a>. It has O(NlogN) time complexity, although for certain inputs and bad pivot selection (e.g. a sorted list and first element for pivot), the worst case could be O(N^2). Also, for small subarrays, Quick Sort could use Insertion Sort to reduce overhead.</p>
+<p>One problem with Quick Sort is that its performance decreases when dealing with lists with many identical elements. This could be solved by a variation: The 3 way Quick Sort, which separates the list into 3 separations of less-than, equal, and larger than.</p>
+<p>Quick Sort is known as fast, and is therefore widely used in many system applications.</p>
+<h3 id="Heap_Sort">Heap Sort</h3>
+<p>The idea for Heap Sort is to create a heap with all the keys, and repeatedly remove the max key. As described above, when the max value is deleted, the last element replaces the root node, and sunk down to the appropriate place.</p>
+<p>One significant feature of Heap Sort is that: it has O(NlogN) worst-case performance. But (From Course Slides):</p>
+<ul>
+<li>Inner loop longer than Quick Sort.</li>
+<li>Cache unfriendly.</li>
+<li>Not stable.</li>
+</ul>
+<h3 id="Summary_for_Sorting">Summary for Sorting</h3>
+<p>There is an website introducing the details of different sorting algorithms, with sorting animations: <a href="http://www.sorting-algorithms.com/" target="_blank" rel="external">http://www.sorting-algorithms.com/</a> . The following table summarizes some of the common sorting algorithms.</p>
+<table>
+<thead>
+<tr>
+<th>Algorithm</th>
+<th>Average Time</th>
+<th>Worst Time</th>
+<th>Extra Space</th>
+<th>Adaptive</th>
+<th>Stable</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Selection Sort</td>
+<td>O(N^2)</td>
+<td>O(N^2)</td>
+<td>O(1)</td>
+<td>No</td>
+<td>No</td>
+</tr>
+<tr>
+<td>Insertion Sort</td>
+<td>O(N^2)</td>
+<td>O(N^2)</td>
+<td>O(1)</td>
+<td>Yes</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>Shell Sort</td>
+<td>O(N^3/2)</td>
+<td>O(N^2)</td>
+<td>O(1)</td>
+<td>Yes</td>
+<td>No</td>
+</tr>
+<tr>
+<td>Merge Sort</td>
+<td>O(NlogN)</td>
+<td>O(N^2)</td>
+<td>O(N)</td>
+<td>No</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>Quick Sort</td>
+<td>O(NlogN)</td>
+<td>O(N^2)</td>
+<td>O(1)</td>
+<td>No</td>
+<td>No</td>
+</tr>
+<tr>
+<td>3-Way Quick Sort</td>
+<td>O(NlogN)</td>
+<td>O(N^2)</td>
+<td>O(1)</td>
+<td>Yes</td>
+<td>No</td>
+</tr>
+<tr>
+<td>Heap Sort</td>
+<td>O(NlogN)</td>
+<td>O(NlogN)</td>
+<td>O(1)</td>
+<td>No</td>
+<td>No</td>
+</tr>
+</tbody>
+</table>
+<h2 id="Binary_Search_Trees">Binary Search Trees</h2>
+<p>A Binary Search Tree is a Binary Tree in Symmetric Order. Meaning: each node has a key, that’s larger than all keys in its left subtree, but smaller than all keys in its right subtree.</p>
+<p><strong>Search</strong>: Searching in Binary Search Tree is intuitive: if search key is less than node, go left, if greater, go right, if equal, search hit.</p>
+<p>Search in Binary Tree has average time complexity of O(logN) for N elements.</p>
+<p><strong>Insert</strong>: Inserting in Binary Search Tree is similar to search. It keeps finding in the tree until see NULL node.</p>
+<p>Both Search Insertion requires O(logN) of time in average, but could be O(N) in worst case when the tree is unbalanced (e.g. The tree is inserted in sequential order).</p>
+<p><strong>Deletion</strong>: One famous deletion technique for Binary Search Tree is the <a href="http://algs4.cs.princeton.edu/32bst/" target="_blank" rel="external">Hibbard deletion</a>. As Hibbard deletion describes, when deleting:</p>
+<ul>
+<li><strong>Node with one child:</strong> Delete the node and replace it with its child.</li>
+<li><strong>Node with two children:</strong><ul>
+<li>Find the node t to delete.</li>
+<li>Find successor x of t, so that x has no left child (the min in t’s right subtree).</li>
+<li>Put x in t’s spot.</li>
+</ul>
+</li>
+</ul>
+<p>See below:</p>
+<p><img src="bst-delete.png" alt="BST deletion"></p>
+<p>Deletion is said to have O(sqrt(N)) average time complexity (From course slides), but still suffers from performance worsening when the tree is unbalanced. One way to tackle this issue is to use a Balanced Search Tree, as described below.</p>
+<h2 id="Balanced_Search_Trees">Balanced Search Trees</h2>
+<h3 id="2-3_Search_Trees">2-3 Search Trees</h3>
+<p>2-3 Tree has the following properties:</p>
+<ul>
+<li>Allow 1 or 2 keys per node.<ul>
+<li>2-node: 1 key, 2 children.</li>
+<li>3-node: 2 keys, 3 children.</li>
+</ul>
+</li>
+<li>In symmetric order.</li>
+<li>Perfect balance: every path from root to null link has same length.</li>
+</ul>
+<p>2-3 Tree is designed to keep the tree perfectly balanced, since all its transformation keeps the tree symmetric.</p>
+<p><strong>Insertion for 2-3 Search Tree:</strong></p>
+<ul>
+<li>Search and find the node to insert in, as in Binary Search Tree.</li>
+<li>If the node is a 2 node, then insert the key to make it a 3 node.</li>
+<li>If the node is a 3 node, then insert the key to make it a temp 4 node, then:<ul>
+<li>Split the 4 node, percolate the middle node up to the parent.</li>
+<li>Split the rest 2 keys as two separate 2 nodes.</li>
+<li>If the parent becomes 4 node, recursively split the parent node in the same way.</li>
+</ul>
+</li>
+</ul>
+<p>As shown below:</p>
+<p><img src="23tree-insert3c.png" alt="2-3 Tree Insertion to 3 Node"></p>
+<p>The idea for 2-3 Tree is a beautiful idea, but complicated in implementation. So there are variations and derivations of implementations. Red-Black Tree is one of them.</p>
+<h3 id="Red-Black_Trees">Red-Black Trees</h3>
+<p>One variation of Red-Black Tree discussed in the course is called the Left-Leaning Red-Black Tree. (Guibas-Sedgewick 1979 and Sedgewick 2007, and Sedgewick is the instructor of this online course!)</p>
+<p>LLRBT uses a red node to represent the glue for 3-nodes in 2-3 Tree. Therefore it has the following properties:</p>
+<ul>
+<li>No node has two red links connected to it.</li>
+<li>Every path from root to null link has the same number of black links. (Because the corresponding 2-3 Tree is balanced.)</li>
+<li>Red links lean left.</li>
+</ul>
+<p>To understand the operations in LLRBT, we can build all operations with the following basic operations:</p>
+<ul>
+<li><strong>Left Rotation:</strong> Orient a temporarily right-leaning red link to lean left.<br>  as follows:<br>  <img src="redblack-left-rotate.png" alt="Left Rotate In LLRBT"></li>
+<li><strong>Right Rotation:</strong> Same as Left Rotation, rotate node to the right.</li>
+<li><strong>Color Flip:</strong> If a node has two red children, flip the color of children to black and mark itself red.</li>
+</ul>
+<p>And with these basic transformations, we can operate with insertion on the LLRBT, in case of following scenarios:</p>
+<ul>
+<li><strong>Inserting into a single node</strong> (A 2 node in 2-3 Tree):<ul>
+<li><strong>Insert to the left:</strong> Add to the left, and mark the new node red.</li>
+<li><strong>Insert to the right:</strong> Add to the right, and since there’s a right-leaning red link, left rotate its parent node, to make the parent a left-leaning red node.</li>
+</ul>
+</li>
+<li><strong>Inserting into a 3 node</strong>:<ul>
+<li><strong>To the left of a 3 node:</strong> This makes its parent in the middle of two left leaning red links. Right rotate the parent node, and flip color.</li>
+<li><strong>To the center of a 3 node:</strong> This makes its parent in the middle of a two red links, the parent node is left leaning, and the inserted node is left leaning. Left rotate the parent node, then right flip the inserted node, then flip color.</li>
+<li><strong>To the right of a 3 node:</strong> This makes the parent has two red children, then flip color.</li>
+</ul>
+</li>
+</ul>
+<p>As the graph shows:</p>
+<p><img src="LLRBT_insert_3node.png" alt="Basic operations for inserting into 3-node in LLRBT"></p>
+<p>Although the operations in each cases look really complicated, the actual code could be made concise and elegant using with recursion. To keep in mind that all these operations are used to guarantee that the tree is fully balanced, and there are no right leaning red links.</p>
+<p>The Java example for inserting in LLRBT from the course slide is shown as follows. The insertion searches in the tree for appropriate insert position, and add a new red node at the end. Then determine if the node is violating the properties for LLRBT (Right leaning red node? Two consecutive red links? …), and operate on the node accordingly.</p>
+<p>Code example for LLRBT insertion in Java:</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">private</span> Node <span class="title">put</span>(Node h, Key key, Value val)</div><div class="line">{</div><div class="line">    <span class="keyword">if</span> (h == NULL) <span class="keyword">return</span> <span class="keyword">new</span> Node(key, val, RED);</div><div class="line">    <span class="keyword">int</span> cmp = key.compareTo(h.key);</div><div class="line">    <span class="keyword">if</span>      (cmp &lt; <span class="number">0</span>) h.left = put(h.left, key, val);</div><div class="line">    <span class="keyword">else</span> <span class="keyword">if</span> (cmp &gt; <span class="number">0</span>) h.right = put(h.right, key, val);</div><div class="line">    <span class="keyword">else</span>              h.val = val;</div><div class="line"></div><div class="line">    <span class="keyword">if</span> (isRed(h.right) && !isRed(h.left))    h = rotateLeft(h);</div><div class="line">    <span class="keyword">if</span> (isRed(h.left) && isRed(h.left.left)) h = rotateRight(h);</div><div class="line">    <span class="keyword">if</span> (isRed(h.left) && !isRed(h.right))    flipColors(h);</div><div class="line"></div><div class="line">    <span class="keyword">return</span> h;</div><div class="line">}</div></pre></td></tr></table></figure>
+
+<h2 id="Symbol_Tables_And_Hash_Tables">Symbol Tables And Hash Tables</h2>
+<p>The Symbol Table, again, is an abstract data type, which maps from keys to values. It supports operations of insertion, deletion, search by key, and etc.. It’s commonly implemented with Hash Tables, which is used everywhere. Some languages have built-in support for Hash Tables.</p>
+<h3 id="Hash_Table">Hash Table</h3>
+<p>Hash Table is a key-indexed table, that maps from its keys to value, and index is a function of the key (hashing function).</p>
+<p>The ideal scenario is that the index distributed uniformly in the hashing index, so that the access to each element requires O(1) time. Somehow when there are collisions, there are two ways to resolve collisions.</p>
+<p><strong>Separate Chaining:</strong> For separate chaining, each collision is stored under the same index, but uses a linked-list to store all the elements under the same index.</p>
+<p><strong>Open Addressing:</strong> In case of a collision, the Hash Table probes the array for the next available position of inserting. There are more than one way to find the next available slot:</p>
+<ul>
+<li>Linear Probing.</li>
+<li>Quadratic Probing.</li>
+<li>Double Hashing.</li>
+</ul>
+<p>While for linear probing, when the array gets too full, the performance for searching and insertion degrades drastically. It keeps relatively good performance when the array is under 50% full.</p>
+]]></content>
+    <summary type="html">
+    <![CDATA[<p>Finally! All the lecture videos of “Algorithm I” Course from Coursera is now finished recently, and I believe now it’s a good time to review and summarize.<br>]]>
+    
+    </summary>
+    
+      <category term="Algorithm" scheme="http://blog.kevinhu.me/tags/Algorithm/"/>
+    
+      <category term="Algorithm" scheme="http://blog.kevinhu.me/categories/Algorithm/"/>
+    
+  </entry>
+  
+  <entry>
+    <title><![CDATA[Paper Reading - Fundamental Concepts In Programming Languages]]></title>
+    <link href="http://blog.kevinhu.me/2015/01/03/Paper-Reading-Fundamental-Concepts-In-Programming-Languages/"/>
+    <id>http://blog.kevinhu.me/2015/01/03/Paper-Reading-Fundamental-Concepts-In-Programming-Languages/</id>
+    <published>2015-01-03T05:14:06.000Z</published>
+    <updated>2015-01-10T07:20:20.000Z</updated>
+    <content type="html"><![CDATA[<p>This is a holiday reading summary. I recently came across two interesting blogs on fundamental concepts in computer science, both with the title “10 Papers Every Programmer Should Read (At Least Twice)”. One could be found in <a href="http://web.archive.org/web/20121024173845/http:/blog.objectmentor.com/articles/2009/02/26/10-papers-every-programmer-should-read-at-least-twice" target="_blank" rel="external">here</a>, and another one in <a href="http://blog.fogus.me/2011/09/08/10-technical-papers-every-programmer-should-read-at-least-twice/" target="_blank" rel="external">Fogus’ blog</a>. Topics of these papers range from Programming Language theories, functional programming, to Lamport’s distributed system theories. I will read and summarize some of them in my blog. It’ll be 20 papers, and 40 paper-readings to do if I do read each one twice. So, it might be a long time before all is finished.<br><a id="more"></a><br>The first one I chose is “Fundamental Concepts In Programming Languages” (<a href="https://github.com/papers-we-love/papers-we-love/blob/master/plt/fundamental-concepts-in-programming-languages.pdf?raw=true" target="_blank" rel="external">Link To Paper</a>). It’s probably the most influential set of lecture notes in computer science, compiled to paper by <a href="http://en.wikipedia.org/wiki/Christopher_Strachey" target="_blank" rel="external">Christopher Strachey</a> in 1967, two years before the development of C programming language. Left and Right-values, Parametric and Ad-hoc polymorphism were all defined in this paper.</p>
+<p>I will only try to summarize some highlights that I find interesting.</p>
+<h2 id="L-values_and_R-values">L-values and R-values</h2>
+<p>Light and Right-values, also L and R-values. As their names suggest, L-value is for address-like object appropriate on the left of an assignment, R-value is for the contents-like object appropriate for the right. An L-value is for a location in memory, which has content — an associated R-value.</p>
+<p>A name in program (or ‘identifier’) is associated with an L-value, and the association cannot be changed by any assignment. For example, in:</p>
+<pre><code><span class="keyword">let</span> <span class="variable">p =</span> <span class="number">3.5</span>
+</code></pre><p>In this statement, an available location in memory is setup as the L-value of <code>p</code>, and the R-value 3.5 is assigned to this location.</p>
+<p>Somehow, multiple names could have same L-value, by assigning reference to other names. This is slightly different than the concept of pointers, which represents a location by R-value, explained in the paper:</p>
+<blockquote>
+<p>Suppose X is a real variable with L-value a, then P is an object whose R-value is a, we say the type of P is real pointer and that P ‘points to’ X.</p>
+</blockquote>
+<p>The L and R-value should also be specified for the function parameter calling modes, namely, calling a parameter by value (R-value) or reference (L-value). Free variables should also be defined as L-value or R-value, the difference can be shown by the following example.</p>
+<pre><code>Free variable by R-value
+let a = <span class="number">3</span>
+let f[x] = x + a
+<span class="keyword">...</span> (f[<span class="number">5</span>] = <span class="number">8</span>)
+a := <span class="number">10</span>
+<span class="keyword">...</span> (f[<span class="number">5</span>] = <span class="number">8</span>)
+
+ Free variable by L-value
+ let a = <span class="number">3</span>
+ let f[x] = x + a
+ <span class="keyword">...</span> (f[<span class="number">5</span>] = <span class="number">8</span>)
+ a := <span class="number">10</span>
+ <span class="keyword">...</span> (f[<span class="number">5</span>] = <span class="number">15</span>)
+</code></pre><h2 id="Function_and_routines_as_data_items">Function and routines as data items</h2>
+<p>First and second class objects are described as following:</p>
+<blockquote>
+<p>In ALGOL a real number may appear in an expression or be assigned to a variable, and either may appear as an actual parameter in a procedure call. A procedure, on the other hand, may only appear in another procedure call either as the operator (the most common case) or as one of the actual parameters. There are no expressions involving procedures or whose results are procedures. Thus in a sense in ALGOL are second class citizens…</p>
+</blockquote>
+<p>To represent functions as data items, we need to make sure the R-value of a function. It includes two parts — a rule for evaluating the expression, and an environment which supplies its free variables. An R-value of this sort will be called a closure.</p>
+<h2 id="Types_and_Polymorphism">Types and Polymorphism</h2>
+<p>In the paper, it describes:</p>
+<blockquote>
+<p>“The type of an object determines its representation and constrains the range of abstract object it may be used to represent.”</p>
+</blockquote>
+<p>Whether the type is an attribute of an L-value or an R-value is language dependent, and can largely affect the amount of work. L-values are invariant under assignment, so their type is also invariant. And if we can determine the type of a polymorphism operator and the result from the operands, we can these attribute <strong>manifest</strong>. Attributes that can only be determined by running the program are known as <strong>latent</strong>.</p>
+<p>Polymorphism is the provision of a single interface to entities of different types. (Definition from <a href="http://en.wikipedia.org/wiki/Polymorphism_(computer_science" target="_blank" rel="external">Wikipedia</a>)). In this paper two modes of polymorphism is defined:</p>
+<p><strong>Ad-hoc Polymorphism:</strong> It describes that functions could apply to arguments of different types, and can behave differently depending on the type of arguments. A good example could be the add (+) operand in some languages:</p>
+<pre><code><span class="number">3</span> + <span class="number">5</span>
+<span class="string">"Hello"</span> + <span class="string">" "</span> + <span class="string">"World"</span>
+</code></pre><p>In the example above, (+) acts with different meanings. First is the adding of two integers, while the second is the concatenation of strings.</p>
+<p><strong>Parametric Polymorphism</strong>: Parametric Polymorphism act the same regardless of the type. It treats the argument as a more generalized type. This makes the language more flexible while not breaking its static type-safety. A good example will be list operations. For example, to determine the length of a list one need not to know the data type of the list objects, and could therefore it could act on list of all types.</p>
+<h2 id="Afterthoughts">Afterthoughts</h2>
+<p>There are other interesting topics in the paper as well. After learning all these concepts from programming languages, it’s sometimes interesting and necessary to learn the origins, to know how these ideas first came into formation. Putting the trivias of different language syntax aside for a while and getting back to theories actually helps understanding their designs.</p>
+]]></content>
+    <summary type="html">
+    <![CDATA[<p>This is a holiday reading summary. I recently came across two interesting blogs on fundamental concepts in computer science, both with the title “10 Papers Every Programmer Should Read (At Least Twice)”. One could be found in <a href="http://web.archive.org/web/20121024173845/http:/blog.objectmentor.com/articles/2009/02/26/10-papers-every-programmer-should-read-at-least-twice" target="_blank" rel="external">here</a>, and another one in <a href="http://blog.fogus.me/2011/09/08/10-technical-papers-every-programmer-should-read-at-least-twice/" target="_blank" rel="external">Fogus’ blog</a>. Topics of these papers range from Programming Language theories, functional programming, to Lamport’s distributed system theories. I will read and summarize some of them in my blog. It’ll be 20 papers, and 40 paper-readings to do if I do read each one twice. So, it might be a long time before all is finished.<br>]]>
+    
+    </summary>
+    
+      <category term="PaperReading" scheme="http://blog.kevinhu.me/tags/PaperReading/"/>
+    
+      <category term="ProgrammingLanguage" scheme="http://blog.kevinhu.me/tags/ProgrammingLanguage/"/>
+    
+      <category term="ProgrammingLanguage" scheme="http://blog.kevinhu.me/categories/ProgrammingLanguage/"/>
+    
+  </entry>
+  
+  <entry>
+    <title><![CDATA[What Parsers Are They Using?]]></title>
+    <link href="http://blog.kevinhu.me/2014/11/24/2014-11-24-what-parsers-are-they-using/"/>
+    <id>http://blog.kevinhu.me/2014/11/24/2014-11-24-what-parsers-are-they-using/</id>
+    <published>2014-11-24T23:29:00.000Z</published>
+    <updated>2014-12-02T01:53:38.000Z</updated>
+    <content type="html"><![CDATA[<p>This is a <del>quite boring</del> post on programming language trivia, which doesn’t dig into anything deep.</p>
+<h2 id="GCC_and_Clang">GCC and Clang</h2>
+<p>The GCC is mostly implemented in C, and used to use Bison for parser generation, according to its <a href="http://en.wikipedia.org/wiki/GNU_bison" target="_blank" rel="external">Wikipedia page</a>.<br>By default, it generates right recursive table driven LALR parser.<br><a id="more"></a></p>
+<p>Somehow according to the <a href="http://en.wikipedia.org/wiki/GNU_bison#Where_is_it_used.3F" target="_blank" rel="external">same page</a>, GCC has switched to <a href="http://dinosaur.compilertools.net/yacc/" target="_blank" rel="external">YACC</a> before now switching to a hand-written recursive-descent parser for C/C++/Objective C. This could also be seen from GCC release notes <a href="https://gcc.gnu.org/gcc-3.4/changes.html#cplusplus" target="_blank" rel="external">3.4</a> and <a href="https://gcc.gnu.org/gcc-4.1/changes.html" target="_blank" rel="external">4.1</a>. </p>
+<p>Clang, as well as LLVM is implemented in C++. It also uses a unified recursive-descent parser for C, Objective C, C++ and Objective C++, according to the <a href="http://clang.llvm.org/features.html" target="_blank" rel="external">LLVM Clang Page</a>. Both GCC and Clang now uses recursive-descent parser, claiming it provides with faster speed. On Clang page, it also states recursive-descent parser:</p>
+<blockquote>
+<p> … makes it very easy for new developers to understand the code, it easily supports ad-hoc rules and other strange hacks required by C/C++, and makes it straight-forward to implement excellent diagnostics and error recovery.</p>
+</blockquote>
+<h2 id="Python">Python</h2>
+<p>Here Python refers to the CPython implementation. In its repo under <a href="https://github.com/python/cpython/tree/master/Parser" target="_blank" rel="external">“Parser” directory</a>, it could be seen CPython actually uses <a href="http://asdl.sourceforge.net/" target="_blank" rel="external">Zephyr ASDL</a> for syntax description. Zyphyr ASDL is also described in its <a href="https://www.cs.princeton.edu/research/techreps/TR-554-97" target="_blank" rel="external">Princeton CS Dept. Page</a>.</p>
+<p>Python uses LL(1) grammar. Its AST file (Python-ast.c) isgenerated according to the ASDL description of the language. The detailed process is described in <a href="http://legacy.python.org/dev/peps/pep-0339/" target="_blank" rel="external">PEP339</a>.</p>
+<h2 id="Ruby">Ruby</h2>
+<p>Ruby MRI is implemented in C. According to <a href="http://en.wikipedia.org/wiki/GNU_bison#Where_is_it_used.3F" target="_blank" rel="external">Bison Wikipedia Page</a>, Ruby also uses Bison for the parser generation, which should be a right-recursive parser. </p>
+<p>The source code for parser and syntax could be found in <a href="https://github.com/ruby/ruby/blob/trunk/parse.y" target="_blank" rel="external">its repo</a>.</p>
+<h2 id="JavaScript">JavaScript</h2>
+<p>JavaScript v8 is implemented in C++. It claims to be using a hand-written top-down parser, according to <a href="http://www.quora.com/What-are-the-parsing-techniques-used-by-modern-compilers" target="_blank" rel="external">this Quora post</a>.</p>
+<p>I have no time to dig in its code base at the moment. Also it’s not in the scope of this post.</p>
+<h2 id="Haskell">Haskell</h2>
+<p>According to the <a href="http://www.quora.com/What-are-the-parsing-techniques-used-by-modern-compilers" target="_blank" rel="external">Quora post above</a>, GHC uses a generator called <a href="https://www.haskell.org/happy/" target="_blank" rel="external">Happy</a>. From its official website, it looks like it’s first created to generate parser specifically for GHC.</p>
+<p>Its syntax is defined in its codebase directory <a href="https://github.com/ghc/ghc/tree/master/compiler/parser" target="_blank" rel="external">“compiler/parser/Parser.y”</a>.</p>
+<h2 id="Julia">Julia</h2>
+<p>Interestingly, after searching a while in its <a href="https://github.com/JuliaLang/julia/tree/master/src" target="_blank" rel="external">GitHub codebase</a>, I found that Julia actually uses Scheme for its<br>frontend and parser. Although most its other source files are in C.</p>
+<p>It looks like it also uses a recursive-descent parser.</p>
+<h2 id="Golang">Golang</h2>
+<p>Golang parser is now implemented in Golang itself now. (Wow!) Not only that, most Golang implementation is in Go, according to its <a href="https://github.com/jnwhiteh/golang" target="_blank" rel="external">Github mirror repo</a>. By the time I checked it, it contains 75.7% Golang, 19.4% C, 3.0% Assembly, and 1.9% other.</p>
+<p>From its parser <a href="https://github.com/jnwhiteh/golang/blob/master/src/go/parser/parser.go" target="_blank" rel="external">source code</a>, it looks like it also uses a recursive-descent parser.</p>
+]]></content>
+    <summary type="html">
+    <![CDATA[<p>This is a <del>quite boring</del> post on programming language trivia, which doesn’t dig into anything deep.</p>
+<h2 id="GCC_and_Clang">GCC and Clang</h2>
+<p>The GCC is mostly implemented in C, and used to use Bison for parser generation, according to its <a href="http://en.wikipedia.org/wiki/GNU_bison" target="_blank" rel="external">Wikipedia page</a>.<br>By default, it generates right recursive table driven LALR parser.<br>]]>
+    
+    </summary>
+    
+      <category term="ProgrammingLanguage" scheme="http://blog.kevinhu.me/categories/ProgrammingLanguage/"/>
+    
+  </entry>
+  
+  <entry>
+    <title><![CDATA[More On Passwd]]></title>
+    <link href="http://blog.kevinhu.me/2014/10/31/31-more-on-passwd/"/>
+    <id>http://blog.kevinhu.me/2014/10/31/31-more-on-passwd/</id>
+    <published>2014-11-01T01:30:45.000Z</published>
+    <updated>2015-01-10T07:19:41.000Z</updated>
+    <content type="html"><![CDATA[<p>A little bit more interesting discoveries while digging into the passwd code file.</p>
+<h2 id="The_‘s’_flag_in_file_permission">The ‘s’ flag in file permission</h2>
+<p>First, the file permission of passwd executable is <code>-rwsr-xr-x</code>. There’s an ‘s’ flag which don’t usually appear in common Unix files. The usage of the ‘s’ field is explained here:</p>
+<p><a href="http://en.wikipedia.org/wiki/Setuid" target="_blank" rel="external">http://en.wikipedia.org/wiki/Setuid</a></p>
+<p><a id="more"></a><br>Which means when a user runs the passwd program, his effective uid will become the owner of the executable file, which is root in this case. While inside the passwd program, it uses <code>getuid</code>, which returns the user’s real id instead of effective id.</p>
+<h2 id="On_updating_the_shadow_file">On updating the shadow file</h2>
+<p>I also do notice that the whole passwd program would only require one Unix system capability: the <code>CAP_FCHOWN</code> capability, which is required when you’re changing the owner of one file. Here’s why the program needs it.</p>
+<p>As a matter of fact, the passwd program never actually directly writes into the <code>/etc/shadow</code> file. For some reason (perhaps security concerns), it writes into a temp file first, set the uid and gid of the temp file, and then rewrite the shadow file with the temp file.</p>
+<p>The code is defined in <code>commonio.c</code> file, <code>commonio_update</code> function. As described in the code bellow:</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// set the temp filename</span></div><div class="line"><span class="built_in">snprintf</span> (buf, <span class="keyword">sizeof</span> buf, <span class="string">"%s+"</span>, db-&gt;filename);</div><div class="line"></div><div class="line">...</div><div class="line"></div><div class="line"><span class="comment">// open the file with name defined in buf, permissions defined in sb, returns the file pointer</span></div><div class="line">db-&gt;fp = fopen_set_perms (buf, <span class="string">"w"</span>, &sb);</div><div class="line"></div><div class="line">...</div><div class="line"></div><div class="line"><span class="comment">// write all data to db-&gt;fp, the temp fp</span></div><div class="line"><span class="keyword">if</span> (write_all (db) != <span class="number">0</span>){...}</div><div class="line"></div><div class="line">...</div><div class="line"></div><div class="line"><span class="comment">// Rename the temp filename in buf to db-&gt;filename, which is /etc/shadow</span></div><div class="line"><span class="keyword">if</span> (lrename (buf, db-&gt;filename) != <span class="number">0</span>){...}</div></pre></td></tr></table></figure>
+
+<blockquote>
+<p>Written with <a href="https://stackedit.io/" target="_blank" rel="external">StackEdit</a>.</p>
+</blockquote>
+]]></content>
+    <summary type="html">
+    <![CDATA[<p>A little bit more interesting discoveries while digging into the passwd code file.</p>
+<h2 id="The_‘s’_flag_in_file_permission">The ‘s’ flag in file permission</h2>
+<p>First, the file permission of passwd executable is <code>-rwsr-xr-x</code>. There’s an ‘s’ flag which don’t usually appear in common Unix files. The usage of the ‘s’ field is explained here:</p>
+<p><a href="http://en.wikipedia.org/wiki/Setuid" target="_blank" rel="external">http://en.wikipedia.org/wiki/Setuid</a></p>
+<p>]]>
+    
+    </summary>
+    
+      <category term="CodeReading" scheme="http://blog.kevinhu.me/tags/CodeReading/"/>
+    
+      <category term="Password" scheme="http://blog.kevinhu.me/tags/Password/"/>
+    
+      <category term="CodeReading" scheme="http://blog.kevinhu.me/categories/CodeReading/"/>
+    
+  </entry>
+  
+  <entry>
+    <title><![CDATA[A Dive Into Password]]></title>
+    <link href="http://blog.kevinhu.me/2014/10/13/13-a-dive-into-password/"/>
+    <id>http://blog.kevinhu.me/2014/10/13/13-a-dive-into-password/</id>
+    <published>2014-10-14T01:08:55.000Z</published>
+    <updated>2015-01-10T07:19:08.000Z</updated>
+    <content type="html"><![CDATA[<h2 id="Passwd">Passwd</h2>
+<p>The passwd is program on Unix systems to manage users’ passwords. The user and password information on most Unix systems is stored in two separate files: /etc/passwd for user information, and /etc/shadow for password information, including encrypted password value, expiration data, UID, GID, and etc.. The<br>rationale behind storing information in separate files is discussed in <a href="http://www.tldp.org/HOWTO/Shadow-Password-HOWTO-2.html" target="_blank" rel="external">Why shadow your passwd file?</a><br><a id="more"></a></p>
+<p>The passwd program is a part of the shadow-utils, which includes a series of programs to manage user accounts, group accounts, and converting plain passwords to shadow password format, such as: groupadd, useradd, usermod, login, passwd, su, and etc..</p>
+<p>The source file of <code>passwd</code> is available in <a href="http://pkg-shadow.alioth.debian.org/" target="_blank" rel="external">Debian Alioth Page</a> and <a href="https://packages.debian.org/source/wheezy/shadow" target="_blank" rel="external">Debian Package Information Page</a>. I downloaded the 4.1.5 original source for my study. See opensource isn’t just a campaign slogan, it’s something real!</p>
+<p>Basically, what passwd does is to manage passwords, like updating passwords,  setting minimum and maximum password expiration date, and all these information is saved to the /etc/passwd and /etc/shadow files, and password information in particular, needs an encryption library for protection, instead of being saved as plain text.</p>
+<p>Below is a <strong>NON</strong>-comprehensive list of code files required by the passwd program in the shadow-utils code base:</p>
+<pre>
+src/passwd.c
+lib/defines.h
+lib/getdef.(h/c)
+lib/shadow.(h/c)
+lib/shadowio.(h/c)
+lib/commonio.(h/c)
+lib/sgetspent.c
+</pre>
+
+
+<h2 id="How_we_change_our_password">How we change our password</h2>
+<h3 id="Data_structure_definitions_first?">Data structure definitions first?</h3>
+<ul>
+<li><strong>Shadow passwd struct</strong>:<br>Defined in shadow.h in linux include directory. Defines the structure of the shadow file. The pointer in the main function is defined as:</li>
+</ul>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">const</span> <span class="keyword">struct</span> spwd *sp;  <span class="comment">/* Shadow file entry for user   */</span></div><div class="line">...</div><div class="line"><span class="comment">/* Structure of the password file.  */</span></div><div class="line"><span class="keyword">struct</span> spwd</div><div class="line">{</div><div class="line">    <span class="keyword">char</span> *sp_namp;              <span class="comment">/* Login name.  */</span></div><div class="line">    <span class="keyword">char</span> *sp_pwdp;              <span class="comment">/* Encrypted password.  */</span></div><div class="line">    <span class="keyword">long</span> <span class="keyword">int</span> sp_lstchg;         <span class="comment">/* Date of last change.  */</span></div><div class="line">    <span class="keyword">long</span> <span class="keyword">int</span> sp_min;            <span class="comment">/* Minimum number of days between changes.  */</span></div><div class="line">    <span class="keyword">long</span> <span class="keyword">int</span> sp_max;            <span class="comment">/* Maximum number of days between changes.  */</span></div><div class="line">    <span class="keyword">long</span> <span class="keyword">int</span> sp_warn;           <span class="comment">/* Number of days to warn user to change</span></div><div class="line">    the password.  */</div><div class="line">    <span class="keyword">long</span> <span class="keyword">int</span> sp_inact;          <span class="comment">/* Number of days the account may be</span></div><div class="line">    inactive.  */</div><div class="line">    <span class="keyword">long</span> <span class="keyword">int</span> sp_expire;         <span class="comment">/* Number of days since 1970-01-01 until</span></div><div class="line">    account expires.  */</div><div class="line">    <span class="keyword">unsigned</span> <span class="keyword">long</span> <span class="keyword">int</span> sp_flag;  <span class="comment">/* Reserved.  */</span></div><div class="line">};</div></pre></td></tr></table></figure>
+
+<ul>
+<li><strong>Passwd Structure</strong>:<br>Defined in pwd.h in linux include directory. Defines the <code>/etc/passwd</code> file structure. The pointer in the main function is defined:</li>
+</ul>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">const</span> <span class="keyword">struct</span> passwd *pw;  <span class="comment">/* Password file entry for user      */</span></div><div class="line">...</div><div class="line"><span class="comment">/* The passwd structure.  */</span></div><div class="line"><span class="keyword">struct</span> passwd</div><div class="line">{</div><div class="line">    <span class="keyword">char</span> *pw_name;                <span class="comment">/* Username.  */</span></div><div class="line">    <span class="keyword">char</span> *pw_passwd;              <span class="comment">/* Password.  */</span></div><div class="line">    __uid_t pw_uid;               <span class="comment">/* User ID.  */</span></div><div class="line">    __gid_t pw_gid;               <span class="comment">/* Group ID.  */</span></div><div class="line">    <span class="keyword">char</span> *pw_gecos;               <span class="comment">/* Real name.  */</span></div><div class="line">    <span class="keyword">char</span> *pw_dir;                 <span class="comment">/* Home directory.  */</span></div><div class="line">    <span class="keyword">char</span> *pw_shell;               <span class="comment">/* Shell program.  */</span></div><div class="line">};</div></pre></td></tr></table></figure>
+
+<ul>
+<li><p><strong>Shadow_db structure</strong>: Defined in <code>lib/shadowio.c</code>. It’s a doubly linked list, storing information for all the shadow file entries. It’s declared with a type called <code>struct commonio_db</code>, defined in <code>commonio.h</code>.</p>
+<p>  Shadow library has <code>commonio.c</code> for all the common io data structures and operations, and <code>shadowio.c</code>, which could be seen as a wrapper around common io for all shadow file data structure and operations.</p>
+<p>  The <code>shadow_db</code> defined as below. The <code>SHADOW_FILE</code> as you might have already guessed, is a macro defined as <code>“/etc/shadow”</code>.</p>
+</li>
+</ul>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">static</span> <span class="keyword">struct</span> commonio_db shadow_db = {</div><div class="line">    SHADOW_FILE,            <span class="comment">/* filename */</span></div><div class="line">    &shadow_ops,            <span class="comment">/* ops */</span></div><div class="line">    NULL,                   <span class="comment">/* fp */</span></div><div class="line">    <span class="preprocessor">#ifdef WITH_SELINUX</span></div><div class="line">    NULL,                   <span class="comment">/* scontext */</span></div><div class="line">    <span class="preprocessor">#<span class="keyword">endif</span></span></div><div class="line">    NULL,                   <span class="comment">/* head */</span></div><div class="line">    NULL,                   <span class="comment">/* tail */</span></div><div class="line">    NULL,                   <span class="comment">/* cursor */</span></div><div class="line">    <span class="keyword">false</span>,                  <span class="comment">/* changed */</span></div><div class="line">    <span class="keyword">false</span>,                  <span class="comment">/* isopen */</span></div><div class="line">    <span class="keyword">false</span>,                  <span class="comment">/* locked */</span></div><div class="line">    <span class="keyword">false</span>                   <span class="comment">/* readonly */</span></div><div class="line">};</div></pre></td></tr></table></figure>
+
+<ul>
+<li>Some important global variables</li>
+</ul>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">static</span> <span class="keyword">char</span> *name;   <span class="comment">/* The name of user whose password is being changed */</span></div><div class="line"><span class="keyword">static</span> <span class="keyword">char</span> *myname; <span class="comment">/* The current user's name */</span></div><div class="line"><span class="keyword">static</span> <span class="keyword">bool</span> amroot;  <span class="comment">/* The caller's real UID was 0 */</span></div><div class="line"><span class="keyword">static</span> <span class="keyword">char</span> crypt_passwd[<span class="number">256</span>];</div></pre></td></tr></table></figure>
+
+<h3 id="Main_function">Main function</h3>
+<p>Though the whole password update procedure could be simply described as “reading and updating the <code>/etc/passwd</code> and <code>/etc/shadow</code> file”, the shadow library uses piles of code to check identity, permission, and several layers of function calls for encryption, and finally updating files. It needs to consider every aspect of the problem, which makes the code size larger than you  might expect.</p>
+<p>Also, passwd libray took <a href="http://www.wikiwand.com/en/Linux_PAM" target="_blank" rel="external">PAM</a>, <a href="http://www.wikiwand.com/en/Trusted_computing_base" target="_blank" rel="external">TCB</a> and <a href="http://www.wikiwand.com/en/Security-Enhanced_Linux" target="_blank" rel="external">SELinux</a> into considerations. I would skip these here for I don’t yet have time to study all.</p>
+<p>A good place to start reading is the <code>main()</code> entry of the <code>passwd.c</code>. The procedures could be summarized as follows:</p>
+<ul>
+<li><strong>Initialization</strong>:<br>Init data structures (<code>const struct passwd <em>pw</em></code>, <code>const struct spwd sp</code>, etc.), sanitize environment, check if the user is root, …;</li>
+<li><strong>Parse parameters</strong>:<br>A large switch case for all parameters. As I’m now only interested in updating my password, I would follow the execution path where no parameters are given;</li>
+<li><strong>Get username, check permissions</strong>:</li>
+</ul>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">pw = get_my_pwent();</div><div class="line">...</div><div class="line"><span class="keyword">if</span> (!amroot && (pw-&gt;pw_uid!=getuid())){...}</div><div class="line">...</div><div class="line">sp = getspnam(name);</div><div class="line">...</div><div class="line">check_password(pw, sp);</div></pre></td></tr></table></figure>
+
+<p>Get username, init pw and sp data structures, check if the user is root or if the user is trying to change his own password. Then it checks the validity of the user’s account: is it expired, is its min password change time reached? These are in <code>check_password()</code> function.</p>
+<ul>
+<li><strong>Get new password</strong>:</li>
+</ul>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">if</span> (new_password(pw) != <span class="number">0</span>){...}</div></pre></td></tr></table></figure>
+
+<p>Here’s where there’s most fun. It’ when the <code>passwd</code> program prompts you for your old password, and tell you to input your new password. If you fail in trying too many times, the program would get upset and refuses to update password for you.<br>Under the hood, it also does the following things:</p>
+<ul>
+<li>Encrypt your input with <code>pw_encrypt()</code>(defined in <code>lib/encrypt.c</code>), then compare it with the old encrypted string. There must be a lot of fun to dig into the encryption method, but it’s not in the scope of this blog;</li>
+<li>Warns you of weak password;</li>
+<li><p>Encrypt the password then immediately wipe the cleartext password, saves the encrypted password to the global variable <code>crypt_passwd</code>, which would then copied to other data structures, and then saves to the shadow file.</p>
+</li>
+<li><p><strong>Update shadow file</strong>:</p>
+</li>
+</ul>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">update_shadow();</div></pre></td></tr></table></figure>
+
+<p>The program warns you the username you are changing password, then it calls the <code>update_shadow()</code> if you have shadow file. Otherwise, it calls <code>update_noshadow()</code>.</p>
+<p>The <code>update_shadow()</code> is going to the core of the program, and it’s what I will observe closely.</p>
+<h3 id="update_shadow()_function">update_shadow() function</h3>
+<p>Function <code>update_shadow()</code> is defined in <code>src/passwd.c</code>, and the summary of the procedures is:</p>
+<ul>
+<li><strong>Set a global lock</strong>:</li>
+</ul>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">if</span> (spw_lock() == <span class="number">0</span>){...}</div></pre></td></tr></table></figure>
+
+<p>Lock the shadow password file access. Spit an error if it’s already locked.</p>
+<ul>
+<li><strong>Open the shadow file</strong>:</li>
+</ul>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">if</span> (spw_open(O_RDWR)==<span class="number">0</span>){...}</div></pre></td></tr></table></figure>
+
+<p>Taking a deeper look inside the <code>spw_open</code> in <code>lib/shadowio.c</code>, you could find that here is when it opens up the shadow file, reads it, and stores all the entries to the <code>shadow_db</code> doubly linked list.</p>
+<ul>
+<li><strong>Locate the entry by name</strong>:</li>
+</ul>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">sp = spw_locate (name);</div></pre></td></tr></table></figure>
+
+<p>Also a function call in <code>lib/shadowio.c</code>. The <code>name</code> param is the current username.</p>
+<ul>
+<li><strong>Create nsp Data Structure</strong>:</li>
+</ul>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">nsp = __spw_dup (sp);</div></pre></td></tr></table></figure>
+
+<p>It copies the content in sp to a new pointer nsp;</p>
+<ul>
+<li><strong>Update the encrypted passwd</strong>:</li>
+</ul>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">update_crypt_pw(nsp-&gt;sp_pwdp);</div></pre></td></tr></table></figure>
+
+<p>Finally! The <code>crypted_passwd</code> is copied to the data structure, with:</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">cp=xstrdup(crypt_passwd)</div></pre></td></tr></table></figure>
+
+<p>inside of <code>update_crypt_pw()</code> function. This process is hidden so deep.<br>The nsp data structure would then carry this encrypted password to the shadow file. The program would also update metadata, such as the expiration date and so on;</p>
+<ul>
+<li><strong>Update the shadow_db Data Structure</strong>:</li>
+</ul>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">if</span> (spw_update(nsp) == <span class="number">0</span>){</div><div class="line">    <span class="keyword">return</span> commonio_update(&shadow_db, (<span class="keyword">const</span> <span class="keyword">void</span> *)sp);</div><div class="line">}</div></pre></td></tr></table></figure>
+
+<p>The <code>spw_update()</code>, again is a wrapper for the relating <code>commonio_update()</code>. Inside it would try to find the entry of the <code>shadow_db</code> data structure, or create new entry when not found. Then it saves all the information in the <code>sp</code> to the <code>shadow_db</code>.</p>
+<ul>
+<li><strong>Close the shadow file, unlock the global lock</strong>:<br>*</li>
+</ul>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">spw_close();</div><div class="line">...</div><div class="line">spw_unlock();</div></pre></td></tr></table></figure>
+
+<p>Close and saves the shadow file to its place. Unlock the global lock, concludes the whole process. Still, there’s much interesting things to look at inside the <code>spw_close()</code> and <code>commonio_close()</code>, but I think I’ve written long enough.</p>
+<h2 id="Afterthoughts">Afterthoughts</h2>
+<p>Reading code is fun, recording the whole process is even more so. It’s a rewarding process, especially for some high-quality code as shadow library. It kinda teaches you how top-notch programmers tackles system-level problems. It’s also tiring though, when you dig into all the function calls, variables (especially global variables) while tracking its execution path. At some point I really wish the code could be a little bit more commented.</p>
+<p>I might have the energy to blog all the code I will read, but I think I will definitely read more code before I start writing something similar. To conclude, it’s actually fun experience that quenches your curiosity of “How it actually works”.</p>
+<blockquote>
+<p>Written with <a href="https://stackedit.io/" target="_blank" rel="external">StackEdit</a>.</p>
+</blockquote>
+]]></content>
+    <summary type="html">
+    <![CDATA[<h2 id="Passwd">Passwd</h2>
+<p>The passwd is program on Unix systems to manage users’ passwords. The user and password information on most Unix systems is stored in two separate files: /etc/passwd for user information, and /etc/shadow for password information, including encrypted password value, expiration data, UID, GID, and etc.. The<br>rationale behind storing information in separate files is discussed in <a href="http://www.tldp.org/HOWTO/Shadow-Password-HOWTO-2.html" target="_blank" rel="external">Why shadow your passwd file?</a><br>]]>
+    
+    </summary>
+    
+      <category term="Password" scheme="http://blog.kevinhu.me/tags/Password/"/>
+    
+      <category term="CodeReading" scheme="http://blog.kevinhu.me/tags/CodeReading/"/>
+    
+      <category term="CodeReading" scheme="http://blog.kevinhu.me/categories/CodeReading/"/>
+    
+  </entry>
+  
+  <entry>
+    <title><![CDATA[A Dive Into PLY]]></title>
+    <link href="http://blog.kevinhu.me/2014/10/11/11-a-dive-into-ply/"/>
+    <id>http://blog.kevinhu.me/2014/10/11/11-a-dive-into-ply/</id>
+    <published>2014-10-12T00:50:24.000Z</published>
+    <updated>2015-01-10T07:18:34.000Z</updated>
+    <content type="html"><![CDATA[<p>I’ve been auditing a course in computer language implementation and particularly interested in parser generator. Just spent an afternoon reading about the Python parser generator <a href="http://www.dabeaz.com/ply/" target="_blank" rel="external">PLY</a>. It’s a pure Python Implementation of Lex and Yacc. And <a href="http://www.dabeaz.com/ply/ply.html#ply_nn4" target="_blank" rel="external">here</a> is the PLY documentation I’ve been reading the whole afternoon.<br><a id="more"></a></p>
+<h2 id="PLY_Lex">PLY Lex</h2>
+<p>Basically, writing a tokenizer is to generate a finite automata.  It should be easy to implement with the assist of regular expressions. For PLY Lex, the following needs to be defined:</p>
+<ul>
+<li><strong>Tokens</strong>: The token types;</li>
+<li><strong>Token definition</strong>: You can define a token by a variable of regular expression, or a method whose docstring is regular expression definition. Naming convention follows: <code>t_TOKENNAME</code>, e.g. SYMBOL token should be defined by a variable or method with name <code>t_SYMBOL</code>;</li>
+<li><strong>Error method</strong>: define the <code>t_error()</code> method for error handling.</li>
+</ul>
+<p>Finally, run Lex build method to build the tokenizer. If you define all data structure in a class, point the module argument to that class.</p>
+<p>Code listed as following:</p>
+<figure class="highlight Python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div></pre></td><td class="code"><pre><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">MyLexer</span>:</span></div><div class="line">    tokens = (</div><div class="line">    <span class="string">"SYMBOL"</span>,</div><div class="line">    <span class="string">"OP"</span>,</div><div class="line">    <span class="string">"FIXNUM"</span>,</div><div class="line">    <span class="string">"WS"</span></div><div class="line">    )</div><div class="line"></div><div class="line">    t_SYMBOL = <span class="string">r'[a-zA-Z_]+[a-zA-Z_0-9]+'</span></div><div class="line">        t_OP = <span class="string">r'\+|-|\*|/'</span></div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">def</span> <span class="title">t_WS</span><span class="params">(self, t)</span>:</span></div><div class="line">            <span class="string">r'\s+'</span></div><div class="line">            <span class="comment"># input t is the input token class</span></div><div class="line">            <span class="keyword">pass</span></div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">def</span> <span class="title">t_FIXNUM</span><span class="params">(self, t)</span>:</span></div><div class="line">            <span class="string">r'\d+'</span></div><div class="line">            t.value = int (t.value)</div><div class="line">            <span class="keyword">return</span> t</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">def</span> <span class="title">t_newline</span><span class="params">(self, t)</span>:</span></div><div class="line">            <span class="string">r'\n+'</span></div><div class="line">            <span class="comment"># t.lexer points to the lexer class, which stores info for whole lexer</span></div><div class="line">            t.lexer.lineno += len(t.value)</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">def</span> <span class="title">t_error</span> <span class="params">(self, t)</span>:</span></div><div class="line">            <span class="keyword">print</span> (<span class="string">"Illegal"</span>)</div><div class="line">            t.lexer.skip (<span class="number">1</span>)</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">def</span> <span class="title">build</span><span class="params">(self, **kwargs)</span>:</span></div><div class="line">            self.lexer = ply.lex.lex(module=self, **kwargs)</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">def</span> <span class="title">run</span> <span class="params">(self, data)</span>:</span></div><div class="line">            self.lexer.input(data)</div><div class="line">            <span class="keyword">for</span> t <span class="keyword">in</span> self.lexer:</div><div class="line">            <span class="keyword">print</span> (t)</div><div class="line"></div><div class="line">m = MyLexer ()</div><div class="line"><span class="comment"># build lexer and init data structre</span></div><div class="line">m.build ()</div><div class="line">m.run (<span class="string">"3 + 4 * 6"</span>)</div></pre></td></tr></table></figure>
+
+<h2 id="PLY_Yacc">PLY Yacc</h2>
+<p>Yacc generates a table-driven LR parser, and LALR(1) by default, SLR when specified.</p>
+<p>Yacc also uses docstring to define Context Free Grammar. Similarly, grammar definition method has naming convention as <code>p_PRODUCT_NAME</code>. It also generates a shift/reduce parser.out output for debugging purpose.</p>
+<p>Yacc allows ambiguous grammar. It can resolve ambiguity by supporting precedence. One example for arithmetic operations from documentation:</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">expression</span> : <span class="keyword">expression</span> PLUS <span class="keyword">expression</span></div><div class="line">           | <span class="keyword">expression</span> MINUS <span class="keyword">expression</span></div><div class="line">           | <span class="keyword">expression</span> TIMES <span class="keyword">expression</span></div><div class="line">           | <span class="keyword">expression</span> DIVIDE <span class="keyword">expression</span></div><div class="line">           | <span class="string">'('</span> <span class="keyword">expression</span> <span class="string">')'</span></div><div class="line">           | NUMBER</div></pre></td></tr></table></figure>
+
+<p>Which creates ambiguity when parsing expressions like</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">3 + 4 <span class="keyword">*</span> 5</div></pre></td></tr></table></figure>
+
+<p>With precedence, Yacc would always know to handle higher precedence operations than lower precedence ones.</p>
+<p>One example (from PLY offical release 3.14 examples) of expression definition with precedence defined:</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line">precedence = (</div><div class="line">    (<span class="string">'left'</span>,<span class="string">'+'</span>,<span class="string">'-'</span>),</div><div class="line">        (<span class="string">'left'</span>,<span class="string">'*'</span>,<span class="string">'/'</span>),</div><div class="line">            (<span class="string">'right'</span>,<span class="string">'UMINUS'</span>),</div><div class="line">            )</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">p_expression_binop</span><span class="params">(p)</span>:</span></div><div class="line">    <span class="string">'''expression : expression '+' expression</span></div><div class="line">                  | expression '-' expression</div><div class="line">                  | expression '*' expression</div><div class="line">                  | expression '/' expression'''</div><div class="line">                  <span class="keyword">if</span> p[<span class="number">2</span>] == <span class="string">'+'</span>  : p[<span class="number">0</span>] = p[<span class="number">1</span>] + p[<span class="number">3</span>]</div><div class="line">                  <span class="keyword">elif</span> p[<span class="number">2</span>] == <span class="string">'-'</span>: p[<span class="number">0</span>] = p[<span class="number">1</span>] - p[<span class="number">3</span>]</div><div class="line">                  <span class="keyword">elif</span> p[<span class="number">2</span>] == <span class="string">'*'</span>: p[<span class="number">0</span>] = p[<span class="number">1</span>] * p[<span class="number">3</span>]</div><div class="line">                  <span class="keyword">elif</span> p[<span class="number">2</span>] == <span class="string">'/'</span>: p[<span class="number">0</span>] = p[<span class="number">1</span>] / p[<span class="number">3</span>]</div></pre></td></tr></table></figure>
+
+<p>A collection of examples could be found in <a href="https://github.com/dabeaz/ply/tree/master/example" target="_blank" rel="external">here</a>.</p>
+<h2 id="Afterthoughts">Afterthoughts</h2>
+<p>PLY is an interesting tool that I want to build something with. There’s also a variation based on PLY called <a href="https://github.com/erezsh/plyplus" target="_blank" rel="external">PLYPlus</a> that trys to provide a cleaner interface for programmers. Somehow I have a hunch that it could be done better.</p>
+<p>GCC used to use bison generated parser as frontend, but now it’s using a hand-written recursive-descent parser for performance reasons. So is clang. For language generators as far as I know, Ruby uses Yacc as its parser, and Python uses <a href="http://www.cs.princeton.edu/research/techreps/TR-554-97" target="_blank" rel="external">ASDL</a>, which are all worth digging when I have time.</p>
+<p>Somehow I wonder why not very many people claim to use PLY as a tool for language manipulations. It could be quite handy when you consider constructing something  with relatively complex grammar parsing,  requires faster development cycle, and is not performance critical. If I encounter any projects like that in future, I think PLY would be on the top list of my tool selections.</p>
+]]></content>
+    <summary type="html">
+    <![CDATA[<p>I’ve been auditing a course in computer language implementation and particularly interested in parser generator. Just spent an afternoon reading about the Python parser generator <a href="http://www.dabeaz.com/ply/" target="_blank" rel="external">PLY</a>. It’s a pure Python Implementation of Lex and Yacc. And <a href="http://www.dabeaz.com/ply/ply.html#ply_nn4" target="_blank" rel="external">here</a> is the PLY documentation I’ve been reading the whole afternoon.<br>]]>
+    
+    </summary>
+    
+      <category term="ProgrammingLanguage" scheme="http://blog.kevinhu.me/tags/ProgrammingLanguage/"/>
+    
+      <category term="ProgrammingLanguage" scheme="http://blog.kevinhu.me/categories/ProgrammingLanguage/"/>
+    
+  </entry>
+  
+  <entry>
+    <title><![CDATA[A New Blog For My Tech Notes]]></title>
+    <link href="http://blog.kevinhu.me/2014/10/08/2014-10-08-a-new-blog-for-my-tech-notes/"/>
+    <id>http://blog.kevinhu.me/2014/10/08/2014-10-08-a-new-blog-for-my-tech-notes/</id>
+    <published>2014-10-09T00:47:44.000Z</published>
+    <updated>2014-12-02T01:53:38.000Z</updated>
+    <content type="html"><![CDATA[<p>Hello World!</p>
+<p>It’s been a while since the last time I ever wrote some serious blog posts. After some thought I now decide to separate my everyday chit-chat blog from a more tech-oriented blog, so that contents from either sides won’t get entwined with each other, especially when I decide to blog in both languages.</p>
+<p>For a more tech-oriented blog I’d like to keep everything in English. For I believe it’s a language most tech people could understand, even in China. And now I could publish all my discoveries, my thoughts, my ideas centered around technology in this blog, and welcome discussions. Blogging is a beautiful way of communication, and hopefully I could make friends with like-minded through keeping this blog.</p>
+<p>And there it goes. A brand new blogging journey!</p>
+]]></content>
+    <summary type="html">
+    <![CDATA[<p>Hello World!</p>
+<p>It’s been a while since the last time I ever wrote some serious blog posts. After some thought I now decide to separa]]>
+    </summary>
+    
+      <category term="Diary" scheme="http://blog.kevinhu.me/categories/Diary/"/>
+    
+  </entry>
+  
+</feed>
