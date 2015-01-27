@@ -4,7 +4,7 @@ categories: Algorithm
 tags: Algorithm
 ---
 
-Finally! All the lecture videos of "Algorithm I" Course from Coursera is now finished recently, and I believe now it's a good time to review and summarize.
+Finally! Just finished all the lecture videos of "Algorithm I" from Coursera, and I believe now it's a good time to review and summarize.
 <!--more-->
 
 All contents are based on Coursera course slides, as well as other helpful sites (Wikipedia, StackOverflow, [Algorithm - 4th Edition](http://algs4.cs.princeton.edu/home/) from Princeton U). All pictures are from the slides and the [Algorithm - 4th Edition](http://algs4.cs.princeton.edu/home/).
