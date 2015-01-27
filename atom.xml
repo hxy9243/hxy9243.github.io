@@ -4,7 +4,7 @@
   <subtitle><![CDATA[A Hugry Fool]]></subtitle>
   <link href="/atom.xml" rel="self"/>
   <link href="http://blog.kevinhu.me/"/>
-  <updated>2015-01-16T21:42:52.625Z</updated>
+  <updated>2015-01-27T16:44:13.367Z</updated>
   <id>http://blog.kevinhu.me/</id>
   
   <author>
@@ -19,8 +19,8 @@
     <link href="http://blog.kevinhu.me/2015/01/10/Algorithm-I-Summary/"/>
     <id>http://blog.kevinhu.me/2015/01/10/Algorithm-I-Summary/</id>
     <published>2015-01-10T06:54:07.000Z</published>
-    <updated>2015-01-11T03:17:49.000Z</updated>
-    <content type="html"><![CDATA[<p>Finally! All the lecture videos of “Algorithm I” Course from Coursera is now finished recently, and I believe now it’s a good time to review and summarize.<br><a id="more"></a></p>
+    <updated>2015-01-27T16:44:03.000Z</updated>
+    <content type="html"><![CDATA[<p>Finally! Just finished all the lecture videos of “Algorithm I” from Coursera, and I believe now it’s a good time to review and summarize.<br><a id="more"></a></p>
 <p>All contents are based on Coursera course slides, as well as other helpful sites (Wikipedia, StackOverflow, <a href="http://algs4.cs.princeton.edu/home/" target="_blank" rel="external">Algorithm - 4th Edition</a> from Princeton U). All pictures are from the slides and the <a href="http://algs4.cs.princeton.edu/home/" target="_blank" rel="external">Algorithm - 4th Edition</a>.</p>
 <h2 id="Stacks_and_Queues">Stacks and Queues</h2>
 <p>Stacks and Queues are probably the most commonly seen data structures seen in the software. Stacks are “First-In-Last-Out”, while Queues are “First-In-First-Out”. The basic operations they support are push() and pop().</p>
@@ -262,7 +262,7 @@
 <p>While for linear probing, when the array gets too full, the performance for searching and insertion degrades drastically. It keeps relatively good performance when the array is under 50% full.</p>
 ]]></content>
     <summary type="html">
-    <![CDATA[<p>Finally! All the lecture videos of “Algorithm I” Course from Coursera is now finished recently, and I believe now it’s a good time to review and summarize.<br>]]>
+    <![CDATA[<p>Finally! Just finished all the lecture videos of “Algorithm I” from Coursera, and I believe now it’s a good time to review and summarize.<br>]]>
     
     </summary>
     
