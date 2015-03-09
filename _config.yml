@@ -3,7 +3,7 @@
 ## Source: https://github.com/hexojs/hexo/
 
 # Site
-title: Kevin Hu's Blog
+title: "Kevin Hu's Blog"
 subtitle: A Hugry Fool
 description:
 author: Kevin Hu
@@ -30,6 +30,8 @@ feed:
 # Directory
 source_dir: source
 public_dir: public
+tag_dir: tags
+
 
 # Writing
 new_post_name: :year-:month-:title.md # File name of new posts
@@ -40,6 +42,7 @@ filename_case: 0
 render_drafts: false
 post_asset_folder: true
 relative_link: false
+future: true
 highlight:
   enable: true
   line_number: true
@@ -83,6 +86,8 @@ pagination_dir: page
 disqus_shortname: kevinhustechblog
 
 # Extensions
+plugins:
+- hexo-renderer-mathjax
 ## Plugins: https://github.com/hexojs/hexo/wiki/Plugins
 ## Themes: https://github.com/hexojs/hexo/wiki/Themes
 theme: landscape
