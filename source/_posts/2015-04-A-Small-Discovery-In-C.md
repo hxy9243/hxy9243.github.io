@@ -60,7 +60,7 @@ Surprise? Not really. If you're a expert in C and how compiler works, you'd thin
 
 Why would this happen? 
 
-Well. Simply put, it's because C linkers don't do type checking for functions. C files are first compiled into object files, exposing external symbol names for the linker. In this particular case, <code>main.c</code> exposes <code>main</code> function definition and <code>foo</code> function declaration, and <code>foo.c</code> exposes <code>foo</code> function definition. When the C linker notice <code>foo</code> is only a declaration in <code>main.c</code>, it would search for its definitions in all the externally exposed symbols in all object files, and it finds a hit in <code>foo.c</code>. As the function symbol records function names only, no return type or parameter type checking is done. The linker happily accepts this unmatching <code>foo</code> as a match and use it in main function.
+Well. Simply put, it's because C linkers don't do type checking for functions. C files are first compiled into object files, exposing external symbol names for the linker. In this particular case, <code>main.c</code> exposes <code>main</code> function definition and <code>foo</code> function declaration, and <code>foo.c</code> exposes <code>foo</code> function definition. When the C linker notice <code>foo</code> is only a declaration in <code>main.c</code>, it would search for its definitions in all the externally exposed symbols in all object files, and it finds a hit in the object file that <code>foo.c</code> compiles to. As the function symbol in the object file records function names only, no return type or parameter type checking is done. The linker happily accepts this unmatching <code>foo</code> as a match and use it in main function.
 
 Somehow, C++ does name mangling to preserve function types and any type unmatching for functions could be avoided. This won't compile for any C++ compilers. Try g++ or clang++. Some other compilers or IDEs with static checkings may also notice this error.
 
@@ -73,13 +73,13 @@ The param is 100, -1549285384, -1549285368
 The return value of foo is 43
 ```
 
-It's easy to understand the 100 output. The following two shall be the value of d and e. And while main don't pass any parameters, the <code>foo</code> function will happily read whatever on the program stack where these two parameters should be. And in this case, it shall be garbage.
+It's easy to understand the 100 output. The following two shall be the value of d and e. And as <code>main</code> doesn't pass any parameters, the <code>foo</code> function will happily read whatever on the program stack where these two parameters should be. And in this case, it shall be garbage.
 
 And what about that 43 returned from the <code>foo</code> function? That doesn't look like garbage. Actually if you run this broken piece of program for enough times, you'll notice this value is always somewhat around 30~50. So this mysterious number could be something more than garbage. Is it the meaning to your life? No, that's 42. Is it something [on the wall of Sheldon's secret room](http://bigbangtheory.wikia.com/wiki/The_43_Peculiarity)? Probably.
 
 So what is it exactly?
 
-After poking around in gdb for a while, I confirmed my guess that this is actually the return value of <code>printf</code> inside of <code>foo</code>. As on x86 machines, most of the time C program uses <code>eax</code> register to carry return values, <code>main</code> function loads <code>a</code>'s value from <code>eax</code> when it tries to read the return value of <code>foo</code>. This register is untampered after return of <code>printf</code> inside <code>foo</code>, and saved directly to integer <code>a</code> in <code>main</code>.
+After poking around in gdb for a while, I confirmed my guess that this is actually the return value of <code>printf</code> inside of <code>foo</code>. As on x86 machines, most of the time C program uses <code>eax</code> register to carry return values, <code>main</code> function loads <code>a</code>'s value from <code>eax</code> when it tries to read the return value of <code>foo</code>. As <code>foo</code> has void return type, this register is untampered after return of <code>printf</code> inside <code>foo</code>, and saved directly to integer <code>a</code> in <code>main</code>.
 
 The following is the dump inside gdb. This time I have 31 as <code>foo</code>'s return value.
 
