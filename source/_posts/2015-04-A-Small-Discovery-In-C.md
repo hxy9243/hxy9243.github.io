@@ -1,4 +1,4 @@
-title: "A Small Discovery In C"
+title: "A Small Discovery In C Linker"
 date: 2015-04-16 23:01:33
 categories: ProgrammingLanguage
 tags: C
