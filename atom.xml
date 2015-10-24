@@ -4,7 +4,7 @@
   <subtitle><![CDATA[A Hugry Fool]]></subtitle>
   <link href="/atom.xml" rel="self"/>
   <link href="http://blog.kevinhu.me/"/>
-  <updated>2015-10-08T02:47:52.000Z</updated>
+  <updated>2015-10-24T18:23:17.000Z</updated>
   <id>http://blog.kevinhu.me/</id>
   
   <author>
@@ -13,6 +13,25 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title><![CDATA[Reading Summary in 2015/10]]></title>
+    <link href="http://blog.kevinhu.me/2015/10/24/Reading-Summary-in-2015-10/"/>
+    <id>http://blog.kevinhu.me/2015/10/24/Reading-Summary-in-2015-10/</id>
+    <published>2015-10-24T06:38:05.000Z</published>
+    <updated>2015-10-24T18:23:17.000Z</updated>
+    <content type="html"><![CDATA[<h1 id="Compilers">Compilers</h1><h3 id="Troubles_with_GCC_signed_integer_overflow_optimization"><a href="http://thiemonagel.de/2010/01/signed-integer-overflow/" target="_blank" rel="external">Troubles with GCC signed integer overflow optimization</a></h3><h3 id="BUG_30475_-_assert(int+100&gt;int)_optimized_away"><a href="https://gcc.gnu.org/bugzilla/show_bug.cgi?id=30475" target="_blank" rel="external">BUG 30475 - assert(int+100&gt;int) optimized away</a></h3><p>An interesting ‘bug’ in some versions of GCC (and Clang as well) implementation. Since it’s <strong>‘undefined’</strong> behavior after all, compiler is not obliged to implement it as a defined behavior. Use <code>-fwrapv</code> flag in GCC to inform the compiler that integer value wraps.</p>
+<h1 id="Python">Python</h1><h3 id="Profiling_Python_in_Production"><a href="https://nylas.com/blog/performance" target="_blank" rel="external">Profiling Python in Production</a></h3><p>Signal timeout for every small amount of time (say, 1ms in this case) and record the current stack, and we can infer time spent in each function precisely enough. A smart way of profiling large Python programs.</p>
+<p>Note: python signal callback passes signal type and signal handler, and signal handler takes signal number and current stack frame.</p>
+<h3 id="Hitchhiker’s_Guide_to_Python"><a href="http://docs.python-guide.org/en/latest/" target="_blank" rel="external">Hitchhiker’s Guide to Python</a></h3><p>Great book to Python, covering code style, best practices and scenario guide. Just started reading it.</p>
+]]></content>
+    <summary type="html">
+    <![CDATA[<h1 id="Compilers">Compilers</h1><h3 id="Troubles_with_GCC_signed_integer_overflow_optimization"><a href="http://thiemonagel.de/2010/01/sign]]>
+    </summary>
+    
+      <category term="Reading" scheme="http://blog.kevinhu.me/categories/Reading/"/>
+    
+  </entry>
   
   <entry>
     <title><![CDATA[A Small Discovery In C Linker]]></title>
