@@ -3,12 +3,12 @@
 <head>
   <meta charset="utf-8">
   
-  <title>Tag: CodeReading | Kevin Hu&#39;s Blog</title>
+  <title>Tag: Internet, BookReview | Kevin Hu&#39;s Blog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   <meta name="description">
 <meta property="og:type" content="website">
 <meta property="og:title" content="Kevin Hu's Blog">
-<meta property="og:url" content="http://blog.kevinhu.me/tags/CodeReading/index.html">
+<meta property="og:url" content="http://blog.kevinhu.me/tags/Internet-BookReview/index.html">
 <meta property="og:site_name" content="Kevin Hu's Blog">
 <meta property="og:description">
 <meta name="twitter:card" content="summary">
@@ -80,14 +80,14 @@ ga('send', 'pageview');
       <div class="outer">
         <section id="main">
   
-    <article id="post-31-more-on-passwd" class="article article-type-post" itemscope itemprop="blogPost">
+    <article id="post-Here-Comes-Everybody-Book-Review" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
-    <a href="/2014/10/31/31-more-on-passwd/" class="article-date">
-  <time datetime="2014-11-01T02:30:45.000Z" itemprop="datePublished">Oct 31 2014</time>
+    <a href="/2015/11/30/Here-Comes-Everybody-Book-Review/" class="article-date">
+  <time datetime="2015-11-30T06:52:28.000Z" itemprop="datePublished">Nov 30 2015</time>
 </a>
     
   <div class="article-category">
-    <a class="article-category-link" href="/categories/CodeReading/">CodeReading</a>
+    <a class="article-category-link" href="/categories/Reading/">Reading</a>
   </div>
 
   </div>
@@ -98,7 +98,7 @@ ga('send', 'pageview');
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2014/10/31/31-more-on-passwd/">More On Passwd</a>
+      <a class="article-title" href="/2015/11/30/Here-Comes-Everybody-Book-Review/">Here Comes Everybody - Book Review</a>
     </h1>
   
 
@@ -106,72 +106,22 @@ ga('send', 'pageview');
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>A little bit more interesting discoveries while digging into the passwd code file.</p>
-<h2 id="The_‘s’_flag_in_file_permission">The ‘s’ flag in file permission</h2><p>First, the file permission of passwd executable is <code>-rwsr-xr-x</code>. There’s an ‘s’ flag which don’t usually appear in common Unix files. The usage of the ‘s’ field is explained here:</p>
-<p><a href="http://en.wikipedia.org/wiki/Setuid">http://en.wikipedia.org/wiki/Setuid</a></p>
+        <p>Just finished Clay Shirky’s <a href="https://books.google.com/books/about/Here_Comes_Everybody.html?id=mafZyckH_bAC"><em>Here Comes Everybody</em></a>, which I think it’s a very interesting book. The author shared his insights on how the Internet effectively gathers the power of people, and how it is rapidly reshaping the society today. Book starts with a story on how Internet helps a lady to regain her lost cellphone with the assistance and pressure from people online, and expands discussion to what why it could happen, and what we should do about it. The world is smaller and people are closer than ever before, for better or worse, because of technologies. In this book, the author carefully analyzed ways Internet could affect our lives, what it means to the world.</p>
+<p>I listed several observations the authors provided in this book, which I find very interesting.</p>
         
           <p class="article-more-link">
-            <a href="/2014/10/31/31-more-on-passwd/#more">Read More</a>
+            <a href="/2015/11/30/Here-Comes-Everybody-Book-Review/#more">Read More</a>
           </p>
         
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://blog.kevinhu.me/2014/10/31/31-more-on-passwd/" data-id="cihmx101o000zadgk1tsxazfl" class="article-share-link">Share</a>
+      <a data-url="http://blog.kevinhu.me/2015/11/30/Here-Comes-Everybody-Book-Review/" data-id="cihmx100q0004adgks3oirjaz" class="article-share-link">Share</a>
       
-        <a href="http://blog.kevinhu.me/2014/10/31/31-more-on-passwd/#disqus_thread" class="article-comment-link">Comments</a>
-      
-      
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/CodeReading/">CodeReading</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Password/">Password</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-    <article id="post-13-a-dive-into-password" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2014/10/13/13-a-dive-into-password/" class="article-date">
-  <time datetime="2014-10-14T02:08:55.000Z" itemprop="datePublished">Oct 13 2014</time>
-</a>
-    
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/CodeReading/">CodeReading</a>
-  </div>
-
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2014/10/13/13-a-dive-into-password/">A Dive Into Password</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h2 id="Passwd">Passwd</h2><p>The passwd is program on Unix systems to manage users’ passwords. The user and password information on most Unix systems is stored in two separate files: /etc/passwd for user information, and /etc/shadow for password information, including encrypted password value, expiration data, UID, GID, and etc.. The<br>rationale behind storing information in separate files is discussed in <a href="http://www.tldp.org/HOWTO/Shadow-Password-HOWTO-2.html">Why shadow your passwd file?</a><br>
-        
-          <p class="article-more-link">
-            <a href="/2014/10/13/13-a-dive-into-password/#more">Read More</a>
-          </p>
-        
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://blog.kevinhu.me/2014/10/13/13-a-dive-into-password/" data-id="cihmx101r0016adgk38i4kv61" class="article-share-link">Share</a>
-      
-        <a href="http://blog.kevinhu.me/2014/10/13/13-a-dive-into-password/#disqus_thread" class="article-comment-link">Comments</a>
+        <a href="http://blog.kevinhu.me/2015/11/30/Here-Comes-Everybody-Book-Review/#disqus_thread" class="article-comment-link">Comments</a>
       
       
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/CodeReading/">CodeReading</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Password/">Password</a></li></ul>
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Internet-BookReview/">Internet, BookReview</a></li></ul>
 
     </footer>
   </div>
