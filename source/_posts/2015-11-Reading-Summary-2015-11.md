@@ -22,11 +22,10 @@ This could be a very helpful reference when designing data-flow analysis on prog
 
 How to use version numbers in a sensible way: the MAJOR.MINOR.PATCH format. And I quote:
 
-```
-1. MAJOR version when you make incompatible API changes.
-2. MINOR version when you add functionality in a backwards-compatible manner.
-3. PATCH version when you make backwards-compatible bug fixes.
-```
+
+> 1. MAJOR version when you make incompatible API changes.
+> 2. MINOR version when you add functionality in a backwards-compatible manner.
+> 3. PATCH version when you make backwards-compatible bug fixes.
 
 # Internet
 
