@@ -4,7 +4,7 @@
   <subtitle><![CDATA[A Hungry Fool]]></subtitle>
   <link href="/atom.xml" rel="self"/>
   <link href="http://blog.kevinhu.me/"/>
-  <updated>2015-12-03T08:11:12.000Z</updated>
+  <updated>2016-01-03T16:43:35.849Z</updated>
   <id>http://blog.kevinhu.me/</id>
   
   <author>
@@ -15,11 +15,37 @@
   <generator uri="http://hexo.io/">Hexo</generator>
   
   <entry>
+    <title><![CDATA[Reading Summary 2015-12]]></title>
+    <link href="http://blog.kevinhu.me/2015/12/31/Reading-Summary-2015-12/"/>
+    <id>http://blog.kevinhu.me/2015/12/31/Reading-Summary-2015-12/</id>
+    <published>2015-12-31T07:30:43.000Z</published>
+    <updated>2016-01-03T16:43:35.849Z</updated>
+    <content type="html"><![CDATA[<h1 id="Frontend">Frontend</h1><h3 id="How_to_set_up_a_Web_development_environment_with_React,_Babel,_Webpack,_and_JavaScript_ES6_-_Philip_Guo"><a href="http://www.pgbovine.net/react-babel-webpack-javascript-es6-setup.htm" target="_blank" rel="external">How to set up a Web development environment with React, Babel, Webpack, and JavaScript ES6 - Philip Guo</a></h3><h3 id="Minimal_fuss_setup_for_getting_started_with_React_and_JavaScript_ES6"><a href="http://www.pgbovine.net/react-es6-js-setup-minimal.htm" target="_blank" rel="external">Minimal fuss setup for getting started with React and JavaScript ES6</a></h3><p>The minimal fuss setup for frontend development, from Philip, one of my favorite professor, programmer and bloggers. </p>
+<a id="more"></a>
+<h1 id="Compiler">Compiler</h1><h3 id="Reverse_Engineering_for_Beginners"><a href="http://beginners.re/" target="_blank" rel="external">Reverse Engineering for Beginners</a></h3><p>Or rather, an intro to assembly. I’ve just took a quick glimpse on the lite version, which is x86/x86_64 MSVC assembly only. A quick review to polish the memories on x86 assembly.</p>
+<p>The full version also contains ARM version of assembly, which is my next target.</p>
+<h1 id="Python">Python</h1><h3 id="PEP8"><a href="https://www.python.org/dev/peps/pep-0008/" target="_blank" rel="external">PEP8</a></h3><p>The PEP8 Style Guide for Python Code. A good guide to writing consistently readable and beautiful Python code.</p>
+<h1 id="Miscellaneous">Miscellaneous</h1><h3 id="OpenPGP_for_Complete_Beginners"><a href="http://zacharyvoase.com/2009/08/20/openpgp/" target="_blank" rel="external">OpenPGP for Complete Beginners</a></h3><p>A good intro to openpgp if you’re a beginner or haven’t heard of it before.</p>
+<h3 id="12_resolutions_for_programmers"><a href="http://matt.might.net/articles/programmers-resolutions/" target="_blank" rel="external">12 resolutions for programmers</a></h3><p>An idea list of new year resolutions for programmers. I really like the ‘Embrace the uncomfortable’ part. Comfort is what kills you - it makes you lazy and dull, and makes your brains decay. It’s a good idea to stimulate it once in a while.</p>
+<p>I do want to learn at least one more new programming language (or maybe pickup Haskell or/and Scheme again?), learn more about security, learn how to use vim, and learn more about non-programming (economics, philosophy, sociology and etc.?).</p>
+<h3 id="The_Bicycle_Problem:_How_the_Illusion_of_Explanatory_Depth_Tricks_Your_Brain"><a href="http://www.scotthyoung.com/blog/2015/12/22/illusion-of-explanatory-depth/" target="_blank" rel="external">The Bicycle Problem: How the Illusion of Explanatory Depth Tricks Your Brain</a></h3><h3 id="Feynman_Technique_(Youtube)"><a href="https://www.youtube.com/watch?v=FrNqSLPaZLc" target="_blank" rel="external">Feynman Technique (Youtube)</a></h3><p>Scott Young explains why we acutally do not understand what we think we understand. And how to really understand by using the ‘Feynman Technique’. </p>
+<h3 id="Start-up_Nation:_The_Story_of_Israel’s_Economic_Miracle"><a href="http://www.amazon.com/Start-up-Nation-Israels-Economic-Miracle/dp/0446541478?tag=duckduckgo-d-20" target="_blank" rel="external">Start-up Nation: The Story of Israel’s Economic Miracle</a></h3><p>I’ve read the Chinese version of this book. Very interesting insight on Israel and Jewish culture. It basically explains how Israel manage to build such a powerful nation and exert influence on global economics, politics, and technology, with limited resources and hostile environment.</p>
+]]></content>
+    <summary type="html">
+    <![CDATA[<h1 id="Frontend">Frontend</h1><h3 id="How_to_set_up_a_Web_development_environment_with_React,_Babel,_Webpack,_and_JavaScript_ES6_-_Philip_Guo"><a href="http://www.pgbovine.net/react-babel-webpack-javascript-es6-setup.htm">How to set up a Web development environment with React, Babel, Webpack, and JavaScript ES6 - Philip Guo</a></h3><h3 id="Minimal_fuss_setup_for_getting_started_with_React_and_JavaScript_ES6"><a href="http://www.pgbovine.net/react-es6-js-setup-minimal.htm">Minimal fuss setup for getting started with React and JavaScript ES6</a></h3><p>The minimal fuss setup for frontend development, from Philip, one of my favorite professor, programmer and bloggers. </p>]]>
+    
+    </summary>
+    
+      <category term="Reading" scheme="http://blog.kevinhu.me/categories/Reading/"/>
+    
+  </entry>
+  
+  <entry>
     <title><![CDATA[Here Comes Everybody - Book Review]]></title>
     <link href="http://blog.kevinhu.me/2015/11/30/Here-Comes-Everybody-Book-Review/"/>
     <id>http://blog.kevinhu.me/2015/11/30/Here-Comes-Everybody-Book-Review/</id>
     <published>2015-11-30T06:52:28.000Z</published>
-    <updated>2015-12-03T08:11:12.000Z</updated>
+    <updated>2015-12-19T21:09:59.256Z</updated>
     <content type="html"><![CDATA[<p>Just finished Clay Shirky’s <a href="https://books.google.com/books/about/Here_Comes_Everybody.html?id=mafZyckH_bAC" target="_blank" rel="external"><em>Here Comes Everybody</em></a>, which I think it’s a very interesting book. The author shared his insights on how the Internet effectively gathers the power of people, and how it is rapidly reshaping the society today. Book starts with a story on how Internet helps a lady to regain her lost cellphone with the assistance and pressure from people online, and expands discussion to what why it could happen, and what we should do about it. The world is smaller and people are closer than ever before, for better or worse, because of technologies. In this book, the author carefully analyzed ways Internet could affect our lives, what it means to the world.</p>
 <p>I listed several observations the authors provided in this book, which I find very interesting.</p>
 <a id="more"></a>
@@ -53,7 +79,7 @@
     <link href="http://blog.kevinhu.me/2015/11/11/Reading-Summary-2015-11/"/>
     <id>http://blog.kevinhu.me/2015/11/11/Reading-Summary-2015-11/</id>
     <published>2015-11-12T05:20:46.000Z</published>
-    <updated>2015-12-05T19:57:03.000Z</updated>
+    <updated>2015-12-19T21:09:59.252Z</updated>
     <content type="html"><![CDATA[<h1 id="Compilers">Compilers</h1><h3 id="Directed_graph_traversal,_orderings_and_applications_to_data-flow_analysis"><a href="http://eli.thegreenplace.net/2015/directed-graph-traversal-orderings-and-applications-to-data-flow-analysis/" target="_blank" rel="external">Directed graph traversal, orderings and applications to data-flow analysis</a></h3><p>On the graph traversal and their efficiency.</p>
 <ul>
 <li>Pre-order depth-first-search</li>
@@ -83,7 +109,7 @@
     <link href="http://blog.kevinhu.me/2015/10/24/Reading-Summary-in-2015-10/"/>
     <id>http://blog.kevinhu.me/2015/10/24/Reading-Summary-in-2015-10/</id>
     <published>2015-10-24T06:38:05.000Z</published>
-    <updated>2015-11-12T05:21:25.000Z</updated>
+    <updated>2015-12-19T21:09:59.256Z</updated>
     <content type="html"><![CDATA[<h1 id="Compilers">Compilers</h1><h3 id="Troubles_with_GCC_signed_integer_overflow_optimization"><a href="http://thiemonagel.de/2010/01/signed-integer-overflow/" target="_blank" rel="external">Troubles with GCC signed integer overflow optimization</a></h3><h3 id="BUG_30475_-_assert(int+100&gt;int)_optimized_away"><a href="https://gcc.gnu.org/bugzilla/show_bug.cgi?id=30475" target="_blank" rel="external">BUG 30475 - assert(int+100&gt;int) optimized away</a></h3><p>An interesting ‘bug’ in some versions of GCC (and Clang as well) implementation. Since it’s <strong>‘undefined’</strong> behavior after all, compiler is not obliged to implement it as a defined behavior. Use <code>-fwrapv</code> flag in GCC to inform the compiler that integer value wraps.</p>
 <h1 id="Python">Python</h1><h3 id="Profiling_Python_in_Production"><a href="https://nylas.com/blog/performance" target="_blank" rel="external">Profiling Python in Production</a></h3><p>Signal timeout for every small amount of time (say, 1ms in this case) and record the current stack, and we can infer time spent in each function precisely enough. A smart way of profiling large Python programs.</p>
 <p>Note: python signal callback passes signal type and signal handler, and signal handler takes signal number and current stack frame.</p>
@@ -104,7 +130,7 @@
     <link href="http://blog.kevinhu.me/2015/04/16/A-Small-Discovery-In-C/"/>
     <id>http://blog.kevinhu.me/2015/04/16/A-Small-Discovery-In-C/</id>
     <published>2015-04-17T04:01:33.000Z</published>
-    <updated>2015-10-08T02:47:52.000Z</updated>
+    <updated>2015-12-19T21:09:59.252Z</updated>
     <content type="html"><![CDATA[<p>C language is an old-school programming language, learned by almost all professional programmers. Still, it never failed to surprise me each time I dig in a little deeper, as it’s full of small details, some hardly noticed, such as this one I recently discovered by accident.</p>
 <a id="more"></a>
 <p>Consider the following two C files:</p>
@@ -152,7 +178,7 @@
     <link href="http://blog.kevinhu.me/2015/03/07/Bithacks/"/>
     <id>http://blog.kevinhu.me/2015/03/07/Bithacks/</id>
     <published>2015-03-08T03:22:30.000Z</published>
-    <updated>2015-03-09T06:10:33.000Z</updated>
+    <updated>2015-12-19T21:09:59.252Z</updated>
     <content type="html"><![CDATA[<p>I’ve recently come across a very interesting article on <a href="https://graphics.stanford.edu/~seander/bithacks.html" target="_blank" rel="external">BitHacks</a> — the low level magics for bit level operations. Some of the tricks introduced here are really excellently clever, some of them may even make you exclaim for their genius!</p>
 <p>I had a lot of fun reading through some of the BitHacks. It’s also worth noticing these BitHacks are not only for intellectual pleasures, they provide actual boosts to algorithm performance as well. When an operations is used often enough, the overall performance benefits to the whole program might be significant.</p>
 <p>I couldn’t help but keep wondering how on earth did these clever CS guys ever come up with such algorithms. I tried very hard to find some answers and the following are some patterns I noticed in this attempt. Still, honestly, I highly doubt if I can come up with same solutions myself if I ever run into these problems again. Some of them are just to clever.</p>
@@ -227,7 +253,7 @@
     <link href="http://blog.kevinhu.me/2015/01/10/Algorithm-I-Summary/"/>
     <id>http://blog.kevinhu.me/2015/01/10/Algorithm-I-Summary/</id>
     <published>2015-01-10T07:54:07.000Z</published>
-    <updated>2015-01-27T16:44:03.000Z</updated>
+    <updated>2015-12-19T21:09:59.256Z</updated>
     <content type="html"><![CDATA[<p>Finally! Just finished all the lecture videos of “Algorithm I” from Coursera, and I believe now it’s a good time to review and summarize.<br><a id="more"></a></p>
 <p>All contents are based on Coursera course slides, as well as other helpful sites (Wikipedia, StackOverflow, <a href="http://algs4.cs.princeton.edu/home/" target="_blank" rel="external">Algorithm - 4th Edition</a> from Princeton U). All pictures are from the slides and the <a href="http://algs4.cs.princeton.edu/home/" target="_blank" rel="external">Algorithm - 4th Edition</a>.</p>
 <h2 id="Stacks_and_Queues">Stacks and Queues</h2><p>Stacks and Queues are probably the most commonly seen data structures seen in the software. Stacks are “First-In-Last-Out”, while Queues are “First-In-First-Out”. The basic operations they support are push() and pop().</p>
@@ -468,7 +494,7 @@
     <link href="http://blog.kevinhu.me/2015/01/03/Paper-Reading-Fundamental-Concepts-In-Programming-Languages/"/>
     <id>http://blog.kevinhu.me/2015/01/03/Paper-Reading-Fundamental-Concepts-In-Programming-Languages/</id>
     <published>2015-01-03T06:14:06.000Z</published>
-    <updated>2015-01-10T07:20:20.000Z</updated>
+    <updated>2015-12-19T21:09:59.252Z</updated>
     <content type="html"><![CDATA[<p>This is a holiday reading summary. I recently came across two interesting blogs on fundamental concepts in computer science, both with the title “10 Papers Every Programmer Should Read (At Least Twice)”. One could be found in <a href="http://web.archive.org/web/20121024173845/http:/blog.objectmentor.com/articles/2009/02/26/10-papers-every-programmer-should-read-at-least-twice" target="_blank" rel="external">here</a>, and another one in <a href="http://blog.fogus.me/2011/09/08/10-technical-papers-every-programmer-should-read-at-least-twice/" target="_blank" rel="external">Fogus’ blog</a>. Topics of these papers range from Programming Language theories, functional programming, to Lamport’s distributed system theories. I will read and summarize some of them in my blog. It’ll be 20 papers, and 40 paper-readings to do if I do read each one twice. So, it might be a long time before all is finished.<br><a id="more"></a><br>The first one I chose is “Fundamental Concepts In Programming Languages” (<a href="https://github.com/papers-we-love/papers-we-love/blob/master/plt/fundamental-concepts-in-programming-languages.pdf?raw=true" target="_blank" rel="external">Link To Paper</a>). It’s probably the most influential set of lecture notes in computer science, compiled to paper by <a href="http://en.wikipedia.org/wiki/Christopher_Strachey" target="_blank" rel="external">Christopher Strachey</a> in 1967, two years before the development of C programming language. Left and Right-values, Parametric and Ad-hoc polymorphism were all defined in this paper.</p>
 <p>I will only try to summarize some highlights that I find interesting.</p>
 <h2 id="L-values_and_R-values">L-values and R-values</h2><p>Light and Right-values, also L and R-values. As their names suggest, L-value is for address-like object appropriate on the left of an assignment, R-value is for the contents-like object appropriate for the right. An L-value is for a location in memory, which has content — an associated R-value.</p>
@@ -529,7 +555,7 @@ a := <span class="number">10</span>
     <link href="http://blog.kevinhu.me/2014/11/24/24-what-parsers-are-they-using/"/>
     <id>http://blog.kevinhu.me/2014/11/24/24-what-parsers-are-they-using/</id>
     <published>2014-11-24T23:29:00.000Z</published>
-    <updated>2014-12-02T01:53:38.000Z</updated>
+    <updated>2015-12-19T21:09:59.252Z</updated>
     <content type="html"><![CDATA[<p>This is a <del>quite boring</del> post on programming language trivia, which doesn’t dig into anything deep.</p>
 <h2 id="GCC_and_Clang">GCC and Clang</h2><p>The GCC is mostly implemented in C, and used to use Bison for parser generation, according to its <a href="http://en.wikipedia.org/wiki/GNU_bison" target="_blank" rel="external">Wikipedia page</a>.<br>By default, it generates right recursive table driven LALR parser.<br><a id="more"></a></p>
 <p>Somehow according to the <a href="http://en.wikipedia.org/wiki/GNU_bison#Where_is_it_used.3F" target="_blank" rel="external">same page</a>, GCC has switched to <a href="http://dinosaur.compilertools.net/yacc/" target="_blank" rel="external">YACC</a> before now switching to a hand-written recursive-descent parser for C/C++/Objective C. This could also be seen from GCC release notes <a href="https://gcc.gnu.org/gcc-3.4/changes.html#cplusplus" target="_blank" rel="external">3.4</a> and <a href="https://gcc.gnu.org/gcc-4.1/changes.html" target="_blank" rel="external">4.1</a>. </p>
@@ -565,7 +591,7 @@ a := <span class="number">10</span>
     <link href="http://blog.kevinhu.me/2014/10/31/31-more-on-passwd/"/>
     <id>http://blog.kevinhu.me/2014/10/31/31-more-on-passwd/</id>
     <published>2014-11-01T02:30:45.000Z</published>
-    <updated>2015-01-10T07:19:41.000Z</updated>
+    <updated>2015-12-19T21:09:59.256Z</updated>
     <content type="html"><![CDATA[<p>A little bit more interesting discoveries while digging into the passwd code file.</p>
 <h2 id="The_‘s’_flag_in_file_permission">The ‘s’ flag in file permission</h2><p>First, the file permission of passwd executable is <code>-rwsr-xr-x</code>. There’s an ‘s’ flag which don’t usually appear in common Unix files. The usage of the ‘s’ field is explained here:</p>
 <p><a href="http://en.wikipedia.org/wiki/Setuid" target="_blank" rel="external">http://en.wikipedia.org/wiki/Setuid</a></p>
@@ -599,7 +625,7 @@ a := <span class="number">10</span>
     <link href="http://blog.kevinhu.me/2014/10/13/13-a-dive-into-password/"/>
     <id>http://blog.kevinhu.me/2014/10/13/13-a-dive-into-password/</id>
     <published>2014-10-14T02:08:55.000Z</published>
-    <updated>2015-01-10T07:19:08.000Z</updated>
+    <updated>2015-12-19T21:09:59.252Z</updated>
     <content type="html"><![CDATA[<h2 id="Passwd">Passwd</h2><p>The passwd is program on Unix systems to manage users’ passwords. The user and password information on most Unix systems is stored in two separate files: /etc/passwd for user information, and /etc/shadow for password information, including encrypted password value, expiration data, UID, GID, and etc.. The<br>rationale behind storing information in separate files is discussed in <a href="http://www.tldp.org/HOWTO/Shadow-Password-HOWTO-2.html" target="_blank" rel="external">Why shadow your passwd file?</a><br><a id="more"></a></p>
 <p>The passwd program is a part of the shadow-utils, which includes a series of programs to manage user accounts, group accounts, and converting plain passwords to shadow password format, such as: groupadd, useradd, usermod, login, passwd, su, and etc..</p>
 <p>The source file of <code>passwd</code> is available in <a href="http://pkg-shadow.alioth.debian.org/" target="_blank" rel="external">Debian Alioth Page</a> and <a href="https://packages.debian.org/source/wheezy/shadow" target="_blank" rel="external">Debian Package Information Page</a>. I downloaded the 4.1.5 original source for my study. See opensource isn’t just a campaign slogan, it’s something real!</p>
@@ -720,7 +746,7 @@ lib/sgetspent.c
     <link href="http://blog.kevinhu.me/2014/10/11/11-a-dive-into-ply/"/>
     <id>http://blog.kevinhu.me/2014/10/11/11-a-dive-into-ply/</id>
     <published>2014-10-12T01:50:24.000Z</published>
-    <updated>2015-01-10T07:18:34.000Z</updated>
+    <updated>2015-12-19T21:09:59.252Z</updated>
     <content type="html"><![CDATA[<p>I’ve been auditing a course in computer language implementation and particularly interested in parser generator. Just spent an afternoon reading about the Python parser generator <a href="http://www.dabeaz.com/ply/" target="_blank" rel="external">PLY</a>. It’s a pure Python Implementation of Lex and Yacc. And <a href="http://www.dabeaz.com/ply/ply.html#ply_nn4" target="_blank" rel="external">here</a> is the PLY documentation I’ve been reading the whole afternoon.<br><a id="more"></a></p>
 <h2 id="PLY_Lex">PLY Lex</h2><p>Basically, writing a tokenizer is to generate a finite automata.  It should be easy to implement with the assist of regular expressions. For PLY Lex, the following needs to be defined:</p>
 <ul>
@@ -759,7 +785,7 @@ lib/sgetspent.c
     <link href="http://blog.kevinhu.me/2014/10/08/08-a-new-blog-for-my-tech-notes/"/>
     <id>http://blog.kevinhu.me/2014/10/08/08-a-new-blog-for-my-tech-notes/</id>
     <published>2014-10-09T01:47:44.000Z</published>
-    <updated>2014-11-21T01:53:27.000Z</updated>
+    <updated>2015-12-19T21:09:59.252Z</updated>
     <content type="html"><![CDATA[<p>Hello World!</p>
 <p>It’s been a while since the last time I ever wrote some serious blog posts. After some thought I now decide to separate my everyday chit-chat blog from a more tech-oriented blog, so that contents from either sides won’t get entwined with each other, especially when I decide to blog in both languages.</p>
 <p>For a more tech-oriented blog I’d like to keep everything in English. For I believe it’s a language most tech people could understand, even in China. And now I could publish all my discoveries, my thoughts, my ideas centered around technology in this blog, and welcome discussions. Blogging is a beautiful way of communication, and hopefully I could make friends with like-minded through keeping this blog.</p>
