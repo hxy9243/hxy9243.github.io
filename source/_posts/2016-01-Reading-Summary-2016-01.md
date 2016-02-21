@@ -11,7 +11,7 @@ tags: [Social, Coding]
 
 ### [A critique of "How to C in 2016" by Matt](https://github.com/Keith-S-Thompson/how-to-c-response/blob/master/README.md)
 
-A good review as well as critique to the original ["How to C in 2016"](https://matt.sh/howto-c), debunking some myths, and suggestions on how to really code in C.
+A good review as well as critique to the original ["How to C in 2016"](https://matt.sh/howto-c), debunking some myths, and making suggestions on how to really code in C.
 
 
 # Miscellany
