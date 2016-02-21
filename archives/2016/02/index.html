@@ -3,12 +3,12 @@
 <head>
   <meta charset="utf-8">
   
-  <title>Archives: 2014/10 | Kevin Hu&#39;s Blog</title>
+  <title>Archives: 2016/2 | Kevin Hu&#39;s Blog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   <meta name="description">
 <meta property="og:type" content="website">
 <meta property="og:title" content="Kevin Hu's Blog">
-<meta property="og:url" content="http://blog.kevinhu.me/archives/2014/10/index.html">
+<meta property="og:url" content="http://blog.kevinhu.me/archives/2016/02/index.html">
 <meta property="og:site_name" content="Kevin Hu's Blog">
 <meta property="og:description">
 <meta name="twitter:card" content="summary">
@@ -80,14 +80,14 @@ ga('send', 'pageview');
       <div class="outer">
         <section id="main">
   
-    <article id="post-31-more-on-passwd" class="article article-type-post" itemscope itemprop="blogPost">
+    <article id="post-Reading-Summary-2016-01" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
-    <a href="/2014/10/31/31-more-on-passwd/" class="article-date">
-  <time datetime="2014-11-01T02:30:45.000Z" itemprop="datePublished">Oct 31 2014</time>
+    <a href="/2016/02/20/Reading-Summary-2016-01/" class="article-date">
+  <time datetime="2016-02-21T02:08:07.000Z" itemprop="datePublished">Feb 20 2016</time>
 </a>
     
   <div class="article-category">
-    <a class="article-category-link" href="/categories/CodeReading/">CodeReading</a>
+    <a class="article-category-link" href="/categories/Reading/">Reading</a>
   </div>
 
   </div>
@@ -98,7 +98,7 @@ ga('send', 'pageview');
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2014/10/31/31-more-on-passwd/">More On Passwd</a>
+      <a class="article-title" href="/2016/02/20/Reading-Summary-2016-01/">Reading Summary 2016-02</a>
     </h1>
   
 
@@ -106,168 +106,18 @@ ga('send', 'pageview');
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>A little bit more interesting discoveries while digging into the passwd code file.</p>
-<h2 id="The_‘s’_flag_in_file_permission">The ‘s’ flag in file permission</h2><p>First, the file permission of passwd executable is <code>-rwsr-xr-x</code>. There’s an ‘s’ flag which don’t usually appear in common Unix files. The usage of the ‘s’ field is explained here:</p>
-<p><a href="http://en.wikipedia.org/wiki/Setuid">http://en.wikipedia.org/wiki/Setuid</a></p>
-        
-          <p class="article-more-link">
-            <a href="/2014/10/31/31-more-on-passwd/#more">Read More</a>
-          </p>
-        
+        <h1 id="Programming">Programming</h1><h3 id="A_critique_of_“How_to_C_in_2016”_by_Matt"><a href="https://github.com/Keith-S-Thompson/how-to-c-response/blob/master/README.md" target="_blank" rel="external">A critique of “How to C in 2016” by Matt</a></h3><p>A good review as well as critique to the original <a href="https://matt.sh/howto-c" target="_blank" rel="external">“How to C in 2016”</a>, debunking some myths, and suggestions on how to really code in C.</p>
+<h1 id="Miscellany">Miscellany</h1><h3 id="List_of_Common_Misconceptions_from_Wikipedia-"><a href="https://en.m.wikipedia.org/wiki/List_of_common_misconceptions" target="_blank" rel="external">List of Common Misconceptions</a> from Wikipedia.</h3>
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://blog.kevinhu.me/2014/10/31/31-more-on-passwd/" data-id="cikvzd7ww001624r7o33a648a" class="article-share-link">Share</a>
+      <a data-url="http://blog.kevinhu.me/2016/02/20/Reading-Summary-2016-01/" data-id="cikvzd7vm000124r7mj4qkcoz" class="article-share-link">Share</a>
       
-        <a href="http://blog.kevinhu.me/2014/10/31/31-more-on-passwd/#disqus_thread" class="article-comment-link">Comments</a>
+        <a href="http://blog.kevinhu.me/2016/02/20/Reading-Summary-2016-01/#disqus_thread" class="article-comment-link">Comments</a>
       
       
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/CodeReading/">CodeReading</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Password/">Password</a></li></ul>
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Coding/">Coding</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Social/">Social</a></li></ul>
 
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-    <article id="post-13-a-dive-into-password" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2014/10/13/13-a-dive-into-password/" class="article-date">
-  <time datetime="2014-10-14T02:08:55.000Z" itemprop="datePublished">Oct 13 2014</time>
-</a>
-    
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/CodeReading/">CodeReading</a>
-  </div>
-
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2014/10/13/13-a-dive-into-password/">A Dive Into Password</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h2 id="Passwd">Passwd</h2><p>The passwd is program on Unix systems to manage users’ passwords. The user and password information on most Unix systems is stored in two separate files: /etc/passwd for user information, and /etc/shadow for password information, including encrypted password value, expiration data, UID, GID, and etc.. The<br>rationale behind storing information in separate files is discussed in <a href="http://www.tldp.org/HOWTO/Shadow-Password-HOWTO-2.html">Why shadow your passwd file?</a><br>
-        
-          <p class="article-more-link">
-            <a href="/2014/10/13/13-a-dive-into-password/#more">Read More</a>
-          </p>
-        
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://blog.kevinhu.me/2014/10/13/13-a-dive-into-password/" data-id="cikvzd7x0001d24r7p65piog8" class="article-share-link">Share</a>
-      
-        <a href="http://blog.kevinhu.me/2014/10/13/13-a-dive-into-password/#disqus_thread" class="article-comment-link">Comments</a>
-      
-      
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/CodeReading/">CodeReading</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Password/">Password</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-    <article id="post-11-a-dive-into-ply" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2014/10/11/11-a-dive-into-ply/" class="article-date">
-  <time datetime="2014-10-12T01:50:24.000Z" itemprop="datePublished">Oct 11 2014</time>
-</a>
-    
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/ProgrammingLanguage/">ProgrammingLanguage</a>
-  </div>
-
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2014/10/11/11-a-dive-into-ply/">A Dive Into PLY</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>I’ve been auditing a course in computer language implementation and particularly interested in parser generator. Just spent an afternoon reading about the Python parser generator <a href="http://www.dabeaz.com/ply/">PLY</a>. It’s a pure Python Implementation of Lex and Yacc. And <a href="http://www.dabeaz.com/ply/ply.html#ply_nn4">here</a> is the PLY documentation I’ve been reading the whole afternoon.<br>
-        
-          <p class="article-more-link">
-            <a href="/2014/10/11/11-a-dive-into-ply/#more">Read More</a>
-          </p>
-        
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://blog.kevinhu.me/2014/10/11/11-a-dive-into-ply/" data-id="cikvzd7x2001h24r7cbdq8lb5" class="article-share-link">Share</a>
-      
-        <a href="http://blog.kevinhu.me/2014/10/11/11-a-dive-into-ply/#disqus_thread" class="article-comment-link">Comments</a>
-      
-      
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/ProgrammingLanguage/">ProgrammingLanguage</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-    <article id="post-08-a-new-blog-for-my-tech-notes" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2014/10/08/08-a-new-blog-for-my-tech-notes/" class="article-date">
-  <time datetime="2014-10-09T01:47:44.000Z" itemprop="datePublished">Oct 8 2014</time>
-</a>
-    
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/Diary/">Diary</a>
-  </div>
-
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2014/10/08/08-a-new-blog-for-my-tech-notes/">A New Blog For My Tech Notes</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>Hello World!</p>
-<p>It’s been a while since the last time I ever wrote some serious blog posts. After some thought I now decide to separate my everyday chit-chat blog from a more tech-oriented blog, so that contents from either sides won’t get entwined with each other, especially when I decide to blog in both languages.</p>
-<p>For a more tech-oriented blog I’d like to keep everything in English. For I believe it’s a language most tech people could understand, even in China. And now I could publish all my discoveries, my thoughts, my ideas centered around technology in this blog, and welcome discussions. Blogging is a beautiful way of communication, and hopefully I could make friends with like-minded through keeping this blog.</p>
-<p>And there it goes. A brand new blogging journey!</p>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://blog.kevinhu.me/2014/10/08/08-a-new-blog-for-my-tech-notes/" data-id="cikvzd7x4001k24r7stoldsp5" class="article-share-link">Share</a>
-      
-        <a href="http://blog.kevinhu.me/2014/10/08/08-a-new-blog-for-my-tech-notes/#disqus_thread" class="article-comment-link">Comments</a>
-      
-      
     </footer>
   </div>
   
