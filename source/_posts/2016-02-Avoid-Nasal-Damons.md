@@ -20,7 +20,11 @@ Undefined behavior are also referred to as [Nasal Demons](). The "dereferencing 
 
 Theoretically it could be worse: this can cause a security vulnerability. And the problematic code will work just fine with the last revision of GCC compiler, but not with the very next commit. It's a nightmare for anyone to debug.
 
-All coders who touched V8 code should be much smarter than I am. But somehow they just let this code slip in. The moral of this story is: C/C++ is a very hard language to use right, and it should take much patience to learn, understand, and write correct, clean code. Without patience to learn correct code, fall to the dark side of the source one easily will.
+Guys in chromium project seem to be aware of this problem for some time. I quote: "Fundamentally this is fixable by making the functions static and explicitly passing the entity as parameter, but that's a  tremendous amount of work." See this bug:
+
+https://bugs.chromium.org/p/v8/issues/detail?id=3782
+
+All coders who touched V8 code should be much smarter than I am. But somehow they just let this code slip in, and right now the bad code piles up and it's too hard to fix. The moral of this story is: C/C++ is a very hard language to use right, and it should take much patience to learn, understand, and write correct, clean code. Without patience to learn correct code, fall to the dark side of the source one easily will.
 
 ![Patience, you must have](yoda-patience.jpeg)
 
