@@ -3,12 +3,12 @@
 <head>
   <meta charset="utf-8">
   
-  <title>Archives: 2014 | Kevin Hu&#39;s Blog</title>
+  <title>Archives: 2016/5 | Kevin Hu&#39;s Blog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   <meta name="description">
 <meta property="og:type" content="website">
 <meta property="og:title" content="Kevin Hu's Blog">
-<meta property="og:url" content="https://blog.kevinhu.me/archives/2014/index.html">
+<meta property="og:url" content="https://blog.kevinhu.me/archives/2016/05/index.html">
 <meta property="og:site_name" content="Kevin Hu's Blog">
 <meta property="og:description">
 <meta name="twitter:card" content="summary">
@@ -80,14 +80,14 @@ ga('send', 'pageview');
       <div class="outer">
         <section id="main">
   
-    <article id="post-24-what-parsers-are-they-using" class="article article-type-post" itemscope itemprop="blogPost">
+    <article id="post-Reading-Summary-2016-04" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
-    <a href="/2014/11/24/24-what-parsers-are-they-using/" class="article-date">
-  <time datetime="2014-11-24T23:29:00.000Z" itemprop="datePublished">11 24 2014</time>
+    <a href="/2016/05/06/Reading-Summary-2016-04/" class="article-date">
+  <time datetime="2016-05-06T06:34:31.000Z" itemprop="datePublished">05 06 2016</time>
 </a>
     
   <div class="article-category">
-    <a class="article-category-link" href="/categories/ProgrammingLanguage/">ProgrammingLanguage</a>
+    <a class="article-category-link" href="/categories/Reading/">Reading</a>
   </div>
 
   </div>
@@ -98,7 +98,7 @@ ga('send', 'pageview');
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2014/11/24/24-what-parsers-are-they-using/">What Parsers Are They Using?</a>
+      <a class="article-title" href="/2016/05/06/Reading-Summary-2016-04/">Reading Summary 2016-04</a>
     </h1>
   
 
@@ -106,204 +106,18 @@ ga('send', 'pageview');
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>This is a <del>quite boring</del> post on programming language trivia, which doesn’t dig into anything deep.</p>
-<h2 id="GCC-and-Clang"><a href="#GCC-and-Clang" class="headerlink" title="GCC and Clang"></a>GCC and Clang</h2><p>The GCC is mostly implemented in C, and used to use Bison for parser generation, according to its <a href="http://en.wikipedia.org/wiki/GNU_bison">Wikipedia page</a>.<br>By default, it generates right recursive table driven LALR parser.<br>
+        <h1 id="Programming"><a href="#Programming" class="headerlink" title="Programming"></a>Programming</h1><h3 id="Eli-Bendersky’s-Website"><a href="#Eli-Bendersky’s-Website" class="headerlink" title="Eli Bendersky’s Website"></a><a href="http://eli.thegreenplace.net/">Eli Bendersky’s Website</a></h3><p>Eli Bendersky’s blog has always been a must-read to me. He never fails to regularly come up with posts of interesting and insightful ideas, or detailed tutorials.</p>
+<p>He also actively participates in LLVM-dev mailing list and based on his blogs, has board interests in programming language, computer systems and etc..</p>
+<h1 id="Computer-Science"><a href="#Computer-Science" class="headerlink" title="Computer Science"></a>Computer Science</h1><h3 id="What-is-HCI-research-And-what-is-its-relationship-to-computer-science"><a href="#What-is-HCI-research-And-what-is-its-relationship-to-computer-science" class="headerlink" title="What is HCI research? And what is its relationship to computer science?"></a><a href="http://www.pgbovine.net/what-is-hci-research.htm">What is HCI research? And what is its relationship to computer science?</a></h3><p>Phillip Guo is another one of my favorite bloggers. This time he wrote an intro to HCI research.</p>
         
           <p class="article-more-link">
-            <a href="/2014/11/24/24-what-parsers-are-they-using/#more">Read More</a>
+            <a href="/2016/05/06/Reading-Summary-2016-04/#more">Read More</a>
           </p>
         
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://blog.kevinhu.me/2014/11/24/24-what-parsers-are-they-using/" data-id="cinzmigpb00072vr4w9ij38jb" class="article-share-link">Share</a>
-      
-      
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-    <article id="post-31-more-on-passwd" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2014/10/31/31-more-on-passwd/" class="article-date">
-  <time datetime="2014-11-01T02:30:45.000Z" itemprop="datePublished">10 31 2014</time>
-</a>
-    
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/CodeReading/">CodeReading</a>
-  </div>
-
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2014/10/31/31-more-on-passwd/">More On Passwd</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>A little bit more interesting discoveries while digging into the passwd code file.</p>
-<h2 id="The-‘s’-flag-in-file-permission"><a href="#The-‘s’-flag-in-file-permission" class="headerlink" title="The ‘s’ flag in file permission"></a>The ‘s’ flag in file permission</h2><p>First, the file permission of passwd executable is <code>-rwsr-xr-x</code>. There’s an ‘s’ flag which don’t usually appear in common Unix files. The usage of the ‘s’ field is explained here:</p>
-<p><a href="http://en.wikipedia.org/wiki/Setuid">http://en.wikipedia.org/wiki/Setuid</a></p>
-        
-          <p class="article-more-link">
-            <a href="/2014/10/31/31-more-on-passwd/#more">Read More</a>
-          </p>
-        
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="https://blog.kevinhu.me/2014/10/31/31-more-on-passwd/" data-id="cinzmigp800062vr4gqgtk3ma" class="article-share-link">Share</a>
-      
-      
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/CodeReading/">CodeReading</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Password/">Password</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-    <article id="post-13-a-dive-into-password" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2014/10/13/13-a-dive-into-password/" class="article-date">
-  <time datetime="2014-10-14T02:08:55.000Z" itemprop="datePublished">10 13 2014</time>
-</a>
-    
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/CodeReading/">CodeReading</a>
-  </div>
-
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2014/10/13/13-a-dive-into-password/">A Dive Into Password</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h2 id="Passwd"><a href="#Passwd" class="headerlink" title="Passwd"></a>Passwd</h2><p>The passwd is program on Unix systems to manage users’ passwords. The user and password information on most Unix systems is stored in two separate files: /etc/passwd for user information, and /etc/shadow for password information, including encrypted password value, expiration data, UID, GID, and etc.. The<br>rationale behind storing information in separate files is discussed in <a href="http://www.tldp.org/HOWTO/Shadow-Password-HOWTO-2.html">Why shadow your passwd file?</a><br>
-        
-          <p class="article-more-link">
-            <a href="/2014/10/13/13-a-dive-into-password/#more">Read More</a>
-          </p>
-        
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="https://blog.kevinhu.me/2014/10/13/13-a-dive-into-password/" data-id="cinzmigp600042vr44bdrmb29" class="article-share-link">Share</a>
-      
-      
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/CodeReading/">CodeReading</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Password/">Password</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-    <article id="post-11-a-dive-into-ply" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2014/10/11/11-a-dive-into-ply/" class="article-date">
-  <time datetime="2014-10-12T01:50:24.000Z" itemprop="datePublished">10 11 2014</time>
-</a>
-    
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/ProgrammingLanguage/">ProgrammingLanguage</a>
-  </div>
-
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2014/10/11/11-a-dive-into-ply/">A Dive Into PLY</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>I’ve been auditing a course in computer language implementation and particularly interested in parser generator. Just spent an afternoon reading about the Python parser generator <a href="http://www.dabeaz.com/ply/">PLY</a>. It’s a pure Python Implementation of Lex and Yacc. And <a href="http://www.dabeaz.com/ply/ply.html#ply_nn4">here</a> is the PLY documentation I’ve been reading the whole afternoon.<br>
-        
-          <p class="article-more-link">
-            <a href="/2014/10/11/11-a-dive-into-ply/#more">Read More</a>
-          </p>
-        
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="https://blog.kevinhu.me/2014/10/11/11-a-dive-into-ply/" data-id="cinzmigp000022vr4aq5p836v" class="article-share-link">Share</a>
-      
-      
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/ProgrammingLanguage/">ProgrammingLanguage</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-    <article id="post-08-a-new-blog-for-my-tech-notes" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2014/10/08/08-a-new-blog-for-my-tech-notes/" class="article-date">
-  <time datetime="2014-10-09T01:47:44.000Z" itemprop="datePublished">10 08 2014</time>
-</a>
-    
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/Diary/">Diary</a>
-  </div>
-
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2014/10/08/08-a-new-blog-for-my-tech-notes/">A New Blog For My Tech Notes</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>Hello World!</p>
-<p>It’s been a while since the last time I ever wrote some serious blog posts. After some thought I now decide to separate my everyday chit-chat blog from a more tech-oriented blog, so that contents from either sides won’t get entwined with each other, especially when I decide to blog in both languages.</p>
-<p>For a more tech-oriented blog I’d like to keep everything in English. For I believe it’s a language most tech people could understand, even in China. And now I could publish all my discoveries, my thoughts, my ideas centered around technology in this blog, and welcome discussions. Blogging is a beautiful way of communication, and hopefully I could make friends with like-minded through keeping this blog.</p>
-<p>And there it goes. A brand new blogging journey!</p>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="https://blog.kevinhu.me/2014/10/08/08-a-new-blog-for-my-tech-notes/" data-id="cinzmigou00002vr4b25j3ztz" class="article-share-link">Share</a>
+      <a data-url="https://blog.kevinhu.me/2016/05/06/Reading-Summary-2016-04/" data-id="cinzmigpw000q2vr4lqpp4i6c" class="article-share-link">Share</a>
       
       
     </footer>
