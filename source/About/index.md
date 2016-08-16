@@ -3,17 +3,16 @@ date: 2014-12-01 21:03:29
 ---
 
 * __READ__
-__<a href="https://plus.google.com/+KevinHuGplus/" target="_blank">
-My Google Plus Page:</a>__ I dump my favortite articles, blogs I've read to my Google Plus Page. Some bits of my own thoughts as well.
+__<a href="/categories/Reading/" target="_blank">
+This blog:</a>__ A record of articles and books that I find interesting.
 
 * __WRITE__
 __<a href="http://blog.kevinhu.me/" target="_blank">
-This blog:</a>__ Keep thinking, keep writing.
+This blog:</a>__ I dump my thoughts here in this blog.
 
 * __EXECUTE__
 __<a href="http://github.com/hxy9243/" target="_blank">
-My Github Profile:</a>__ Coding for love and fun :)
-
+My Github Profile:</a>__ Coding for love and fun. :)
 
 # Contact Me
 
