@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://blog.kevinhu.me/"/>
-  <updated>2016-05-09T06:23:09.973Z</updated>
+  <updated>2016-08-16T05:38:37.400Z</updated>
   <id>https://blog.kevinhu.me/</id>
   
   <author>
@@ -16,11 +16,57 @@
   <generator uri="http://hexo.io/">Hexo</generator>
   
   <entry>
+    <title>Reading Summary 2016-08</title>
+    <link href="https://blog.kevinhu.me/2016/08/15/Reading-Summary-2016-08/"/>
+    <id>https://blog.kevinhu.me/2016/08/15/Reading-Summary-2016-08/</id>
+    <published>2016-08-16T04:51:14.000Z</published>
+    <updated>2016-08-16T05:38:37.400Z</updated>
+    
+    <content type="html">&lt;h1 id=&quot;Reading&quot;&gt;&lt;a href=&quot;#Reading&quot; class=&quot;headerlink&quot; title=&quot;Reading&quot;&gt;&lt;/a&gt;Reading&lt;/h1&gt;&lt;h3 id=&quot;Alan-Kay’s-Reading-List&quot;&gt;&lt;a href=&quot;#Alan-Kay’s-Reading-List&quot; class=&quot;headerlink&quot; title=&quot;Alan Kay’s Reading List&quot;&gt;&lt;/a&gt;&lt;a href=&quot;http://www.squeakland.org/resources/books/readingList.jsp&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;Alan Kay’s Reading List&lt;/a&gt;&lt;/h3&gt;&lt;p&gt;If this site is reliable, this is Alan Kay’s reading list for all his students. He’s a great thinker, not just in Computer Science, but human intelligence in general. His list is a constant reminder how much I’m trailing the great minds of this generation, and how much I should pick up the pace in reading.&lt;/p&gt;
+&lt;h2 id=&quot;How-to-use-your-full-brain-when-writing-code&quot;&gt;&lt;a href=&quot;#How-to-use-your-full-brain-when-writing-code&quot; class=&quot;headerlink&quot; title=&quot;How to use your full brain when writing code&quot;&gt;&lt;/a&gt;&lt;a href=&quot;http://chrismm.com/blog/how-to-use-your-full-brain-when-writing-code/&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;How to use your full brain when writing code&lt;/a&gt;&lt;/h2&gt;&lt;p&gt;Tips on being an efficient programmer.&lt;/p&gt;
+&lt;h1 id=&quot;Digital-Rights&quot;&gt;&lt;a href=&quot;#Digital-Rights&quot; class=&quot;headerlink&quot; title=&quot;Digital Rights&quot;&gt;&lt;/a&gt;Digital Rights&lt;/h1&gt;&lt;h3 id=&quot;How-Technology-Hijacks-People’s-Minds-from-a-Magician-and-Google’s-Design-Ethicist&quot;&gt;&lt;a href=&quot;#How-Technology-Hijacks-People’s-Minds-from-a-Magician-and-Google’s-Design-Ethicist&quot; class=&quot;headerlink&quot; title=&quot;How Technology Hijacks People’s Minds -from a Magician and Google’s Design Ethicist&quot;&gt;&lt;/a&gt;&lt;a href=&quot;https://medium.com/swlh/how-technology-hijacks-peoples-minds-from-a-magician-and-google-s-design-ethicist-56d62ef5edf3#.c9i8kx8cg&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;How Technology Hijacks People’s Minds -from a Magician and Google’s Design Ethicist&lt;/a&gt;&lt;/h3&gt;&lt;p&gt;Interestingly how big companies like Facebook and Google use techniques to enchant you to stay on their page for more time, or click on more of their links. I think it’s an interesting read that raises our awareness against cases such tricks, and help us defend ourselves from such exploitation.&lt;/p&gt;
+&lt;h3 id=&quot;Reweaving-the-web&quot;&gt;&lt;a href=&quot;#Reweaving-the-web&quot; class=&quot;headerlink&quot; title=&quot;Reweaving the web&quot;&gt;&lt;/a&gt;&lt;a href=&quot;http://www.economist.com/news/business/21700642-slew-startups-trying-decentralise-online-world-reweaving-web?fsrc=scn/tw/te/pe/ed/reweavingtheweb&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;Reweaving the web&lt;/a&gt;&lt;/h3&gt;&lt;p&gt;How a slew of new startup decide to use the latest technology such as “Blockchain” and “Ethereum” to decentralize the key web infrastructures and the World Wide Web they support, to compete against giant cooperations like Google and Facebook. It’s an interesting to trend to keep an eye on, but so far I don’t know if I have the optimism that they’ll succeed.&lt;/p&gt;
+</content>
+    
+    <summary type="html">
+    
+      &lt;h1 id=&quot;Reading&quot;&gt;&lt;a href=&quot;#Reading&quot; class=&quot;headerlink&quot; title=&quot;Reading&quot;&gt;&lt;/a&gt;Reading&lt;/h1&gt;&lt;h3 id=&quot;Alan-Kay’s-Reading-List&quot;&gt;&lt;a href=&quot;#Alan-Kay’s
+    
+    </summary>
+    
+      <category term="Reading" scheme="https://blog.kevinhu.me/categories/Reading/"/>
+    
+    
+  </entry>
+  
+  <entry>
+    <title>A Survey On Static Assmebly Analysis Tools</title>
+    <link href="https://blog.kevinhu.me/2016/06/29/A-Survey-On-Static-Assmebly-Analysis-Tools/"/>
+    <id>https://blog.kevinhu.me/2016/06/29/A-Survey-On-Static-Assmebly-Analysis-Tools/</id>
+    <published>2016-06-29T05:01:18.000Z</published>
+    <updated>2016-06-29T05:02:23.049Z</updated>
+    
+    <content type="html"></content>
+    
+    <summary type="html">
+    
+    </summary>
+    
+      <category term="Programming" scheme="https://blog.kevinhu.me/categories/Programming/"/>
+    
+    
+      <category term="assembly" scheme="https://blog.kevinhu.me/tags/assembly/"/>
+    
+      <category term="static analysis" scheme="https://blog.kevinhu.me/tags/static-analysis/"/>
+    
+  </entry>
+  
+  <entry>
     <title>Reading Summary 2016-04</title>
     <link href="https://blog.kevinhu.me/2016/05/06/Reading-Summary-2016-04/"/>
     <id>https://blog.kevinhu.me/2016/05/06/Reading-Summary-2016-04/</id>
     <published>2016-05-06T06:34:31.000Z</published>
-    <updated>2016-05-09T06:23:09.973Z</updated>
+    <updated>2016-06-29T05:02:18.921Z</updated>
     
     <content type="html">&lt;h1 id=&quot;Programming&quot;&gt;&lt;a href=&quot;#Programming&quot; class=&quot;headerlink&quot; title=&quot;Programming&quot;&gt;&lt;/a&gt;Programming&lt;/h1&gt;&lt;h3 id=&quot;Eli-Bendersky’s-Website&quot;&gt;&lt;a href=&quot;#Eli-Bendersky’s-Website&quot; class=&quot;headerlink&quot; title=&quot;Eli Bendersky’s Website&quot;&gt;&lt;/a&gt;&lt;a href=&quot;http://eli.thegreenplace.net/&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;Eli Bendersky’s Website&lt;/a&gt;&lt;/h3&gt;&lt;p&gt;Eli Bendersky’s blog has always been a must-read to me. He never fails to regularly come up with posts of interesting and insightful ideas, or detailed tutorials.&lt;/p&gt;
 &lt;p&gt;He also actively participates in LLVM-dev mailing list and based on his blogs, has board interests in programming language, computer systems and etc..&lt;/p&gt;
