@@ -40,28 +40,6 @@
   </entry>
   
   <entry>
-    <title>A Survey On Static Assmebly Analysis Tools</title>
-    <link href="https://blog.kevinhu.me/2016/06/29/A-Survey-On-Static-Assmebly-Analysis-Tools/"/>
-    <id>https://blog.kevinhu.me/2016/06/29/A-Survey-On-Static-Assmebly-Analysis-Tools/</id>
-    <published>2016-06-29T05:01:18.000Z</published>
-    <updated>2016-06-29T05:02:23.049Z</updated>
-    
-    <content type="html"></content>
-    
-    <summary type="html">
-    
-    </summary>
-    
-      <category term="Programming" scheme="https://blog.kevinhu.me/categories/Programming/"/>
-    
-    
-      <category term="assembly" scheme="https://blog.kevinhu.me/tags/assembly/"/>
-    
-      <category term="static analysis" scheme="https://blog.kevinhu.me/tags/static-analysis/"/>
-    
-  </entry>
-  
-  <entry>
     <title>Reading Summary 2016-04</title>
     <link href="https://blog.kevinhu.me/2016/05/06/Reading-Summary-2016-04/"/>
     <id>https://blog.kevinhu.me/2016/05/06/Reading-Summary-2016-04/</id>
@@ -796,9 +774,9 @@ a := 10
       <category term="CodeReading" scheme="https://blog.kevinhu.me/categories/CodeReading/"/>
     
     
-      <category term="Password" scheme="https://blog.kevinhu.me/tags/Password/"/>
-    
       <category term="CodeReading" scheme="https://blog.kevinhu.me/tags/CodeReading/"/>
+    
+      <category term="Password" scheme="https://blog.kevinhu.me/tags/Password/"/>
     
   </entry>
   
@@ -921,9 +899,9 @@ lib/sgetspent.c
       <category term="CodeReading" scheme="https://blog.kevinhu.me/categories/CodeReading/"/>
     
     
-      <category term="Password" scheme="https://blog.kevinhu.me/tags/Password/"/>
-    
       <category term="CodeReading" scheme="https://blog.kevinhu.me/tags/CodeReading/"/>
+    
+      <category term="Password" scheme="https://blog.kevinhu.me/tags/Password/"/>
     
   </entry>
   
