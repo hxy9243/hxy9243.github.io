@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://blog.kevinhu.me/"/>
-  <updated>2016-08-16T05:38:37.400Z</updated>
+  <updated>2016-09-28T05:15:29.512Z</updated>
   <id>https://blog.kevinhu.me/</id>
   
   <author>
@@ -14,6 +14,29 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Reading Summary 2016-09</title>
+    <link href="https://blog.kevinhu.me/2016/09/28/Reading-Summary-2016-09/"/>
+    <id>https://blog.kevinhu.me/2016/09/28/Reading-Summary-2016-09/</id>
+    <published>2016-09-28T05:11:03.000Z</published>
+    <updated>2016-09-28T05:15:29.512Z</updated>
+    
+    <content type="html">&lt;h1 id=&quot;Reading&quot;&gt;&lt;a href=&quot;#Reading&quot; class=&quot;headerlink&quot; title=&quot;Reading&quot;&gt;&lt;/a&gt;Reading&lt;/h1&gt;&lt;h3 id=&quot;A-Bit-of-Python&quot;&gt;&lt;a href=&quot;#A-Bit-of-Python&quot; class=&quot;headerlink&quot; title=&quot;A Bit of Python&quot;&gt;&lt;/a&gt;&lt;a href=&quot;https://access.redhat.com/blogs/766093/posts/2592591&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;A Bit of Python&lt;/a&gt;&lt;/h3&gt;&lt;p&gt;Some security pitfalls in Python language. Very interesting read, from RedHat.&lt;/p&gt;
+&lt;h3 id=&quot;Improving-Workflow-By-Using-Clang-based-Tools&quot;&gt;&lt;a href=&quot;#Improving-Workflow-By-Using-Clang-based-Tools&quot; class=&quot;headerlink&quot; title=&quot;Improving Workflow By Using Clang-based Tools&quot;&gt;&lt;/a&gt;&lt;a href=&quot;https://omtcyfz.github.io/2016/08/30/Improving-workflow-by-using-Clang-based-tools.html&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;Improving Workflow By Using Clang-based Tools&lt;/a&gt;&lt;/h3&gt;&lt;h3 id=&quot;Tips-For-Productive-Debugging-With-GDB&quot;&gt;&lt;a href=&quot;#Tips-For-Productive-Debugging-With-GDB&quot; class=&quot;headerlink&quot; title=&quot;Tips For Productive Debugging With GDB&quot;&gt;&lt;/a&gt;&lt;a href=&quot;https://metricpanda.com/tips-for-productive-debugging-with-gdb&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;Tips For Productive Debugging With GDB&lt;/a&gt;&lt;/h3&gt;&lt;p&gt;A very beautifully crafted GDB init file. Worth taking a look.&lt;/p&gt;
+&lt;h3 id=&quot;The-Definitive-Guide-to-Python-Exceptions&quot;&gt;&lt;a href=&quot;#The-Definitive-Guide-to-Python-Exceptions&quot; class=&quot;headerlink&quot; title=&quot;The Definitive Guide to Python Exceptions&quot;&gt;&lt;/a&gt;&lt;a href=&quot;https://julien.danjou.info/blog/2016/python-exceptions-guide&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;The Definitive Guide to Python Exceptions&lt;/a&gt;&lt;/h3&gt;&lt;p&gt;From the author of ‘The Hacker’s Guide to Python’.&lt;/p&gt;
+</content>
+    
+    <summary type="html">
+    
+      &lt;h1 id=&quot;Reading&quot;&gt;&lt;a href=&quot;#Reading&quot; class=&quot;headerlink&quot; title=&quot;Reading&quot;&gt;&lt;/a&gt;Reading&lt;/h1&gt;&lt;h3 id=&quot;A-Bit-of-Python&quot;&gt;&lt;a href=&quot;#A-Bit-of-Python&quot; c
+    
+    </summary>
+    
+      <category term="Reading" scheme="https://blog.kevinhu.me/categories/Reading/"/>
+    
+    
+  </entry>
   
   <entry>
     <title>Reading Summary 2016-08</title>
