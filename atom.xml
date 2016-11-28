@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://blog.kevinhu.me/"/>
-  <updated>2016-09-28T05:15:29.512Z</updated>
+  <updated>2016-11-28T06:26:58.013Z</updated>
   <id>https://blog.kevinhu.me/</id>
   
   <author>
@@ -14,6 +14,34 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Reading Summary 2016-11</title>
+    <link href="https://blog.kevinhu.me/2016/11/27/Reading-Summary-2016-11/"/>
+    <id>https://blog.kevinhu.me/2016/11/27/Reading-Summary-2016-11/</id>
+    <published>2016-11-28T05:56:03.000Z</published>
+    <updated>2016-11-28T06:26:58.013Z</updated>
+    
+    <content type="html">&lt;h1 id=&quot;C-C&quot;&gt;&lt;a href=&quot;#C-C&quot; class=&quot;headerlink&quot; title=&quot;C/C++&quot;&gt;&lt;/a&gt;C/C++&lt;/h1&gt;&lt;h3 id=&quot;“Effective-C-”-and-“C-In-A-Nutshell”&quot;&gt;&lt;a href=&quot;#“Effective-C-”-and-“C-In-A-Nutshell”&quot; class=&quot;headerlink&quot; title=&quot;“Effective C++” and “C++ In A Nutshell”&quot;&gt;&lt;/a&gt;“Effective C++” and “C++ In A Nutshell”&lt;/h3&gt;&lt;p&gt;Finished most part of “C++ In A Nutshell”, and Scott Meyer’s “Effective C++”, and started to learn the basics of C++ language. Really great books to start to learn the basics of C++, and some of the fundamental problems in the language.&lt;/p&gt;
+&lt;a id=&quot;more&quot;&gt;&lt;/a&gt;
+&lt;h1 id=&quot;System-Design&quot;&gt;&lt;a href=&quot;#System-Design&quot; class=&quot;headerlink&quot; title=&quot;System Design&quot;&gt;&lt;/a&gt;System Design&lt;/h1&gt;&lt;h3 id=&quot;What-Are-System-Design-Questions&quot;&gt;&lt;a href=&quot;#What-Are-System-Design-Questions&quot; class=&quot;headerlink&quot; title=&quot;What Are System Design Questions?&quot;&gt;&lt;/a&gt;&lt;a href=&quot;https://www.hiredintech.com/classrooms/system-design/lesson/52&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;What Are System Design Questions?&lt;/a&gt;&lt;/h3&gt;&lt;p&gt;A very interesting guide to scalable system design and how you should deal with them in an interview. It’s very interesting to learn the basics, while to do them properly, it might require years of experience.&lt;/p&gt;
+&lt;h3 id=&quot;Scalability-For-Dummies&quot;&gt;&lt;a href=&quot;#Scalability-For-Dummies&quot; class=&quot;headerlink&quot; title=&quot;Scalability For Dummies&quot;&gt;&lt;/a&gt;&lt;a href=&quot;http://www.lecloud.net/post/7295452622/scalability-for-dummies-part-1-clones&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;Scalability For Dummies&lt;/a&gt;&lt;/h3&gt;&lt;p&gt;A guide to scalability, a series of interesting and concise introduction to the same problem.&lt;/p&gt;
+&lt;h1 id=&quot;Unix&quot;&gt;&lt;a href=&quot;#Unix&quot; class=&quot;headerlink&quot; title=&quot;Unix&quot;&gt;&lt;/a&gt;Unix&lt;/h1&gt;&lt;h3 id=&quot;Unix-As-IDE-Introduction&quot;&gt;&lt;a href=&quot;#Unix-As-IDE-Introduction&quot; class=&quot;headerlink&quot; title=&quot;Unix As IDE: Introduction&quot;&gt;&lt;/a&gt;&lt;a href=&quot;https://sanctum.geek.nz/arabesque/series/unix-as-ide/&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;Unix As IDE: Introduction&lt;/a&gt;&lt;/h3&gt;&lt;p&gt;A very interesting guide on how to use Unix’s core utilities (grep, find, bash, awk, sort, gcc, gdb, git, vim/emacs, …) to arm yourself for code editing/maintenance tasks.&lt;/p&gt;
+&lt;h1 id=&quot;Programming-Languages&quot;&gt;&lt;a href=&quot;#Programming-Languages&quot; class=&quot;headerlink&quot; title=&quot;Programming Languages&quot;&gt;&lt;/a&gt;Programming Languages&lt;/h1&gt;&lt;h3 id=&quot;How-It-Feels-To-Learn-JavaScript-In-2016&quot;&gt;&lt;a href=&quot;#How-It-Feels-To-Learn-JavaScript-In-2016&quot; class=&quot;headerlink&quot; title=&quot;How It Feels To Learn JavaScript In 2016&quot;&gt;&lt;/a&gt;&lt;a href=&quot;https://hackernoon.com/how-it-feels-to-learn-javascript-in-2016-d3a717dd577f#.7pr0vhyyb&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;How It Feels To Learn JavaScript In 2016&lt;/a&gt;&lt;/h3&gt;&lt;p&gt;JavaScript…&lt;/p&gt;
+&lt;h3 id=&quot;The-Definitive-Guide-to-Python-Exceptions&quot;&gt;&lt;a href=&quot;#The-Definitive-Guide-to-Python-Exceptions&quot; class=&quot;headerlink&quot; title=&quot;The Definitive Guide to Python Exceptions&quot;&gt;&lt;/a&gt;&lt;a href=&quot;https://julien.danjou.info/blog/2016/python-exceptions-guide&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;The Definitive Guide to Python Exceptions&lt;/a&gt;&lt;/h3&gt;&lt;p&gt;A Python hacker’s guide to Python, from the author of “The Hacker’s Guide To Python”.&lt;/p&gt;
+&lt;h1 id=&quot;Miscellaneous&quot;&gt;&lt;a href=&quot;#Miscellaneous&quot; class=&quot;headerlink&quot; title=&quot;Miscellaneous&quot;&gt;&lt;/a&gt;Miscellaneous&lt;/h1&gt;&lt;h3 id=&quot;Why-Democracy-Rewards-Bad-People&quot;&gt;&lt;a href=&quot;#Why-Democracy-Rewards-Bad-People&quot; class=&quot;headerlink&quot; title=&quot;Why Democracy Rewards Bad People&quot;&gt;&lt;/a&gt;&lt;a href=&quot;https://mises.org/blog/why-democracy-rewards-bad-people&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;Why Democracy Rewards Bad People&lt;/a&gt;&lt;/h3&gt;&lt;p&gt;In light of the recent election…&lt;/p&gt;
+</content>
+    
+    <summary type="html">
+    
+      &lt;h1 id=&quot;C-C&quot;&gt;&lt;a href=&quot;#C-C&quot; class=&quot;headerlink&quot; title=&quot;C/C++&quot;&gt;&lt;/a&gt;C/C++&lt;/h1&gt;&lt;h3 id=&quot;“Effective-C-”-and-“C-In-A-Nutshell”&quot;&gt;&lt;a href=&quot;#“Effective-C-”-and-“C-In-A-Nutshell”&quot; class=&quot;headerlink&quot; title=&quot;“Effective C++” and “C++ In A Nutshell”&quot;&gt;&lt;/a&gt;“Effective C++” and “C++ In A Nutshell”&lt;/h3&gt;&lt;p&gt;Finished most part of “C++ In A Nutshell”, and Scott Meyer’s “Effective C++”, and started to learn the basics of C++ language. Really great books to start to learn the basics of C++, and some of the fundamental problems in the language.&lt;/p&gt;
+    
+    </summary>
+    
+      <category term="Reading" scheme="https://blog.kevinhu.me/categories/Reading/"/>
+    
+    
+  </entry>
   
   <entry>
     <title>Reading Summary 2016-09</title>
@@ -797,9 +825,9 @@ a := 10
       <category term="CodeReading" scheme="https://blog.kevinhu.me/categories/CodeReading/"/>
     
     
-      <category term="CodeReading" scheme="https://blog.kevinhu.me/tags/CodeReading/"/>
-    
       <category term="Password" scheme="https://blog.kevinhu.me/tags/Password/"/>
+    
+      <category term="CodeReading" scheme="https://blog.kevinhu.me/tags/CodeReading/"/>
     
   </entry>
   
@@ -922,9 +950,9 @@ lib/sgetspent.c
       <category term="CodeReading" scheme="https://blog.kevinhu.me/categories/CodeReading/"/>
     
     
-      <category term="CodeReading" scheme="https://blog.kevinhu.me/tags/CodeReading/"/>
-    
       <category term="Password" scheme="https://blog.kevinhu.me/tags/Password/"/>
+    
+      <category term="CodeReading" scheme="https://blog.kevinhu.me/tags/CodeReading/"/>
     
   </entry>
   
