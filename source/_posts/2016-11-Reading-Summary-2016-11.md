@@ -43,6 +43,6 @@ A Python hacker's guide to Python, from the author of "The Hacker's Guide To Pyt
 
 # Miscellaneous
 
-### [Why Democracy Rewards Bad People]
+### [Why Democracy Rewards Bad People](https://mises.org/blog/why-democracy-rewards-bad-people)
 
 In light of the recent election...
