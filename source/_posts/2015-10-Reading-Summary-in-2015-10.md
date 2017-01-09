@@ -1,6 +1,6 @@
 title: Reading Summary in 2015/10
 date: 2015-10-24 01:38:05
-tags: Python, Compilers
+tags: ["Python", "Compilers"]
 categories: Reading
 ---
 
