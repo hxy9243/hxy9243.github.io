@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://blog.kevinhu.me/"/>
-  <updated>2016-11-28T06:26:58.013Z</updated>
+  <updated>2017-01-09T06:20:05.250Z</updated>
   <id>https://blog.kevinhu.me/</id>
   
   <author>
@@ -14,6 +14,52 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Reading Summary 2016-12</title>
+    <link href="https://blog.kevinhu.me/2017/01/08/Reading-Summary-2016-12/"/>
+    <id>https://blog.kevinhu.me/2017/01/08/Reading-Summary-2016-12/</id>
+    <published>2017-01-09T05:15:00.000Z</published>
+    <updated>2017-01-09T06:20:05.250Z</updated>
+    
+    <content type="html">&lt;h1 id=&quot;C-C&quot;&gt;&lt;a href=&quot;#C-C&quot; class=&quot;headerlink&quot; title=&quot;C/C++&quot;&gt;&lt;/a&gt;C/C++&lt;/h1&gt;&lt;h3 id=&quot;How-to-find-size-of-an-array-in-C-without-sizeof&quot;&gt;&lt;a href=&quot;#How-to-find-size-of-an-array-in-C-without-sizeof&quot; class=&quot;headerlink&quot; title=&quot;How to find size of an array in C without sizeof&quot;&gt;&lt;/a&gt;&lt;a href=&quot;http://arjunsreedharan.org/post/69303442896/the-difference-between-arr-and-arr-how-to-find&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;How to find size of an array in C without sizeof&lt;/a&gt;&lt;/h3&gt;&lt;p&gt;The difference between arr and &amp;amp;arr - basically, arr is of type int &lt;em&gt;, and &amp;amp;arr is of type (int &lt;/em&gt;)[size].&lt;/p&gt;
+&lt;p&gt;Very excellent article on the fundamentals of C/C++!&lt;/p&gt;
+&lt;h3 id=&quot;What-Every-C-Programmer-Should-Know-About-Undefined-Behavior&quot;&gt;&lt;a href=&quot;#What-Every-C-Programmer-Should-Know-About-Undefined-Behavior&quot; class=&quot;headerlink&quot; title=&quot;What Every C Programmer Should Know About Undefined Behavior&quot;&gt;&lt;/a&gt;&lt;a href=&quot;http://blog.llvm.org/2011/05/what-every-c-programmer-should-know_14.html&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;What Every C Programmer Should Know About Undefined Behavior&lt;/a&gt;&lt;/h3&gt;&lt;p&gt;Some “gotchas” and pitfalls in the C programming language and how sometimes compiler optimizations can make it worse. Long story short is, steer away from undefined behaviors.&lt;/p&gt;
+&lt;p&gt;This post is from Chris Lattner himeself. Really nice article.&lt;/p&gt;
+&lt;h1 id=&quot;Python&quot;&gt;&lt;a href=&quot;#Python&quot; class=&quot;headerlink&quot; title=&quot;Python&quot;&gt;&lt;/a&gt;Python&lt;/h1&gt;&lt;h3 id=&quot;Python-Has-Big-Impact-At-Red-Hat&quot;&gt;&lt;a href=&quot;#Python-Has-Big-Impact-At-Red-Hat&quot; class=&quot;headerlink&quot; title=&quot;Python Has Big Impact At Red Hat&quot;&gt;&lt;/a&gt;&lt;a href=&quot;http://community.redhat.com/blog/2016/12/python-has-big-impact-at-red-hat/&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;Python Has Big Impact At Red Hat&lt;/a&gt;&lt;/h3&gt;&lt;p&gt;Why Python is such a cool language and how Python is used in Redhat. Most of redhat’s important infrastructure is written in Python, including but not limited to &lt;code&gt;firewalld&lt;/code&gt;, &lt;code&gt;yum&lt;/code&gt;, and its successor &lt;code&gt;dnf&lt;/code&gt;, and many cloud PaaS tools for OpenShift.&lt;/p&gt;
+&lt;a id=&quot;more&quot;&gt;&lt;/a&gt;
+&lt;h3 id=&quot;Statistics-For-Hackers-PyCon2016-Video&quot;&gt;&lt;a href=&quot;#Statistics-For-Hackers-PyCon2016-Video&quot; class=&quot;headerlink&quot; title=&quot;Statistics For Hackers - PyCon2016 (Video)&quot;&gt;&lt;/a&gt;&lt;a href=&quot;https://youtu.be/Iq9DzN6mvYA&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;Statistics For Hackers - PyCon2016 (Video)&lt;/a&gt;&lt;/h3&gt;&lt;p&gt;How to write a few lines of Python to simulate for a statistic problem which otherwise be onerous with all the math theorems and formulas.&lt;/p&gt;
+&lt;h3 id=&quot;Refactoring-Python-Why-and-how-to-restructure-your-code-PyCon2016-Video&quot;&gt;&lt;a href=&quot;#Refactoring-Python-Why-and-how-to-restructure-your-code-PyCon2016-Video&quot; class=&quot;headerlink&quot; title=&quot;Refactoring Python: Why and how to restructure your code - PyCon2016 (Video)&quot;&gt;&lt;/a&gt;&lt;a href=&quot;https://youtu.be/D_6ybDcU5gc&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;Refactoring Python: Why and how to restructure your code - PyCon2016 (Video)&lt;/a&gt;&lt;/h3&gt;&lt;p&gt;How to write clean, well-structured and “Pythonic” code.&lt;/p&gt;
+&lt;h3 id=&quot;Python-Language-PyCon2016-Video&quot;&gt;&lt;a href=&quot;#Python-Language-PyCon2016-Video&quot; class=&quot;headerlink&quot; title=&quot;Python Language - PyCon2016 (Video)&quot;&gt;&lt;/a&gt;&lt;a href=&quot;https://youtu.be/YgtL4S7Hrwo&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;Python Language - PyCon2016 (Video)&lt;/a&gt;&lt;/h3&gt;&lt;p&gt;By no one but Guido van Rossum himself, on the status of Python 3, and how he created Python.&lt;/p&gt;
+&lt;p&gt;(And Death to Python 2!!)&lt;/p&gt;
+&lt;h3 id=&quot;Stop-Writing-Classes-PyCon2012-Video&quot;&gt;&lt;a href=&quot;#Stop-Writing-Classes-PyCon2012-Video&quot; class=&quot;headerlink&quot; title=&quot;Stop Writing Classes - PyCon2012 (Video)&quot;&gt;&lt;/a&gt;&lt;a href=&quot;https://youtu.be/o9pEzgHorH0&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;Stop Writing Classes - PyCon2012 (Video)&lt;/a&gt;&lt;/h3&gt;&lt;p&gt;Stop writing classes - when, and when not to use classes. Stop thinking in Java (no offense), and learn to be “Pythonic”, for a smaller, cleaner, and more well-structured project code base.&lt;/p&gt;
+&lt;h1 id=&quot;Misc&quot;&gt;&lt;a href=&quot;#Misc&quot; class=&quot;headerlink&quot; title=&quot;Misc.&quot;&gt;&lt;/a&gt;Misc.&lt;/h1&gt;&lt;h3 id=&quot;If-You’re-So-Smart-Why-Aren’t-You-Rich&quot;&gt;&lt;a href=&quot;#If-You’re-So-Smart-Why-Aren’t-You-Rich&quot; class=&quot;headerlink&quot; title=&quot;If You’re So Smart, Why Aren’t You Rich?&quot;&gt;&lt;/a&gt;&lt;a href=&quot;https://www.bloomberg.com/view/articles/2016-12-22/if-you-re-so-smart-why-aren-t-you-rich&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;If You’re So Smart, Why Aren’t You Rich?&lt;/a&gt;&lt;/h3&gt;&lt;p&gt;Conscientiousness - “A Personality trait marked by diligence, perseverance and self-discipline”.&lt;/p&gt;
+&lt;h3 id=&quot;Thinking-about-thinking&quot;&gt;&lt;a href=&quot;#Thinking-about-thinking&quot; class=&quot;headerlink&quot; title=&quot;Thinking about thinking&quot;&gt;&lt;/a&gt;&lt;a href=&quot;http://www.economist.com/news/books-and-arts/21711860-michael-lewis-dissects-enduring-friendship-between-daniel-kahneman-and-amos?fsrc=scn%2Ftw%2Fte%2Fbl%2Fed%2Fthinkingaboutthinking&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;Thinking about thinking&lt;/a&gt;&lt;/h3&gt;&lt;p&gt;Daniel Kahneman - I’ve been recently reading his book &lt;a href=&quot;https://www.amazon.com/Thinking-Fast-Slow-Daniel-Kahneman/dp/0374533555/&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;“Thinking: Fast and Slow”&lt;/a&gt;. It’s often listed as work in economics, but from what I’ve read it’s also an amazing book on psychology and human cognitives.&lt;/p&gt;
+&lt;p&gt;Reading more books is definitely one of my New Year resolutions. Just started this book, will finish.&lt;/p&gt;
+</content>
+    
+    <summary type="html">
+    
+      &lt;h1 id=&quot;C-C&quot;&gt;&lt;a href=&quot;#C-C&quot; class=&quot;headerlink&quot; title=&quot;C/C++&quot;&gt;&lt;/a&gt;C/C++&lt;/h1&gt;&lt;h3 id=&quot;How-to-find-size-of-an-array-in-C-without-sizeof&quot;&gt;&lt;a href=&quot;#How-to-find-size-of-an-array-in-C-without-sizeof&quot; class=&quot;headerlink&quot; title=&quot;How to find size of an array in C without sizeof&quot;&gt;&lt;/a&gt;&lt;a href=&quot;http://arjunsreedharan.org/post/69303442896/the-difference-between-arr-and-arr-how-to-find&quot;&gt;How to find size of an array in C without sizeof&lt;/a&gt;&lt;/h3&gt;&lt;p&gt;The difference between arr and &amp;amp;arr - basically, arr is of type int &lt;em&gt;, and &amp;amp;arr is of type (int &lt;/em&gt;)[size].&lt;/p&gt;
+&lt;p&gt;Very excellent article on the fundamentals of C/C++!&lt;/p&gt;
+&lt;h3 id=&quot;What-Every-C-Programmer-Should-Know-About-Undefined-Behavior&quot;&gt;&lt;a href=&quot;#What-Every-C-Programmer-Should-Know-About-Undefined-Behavior&quot; class=&quot;headerlink&quot; title=&quot;What Every C Programmer Should Know About Undefined Behavior&quot;&gt;&lt;/a&gt;&lt;a href=&quot;http://blog.llvm.org/2011/05/what-every-c-programmer-should-know_14.html&quot;&gt;What Every C Programmer Should Know About Undefined Behavior&lt;/a&gt;&lt;/h3&gt;&lt;p&gt;Some “gotchas” and pitfalls in the C programming language and how sometimes compiler optimizations can make it worse. Long story short is, steer away from undefined behaviors.&lt;/p&gt;
+&lt;p&gt;This post is from Chris Lattner himeself. Really nice article.&lt;/p&gt;
+&lt;h1 id=&quot;Python&quot;&gt;&lt;a href=&quot;#Python&quot; class=&quot;headerlink&quot; title=&quot;Python&quot;&gt;&lt;/a&gt;Python&lt;/h1&gt;&lt;h3 id=&quot;Python-Has-Big-Impact-At-Red-Hat&quot;&gt;&lt;a href=&quot;#Python-Has-Big-Impact-At-Red-Hat&quot; class=&quot;headerlink&quot; title=&quot;Python Has Big Impact At Red Hat&quot;&gt;&lt;/a&gt;&lt;a href=&quot;http://community.redhat.com/blog/2016/12/python-has-big-impact-at-red-hat/&quot;&gt;Python Has Big Impact At Red Hat&lt;/a&gt;&lt;/h3&gt;&lt;p&gt;Why Python is such a cool language and how Python is used in Redhat. Most of redhat’s important infrastructure is written in Python, including but not limited to &lt;code&gt;firewalld&lt;/code&gt;, &lt;code&gt;yum&lt;/code&gt;, and its successor &lt;code&gt;dnf&lt;/code&gt;, and many cloud PaaS tools for OpenShift.&lt;/p&gt;
+    
+    </summary>
+    
+      <category term="Reading" scheme="https://blog.kevinhu.me/categories/Reading/"/>
+    
+    
+      <category term="Undefined Behavior" scheme="https://blog.kevinhu.me/tags/Undefined-Behavior/"/>
+    
+      <category term="C/C++" scheme="https://blog.kevinhu.me/tags/C-C/"/>
+    
+      <category term="Python" scheme="https://blog.kevinhu.me/tags/Python/"/>
+    
+      <category term="Compilers" scheme="https://blog.kevinhu.me/tags/Compilers/"/>
+    
+  </entry>
   
   <entry>
     <title>Reading Summary 2016-11</title>
@@ -291,7 +337,7 @@
     <link href="https://blog.kevinhu.me/2015/10/24/Reading-Summary-in-2015-10/"/>
     <id>https://blog.kevinhu.me/2015/10/24/Reading-Summary-in-2015-10/</id>
     <published>2015-10-24T06:38:05.000Z</published>
-    <updated>2016-05-06T05:51:16.804Z</updated>
+    <updated>2017-01-09T06:19:50.490Z</updated>
     
     <content type="html">&lt;h1 id=&quot;Compilers&quot;&gt;&lt;a href=&quot;#Compilers&quot; class=&quot;headerlink&quot; title=&quot;Compilers&quot;&gt;&lt;/a&gt;Compilers&lt;/h1&gt;&lt;h3 id=&quot;Troubles-with-GCC-signed-integer-overflow-optimization&quot;&gt;&lt;a href=&quot;#Troubles-with-GCC-signed-integer-overflow-optimization&quot; class=&quot;headerlink&quot; title=&quot;Troubles with GCC signed integer overflow optimization&quot;&gt;&lt;/a&gt;&lt;a href=&quot;http://thiemonagel.de/2010/01/signed-integer-overflow/&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;Troubles with GCC signed integer overflow optimization&lt;/a&gt;&lt;/h3&gt;&lt;h3 id=&quot;BUG-30475-assert-int-100-gt-int-optimized-away&quot;&gt;&lt;a href=&quot;#BUG-30475-assert-int-100-gt-int-optimized-away&quot; class=&quot;headerlink&quot; title=&quot;BUG 30475 - assert(int+100&amp;gt;int) optimized away&quot;&gt;&lt;/a&gt;&lt;a href=&quot;https://gcc.gnu.org/bugzilla/show_bug.cgi?id=30475&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;BUG 30475 - assert(int+100&amp;gt;int) optimized away&lt;/a&gt;&lt;/h3&gt;&lt;p&gt;An interesting ‘bug’ in some versions of GCC (and Clang as well) implementation. Since it’s &lt;strong&gt;‘undefined’&lt;/strong&gt; behavior after all, compiler is not obliged to implement it as a defined behavior. Use &lt;code&gt;-fwrapv&lt;/code&gt; flag in GCC to inform the compiler that integer value wraps.&lt;/p&gt;
 &lt;h1 id=&quot;Python&quot;&gt;&lt;a href=&quot;#Python&quot; class=&quot;headerlink&quot; title=&quot;Python&quot;&gt;&lt;/a&gt;Python&lt;/h1&gt;&lt;h3 id=&quot;Profiling-Python-in-Production&quot;&gt;&lt;a href=&quot;#Profiling-Python-in-Production&quot; class=&quot;headerlink&quot; title=&quot;Profiling Python in Production&quot;&gt;&lt;/a&gt;&lt;a href=&quot;https://nylas.com/blog/performance&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;Profiling Python in Production&lt;/a&gt;&lt;/h3&gt;&lt;p&gt;Signal timeout for every small amount of time (say, 1ms in this case) and record the current stack, and we can infer time spent in each function precisely enough. A smart way of profiling large Python programs.&lt;/p&gt;
@@ -308,7 +354,9 @@
       <category term="Reading" scheme="https://blog.kevinhu.me/categories/Reading/"/>
     
     
-      <category term="Python, Compilers" scheme="https://blog.kevinhu.me/tags/Python-Compilers/"/>
+      <category term="Python" scheme="https://blog.kevinhu.me/tags/Python/"/>
+    
+      <category term="Compilers" scheme="https://blog.kevinhu.me/tags/Compilers/"/>
     
   </entry>
   

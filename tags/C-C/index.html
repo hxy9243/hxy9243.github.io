@@ -3,18 +3,17 @@
 <head>
   <meta charset="utf-8">
   
-  <title>A Small Discovery In C Linker | Kevin Hu&#39;s Blog</title>
+  <title>Tag: C/C++ | Kevin Hu&#39;s Blog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="C language is an old-school programming language, learned by almost all professional programmers. Still, it never failed to surprise me each time I dig in a little deeper, as it’s full of small detail">
-<meta property="og:type" content="article">
-<meta property="og:title" content="A Small Discovery In C Linker">
-<meta property="og:url" content="https://blog.kevinhu.me/2015/04/16/A-Small-Discovery-In-C/index.html">
+  <meta name="description">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Kevin Hu's Blog">
+<meta property="og:url" content="https://blog.kevinhu.me/tags/C-C/index.html">
 <meta property="og:site_name" content="Kevin Hu's Blog">
-<meta property="og:description" content="C language is an old-school programming language, learned by almost all professional programmers. Still, it never failed to surprise me each time I dig in a little deeper, as it’s full of small detail">
-<meta property="og:updated_time" content="2016-05-06T05:51:16.804Z">
+<meta property="og:description">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="A Small Discovery In C Linker">
-<meta name="twitter:description" content="C language is an old-school programming language, learned by almost all professional programmers. Still, it never failed to surprise me each time I dig in a little deeper, as it’s full of small detail">
+<meta name="twitter:title" content="Kevin Hu's Blog">
+<meta name="twitter:description">
   
     <link rel="alternative" href="/atom.xml" title="Kevin Hu&#39;s Blog" type="application/atom+xml">
   
@@ -79,14 +78,16 @@ ga('send', 'pageview');
   </div>
 </header>
       <div class="outer">
-        <section id="main"><article id="post-A-Small-Discovery-In-C" class="article article-type-post" itemscope itemprop="blogPost">
+        <section id="main">
+  
+    <article id="post-Reading-Summary-2016-12" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
-    <a href="/2015/04/16/A-Small-Discovery-In-C/" class="article-date">
-  <time datetime="2015-04-17T04:01:33.000Z" itemprop="datePublished">04 16 2015</time>
+    <a href="/2017/01/08/Reading-Summary-2016-12/" class="article-date">
+  <time datetime="2017-01-09T05:15:00.000Z" itemprop="datePublished">01 08 2017</time>
 </a>
     
   <div class="article-category">
-    <a class="article-category-link" href="/categories/ProgrammingLanguage/">ProgrammingLanguage</a>
+    <a class="article-category-link" href="/categories/Reading/">Reading</a>
   </div>
 
   </div>
@@ -96,8 +97,8 @@ ga('send', 'pageview');
       <header class="article-header">
         
   
-    <h1 class="article-title" itemprop="name">
-      A Small Discovery In C Linker
+    <h1 itemprop="name">
+      <a class="article-title" href="/2017/01/08/Reading-Summary-2016-12/">Reading Summary 2016-12</a>
     </h1>
   
 
@@ -105,71 +106,32 @@ ga('send', 'pageview');
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>C language is an old-school programming language, learned by almost all professional programmers. Still, it never failed to surprise me each time I dig in a little deeper, as it’s full of small details, some hardly noticed, such as this one I recently discovered by accident.</p>
-<a id="more"></a>
-<p>Consider the following two C files:</p>
-<p>foo.c:</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">void foo(int c, int d, int e)</span><br><span class="line">&#123;</span><br><span class="line">    printf(&quot;The param is %d, %d, %d\n&quot;, c, d, e);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>main.c:</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">int foo(char c);</span><br><span class="line"></span><br><span class="line">int main()</span><br><span class="line">&#123;</span><br><span class="line">    int a = foo(100);</span><br><span class="line"></span><br><span class="line">    printf(&quot;The return value of foo is %d\n&quot;, a);</span><br><span class="line"></span><br><span class="line">    return 0;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>At first sight, you’d probably laugh and think: “What the heck is this? There are some very elementary mistakes that a CS101 student wouldn’t even make. They definitely wouldn’t compile.”</p>
-<p>Is it really so?</p>
-<p>Try the following command to compile them:</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ gcc hello.c foo.c -o hello</span><br></pre></td></tr></table></figure>
-<p>Or if you’re an LLVM fan:</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ clang hello.c foo.c -o hello</span><br></pre></td></tr></table></figure>
-<p>How do they complain?</p>
-<p>None. I’ve tested this on my Linux Ubuntu machine with gcc-4.8, gcc-4.9, and clang-3.5. None of them complained a thing. They got successfully compiled!</p>
-<p>Surprise? Not really. If you’re a expert in C and how compiler works, you’d think it’s quite normal. Well, I’m not. So I was quite astonished when I first saw this.</p>
-<p>Why would this happen? </p>
-<p>Well. Simply put, it’s because C linkers don’t do type checking for functions. C files are first compiled into object files, exposing external symbol names for the linker. In this particular case, <code>main.c</code> exposes <code>main</code> function definition and <code>foo</code> function declaration, and <code>foo.c</code> exposes <code>foo</code> function definition. When the C linker notice <code>foo</code> is only a declaration in <code>main.c</code>, it would search for its definitions in all the externally exposed symbols in all object files, and it finds a hit in the object file that <code>foo.c</code> compiles to. As the function symbol in the object file records function names only, no return type or parameter type checking is done. The linker happily accepts this unmatching <code>foo</code> as a match and use it in main function.</p>
-<p>Somehow, C++ does name mangling to preserve function types and any type unmatching for functions could be avoided. This won’t compile for any C++ compilers. Try g++ or clang++. Some other compilers or IDEs with static checkings may also notice this error.</p>
-<p>So, what would happen if you actually run it?</p>
-<p>I got the following results in one run:</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">The param is 100, -1549285384, -1549285368</span><br><span class="line">The return value of foo is 43</span><br></pre></td></tr></table></figure>
-<p>It’s easy to understand the 100 output. The following two shall be the value of d and e. And as <code>main</code> doesn’t pass any parameters, the <code>foo</code> function will happily read whatever on the program stack where these two parameters should be. And in this case, it shall be garbage.</p>
-<p>And what about that 43 returned from the <code>foo</code> function? That doesn’t look like garbage. Actually if you run this broken piece of program for enough times, you’ll notice this value is always somewhat around 30~50. So this mysterious number could be something more than garbage. Is it the meaning to your life? No, that’s 42. Is it something <a href="http://bigbangtheory.wikia.com/wiki/The_43_Peculiarity" target="_blank" rel="external">on the wall of Sheldon’s secret room</a>? Probably.</p>
-<p>So what is it exactly?</p>
-<p>After poking around in gdb for a while, I confirmed my guess that this is actually the return value of <code>printf</code> inside of <code>foo</code>. As on x86 machines, most of the time C program uses <code>eax</code> register to carry return values, <code>main</code> function loads <code>a</code>‘s value from <code>eax</code> when it tries to read the return value of <code>foo</code>. As <code>foo</code> has void return type, this register is untampered after return of <code>printf</code> inside <code>foo</code>, and saved directly to integer <code>a</code> in <code>main</code>.</p>
-<p>The following is the dump inside gdb. This time I have 31 as <code>foo</code>‘s return value.</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">Run till exit from #0  __printf (format=0x400637 &quot;The param is %d, %d, %d\n&quot;) at printf.c:32</span><br><span class="line">The param is 100, -7816, -7800</span><br><span class="line">foo (c=100, d=-7816, e=-7800) at foo.c:6</span><br><span class="line">6       &#125;</span><br><span class="line">Value returned is $1 = 31</span><br><span class="line">(gdb) info registers</span><br><span class="line">info registers</span><br><span class="line">rax            0x1f     31</span><br><span class="line">rbx            0x0      0</span><br><span class="line">rcx            0x1e     30</span><br><span class="line">(gdb) info register eax</span><br><span class="line">info register eax</span><br><span class="line">eax            0x1f     31</span><br></pre></td></tr></table></figure>
-<p>We all know the return value of <code>printf</code> is the number of characters written to the stdout. So, the mysterious return value is actually the number of characters printed out in the first sentence. You can count to confirm, and don’t forget the return character.</p>
-<h2 id="Afterthoughts"><a href="#Afterthoughts" class="headerlink" title="Afterthoughts"></a>Afterthoughts</h2><p>I remember someone joked that C is but a high-level syntax sugar for assembly. Now it looks to me that it’s also low level enough that it exposes lots of features in assembly. It’s never an easy task to understand all these very little details of C, as well as any other languages, but it’s probably a must if one wishes to become a qualified programmer in it.</p>
-
+        <h1 id="C-C"><a href="#C-C" class="headerlink" title="C/C++"></a>C/C++</h1><h3 id="How-to-find-size-of-an-array-in-C-without-sizeof"><a href="#How-to-find-size-of-an-array-in-C-without-sizeof" class="headerlink" title="How to find size of an array in C without sizeof"></a><a href="http://arjunsreedharan.org/post/69303442896/the-difference-between-arr-and-arr-how-to-find">How to find size of an array in C without sizeof</a></h3><p>The difference between arr and &amp;arr - basically, arr is of type int <em>, and &amp;arr is of type (int </em>)[size].</p>
+<p>Very excellent article on the fundamentals of C/C++!</p>
+<h3 id="What-Every-C-Programmer-Should-Know-About-Undefined-Behavior"><a href="#What-Every-C-Programmer-Should-Know-About-Undefined-Behavior" class="headerlink" title="What Every C Programmer Should Know About Undefined Behavior"></a><a href="http://blog.llvm.org/2011/05/what-every-c-programmer-should-know_14.html">What Every C Programmer Should Know About Undefined Behavior</a></h3><p>Some “gotchas” and pitfalls in the C programming language and how sometimes compiler optimizations can make it worse. Long story short is, steer away from undefined behaviors.</p>
+<p>This post is from Chris Lattner himeself. Really nice article.</p>
+<h1 id="Python"><a href="#Python" class="headerlink" title="Python"></a>Python</h1><h3 id="Python-Has-Big-Impact-At-Red-Hat"><a href="#Python-Has-Big-Impact-At-Red-Hat" class="headerlink" title="Python Has Big Impact At Red Hat"></a><a href="http://community.redhat.com/blog/2016/12/python-has-big-impact-at-red-hat/">Python Has Big Impact At Red Hat</a></h3><p>Why Python is such a cool language and how Python is used in Redhat. Most of redhat’s important infrastructure is written in Python, including but not limited to <code>firewalld</code>, <code>yum</code>, and its successor <code>dnf</code>, and many cloud PaaS tools for OpenShift.</p>
+        
+          <p class="article-more-link">
+            <a href="/2017/01/08/Reading-Summary-2016-12/#more">Read More</a>
+          </p>
+        
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://blog.kevinhu.me/2015/04/16/A-Small-Discovery-In-C/" data-id="ciw1oy4or000sl1r4wkedaduq" class="article-share-link">Share</a>
+      <a data-url="https://blog.kevinhu.me/2017/01/08/Reading-Summary-2016-12/" data-id="cixpp1f3t0000jhr4pkqps05l" class="article-share-link">Share</a>
       
       
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/C/">C</a></li></ul>
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/C-C/">C/C++</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Compilers/">Compilers</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Python/">Python</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Undefined-Behavior/">Undefined Behavior</a></li></ul>
 
     </footer>
   </div>
   
-    
-<nav id="article-nav">
-  
-    <a href="/2015/10/24/Reading-Summary-in-2015-10/" id="article-nav-newer" class="article-nav-link-wrap">
-      <strong class="article-nav-caption">Newer</strong>
-      <div class="article-nav-title">
-        
-          Reading Summary in 2015/10
-        
-      </div>
-    </a>
-  
-  
-    <a href="/2015/03/07/Bithacks/" id="article-nav-older" class="article-nav-link-wrap">
-      <strong class="article-nav-caption">Older</strong>
-      <div class="article-nav-title">BitHacks</div>
-    </a>
-  
-</nav>
-
-  
 </article>
 
+
+  
+  
 </section>
         
           <aside id="sidebar">
