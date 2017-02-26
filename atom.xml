@@ -873,9 +873,9 @@ a := 10
       <category term="CodeReading" scheme="https://blog.kevinhu.me/categories/CodeReading/"/>
     
     
-      <category term="CodeReading" scheme="https://blog.kevinhu.me/tags/CodeReading/"/>
-    
       <category term="Password" scheme="https://blog.kevinhu.me/tags/Password/"/>
+    
+      <category term="CodeReading" scheme="https://blog.kevinhu.me/tags/CodeReading/"/>
     
   </entry>
   
@@ -998,9 +998,9 @@ lib/sgetspent.c
       <category term="CodeReading" scheme="https://blog.kevinhu.me/categories/CodeReading/"/>
     
     
-      <category term="CodeReading" scheme="https://blog.kevinhu.me/tags/CodeReading/"/>
-    
       <category term="Password" scheme="https://blog.kevinhu.me/tags/Password/"/>
+    
+      <category term="CodeReading" scheme="https://blog.kevinhu.me/tags/CodeReading/"/>
     
   </entry>
   
