@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://blog.kevinhu.me/"/>
-  <updated>2017-02-24T06:49:13.354Z</updated>
+  <updated>2017-03-27T02:30:08.047Z</updated>
   <id>https://blog.kevinhu.me/</id>
   
   <author>
@@ -14,6 +14,37 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Reading Summary 2017-03</title>
+    <link href="https://blog.kevinhu.me/2017/03/26/Reading-Summary-2017-03/"/>
+    <id>https://blog.kevinhu.me/2017/03/26/Reading-Summary-2017-03/</id>
+    <published>2017-03-27T02:14:00.000Z</published>
+    <updated>2017-03-27T02:30:08.047Z</updated>
+    
+    <content type="html"><![CDATA[<h1 id="Programming"><a href="#Programming" class="headerlink" title="Programming"></a>Programming</h1><h3 id="Episode-51-Mechanics-of-Building-a-Carpooling-Service-Introduction"><a href="#Episode-51-Mechanics-of-Building-a-Carpooling-Service-Introduction" class="headerlink" title="Episode #51 - Mechanics of Building a Carpooling Service - Introduction"></a><a href="https://sysadmincasts.com/episodes/51-mechanics-of-building-a-carpooling-service-introduction" target="_blank" rel="external">Episode #51 - Mechanics of Building a Carpooling Service - Introduction</a></h3><p>Sysadmin Casts is back again, and this time with more stuff: how to turn an idea into a MVP.</p>
+<h1 id="Technology"><a href="#Technology" class="headerlink" title="Technology"></a>Technology</h1><h3 id="Technology-Review-10-Breakthroughs-Technologies-2016"><a href="#Technology-Review-10-Breakthroughs-Technologies-2016" class="headerlink" title="Technology Review: 10 Breakthroughs Technologies 2016"></a><a href="https://www.technologyreview.com/lists/technologies/2016/" target="_blank" rel="external">Technology Review: 10 Breakthroughs Technologies 2016</a></h3><p>Artificial Intelligence for better conversational interfaces, Elon Musk’s companies, and biological technologies are back to people’s attention again.</p>
+<a id="more"></a>
+<h3 id="12½-Great-YouTube-Channels-For-Entrepreneurs"><a href="#12½-Great-YouTube-Channels-For-Entrepreneurs" class="headerlink" title="12½ Great YouTube Channels For Entrepreneurs"></a><a href="https://blog.yalabot.com/i-got-sick-of-commoditized-content-for-entrepreneurs-heres-what-i-started-watching-instead-cdf9a5b28652#.ovebbjiaj" target="_blank" rel="external">12½ Great YouTube Channels For Entrepreneurs</a></h3><p>YouTube channels for inspirations.</p>
+<h3 id="Can-FPGA-Beat-GPUs-In-Accelerating-Next-Generation-Deep-Learning"><a href="#Can-FPGA-Beat-GPUs-In-Accelerating-Next-Generation-Deep-Learning" class="headerlink" title="Can FPGA Beat GPUs In Accelerating Next-Generation Deep Learning?"></a><a href="https://www.nextplatform.com/2017/03/21/can-fpgas-beat-gpus-accelerating-next-generation-deep-learning/" target="_blank" rel="external">Can FPGA Beat GPUs In Accelerating Next-Generation Deep Learning?</a></h3><p>Why FPGAs still have a shot.</p>
+<h1 id="Social"><a href="#Social" class="headerlink" title="Social"></a>Social</h1><h3 id="What-if-Sociologists-Had-as-Much-Influence-as-Economists"><a href="#What-if-Sociologists-Had-as-Much-Influence-as-Economists" class="headerlink" title="What if Sociologists Had as Much Influence as Economists?"></a><a href="https://mobile.nytimes.com/2017/03/17/upshot/what-if-sociologists-had-as-much-influence-as-economists.html?smid=tw-nytimes&amp;smtyp=cur&amp;referer=https://t.co/DuJskMsbQf" target="_blank" rel="external">What if Sociologists Had as Much Influence as Economists?</a></h3><h3 id="Write-Good"><a href="#Write-Good" class="headerlink" title="Write Good"></a><a href="https://github.com/btford/write-good" target="_blank" rel="external">Write Good</a></h3><p>An interesting tool for better writing, including <a href="https://en.wikipedia.org/wiki/Flesch%E2%80%93Kincaid_readability_tests" target="_blank" rel="external">Flesch–Kincaid readability tests</a> and pointing out <a href="https://en.wikipedia.org/wiki/Weasel_word" target="_blank" rel="external">Weasel Words</a>.</p>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;h1 id=&quot;Programming&quot;&gt;&lt;a href=&quot;#Programming&quot; class=&quot;headerlink&quot; title=&quot;Programming&quot;&gt;&lt;/a&gt;Programming&lt;/h1&gt;&lt;h3 id=&quot;Episode-51-Mechanics-of-Building-a-Carpooling-Service-Introduction&quot;&gt;&lt;a href=&quot;#Episode-51-Mechanics-of-Building-a-Carpooling-Service-Introduction&quot; class=&quot;headerlink&quot; title=&quot;Episode #51 - Mechanics of Building a Carpooling Service - Introduction&quot;&gt;&lt;/a&gt;&lt;a href=&quot;https://sysadmincasts.com/episodes/51-mechanics-of-building-a-carpooling-service-introduction&quot;&gt;Episode #51 - Mechanics of Building a Carpooling Service - Introduction&lt;/a&gt;&lt;/h3&gt;&lt;p&gt;Sysadmin Casts is back again, and this time with more stuff: how to turn an idea into a MVP.&lt;/p&gt;
+&lt;h1 id=&quot;Technology&quot;&gt;&lt;a href=&quot;#Technology&quot; class=&quot;headerlink&quot; title=&quot;Technology&quot;&gt;&lt;/a&gt;Technology&lt;/h1&gt;&lt;h3 id=&quot;Technology-Review-10-Breakthroughs-Technologies-2016&quot;&gt;&lt;a href=&quot;#Technology-Review-10-Breakthroughs-Technologies-2016&quot; class=&quot;headerlink&quot; title=&quot;Technology Review: 10 Breakthroughs Technologies 2016&quot;&gt;&lt;/a&gt;&lt;a href=&quot;https://www.technologyreview.com/lists/technologies/2016/&quot;&gt;Technology Review: 10 Breakthroughs Technologies 2016&lt;/a&gt;&lt;/h3&gt;&lt;p&gt;Artificial Intelligence for better conversational interfaces, Elon Musk’s companies, and biological technologies are back to people’s attention again.&lt;/p&gt;
+    
+    </summary>
+    
+      <category term="Reading" scheme="https://blog.kevinhu.me/categories/Reading/"/>
+    
+    
+      <category term="Python" scheme="https://blog.kevinhu.me/tags/Python/"/>
+    
+      <category term="C/C++" scheme="https://blog.kevinhu.me/tags/C-C/"/>
+    
+  </entry>
   
   <entry>
     <title>Reading Summary 2016-12</title>
@@ -873,9 +904,9 @@ a := 10
       <category term="CodeReading" scheme="https://blog.kevinhu.me/categories/CodeReading/"/>
     
     
-      <category term="Password" scheme="https://blog.kevinhu.me/tags/Password/"/>
-    
       <category term="CodeReading" scheme="https://blog.kevinhu.me/tags/CodeReading/"/>
+    
+      <category term="Password" scheme="https://blog.kevinhu.me/tags/Password/"/>
     
   </entry>
   
@@ -998,9 +1029,9 @@ lib/sgetspent.c
       <category term="CodeReading" scheme="https://blog.kevinhu.me/categories/CodeReading/"/>
     
     
-      <category term="Password" scheme="https://blog.kevinhu.me/tags/Password/"/>
-    
       <category term="CodeReading" scheme="https://blog.kevinhu.me/tags/CodeReading/"/>
+    
+      <category term="Password" scheme="https://blog.kevinhu.me/tags/Password/"/>
     
   </entry>
   
