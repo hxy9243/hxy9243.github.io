@@ -3,21 +3,21 @@
 <head>
   <meta charset="utf-8">
   
-  <title>What Parsers Are They Using? | Kevin Hu&#39;s Blog</title>
+  <title>Reading Summary 2017-06 | Kevin Hu&#39;s Blog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="This is a quite boring post on programming language trivia, which doesn’t dig into anything deep.
-GCC and ClangThe GCC is mostly implemented in C, and used to use Bison for parser generation, accordin">
+  <meta name="description" content="It’s been a while since I ever post a reading summary never mention a new blog post. Writing is a time demanding job.
+Society and TechnologyWhy do we manage academia so badly?“Managers want metrics th">
 <meta property="og:type" content="article">
-<meta property="og:title" content="What Parsers Are They Using?">
-<meta property="og:url" content="https://blog.kevinhu.me/2014/11/24/24-what-parsers-are-they-using/index.html">
+<meta property="og:title" content="Reading Summary 2017-06">
+<meta property="og:url" content="https://blog.kevinhu.me/2017/06/11/Reading-Summary-2017-06/index.html">
 <meta property="og:site_name" content="Kevin Hu's Blog">
-<meta property="og:description" content="This is a quite boring post on programming language trivia, which doesn’t dig into anything deep.
-GCC and ClangThe GCC is mostly implemented in C, and used to use Bison for parser generation, accordin">
-<meta property="og:updated_time" content="2017-02-24T06:49:13.350Z">
+<meta property="og:description" content="It’s been a while since I ever post a reading summary never mention a new blog post. Writing is a time demanding job.
+Society and TechnologyWhy do we manage academia so badly?“Managers want metrics th">
+<meta property="og:updated_time" content="2017-06-12T01:56:59.199Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="What Parsers Are They Using?">
-<meta name="twitter:description" content="This is a quite boring post on programming language trivia, which doesn’t dig into anything deep.
-GCC and ClangThe GCC is mostly implemented in C, and used to use Bison for parser generation, accordin">
+<meta name="twitter:title" content="Reading Summary 2017-06">
+<meta name="twitter:description" content="It’s been a while since I ever post a reading summary never mention a new blog post. Writing is a time demanding job.
+Society and TechnologyWhy do we manage academia so badly?“Managers want metrics th">
   
     <link rel="alternative" href="/atom.xml" title="Kevin Hu&#39;s Blog" type="application/atom+xml">
   
@@ -82,14 +82,14 @@ ga('send', 'pageview');
   </div>
 </header>
       <div class="outer">
-        <section id="main"><article id="post-24-what-parsers-are-they-using" class="article article-type-post" itemscope itemprop="blogPost">
+        <section id="main"><article id="post-Reading-Summary-2017-06" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
-    <a href="/2014/11/24/24-what-parsers-are-they-using/" class="article-date">
-  <time datetime="2014-11-24T23:29:00.000Z" itemprop="datePublished">11 24 2014</time>
+    <a href="/2017/06/11/Reading-Summary-2017-06/" class="article-date">
+  <time datetime="2017-06-12T00:54:11.000Z" itemprop="datePublished">06 11 2017</time>
 </a>
     
   <div class="article-category">
-    <a class="article-category-link" href="/categories/ProgrammingLanguage/">ProgrammingLanguage</a>
+    <a class="article-category-link" href="/categories/Reading/">Reading</a>
   </div>
 
   </div>
@@ -100,7 +100,7 @@ ga('send', 'pageview');
         
   
     <h1 class="article-title" itemprop="name">
-      What Parsers Are They Using?
+      Reading Summary 2017-06
     </h1>
   
 
@@ -108,51 +108,43 @@ ga('send', 'pageview');
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>This is a <del>quite boring</del> post on programming language trivia, which doesn’t dig into anything deep.</p>
-<h2 id="GCC-and-Clang"><a href="#GCC-and-Clang" class="headerlink" title="GCC and Clang"></a>GCC and Clang</h2><p>The GCC is mostly implemented in C, and used to use Bison for parser generation, according to its <a href="http://en.wikipedia.org/wiki/GNU_bison" target="_blank" rel="external">Wikipedia page</a>.<br>By default, it generates right recursive table driven LALR parser.<br><a id="more"></a></p>
-<p>Somehow according to the <a href="http://en.wikipedia.org/wiki/GNU_bison#Where_is_it_used.3F" target="_blank" rel="external">same page</a>, GCC has switched to <a href="http://dinosaur.compilertools.net/yacc/" target="_blank" rel="external">YACC</a> before now switching to a hand-written recursive-descent parser for C/C++/Objective C. This could also be seen from GCC release notes <a href="https://gcc.gnu.org/gcc-3.4/changes.html#cplusplus" target="_blank" rel="external">3.4</a> and <a href="https://gcc.gnu.org/gcc-4.1/changes.html" target="_blank" rel="external">4.1</a>. </p>
-<p>Clang, as well as LLVM is implemented in C++. It also uses a unified recursive-descent parser for C, Objective C, C++ and Objective C++, according to the <a href="http://clang.llvm.org/features.html" target="_blank" rel="external">LLVM Clang Page</a>. Both GCC and Clang now uses recursive-descent parser, claiming it provides with faster speed. On Clang page, it also states recursive-descent parser:</p>
-<blockquote>
-<p> … makes it very easy for new developers to understand the code, it easily supports ad-hoc rules and other strange hacks required by C/C++, and makes it straight-forward to implement excellent diagnostics and error recovery.</p>
-</blockquote>
-<h2 id="Python"><a href="#Python" class="headerlink" title="Python"></a>Python</h2><p>Here Python refers to the CPython implementation. In its repo under <a href="https://github.com/python/cpython/tree/master/Parser" target="_blank" rel="external">“Parser” directory</a>, it could be seen CPython actually uses <a href="http://asdl.sourceforge.net/" target="_blank" rel="external">Zephyr ASDL</a> for syntax description. Zyphyr ASDL is also described in its <a href="https://www.cs.princeton.edu/research/techreps/TR-554-97" target="_blank" rel="external">Princeton CS Dept. Page</a>.</p>
-<p>Python uses LL(1) grammar. Its AST file (Python-ast.c) isgenerated according to the ASDL description of the language. The detailed process is described in <a href="http://legacy.python.org/dev/peps/pep-0339/" target="_blank" rel="external">PEP339</a>.</p>
-<h2 id="Ruby"><a href="#Ruby" class="headerlink" title="Ruby"></a>Ruby</h2><p>Ruby MRI is implemented in C. According to <a href="http://en.wikipedia.org/wiki/GNU_bison#Where_is_it_used.3F" target="_blank" rel="external">Bison Wikipedia Page</a>, Ruby also uses Bison for the parser generation, which should be a right-recursive parser. </p>
-<p>The source code for parser and syntax could be found in <a href="https://github.com/ruby/ruby/blob/trunk/parse.y" target="_blank" rel="external">its repo</a>.</p>
-<h2 id="JavaScript"><a href="#JavaScript" class="headerlink" title="JavaScript"></a>JavaScript</h2><p>JavaScript v8 is implemented in C++. It claims to be using a hand-written top-down parser, according to <a href="http://www.quora.com/What-are-the-parsing-techniques-used-by-modern-compilers" target="_blank" rel="external">this Quora post</a>.</p>
-<p>I have no time to dig in its code base at the moment. Also it’s not in the scope of this post.</p>
-<h2 id="Haskell"><a href="#Haskell" class="headerlink" title="Haskell"></a>Haskell</h2><p>According to the <a href="http://www.quora.com/What-are-the-parsing-techniques-used-by-modern-compilers" target="_blank" rel="external">Quora post above</a>, GHC uses a generator called <a href="https://www.haskell.org/happy/" target="_blank" rel="external">Happy</a>. From its official website, it looks like it’s first created to generate parser specifically for GHC.</p>
-<p>Its syntax is defined in its codebase directory <a href="https://github.com/ghc/ghc/tree/master/compiler/parser" target="_blank" rel="external">“compiler/parser/Parser.y”</a>.</p>
-<h2 id="Julia"><a href="#Julia" class="headerlink" title="Julia"></a>Julia</h2><p>Interestingly, after searching a while in its <a href="https://github.com/JuliaLang/julia/tree/master/src" target="_blank" rel="external">GitHub codebase</a>, I found that Julia actually uses Scheme for its<br>frontend and parser. Although most its other source files are in C.</p>
-<p>It looks like it also uses a recursive-descent parser.</p>
-<h2 id="Golang"><a href="#Golang" class="headerlink" title="Golang"></a>Golang</h2><p>Golang parser is now implemented in Golang itself now. (Wow!) Not only that, most Golang implementation is in Go, according to its <a href="https://github.com/jnwhiteh/golang" target="_blank" rel="external">Github mirror repo</a>. By the time I checked it, it contains 75.7% Golang, 19.4% C, 3.0% Assembly, and 1.9% other.</p>
-<p>From its parser <a href="https://github.com/jnwhiteh/golang/blob/master/src/go/parser/parser.go" target="_blank" rel="external">source code</a>, it looks like it also uses a recursive-descent parser.</p>
+        <p>It’s been a while since I ever post a reading summary never mention a new blog post. Writing is a time demanding job.</p>
+<h1 id="Society-and-Technology"><a href="#Society-and-Technology" class="headerlink" title="Society and Technology"></a>Society and Technology</h1><h3 id="Why-do-we-manage-academia-so-badly"><a href="#Why-do-we-manage-academia-so-badly" class="headerlink" title="Why do we manage academia so badly?"></a><a href="https://svpow.com/2017/03/22/why-do-we-manage-academia-so-badly/" target="_blank" rel="external">Why do we manage academia so badly?</a></h3><p><strong>“Managers want metrics that are easy to calculate, easy to understand, and quick to yield a value …<br>metrics with these desirable properties are almost always worse than useless.”</strong></p>
+<p>Easy metrics are also easily “hacked” - people “hack” the metrics to make statistics look good, while deviate from the original purpose of academia: to achieve good quality research.</p>
+<p>See also:</p>
+<p><a href="https://svpow.com/2017/03/17/every-attempt-to-manage-academia-makes-it-worse/" target="_blank" rel="external">Every attempt to manage academia makes it worse</a></p>
+<h3 id="Did-Reddit’s-April-Fool’s-gag-solve-the-issue-of-online-hate-speech"><a href="#Did-Reddit’s-April-Fool’s-gag-solve-the-issue-of-online-hate-speech" class="headerlink" title="Did Reddit’s April Fool’s gag solve the issue of online hate speech?"></a><a href="https://arstechnica.com/gaming/2017/04/in-memoriam-reddits-72-hour-live-graffiti-wall-as-a-social-experiment/" target="_blank" rel="external">Did Reddit’s April Fool’s gag solve the issue of online hate speech?</a></h3><p>An interesting, anarchic style experiment on Reddit: let thousands of Redditers draw a picture all at the same time, what would possibly happen? It turned out to be surprisingly good.</p>
+<h3 id="Tim-Berners-Lee-I-invented-the-web-Here-are-three-things-we-need-to-change-to-save-it"><a href="#Tim-Berners-Lee-I-invented-the-web-Here-are-three-things-we-need-to-change-to-save-it" class="headerlink" title="Tim Berners-Lee: I invented the web. Here are three things we need to change to save it"></a><a href="https://www.theguardian.com/technology/2017/mar/11/tim-berners-lee-web-inventor-save-internet" target="_blank" rel="external">Tim Berners-Lee: I invented the web. Here are three things we need to change to save it</a></h3><p>Tim Berners-Lee: The Father of the World Wide Web and Turing Award winner believes the web nowadays has serious flaws, namely the loss of control of personal privacy, rampant spreading of misinformation on the web, and manipulations from the political campaigns online. It took everyone to build the web we have today, and it takes everyone to fix it now.</p>
+<p>More reports and readings on Tim Berners-Lee:</p>
+<ul>
+<li><a href="https://www.theguardian.com/technology/2009/mar/11/berners-lee-internet-data" target="_blank" rel="external">Web inventor warns against third-party internet snooping</a></li>
+<li><a href="https://www.theguardian.com/technology/2017/apr/04/tim-berners-lee-online-privacy-interview-turing-award" target="_blank" rel="external">Tim Berners-Lee: selling private citizens’ browsing data is ‘disgusting’</a></li>
+<li><a href="https://www.w3.org/DesignIssues/GovData.html" target="_blank" rel="external">Putting Government Data Online</a></li>
+</ul>
+<a id="more"></a>
+<h3 id="Alan-Kay’s-Reading-List"><a href="#Alan-Kay’s-Reading-List" class="headerlink" title="Alan Kay’s Reading List"></a><a href="http://shelfjoy.com/shelfjoy/alan-kay-from-viewpoints-research-institute-recommends-his-reading-list-for-beginners" target="_blank" rel="external">Alan Kay’s Reading List</a></h3><p>Posted here again. He did so many tons of readings to get his insights on science, Computer Science, technology and society. It’s gonna be a long but joyful road.</p>
+<h3 id="You’re-Not-Going-To-Believe-What-I’m-About-To-Tell-You"><a href="#You’re-Not-Going-To-Believe-What-I’m-About-To-Tell-You" class="headerlink" title="You’re Not Going To Believe What I’m About To Tell You"></a><a href="http://theoatmeal.com/comics/believe" target="_blank" rel="external">You’re Not Going To Believe What I’m About To Tell You</a></h3><p>Lesson 101 for a netizen: handling viewpoints that contradict your own. A good read.</p>
+<h3 id="Crypto-Tokens-A-Breakthrough-in-Open-Network-Design"><a href="#Crypto-Tokens-A-Breakthrough-in-Open-Network-Design" class="headerlink" title="Crypto Tokens: A Breakthrough in Open Network Design"></a><a href="https://medium.com/@cdixon/crypto-tokens-a-breakthrough-in-open-network-design-e600975be2ef" target="_blank" rel="external">Crypto Tokens: A Breakthrough in Open Network Design</a></h3><p>How Ethereum and BlockChain technology may bring us a truly open, distributed Internet. Maybe.</p>
+<h3 id="I-got-tired-of-commoditized-content-for-entrepreneurs-Here’s-what-I-started-watching-instead"><a href="#I-got-tired-of-commoditized-content-for-entrepreneurs-Here’s-what-I-started-watching-instead" class="headerlink" title="I got tired of commoditized content for entrepreneurs. Here’s what I started watching instead."></a><a href="https://blog.yalabot.com/i-got-sick-of-commoditized-content-for-entrepreneurs-heres-what-i-started-watching-instead-cdf9a5b28652" target="_blank" rel="external">I got tired of commoditized content for entrepreneurs. Here’s what I started watching instead.</a></h3><p>A curated list of video courses/podcasts for entrepreneurs.</p>
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://blog.kevinhu.me/2014/11/24/24-what-parsers-are-they-using/" data-id="cj3tgt48f0006nggedtwyg5fm" class="article-share-link">Share</a>
+      <a data-url="https://blog.kevinhu.me/2017/06/11/Reading-Summary-2017-06/" data-id="cj3th06x20000zagep7nk1ghw" class="article-share-link">Share</a>
       
       
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Technology/">Technology</a></li></ul>
+
     </footer>
   </div>
   
     
 <nav id="article-nav">
   
-    <a href="/2015/01/03/Paper-Reading-Fundamental-Concepts-In-Programming-Languages/" id="article-nav-newer" class="article-nav-link-wrap">
-      <strong class="article-nav-caption">Newer</strong>
-      <div class="article-nav-title">
-        
-          Paper Reading - Fundamental Concepts In Programming Languages
-        
-      </div>
-    </a>
   
-  
-    <a href="/2014/10/31/31-more-on-passwd/" id="article-nav-older" class="article-nav-link-wrap">
+    <a href="/2017/03/26/Reading-Summary-2017-03/" id="article-nav-older" class="article-nav-link-wrap">
       <strong class="article-nav-caption">Older</strong>
-      <div class="article-nav-title">More On Passwd</div>
+      <div class="article-nav-title">Reading Summary 2017-03</div>
     </a>
   
 </nav>

@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://blog.kevinhu.me/"/>
-  <updated>2017-03-27T02:30:08.047Z</updated>
+  <updated>2017-06-12T01:56:59.199Z</updated>
   <id>https://blog.kevinhu.me/</id>
   
   <author>
@@ -14,6 +14,58 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Reading Summary 2017-06</title>
+    <link href="https://blog.kevinhu.me/2017/06/11/Reading-Summary-2017-06/"/>
+    <id>https://blog.kevinhu.me/2017/06/11/Reading-Summary-2017-06/</id>
+    <published>2017-06-12T00:54:11.000Z</published>
+    <updated>2017-06-12T01:56:59.199Z</updated>
+    
+    <content type="html"><![CDATA[<p>It’s been a while since I ever post a reading summary never mention a new blog post. Writing is a time demanding job.</p>
+<h1 id="Society-and-Technology"><a href="#Society-and-Technology" class="headerlink" title="Society and Technology"></a>Society and Technology</h1><h3 id="Why-do-we-manage-academia-so-badly"><a href="#Why-do-we-manage-academia-so-badly" class="headerlink" title="Why do we manage academia so badly?"></a><a href="https://svpow.com/2017/03/22/why-do-we-manage-academia-so-badly/" target="_blank" rel="external">Why do we manage academia so badly?</a></h3><p><strong>“Managers want metrics that are easy to calculate, easy to understand, and quick to yield a value …<br>metrics with these desirable properties are almost always worse than useless.”</strong></p>
+<p>Easy metrics are also easily “hacked” - people “hack” the metrics to make statistics look good, while deviate from the original purpose of academia: to achieve good quality research.</p>
+<p>See also:</p>
+<p><a href="https://svpow.com/2017/03/17/every-attempt-to-manage-academia-makes-it-worse/" target="_blank" rel="external">Every attempt to manage academia makes it worse</a></p>
+<h3 id="Did-Reddit’s-April-Fool’s-gag-solve-the-issue-of-online-hate-speech"><a href="#Did-Reddit’s-April-Fool’s-gag-solve-the-issue-of-online-hate-speech" class="headerlink" title="Did Reddit’s April Fool’s gag solve the issue of online hate speech?"></a><a href="https://arstechnica.com/gaming/2017/04/in-memoriam-reddits-72-hour-live-graffiti-wall-as-a-social-experiment/" target="_blank" rel="external">Did Reddit’s April Fool’s gag solve the issue of online hate speech?</a></h3><p>An interesting, anarchic style experiment on Reddit: let thousands of Redditers draw a picture all at the same time, what would possibly happen? It turned out to be surprisingly good.</p>
+<h3 id="Tim-Berners-Lee-I-invented-the-web-Here-are-three-things-we-need-to-change-to-save-it"><a href="#Tim-Berners-Lee-I-invented-the-web-Here-are-three-things-we-need-to-change-to-save-it" class="headerlink" title="Tim Berners-Lee: I invented the web. Here are three things we need to change to save it"></a><a href="https://www.theguardian.com/technology/2017/mar/11/tim-berners-lee-web-inventor-save-internet" target="_blank" rel="external">Tim Berners-Lee: I invented the web. Here are three things we need to change to save it</a></h3><p>Tim Berners-Lee: The Father of the World Wide Web and Turing Award winner believes the web nowadays has serious flaws, namely the loss of control of personal privacy, rampant spreading of misinformation on the web, and manipulations from the political campaigns online. It took everyone to build the web we have today, and it takes everyone to fix it now.</p>
+<p>More reports and readings on Tim Berners-Lee:</p>
+<ul>
+<li><a href="https://www.theguardian.com/technology/2009/mar/11/berners-lee-internet-data" target="_blank" rel="external">Web inventor warns against third-party internet snooping</a></li>
+<li><a href="https://www.theguardian.com/technology/2017/apr/04/tim-berners-lee-online-privacy-interview-turing-award" target="_blank" rel="external">Tim Berners-Lee: selling private citizens’ browsing data is ‘disgusting’</a></li>
+<li><a href="https://www.w3.org/DesignIssues/GovData.html" target="_blank" rel="external">Putting Government Data Online</a></li>
+</ul>
+<a id="more"></a>
+<h3 id="Alan-Kay’s-Reading-List"><a href="#Alan-Kay’s-Reading-List" class="headerlink" title="Alan Kay’s Reading List"></a><a href="http://shelfjoy.com/shelfjoy/alan-kay-from-viewpoints-research-institute-recommends-his-reading-list-for-beginners" target="_blank" rel="external">Alan Kay’s Reading List</a></h3><p>Posted here again. He did so many tons of readings to get his insights on science, Computer Science, technology and society. It’s gonna be a long but joyful road.</p>
+<h3 id="You’re-Not-Going-To-Believe-What-I’m-About-To-Tell-You"><a href="#You’re-Not-Going-To-Believe-What-I’m-About-To-Tell-You" class="headerlink" title="You’re Not Going To Believe What I’m About To Tell You"></a><a href="http://theoatmeal.com/comics/believe" target="_blank" rel="external">You’re Not Going To Believe What I’m About To Tell You</a></h3><p>Lesson 101 for a netizen: handling viewpoints that contradict your own. A good read.</p>
+<h3 id="Crypto-Tokens-A-Breakthrough-in-Open-Network-Design"><a href="#Crypto-Tokens-A-Breakthrough-in-Open-Network-Design" class="headerlink" title="Crypto Tokens: A Breakthrough in Open Network Design"></a><a href="https://medium.com/@cdixon/crypto-tokens-a-breakthrough-in-open-network-design-e600975be2ef" target="_blank" rel="external">Crypto Tokens: A Breakthrough in Open Network Design</a></h3><p>How Ethereum and BlockChain technology may bring us a truly open, distributed Internet. Maybe.</p>
+<h3 id="I-got-tired-of-commoditized-content-for-entrepreneurs-Here’s-what-I-started-watching-instead"><a href="#I-got-tired-of-commoditized-content-for-entrepreneurs-Here’s-what-I-started-watching-instead" class="headerlink" title="I got tired of commoditized content for entrepreneurs. Here’s what I started watching instead."></a><a href="https://blog.yalabot.com/i-got-sick-of-commoditized-content-for-entrepreneurs-heres-what-i-started-watching-instead-cdf9a5b28652" target="_blank" rel="external">I got tired of commoditized content for entrepreneurs. Here’s what I started watching instead.</a></h3><p>A curated list of video courses/podcasts for entrepreneurs.</p>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;It’s been a while since I ever post a reading summary never mention a new blog post. Writing is a time demanding job.&lt;/p&gt;
+&lt;h1 id=&quot;Society-and-Technology&quot;&gt;&lt;a href=&quot;#Society-and-Technology&quot; class=&quot;headerlink&quot; title=&quot;Society and Technology&quot;&gt;&lt;/a&gt;Society and Technology&lt;/h1&gt;&lt;h3 id=&quot;Why-do-we-manage-academia-so-badly&quot;&gt;&lt;a href=&quot;#Why-do-we-manage-academia-so-badly&quot; class=&quot;headerlink&quot; title=&quot;Why do we manage academia so badly?&quot;&gt;&lt;/a&gt;&lt;a href=&quot;https://svpow.com/2017/03/22/why-do-we-manage-academia-so-badly/&quot;&gt;Why do we manage academia so badly?&lt;/a&gt;&lt;/h3&gt;&lt;p&gt;&lt;strong&gt;“Managers want metrics that are easy to calculate, easy to understand, and quick to yield a value …&lt;br&gt;metrics with these desirable properties are almost always worse than useless.”&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;Easy metrics are also easily “hacked” - people “hack” the metrics to make statistics look good, while deviate from the original purpose of academia: to achieve good quality research.&lt;/p&gt;
+&lt;p&gt;See also:&lt;/p&gt;
+&lt;p&gt;&lt;a href=&quot;https://svpow.com/2017/03/17/every-attempt-to-manage-academia-makes-it-worse/&quot;&gt;Every attempt to manage academia makes it worse&lt;/a&gt;&lt;/p&gt;
+&lt;h3 id=&quot;Did-Reddit’s-April-Fool’s-gag-solve-the-issue-of-online-hate-speech&quot;&gt;&lt;a href=&quot;#Did-Reddit’s-April-Fool’s-gag-solve-the-issue-of-online-hate-speech&quot; class=&quot;headerlink&quot; title=&quot;Did Reddit’s April Fool’s gag solve the issue of online hate speech?&quot;&gt;&lt;/a&gt;&lt;a href=&quot;https://arstechnica.com/gaming/2017/04/in-memoriam-reddits-72-hour-live-graffiti-wall-as-a-social-experiment/&quot;&gt;Did Reddit’s April Fool’s gag solve the issue of online hate speech?&lt;/a&gt;&lt;/h3&gt;&lt;p&gt;An interesting, anarchic style experiment on Reddit: let thousands of Redditers draw a picture all at the same time, what would possibly happen? It turned out to be surprisingly good.&lt;/p&gt;
+&lt;h3 id=&quot;Tim-Berners-Lee-I-invented-the-web-Here-are-three-things-we-need-to-change-to-save-it&quot;&gt;&lt;a href=&quot;#Tim-Berners-Lee-I-invented-the-web-Here-are-three-things-we-need-to-change-to-save-it&quot; class=&quot;headerlink&quot; title=&quot;Tim Berners-Lee: I invented the web. Here are three things we need to change to save it&quot;&gt;&lt;/a&gt;&lt;a href=&quot;https://www.theguardian.com/technology/2017/mar/11/tim-berners-lee-web-inventor-save-internet&quot;&gt;Tim Berners-Lee: I invented the web. Here are three things we need to change to save it&lt;/a&gt;&lt;/h3&gt;&lt;p&gt;Tim Berners-Lee: The Father of the World Wide Web and Turing Award winner believes the web nowadays has serious flaws, namely the loss of control of personal privacy, rampant spreading of misinformation on the web, and manipulations from the political campaigns online. It took everyone to build the web we have today, and it takes everyone to fix it now.&lt;/p&gt;
+&lt;p&gt;More reports and readings on Tim Berners-Lee:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&quot;https://www.theguardian.com/technology/2009/mar/11/berners-lee-internet-data&quot;&gt;Web inventor warns against third-party internet snooping&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;https://www.theguardian.com/technology/2017/apr/04/tim-berners-lee-online-privacy-interview-turing-award&quot;&gt;Tim Berners-Lee: selling private citizens’ browsing data is ‘disgusting’&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;https://www.w3.org/DesignIssues/GovData.html&quot;&gt;Putting Government Data Online&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+    
+    </summary>
+    
+      <category term="Reading" scheme="https://blog.kevinhu.me/categories/Reading/"/>
+    
+    
+      <category term="Technology" scheme="https://blog.kevinhu.me/tags/Technology/"/>
+    
+  </entry>
   
   <entry>
     <title>Reading Summary 2017-03</title>
@@ -904,9 +956,9 @@ a := 10
       <category term="CodeReading" scheme="https://blog.kevinhu.me/categories/CodeReading/"/>
     
     
-      <category term="CodeReading" scheme="https://blog.kevinhu.me/tags/CodeReading/"/>
-    
       <category term="Password" scheme="https://blog.kevinhu.me/tags/Password/"/>
+    
+      <category term="CodeReading" scheme="https://blog.kevinhu.me/tags/CodeReading/"/>
     
   </entry>
   
@@ -1029,9 +1081,9 @@ lib/sgetspent.c
       <category term="CodeReading" scheme="https://blog.kevinhu.me/categories/CodeReading/"/>
     
     
-      <category term="CodeReading" scheme="https://blog.kevinhu.me/tags/CodeReading/"/>
-    
       <category term="Password" scheme="https://blog.kevinhu.me/tags/Password/"/>
+    
+      <category term="CodeReading" scheme="https://blog.kevinhu.me/tags/CodeReading/"/>
     
   </entry>
   
