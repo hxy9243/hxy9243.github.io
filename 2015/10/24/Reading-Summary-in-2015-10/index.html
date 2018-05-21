@@ -6,14 +6,16 @@
   <title>Reading Summary in 2015/10 | Kevin Hu&#39;s Blog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   <meta name="description" content="CompilersTroubles with GCC signed integer overflow optimizationBUG 30475 - assert(int+100&amp;gt;int) optimized awayAn interesting ‘bug’ in some versions of GCC (and Clang as well) implementation. Since i">
+<meta name="keywords" content="Python,Compilers">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Reading Summary in 2015/10">
+<meta property="og:title" content="Reading Summary in 2015&#x2F;10">
 <meta property="og:url" content="https://blog.kevinhu.me/2015/10/24/Reading-Summary-in-2015-10/index.html">
-<meta property="og:site_name" content="Kevin Hu's Blog">
+<meta property="og:site_name" content="Kevin Hu&#39;s Blog">
 <meta property="og:description" content="CompilersTroubles with GCC signed integer overflow optimizationBUG 30475 - assert(int+100&amp;gt;int) optimized awayAn interesting ‘bug’ in some versions of GCC (and Clang as well) implementation. Since i">
-<meta property="og:updated_time" content="2017-02-24T06:49:13.350Z">
+<meta property="og:locale" content="en-US">
+<meta property="og:updated_time" content="2018-03-25T21:29:55.701Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Reading Summary in 2015/10">
+<meta name="twitter:title" content="Reading Summary in 2015&#x2F;10">
 <meta name="twitter:description" content="CompilersTroubles with GCC signed integer overflow optimizationBUG 30475 - assert(int+100&amp;gt;int) optimized awayAn interesting ‘bug’ in some versions of GCC (and Clang as well) implementation. Since i">
   
     <link rel="alternative" href="/atom.xml" title="Kevin Hu&#39;s Blog" type="application/atom+xml">
@@ -73,7 +75,7 @@ ga('send', 'pageview');
         <a id="nav-search-btn" class="nav-icon" title="Search"></a>
       </nav>
       <div id="search-form-wrap">
-        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" results="0" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="https://blog.kevinhu.me"></form>
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="https://blog.kevinhu.me"></form>
       </div>
     </div>
   </div>
@@ -105,15 +107,15 @@ ga('send', 'pageview');
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h1 id="Compilers"><a href="#Compilers" class="headerlink" title="Compilers"></a>Compilers</h1><h3 id="Troubles-with-GCC-signed-integer-overflow-optimization"><a href="#Troubles-with-GCC-signed-integer-overflow-optimization" class="headerlink" title="Troubles with GCC signed integer overflow optimization"></a><a href="http://thiemonagel.de/2010/01/signed-integer-overflow/" target="_blank" rel="external">Troubles with GCC signed integer overflow optimization</a></h3><h3 id="BUG-30475-assert-int-100-gt-int-optimized-away"><a href="#BUG-30475-assert-int-100-gt-int-optimized-away" class="headerlink" title="BUG 30475 - assert(int+100&gt;int) optimized away"></a><a href="https://gcc.gnu.org/bugzilla/show_bug.cgi?id=30475" target="_blank" rel="external">BUG 30475 - assert(int+100&gt;int) optimized away</a></h3><p>An interesting ‘bug’ in some versions of GCC (and Clang as well) implementation. Since it’s <strong>‘undefined’</strong> behavior after all, compiler is not obliged to implement it as a defined behavior. Use <code>-fwrapv</code> flag in GCC to inform the compiler that integer value wraps.</p>
-<h1 id="Python"><a href="#Python" class="headerlink" title="Python"></a>Python</h1><h3 id="Profiling-Python-in-Production"><a href="#Profiling-Python-in-Production" class="headerlink" title="Profiling Python in Production"></a><a href="https://nylas.com/blog/performance" target="_blank" rel="external">Profiling Python in Production</a></h3><p>Signal timeout for every small amount of time (say, 1ms in this case) and record the current stack, and we can infer time spent in each function precisely enough. A smart way of profiling large Python programs.</p>
+        <h1 id="Compilers"><a href="#Compilers" class="headerlink" title="Compilers"></a>Compilers</h1><h3 id="Troubles-with-GCC-signed-integer-overflow-optimization"><a href="#Troubles-with-GCC-signed-integer-overflow-optimization" class="headerlink" title="Troubles with GCC signed integer overflow optimization"></a><a href="http://thiemonagel.de/2010/01/signed-integer-overflow/" target="_blank" rel="noopener">Troubles with GCC signed integer overflow optimization</a></h3><h3 id="BUG-30475-assert-int-100-gt-int-optimized-away"><a href="#BUG-30475-assert-int-100-gt-int-optimized-away" class="headerlink" title="BUG 30475 - assert(int+100&gt;int) optimized away"></a><a href="https://gcc.gnu.org/bugzilla/show_bug.cgi?id=30475" target="_blank" rel="noopener">BUG 30475 - assert(int+100&gt;int) optimized away</a></h3><p>An interesting ‘bug’ in some versions of GCC (and Clang as well) implementation. Since it’s <strong>‘undefined’</strong> behavior after all, compiler is not obliged to implement it as a defined behavior. Use <code>-fwrapv</code> flag in GCC to inform the compiler that integer value wraps.</p>
+<h1 id="Python"><a href="#Python" class="headerlink" title="Python"></a>Python</h1><h3 id="Profiling-Python-in-Production"><a href="#Profiling-Python-in-Production" class="headerlink" title="Profiling Python in Production"></a><a href="https://nylas.com/blog/performance" target="_blank" rel="noopener">Profiling Python in Production</a></h3><p>Signal timeout for every small amount of time (say, 1ms in this case) and record the current stack, and we can infer time spent in each function precisely enough. A smart way of profiling large Python programs.</p>
 <p>Note: python signal callback passes signal type and signal handler, and signal handler takes signal number and current stack frame.</p>
-<h3 id="Hitchhiker’s-Guide-to-Python"><a href="#Hitchhiker’s-Guide-to-Python" class="headerlink" title="Hitchhiker’s Guide to Python"></a><a href="http://docs.python-guide.org/en/latest/" target="_blank" rel="external">Hitchhiker’s Guide to Python</a></h3><p>Great book to Python, covering code style, best practices and scenario guide. Just started reading it.</p>
+<h3 id="Hitchhiker’s-Guide-to-Python"><a href="#Hitchhiker’s-Guide-to-Python" class="headerlink" title="Hitchhiker’s Guide to Python"></a><a href="http://docs.python-guide.org/en/latest/" target="_blank" rel="noopener">Hitchhiker’s Guide to Python</a></h3><p>Great book to Python, covering code style, best practices and scenario guide. Just started reading it.</p>
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://blog.kevinhu.me/2015/10/24/Reading-Summary-in-2015-10/" data-id="cj3tgt490000ongge2bpc7tpo" class="article-share-link">Share</a>
+      <a data-url="https://blog.kevinhu.me/2015/10/24/Reading-Summary-in-2015-10/" data-id="cjhfs8wl0000kxjscabxapnzc" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Compilers/">Compilers</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Python/">Python</a></li></ul>
@@ -213,7 +215,7 @@ ga('send', 'pageview');
   
   <div class="outer">
     <div id="footer-info" class="inner">
-      &copy; 2017 Kevin Hu<br>
+      &copy; 2018 Kevin Hu<br>
       Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
     </div>
   </div>

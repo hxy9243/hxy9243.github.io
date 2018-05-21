@@ -6,11 +6,12 @@
   <title>Archives: 2014 | Kevin Hu&#39;s Blog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   <meta property="og:type" content="website">
-<meta property="og:title" content="Kevin Hu's Blog">
+<meta property="og:title" content="Kevin Hu&#39;s Blog">
 <meta property="og:url" content="https://blog.kevinhu.me/archives/2014/index.html">
-<meta property="og:site_name" content="Kevin Hu's Blog">
+<meta property="og:site_name" content="Kevin Hu&#39;s Blog">
+<meta property="og:locale" content="en-US">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Kevin Hu's Blog">
+<meta name="twitter:title" content="Kevin Hu&#39;s Blog">
   
     <link rel="alternative" href="/atom.xml" title="Kevin Hu&#39;s Blog" type="application/atom+xml">
   
@@ -69,7 +70,7 @@ ga('send', 'pageview');
         <a id="nav-search-btn" class="nav-icon" title="Search"></a>
       </nav>
       <div id="search-form-wrap">
-        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" results="0" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="https://blog.kevinhu.me"></form>
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="https://blog.kevinhu.me"></form>
       </div>
     </div>
   </div>
@@ -104,7 +105,7 @@ ga('send', 'pageview');
     <div class="article-entry" itemprop="articleBody">
       
         <p>This is a <del>quite boring</del> post on programming language trivia, which doesn’t dig into anything deep.</p>
-<h2 id="GCC-and-Clang"><a href="#GCC-and-Clang" class="headerlink" title="GCC and Clang"></a>GCC and Clang</h2><p>The GCC is mostly implemented in C, and used to use Bison for parser generation, according to its <a href="http://en.wikipedia.org/wiki/GNU_bison">Wikipedia page</a>.<br>By default, it generates right recursive table driven LALR parser.<br>
+<h2 id="GCC-and-Clang"><a href="#GCC-and-Clang" class="headerlink" title="GCC and Clang"></a>GCC and Clang</h2><p>The GCC is mostly implemented in C, and used to use Bison for parser generation, according to its <a href="http://en.wikipedia.org/wiki/GNU_bison" target="_blank" rel="noopener">Wikipedia page</a>.<br>By default, it generates right recursive table driven LALR parser.<br>
         
           <p class="article-more-link">
             <a href="/2014/11/24/24-what-parsers-are-they-using/#more">Read More</a>
@@ -113,7 +114,7 @@ ga('send', 'pageview');
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://blog.kevinhu.me/2014/11/24/24-what-parsers-are-they-using/" data-id="cj3tgt48f0006nggedtwyg5fm" class="article-share-link">Share</a>
+      <a data-url="https://blog.kevinhu.me/2014/11/24/24-what-parsers-are-they-using/" data-id="cjhfs8wkl0006xjsc2g065xku" class="article-share-link">Share</a>
       
       
     </footer>
@@ -151,7 +152,7 @@ ga('send', 'pageview');
       
         <p>A little bit more interesting discoveries while digging into the passwd code file.</p>
 <h2 id="The-‘s’-flag-in-file-permission"><a href="#The-‘s’-flag-in-file-permission" class="headerlink" title="The ‘s’ flag in file permission"></a>The ‘s’ flag in file permission</h2><p>First, the file permission of passwd executable is <code>-rwsr-xr-x</code>. There’s an ‘s’ flag which don’t usually appear in common Unix files. The usage of the ‘s’ field is explained here:</p>
-<p><a href="http://en.wikipedia.org/wiki/Setuid">http://en.wikipedia.org/wiki/Setuid</a></p>
+<p><a href="http://en.wikipedia.org/wiki/Setuid" target="_blank" rel="noopener">http://en.wikipedia.org/wiki/Setuid</a></p>
         
           <p class="article-more-link">
             <a href="/2014/10/31/31-more-on-passwd/#more">Read More</a>
@@ -160,7 +161,7 @@ ga('send', 'pageview');
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://blog.kevinhu.me/2014/10/31/31-more-on-passwd/" data-id="cj3tgt48w000gnggezmd8225l" class="article-share-link">Share</a>
+      <a data-url="https://blog.kevinhu.me/2014/10/31/31-more-on-passwd/" data-id="cjhfs8wkj0004xjsc3nroqz5y" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/CodeReading/">CodeReading</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Password/">Password</a></li></ul>
@@ -198,7 +199,7 @@ ga('send', 'pageview');
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h2 id="Passwd"><a href="#Passwd" class="headerlink" title="Passwd"></a>Passwd</h2><p>The passwd is program on Unix systems to manage users’ passwords. The user and password information on most Unix systems is stored in two separate files: /etc/passwd for user information, and /etc/shadow for password information, including encrypted password value, expiration data, UID, GID, and etc.. The<br>rationale behind storing information in separate files is discussed in <a href="http://www.tldp.org/HOWTO/Shadow-Password-HOWTO-2.html">Why shadow your passwd file?</a><br>
+        <h2 id="Passwd"><a href="#Passwd" class="headerlink" title="Passwd"></a>Passwd</h2><p>The passwd is program on Unix systems to manage users’ passwords. The user and password information on most Unix systems is stored in two separate files: /etc/passwd for user information, and /etc/shadow for password information, including encrypted password value, expiration data, UID, GID, and etc.. The<br>rationale behind storing information in separate files is discussed in <a href="http://www.tldp.org/HOWTO/Shadow-Password-HOWTO-2.html" target="_blank" rel="noopener">Why shadow your passwd file?</a><br>
         
           <p class="article-more-link">
             <a href="/2014/10/13/13-a-dive-into-password/#more">Read More</a>
@@ -207,7 +208,7 @@ ga('send', 'pageview');
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://blog.kevinhu.me/2014/10/13/13-a-dive-into-password/" data-id="cj3tgt48i0007ngge6p3drcux" class="article-share-link">Share</a>
+      <a data-url="https://blog.kevinhu.me/2014/10/13/13-a-dive-into-password/" data-id="cjhfs8wkf0002xjscon74kcuz" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/CodeReading/">CodeReading</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Password/">Password</a></li></ul>
@@ -245,7 +246,7 @@ ga('send', 'pageview');
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>I’ve been auditing a course in computer language implementation and particularly interested in parser generator. Just spent an afternoon reading about the Python parser generator <a href="http://www.dabeaz.com/ply/">PLY</a>. It’s a pure Python Implementation of Lex and Yacc. And <a href="http://www.dabeaz.com/ply/ply.html#ply_nn4">here</a> is the PLY documentation I’ve been reading the whole afternoon.<br>
+        <p>I’ve been auditing a course in computer language implementation and particularly interested in parser generator. Just spent an afternoon reading about the Python parser generator <a href="http://www.dabeaz.com/ply/" target="_blank" rel="noopener">PLY</a>. It’s a pure Python Implementation of Lex and Yacc. And <a href="http://www.dabeaz.com/ply/ply.html#ply_nn4" target="_blank" rel="noopener">here</a> is the PLY documentation I’ve been reading the whole afternoon.<br>
         
           <p class="article-more-link">
             <a href="/2014/10/11/11-a-dive-into-ply/#more">Read More</a>
@@ -254,7 +255,7 @@ ga('send', 'pageview');
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://blog.kevinhu.me/2014/10/11/11-a-dive-into-ply/" data-id="cj3tgt48c0004nggeg2w9h19g" class="article-share-link">Share</a>
+      <a data-url="https://blog.kevinhu.me/2014/10/11/11-a-dive-into-ply/" data-id="cjhfs8wkn0007xjsc0rs30rhi" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/ProgrammingLanguage/">ProgrammingLanguage</a></li></ul>
@@ -300,7 +301,7 @@ ga('send', 'pageview');
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://blog.kevinhu.me/2014/10/08/08-a-new-blog-for-my-tech-notes/" data-id="cj3tgt4800001nggeawxm3xr6" class="article-share-link">Share</a>
+      <a data-url="https://blog.kevinhu.me/2014/10/08/08-a-new-blog-for-my-tech-notes/" data-id="cjhfs8wkb0001xjscu7k4ybxx" class="article-share-link">Share</a>
       
       
     </footer>
@@ -380,7 +381,7 @@ ga('send', 'pageview');
   
   <div class="outer">
     <div id="footer-info" class="inner">
-      &copy; 2017 Kevin Hu<br>
+      &copy; 2018 Kevin Hu<br>
       Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
     </div>
   </div>

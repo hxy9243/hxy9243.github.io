@@ -6,21 +6,23 @@
   <title>Algorithm I Summary | Kevin Hu&#39;s Blog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   <meta name="description" content="Finally! Just finished all the lecture videos of “Algorithm I” from Coursera, and I believe now it’s a good time to review and summarize.">
+<meta name="keywords" content="Algorithm">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Algorithm I Summary">
 <meta property="og:url" content="https://blog.kevinhu.me/2015/01/10/Algorithm-I-Summary/index.html">
-<meta property="og:site_name" content="Kevin Hu's Blog">
+<meta property="og:site_name" content="Kevin Hu&#39;s Blog">
 <meta property="og:description" content="Finally! Just finished all the lecture videos of “Algorithm I” from Coursera, and I believe now it’s a good time to review and summarize.">
-<meta property="og:image" content="https://blog.kevinhu.me/HeapRepresentation.png">
-<meta property="og:image" content="https://blog.kevinhu.me/bst-delete.png">
-<meta property="og:image" content="https://blog.kevinhu.me/23tree-insert3c.png">
-<meta property="og:image" content="https://blog.kevinhu.me/redblack-left-rotate.png">
-<meta property="og:image" content="https://blog.kevinhu.me/LLRBT_insert_3node.png">
-<meta property="og:updated_time" content="2017-02-24T06:49:13.350Z">
+<meta property="og:locale" content="en-US">
+<meta property="og:image" content="https://blog.kevinhu.me/2015/01/10/Algorithm-I-Summary/HeapRepresentation.png">
+<meta property="og:image" content="https://blog.kevinhu.me/2015/01/10/Algorithm-I-Summary/bst-delete.png">
+<meta property="og:image" content="https://blog.kevinhu.me/2015/01/10/Algorithm-I-Summary/23tree-insert3c.png">
+<meta property="og:image" content="https://blog.kevinhu.me/2015/01/10/Algorithm-I-Summary/redblack-left-rotate.png">
+<meta property="og:image" content="https://blog.kevinhu.me/2015/01/10/Algorithm-I-Summary/LLRBT_insert_3node.png">
+<meta property="og:updated_time" content="2018-03-25T21:29:55.665Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Algorithm I Summary">
 <meta name="twitter:description" content="Finally! Just finished all the lecture videos of “Algorithm I” from Coursera, and I believe now it’s a good time to review and summarize.">
-<meta name="twitter:image" content="https://blog.kevinhu.me/HeapRepresentation.png">
+<meta name="twitter:image" content="https://blog.kevinhu.me/2015/01/10/Algorithm-I-Summary/HeapRepresentation.png">
   
     <link rel="alternative" href="/atom.xml" title="Kevin Hu&#39;s Blog" type="application/atom+xml">
   
@@ -79,7 +81,7 @@ ga('send', 'pageview');
         <a id="nav-search-btn" class="nav-icon" title="Search"></a>
       </nav>
       <div id="search-form-wrap">
-        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" results="0" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="https://blog.kevinhu.me"></form>
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="https://blog.kevinhu.me"></form>
       </div>
     </div>
   </div>
@@ -112,10 +114,10 @@ ga('send', 'pageview');
     <div class="article-entry" itemprop="articleBody">
       
         <p>Finally! Just finished all the lecture videos of “Algorithm I” from Coursera, and I believe now it’s a good time to review and summarize.<br><a id="more"></a></p>
-<p>All contents are based on Coursera course slides, as well as other helpful sites (Wikipedia, StackOverflow, <a href="http://algs4.cs.princeton.edu/home/" target="_blank" rel="external">Algorithm - 4th Edition</a> from Princeton U). All pictures are from the slides and the <a href="http://algs4.cs.princeton.edu/home/" target="_blank" rel="external">Algorithm - 4th Edition</a>.</p>
+<p>All contents are based on Coursera course slides, as well as other helpful sites (Wikipedia, StackOverflow, <a href="http://algs4.cs.princeton.edu/home/" target="_blank" rel="noopener">Algorithm - 4th Edition</a> from Princeton U). All pictures are from the slides and the <a href="http://algs4.cs.princeton.edu/home/" target="_blank" rel="noopener">Algorithm - 4th Edition</a>.</p>
 <h2 id="Stacks-and-Queues"><a href="#Stacks-and-Queues" class="headerlink" title="Stacks and Queues"></a>Stacks and Queues</h2><p>Stacks and Queues are probably the most commonly seen data structures seen in the software. Stacks are “First-In-Last-Out”, while Queues are “First-In-First-Out”. The basic operations they support are push() and pop().</p>
 <p>The underlying implementations could be linked-list, arrays and etc.. Linked list provides with more flexible memory management, constant time operations, but brings more time overhead and memory overhead for the link operations. Arrays on the other hand, brings tricky issues of resizing, but the operations are also constant time, and has less memory overheads.</p>
-<h2 id="Priority-Queues-and-Heaps"><a href="#Priority-Queues-and-Heaps" class="headerlink" title="Priority Queues and Heaps"></a>Priority Queues and Heaps</h2><h3 id="Priority-Queues"><a href="#Priority-Queues" class="headerlink" title="Priority Queues"></a>Priority Queues</h3><p>Although often mentioned together, Priority Queue and Heap are <a href="http://en.wikipedia.org/wiki/Priority_queue" target="_blank" rel="external">different concepts</a>. Priority Queue is an abstract data type which is like a queue or stack data structure, but is often implemented in heaps, just like lists could be implemented as arrays or linked lists.</p>
+<h2 id="Priority-Queues-and-Heaps"><a href="#Priority-Queues-and-Heaps" class="headerlink" title="Priority Queues and Heaps"></a>Priority Queues and Heaps</h2><h3 id="Priority-Queues"><a href="#Priority-Queues" class="headerlink" title="Priority Queues"></a>Priority Queues</h3><p>Although often mentioned together, Priority Queue and Heap are <a href="http://en.wikipedia.org/wiki/Priority_queue" target="_blank" rel="noopener">different concepts</a>. Priority Queue is an abstract data type which is like a queue or stack data structure, but is often implemented in heaps, just like lists could be implemented as arrays or linked lists.</p>
 <p>Priority Queue, as its name suggests, could give the element with highest priority. Usually it requires O(1) performance for this operation as it’s crucial to many applications, to name a few (From course slides):</p>
 <ul>
 <li>Event-driven simulation [give the next event for simulation]</li>
@@ -125,7 +127,7 @@ ga('send', 'pageview');
 <li>Operating Systems [Load balancing, interrupt handling]</li>
 <li>…</li>
 </ul>
-<h3 id="Heap"><a href="#Heap" class="headerlink" title="Heap"></a>Heap</h3><p>Binary Heap is one most common implementation of Priority Heap. It uses a binary tree to maintain the data relationship, and could be implemented with arrays. As shown below. (Picture from slide of <a href="https://class.coursera.org/algs4partI-006" target="_blank" rel="external">Coursera Algorithm I Course</a>).</p>
+<h3 id="Heap"><a href="#Heap" class="headerlink" title="Heap"></a>Heap</h3><p>Binary Heap is one most common implementation of Priority Heap. It uses a binary tree to maintain the data relationship, and could be implemented with arrays. As shown below. (Picture from slide of <a href="https://class.coursera.org/algs4partI-006" target="_blank" rel="noopener">Coursera Algorithm I Course</a>).</p>
 <p><img src="HeapRepresentation.png" alt="Binary Heap Representation"></p>
 <p>A Binary Heap has the following properties:</p>
 <ul>
@@ -150,7 +152,7 @@ ga('send', 'pageview');
 <p><strong>Insertion Sort</strong>: For each element, keep comparing it to the element in front of it and switch position if it’s smaller than the front element, until it’s the larger one.</p>
 <p>It has O(N^2) of average time complexity as well, but only ~N operations when the list is almost sorted, which makes it actually quite useful in certain cases.</p>
 <p><strong>Shell Sort</strong>: The algorithm starts with sorting elements h elements apart with insertion sort, then keep decreasing h to have the list “h-sorted”, until h reaches 1, and the whole list is sorted.</p>
-<p>With these two gap sequences, Shell Sort is known to have <a href="http://www.sorting-algorithms.com/shell-sort" target="_blank" rel="external">O(N^3/2) average time complexity</a>, <a href="http://www.sorting-algorithms.com/shell-sort" target="_blank" rel="external">O(Nlog(N)) time complexity</a> for nearly sorted lists, which gives it pretty good performance.The value of the gap h is commonly chosen by 3k+1, or an experiment found array of [1, 4, 10, 23, 57, 132, 301, 701]. Also as it doesn’t require function calls, it’s actually used in many cases such as embedded systems, and Linux kernel.</p>
+<p>With these two gap sequences, Shell Sort is known to have <a href="http://www.sorting-algorithms.com/shell-sort" target="_blank" rel="noopener">O(N^3/2) average time complexity</a>, <a href="http://www.sorting-algorithms.com/shell-sort" target="_blank" rel="noopener">O(Nlog(N)) time complexity</a> for nearly sorted lists, which gives it pretty good performance.The value of the gap h is commonly chosen by 3k+1, or an experiment found array of [1, 4, 10, 23, 57, 132, 301, 701]. Also as it doesn’t require function calls, it’s actually used in many cases such as embedded systems, and Linux kernel.</p>
 <h3 id="Merge-Sort"><a href="#Merge-Sort" class="headerlink" title="Merge Sort"></a>Merge Sort</h3><p>Merge Sort is best described recursively. It takes the following procedures to the list of elements:</p>
 <ul>
 <li>Divide array into two halves.</li>
@@ -166,7 +168,7 @@ ga('send', 'pageview');
 <li>Recursively sort the left and right partition.</li>
 <li>Join the left, pivot, and the right.</li>
 </ul>
-<p>Quick Sort, as its name suggests, has the <a href="http://rosettacode.org/wiki/Sorting_algorithms/Quicksort" target="_blank" rel="external">reputation for the fastest sort</a>. It has O(NlogN) time complexity, although for certain inputs and bad pivot selection (e.g. a sorted list and first element for pivot), the worst case could be O(N^2). Also, for small subarrays, Quick Sort could use Insertion Sort to reduce overhead.</p>
+<p>Quick Sort, as its name suggests, has the <a href="http://rosettacode.org/wiki/Sorting_algorithms/Quicksort" target="_blank" rel="noopener">reputation for the fastest sort</a>. It has O(NlogN) time complexity, although for certain inputs and bad pivot selection (e.g. a sorted list and first element for pivot), the worst case could be O(N^2). Also, for small subarrays, Quick Sort could use Insertion Sort to reduce overhead.</p>
 <p>One problem with Quick Sort is that its performance decreases when dealing with lists with many identical elements. This could be solved by a variation: The 3 way Quick Sort, which separates the list into 3 separations of less-than, equal, and larger than.</p>
 <p>Quick Sort is known as fast, and is therefore widely used in many system applications.</p>
 <h3 id="Heap-Sort"><a href="#Heap-Sort" class="headerlink" title="Heap Sort"></a>Heap Sort</h3><p>The idea for Heap Sort is to create a heap with all the keys, and repeatedly remove the max key. As described above, when the max value is deleted, the last element replaces the root node, and sunk down to the appropriate place.</p>
@@ -176,7 +178,7 @@ ga('send', 'pageview');
 <li>Cache unfriendly.</li>
 <li>Not stable.</li>
 </ul>
-<h3 id="Summary-for-Sorting"><a href="#Summary-for-Sorting" class="headerlink" title="Summary for Sorting"></a>Summary for Sorting</h3><p>There is an website introducing the details of different sorting algorithms, with sorting animations: <a href="http://www.sorting-algorithms.com/" target="_blank" rel="external">http://www.sorting-algorithms.com/</a> . The following table summarizes some of the common sorting algorithms.</p>
+<h3 id="Summary-for-Sorting"><a href="#Summary-for-Sorting" class="headerlink" title="Summary for Sorting"></a>Summary for Sorting</h3><p>There is an website introducing the details of different sorting algorithms, with sorting animations: <a href="http://www.sorting-algorithms.com/" target="_blank" rel="noopener">http://www.sorting-algorithms.com/</a> . The following table summarizes some of the common sorting algorithms.</p>
 <table>
 <thead>
 <tr>
@@ -252,7 +254,7 @@ ga('send', 'pageview');
 <p>Search in Binary Tree has average time complexity of O(logN) for N elements.</p>
 <p><strong>Insert</strong>: Inserting in Binary Search Tree is similar to search. It keeps finding in the tree until see NULL node.</p>
 <p>Both Search Insertion requires O(logN) of time in average, but could be O(N) in worst case when the tree is unbalanced (e.g. The tree is inserted in sequential order).</p>
-<p><strong>Deletion</strong>: One famous deletion technique for Binary Search Tree is the <a href="http://algs4.cs.princeton.edu/32bst/" target="_blank" rel="external">Hibbard deletion</a>. As Hibbard deletion describes, when deleting:</p>
+<p><strong>Deletion</strong>: One famous deletion technique for Binary Search Tree is the <a href="http://algs4.cs.princeton.edu/32bst/" target="_blank" rel="noopener">Hibbard deletion</a>. As Hibbard deletion describes, when deleting:</p>
 <ul>
 <li><strong>Node with one child:</strong> Delete the node and replace it with its child.</li>
 <li><strong>Node with two children:</strong><ul>
@@ -322,7 +324,7 @@ ga('send', 'pageview');
 <p>Although the operations in each cases look really complicated, the actual code could be made concise and elegant using with recursion. To keep in mind that all these operations are used to guarantee that the tree is fully balanced, and there are no right leaning red links.</p>
 <p>The Java example for inserting in LLRBT from the course slide is shown as follows. The insertion searches in the tree for appropriate insert position, and add a new red node at the end. Then determine if the node is violating the properties for LLRBT (Right leaning red node? Two consecutive red links? …), and operate on the node accordingly.</p>
 <p>Code example for LLRBT insertion in Java:</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">private</span> Node <span class="title">put</span><span class="params">(Node h, Key key, Value val)</span></span></div><div class="line">&#123;</div><div class="line">    <span class="keyword">if</span> (h == NULL) <span class="keyword">return</span> <span class="keyword">new</span> Node(key, val, RED);</div><div class="line">    <span class="keyword">int</span> cmp = key.compareTo(h.key);</div><div class="line">    <span class="keyword">if</span>      (cmp &lt; <span class="number">0</span>) h.left = put(h.left, key, val);</div><div class="line">    <span class="keyword">else</span> <span class="keyword">if</span> (cmp &gt; <span class="number">0</span>) h.right = put(h.right, key, val);</div><div class="line">    <span class="keyword">else</span>              h.val = val;</div><div class="line"></div><div class="line">    <span class="keyword">if</span> (isRed(h.right) &amp;&amp; !isRed(h.left))    h = rotateLeft(h);</div><div class="line">    <span class="keyword">if</span> (isRed(h.left) &amp;&amp; isRed(h.left.left)) h = rotateRight(h);</div><div class="line">    <span class="keyword">if</span> (isRed(h.left) &amp;&amp; !isRed(h.right))    flipColors(h);</div><div class="line"></div><div class="line">    <span class="keyword">return</span> h;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">private</span> Node <span class="title">put</span><span class="params">(Node h, Key key, Value val)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (h == NULL) <span class="keyword">return</span> <span class="keyword">new</span> Node(key, val, RED);</span><br><span class="line">    <span class="keyword">int</span> cmp = key.compareTo(h.key);</span><br><span class="line">    <span class="keyword">if</span>      (cmp &lt; <span class="number">0</span>) h.left = put(h.left, key, val);</span><br><span class="line">    <span class="keyword">else</span> <span class="keyword">if</span> (cmp &gt; <span class="number">0</span>) h.right = put(h.right, key, val);</span><br><span class="line">    <span class="keyword">else</span>              h.val = val;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span> (isRed(h.right) &amp;&amp; !isRed(h.left))    h = rotateLeft(h);</span><br><span class="line">    <span class="keyword">if</span> (isRed(h.left) &amp;&amp; isRed(h.left.left)) h = rotateRight(h);</span><br><span class="line">    <span class="keyword">if</span> (isRed(h.left) &amp;&amp; !isRed(h.right))    flipColors(h);</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> h;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <h2 id="Symbol-Tables-And-Hash-Tables"><a href="#Symbol-Tables-And-Hash-Tables" class="headerlink" title="Symbol Tables And Hash Tables"></a>Symbol Tables And Hash Tables</h2><p>The Symbol Table, again, is an abstract data type, which maps from keys to values. It supports operations of insertion, deletion, search by key, and etc.. It’s commonly implemented with Hash Tables, which is used everywhere. Some languages have built-in support for Hash Tables.</p>
 <h3 id="Hash-Table"><a href="#Hash-Table" class="headerlink" title="Hash Table"></a>Hash Table</h3><p>Hash Table is a key-indexed table, that maps from its keys to value, and index is a function of the key (hashing function).</p>
 <p>The ideal scenario is that the index distributed uniformly in the hashing index, so that the access to each element requires O(1) time. Somehow when there are collisions, there are two ways to resolve collisions.</p>
@@ -338,7 +340,7 @@ ga('send', 'pageview');
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://blog.kevinhu.me/2015/01/10/Algorithm-I-Summary/" data-id="cj3tgt48p000cnggem0dr15w3" class="article-share-link">Share</a>
+      <a data-url="https://blog.kevinhu.me/2015/01/10/Algorithm-I-Summary/" data-id="cjhfs8wkr000bxjscyqs77xn1" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Algorithm/">Algorithm</a></li></ul>
@@ -438,7 +440,7 @@ ga('send', 'pageview');
   
   <div class="outer">
     <div id="footer-info" class="inner">
-      &copy; 2017 Kevin Hu<br>
+      &copy; 2018 Kevin Hu<br>
       Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
     </div>
   </div>

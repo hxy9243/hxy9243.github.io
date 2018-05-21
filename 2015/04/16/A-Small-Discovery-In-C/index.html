@@ -6,12 +6,14 @@
   <title>A Small Discovery In C Linker | Kevin Hu&#39;s Blog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   <meta name="description" content="C language is an old-school programming language, learned by almost all professional programmers. Still, it never failed to surprise me each time I dig in a little deeper, as it’s full of small detail">
+<meta name="keywords" content="C">
 <meta property="og:type" content="article">
 <meta property="og:title" content="A Small Discovery In C Linker">
 <meta property="og:url" content="https://blog.kevinhu.me/2015/04/16/A-Small-Discovery-In-C/index.html">
-<meta property="og:site_name" content="Kevin Hu's Blog">
+<meta property="og:site_name" content="Kevin Hu&#39;s Blog">
 <meta property="og:description" content="C language is an old-school programming language, learned by almost all professional programmers. Still, it never failed to surprise me each time I dig in a little deeper, as it’s full of small detail">
-<meta property="og:updated_time" content="2017-02-24T06:49:13.350Z">
+<meta property="og:locale" content="en-US">
+<meta property="og:updated_time" content="2018-03-25T21:29:55.688Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="A Small Discovery In C Linker">
 <meta name="twitter:description" content="C language is an old-school programming language, learned by almost all professional programmers. Still, it never failed to surprise me each time I dig in a little deeper, as it’s full of small detail">
@@ -73,7 +75,7 @@ ga('send', 'pageview');
         <a id="nav-search-btn" class="nav-icon" title="Search"></a>
       </nav>
       <div id="search-form-wrap">
-        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" results="0" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="https://blog.kevinhu.me"></form>
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="https://blog.kevinhu.me"></form>
       </div>
     </div>
   </div>
@@ -109,15 +111,15 @@ ga('send', 'pageview');
 <a id="more"></a>
 <p>Consider the following two C files:</p>
 <p>foo.c:</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">void foo(int c, int d, int e)</div><div class="line">&#123;</div><div class="line">    printf(&quot;The param is %d, %d, %d\n&quot;, c, d, e);</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">void foo(int c, int d, int e)</span><br><span class="line">&#123;</span><br><span class="line">    printf(&quot;The param is %d, %d, %d\n&quot;, c, d, e);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>main.c:</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">int foo(char c);</div><div class="line"></div><div class="line">int main()</div><div class="line">&#123;</div><div class="line">    int a = foo(100);</div><div class="line"></div><div class="line">    printf(&quot;The return value of foo is %d\n&quot;, a);</div><div class="line"></div><div class="line">    return 0;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">int foo(char c);</span><br><span class="line"></span><br><span class="line">int main()</span><br><span class="line">&#123;</span><br><span class="line">    int a = foo(100);</span><br><span class="line"></span><br><span class="line">    printf(&quot;The return value of foo is %d\n&quot;, a);</span><br><span class="line"></span><br><span class="line">    return 0;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>At first sight, you’d probably laugh and think: “What the heck is this? There are some very elementary mistakes that a CS101 student wouldn’t even make. They definitely wouldn’t compile.”</p>
 <p>Is it really so?</p>
 <p>Try the following command to compile them:</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ gcc hello.c foo.c -o hello</div></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ gcc hello.c foo.c -o hello</span><br></pre></td></tr></table></figure>
 <p>Or if you’re an LLVM fan:</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ clang hello.c foo.c -o hello</div></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ clang hello.c foo.c -o hello</span><br></pre></td></tr></table></figure>
 <p>How do they complain?</p>
 <p>None. I’ve tested this on my Linux Ubuntu machine with gcc-4.8, gcc-4.9, and clang-3.5. None of them complained a thing. They got successfully compiled!</p>
 <p>Surprise? Not really. If you’re a expert in C and how compiler works, you’d think it’s quite normal. Well, I’m not. So I was quite astonished when I first saw this.</p>
@@ -126,20 +128,20 @@ ga('send', 'pageview');
 <p>Somehow, C++ does name mangling to preserve function types and any type unmatching for functions could be avoided. This won’t compile for any C++ compilers. Try g++ or clang++. Some other compilers or IDEs with static checkings may also notice this error.</p>
 <p>So, what would happen if you actually run it?</p>
 <p>I got the following results in one run:</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">The param is 100, -1549285384, -1549285368</div><div class="line">The return value of foo is 43</div></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">The param is 100, -1549285384, -1549285368</span><br><span class="line">The return value of foo is 43</span><br></pre></td></tr></table></figure>
 <p>It’s easy to understand the 100 output. The following two shall be the value of d and e. And as <code>main</code> doesn’t pass any parameters, the <code>foo</code> function will happily read whatever on the program stack where these two parameters should be. And in this case, it shall be garbage.</p>
-<p>And what about that 43 returned from the <code>foo</code> function? That doesn’t look like garbage. Actually if you run this broken piece of program for enough times, you’ll notice this value is always somewhat around 30~50. So this mysterious number could be something more than garbage. Is it the meaning to your life? No, that’s 42. Is it something <a href="http://bigbangtheory.wikia.com/wiki/The_43_Peculiarity" target="_blank" rel="external">on the wall of Sheldon’s secret room</a>? Probably.</p>
+<p>And what about that 43 returned from the <code>foo</code> function? That doesn’t look like garbage. Actually if you run this broken piece of program for enough times, you’ll notice this value is always somewhat around 30~50. So this mysterious number could be something more than garbage. Is it the meaning to your life? No, that’s 42. Is it something <a href="http://bigbangtheory.wikia.com/wiki/The_43_Peculiarity" target="_blank" rel="noopener">on the wall of Sheldon’s secret room</a>? Probably.</p>
 <p>So what is it exactly?</p>
 <p>After poking around in gdb for a while, I confirmed my guess that this is actually the return value of <code>printf</code> inside of <code>foo</code>. As on x86 machines, most of the time C program uses <code>eax</code> register to carry return values, <code>main</code> function loads <code>a</code>‘s value from <code>eax</code> when it tries to read the return value of <code>foo</code>. As <code>foo</code> has void return type, this register is untampered after return of <code>printf</code> inside <code>foo</code>, and saved directly to integer <code>a</code> in <code>main</code>.</p>
 <p>The following is the dump inside gdb. This time I have 31 as <code>foo</code>‘s return value.</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line">Run till exit from #0  __printf (format=0x400637 &quot;The param is %d, %d, %d\n&quot;) at printf.c:32</div><div class="line">The param is 100, -7816, -7800</div><div class="line">foo (c=100, d=-7816, e=-7800) at foo.c:6</div><div class="line">6       &#125;</div><div class="line">Value returned is $1 = 31</div><div class="line">(gdb) info registers</div><div class="line">info registers</div><div class="line">rax            0x1f     31</div><div class="line">rbx            0x0      0</div><div class="line">rcx            0x1e     30</div><div class="line">(gdb) info register eax</div><div class="line">info register eax</div><div class="line">eax            0x1f     31</div></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">Run till exit from #0  __printf (format=0x400637 &quot;The param is %d, %d, %d\n&quot;) at printf.c:32</span><br><span class="line">The param is 100, -7816, -7800</span><br><span class="line">foo (c=100, d=-7816, e=-7800) at foo.c:6</span><br><span class="line">6       &#125;</span><br><span class="line">Value returned is $1 = 31</span><br><span class="line">(gdb) info registers</span><br><span class="line">info registers</span><br><span class="line">rax            0x1f     31</span><br><span class="line">rbx            0x0      0</span><br><span class="line">rcx            0x1e     30</span><br><span class="line">(gdb) info register eax</span><br><span class="line">info register eax</span><br><span class="line">eax            0x1f     31</span><br></pre></td></tr></table></figure>
 <p>We all know the return value of <code>printf</code> is the number of characters written to the stdout. So, the mysterious return value is actually the number of characters printed out in the first sentence. You can count to confirm, and don’t forget the return character.</p>
 <h2 id="Afterthoughts"><a href="#Afterthoughts" class="headerlink" title="Afterthoughts"></a>Afterthoughts</h2><p>I remember someone joked that C is but a high-level syntax sugar for assembly. Now it looks to me that it’s also low level enough that it exposes lots of features in assembly. It’s never an easy task to understand all these very little details of C, as well as any other languages, but it’s probably a must if one wishes to become a qualified programmer in it.</p>
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://blog.kevinhu.me/2015/04/16/A-Small-Discovery-In-C/" data-id="cj3tgt48u000enggerbr6eyzk" class="article-share-link">Share</a>
+      <a data-url="https://blog.kevinhu.me/2015/04/16/A-Small-Discovery-In-C/" data-id="cjhfs8wky000gxjscwelwcnqu" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/C/">C</a></li></ul>
@@ -239,7 +241,7 @@ ga('send', 'pageview');
   
   <div class="outer">
     <div id="footer-info" class="inner">
-      &copy; 2017 Kevin Hu<br>
+      &copy; 2018 Kevin Hu<br>
       Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
     </div>
   </div>

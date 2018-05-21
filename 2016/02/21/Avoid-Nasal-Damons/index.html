@@ -6,17 +6,19 @@
   <title>Avoid Nasal Demons | Kevin Hu&#39;s Blog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   <meta name="description" content="Recently my colleague and I were working to port V8 JS engine as one of our benchmarks. We used it as it’s a widely-used library on devices we cared about, and we believed it’s a well-maintained, high">
+<meta name="keywords" content="Undefined Behavior">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Avoid Nasal Demons">
 <meta property="og:url" content="https://blog.kevinhu.me/2016/02/21/Avoid-Nasal-Damons/index.html">
-<meta property="og:site_name" content="Kevin Hu's Blog">
+<meta property="og:site_name" content="Kevin Hu&#39;s Blog">
 <meta property="og:description" content="Recently my colleague and I were working to port V8 JS engine as one of our benchmarks. We used it as it’s a widely-used library on devices we cared about, and we believed it’s a well-maintained, high">
-<meta property="og:image" content="https://blog.kevinhu.me/yoda-patience.jpeg">
-<meta property="og:updated_time" content="2017-02-24T06:49:13.350Z">
+<meta property="og:locale" content="en-US">
+<meta property="og:image" content="https://blog.kevinhu.me/2016/02/21/Avoid-Nasal-Damons/yoda-patience.jpeg">
+<meta property="og:updated_time" content="2018-03-25T21:29:55.779Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Avoid Nasal Demons">
 <meta name="twitter:description" content="Recently my colleague and I were working to port V8 JS engine as one of our benchmarks. We used it as it’s a widely-used library on devices we cared about, and we believed it’s a well-maintained, high">
-<meta name="twitter:image" content="https://blog.kevinhu.me/yoda-patience.jpeg">
+<meta name="twitter:image" content="https://blog.kevinhu.me/2016/02/21/Avoid-Nasal-Damons/yoda-patience.jpeg">
   
     <link rel="alternative" href="/atom.xml" title="Kevin Hu&#39;s Blog" type="application/atom+xml">
   
@@ -75,7 +77,7 @@ ga('send', 'pageview');
         <a id="nav-search-btn" class="nav-icon" title="Search"></a>
       </nav>
       <div id="search-form-wrap">
-        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" results="0" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="https://blog.kevinhu.me"></form>
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="https://blog.kevinhu.me"></form>
       </div>
     </div>
   </div>
@@ -114,22 +116,22 @@ ga('send', 'pageview');
    // some logic
 }
 </code></pre><p>And new GCC decided to optimize it away. Cause in well-defined C++ programs, <code>this</code> will never be <code>NULL</code>.</p>
-<p>Undefined behavior are also referred to as <a href="">Nasal Demons</a>. The “dereferencing NULL pointer” code has also been discussed in this well-written post: <a href="http://www.viva64.com/en/b/0226/" target="_blank" rel="external">Still Comparing “this” Pointer to Null?</a>, about the hazards of using it. Somehow, from M$ MFC library, to widely used V8 JS engine, they are all using this for a happy hacking experience. This tech debt is a time bomb they plant in their code, and no one knows when it will go off. For V8 it was around Oct. 2015 when mainline trunk GCC guys decided to use this undefined behavior for optimization, which causes crashes in produced V8 binary.</p>
+<p>Undefined behavior are also referred to as <a href="">Nasal Demons</a>. The “dereferencing NULL pointer” code has also been discussed in this well-written post: <a href="http://www.viva64.com/en/b/0226/" target="_blank" rel="noopener">Still Comparing “this” Pointer to Null?</a>, about the hazards of using it. Somehow, from M$ MFC library, to widely used V8 JS engine, they are all using this for a happy hacking experience. This tech debt is a time bomb they plant in their code, and no one knows when it will go off. For V8 it was around Oct. 2015 when mainline trunk GCC guys decided to use this undefined behavior for optimization, which causes crashes in produced V8 binary.</p>
 <p>Theoretically it could be worse: this can cause a security vulnerability. And the problematic code will work just fine with the last revision of GCC compiler, but not with the very next commit. It’s a nightmare for anyone to debug.</p>
 <p>Guys in chromium project seem to be aware of this problem for some time. I quote: “Fundamentally this is fixable by making the functions static and explicitly passing the entity as parameter, but that’s a  tremendous amount of work.” See this bug:</p>
-<p><a href="https://bugs.chromium.org/p/v8/issues/detail?id=3782" target="_blank" rel="external">https://bugs.chromium.org/p/v8/issues/detail?id=3782</a></p>
+<p><a href="https://bugs.chromium.org/p/v8/issues/detail?id=3782" target="_blank" rel="noopener">https://bugs.chromium.org/p/v8/issues/detail?id=3782</a></p>
 <p>All coders who touched V8 code should be much smarter than I am. But somehow they just let this code slip in, and right now the bad code piles up and it’s too hard to fix. The moral of this story is: C/C++ is a very hard language to use right, and it should take much patience to learn, understand, and write correct, clean code. Without patience to learn correct code, fall to the dark side of the source one easily will.</p>
 <p><img src="yoda-patience.jpeg" alt="Patience, you must have"></p>
 <p>Looks like this code has bitten other people as well. And they are from quite a while ago:</p>
-<p><a href="https://jira.mongodb.org/browse/SERVER-15182" target="_blank" rel="external">https://jira.mongodb.org/browse/SERVER-15182</a></p>
-<p><a href="https://jira.mongodb.org/browse/SERVER-15306" target="_blank" rel="external">https://jira.mongodb.org/browse/SERVER-15306</a></p>
+<p><a href="https://jira.mongodb.org/browse/SERVER-15182" target="_blank" rel="noopener">https://jira.mongodb.org/browse/SERVER-15182</a></p>
+<p><a href="https://jira.mongodb.org/browse/SERVER-15306" target="_blank" rel="noopener">https://jira.mongodb.org/browse/SERVER-15306</a></p>
 <p>Attached is a pretty good presentation on undefined C/C++ code:</p>
-<p><a href="http://www.slideshare.net/linaroorg/bkk16503-undefined-behavior-and-compiler-optimizations-why-your-program-stopped-working-with-a-newer-compiler" target="_blank" rel="external">http://www.slideshare.net/linaroorg/bkk16503-undefined-behavior-and-compiler-optimizations-why-your-program-stopped-working-with-a-newer-compiler</a></p>
+<p><a href="http://www.slideshare.net/linaroorg/bkk16503-undefined-behavior-and-compiler-optimizations-why-your-program-stopped-working-with-a-newer-compiler" target="_blank" rel="noopener">http://www.slideshare.net/linaroorg/bkk16503-undefined-behavior-and-compiler-optimizations-why-your-program-stopped-working-with-a-newer-compiler</a></p>
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://blog.kevinhu.me/2016/02/21/Avoid-Nasal-Damons/" data-id="cj3tgt49b0013nggejvs2dct6" class="article-share-link">Share</a>
+      <a data-url="https://blog.kevinhu.me/2016/02/21/Avoid-Nasal-Damons/" data-id="cjhfs8wl9000zxjsctszaansx" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Undefined-Behavior/">Undefined Behavior</a></li></ul>
@@ -229,7 +231,7 @@ ga('send', 'pageview');
   
   <div class="outer">
     <div id="footer-info" class="inner">
-      &copy; 2017 Kevin Hu<br>
+      &copy; 2018 Kevin Hu<br>
       Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
     </div>
   </div>
