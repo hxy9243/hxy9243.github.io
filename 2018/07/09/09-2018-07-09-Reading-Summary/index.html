@@ -3,19 +3,20 @@
 <head>
   <meta charset="utf-8">
   
-  <title>Reading Summary 2015-11 | Kevin Hu&#39;s Blog</title>
+  <title>Reading-Summary 2018-06 | Kevin Hu&#39;s Blog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="CompilersDirected graph traversal, orderings and applications to data-flow analysisOn the graph traversal and their efficiency.  Pre-order depth-first-search Reverse post-order depth-first-search  Thi">
+  <meta name="description" content="Posts I found interesting around the web: man7 Linux cgroupsLinux manual page to cgroups feature in the kernel, which restricts Linux processes CPU, max process numbers, memory usage, network setup an">
+<meta name="keywords" content="Linux,Docker">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Reading Summary 2015-11">
-<meta property="og:url" content="https://blog.kevinhu.me/2015/11/11/Reading-Summary-2015-11/index.html">
+<meta property="og:title" content="Reading-Summary 2018-06">
+<meta property="og:url" content="https://blog.kevinhu.me/2018/07/09/09-2018-07-09-Reading-Summary/index.html">
 <meta property="og:site_name" content="Kevin Hu&#39;s Blog">
-<meta property="og:description" content="CompilersDirected graph traversal, orderings and applications to data-flow analysisOn the graph traversal and their efficiency.  Pre-order depth-first-search Reverse post-order depth-first-search  Thi">
+<meta property="og:description" content="Posts I found interesting around the web: man7 Linux cgroupsLinux manual page to cgroups feature in the kernel, which restricts Linux processes CPU, max process numbers, memory usage, network setup an">
 <meta property="og:locale" content="en-US">
-<meta property="og:updated_time" content="2018-03-25T21:29:55.653Z">
+<meta property="og:updated_time" content="2018-07-09T05:28:24.799Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Reading Summary 2015-11">
-<meta name="twitter:description" content="CompilersDirected graph traversal, orderings and applications to data-flow analysisOn the graph traversal and their efficiency.  Pre-order depth-first-search Reverse post-order depth-first-search  Thi">
+<meta name="twitter:title" content="Reading-Summary 2018-06">
+<meta name="twitter:description" content="Posts I found interesting around the web: man7 Linux cgroupsLinux manual page to cgroups feature in the kernel, which restricts Linux processes CPU, max process numbers, memory usage, network setup an">
   
     <link rel="alternative" href="/atom.xml" title="Kevin Hu&#39;s Blog" type="application/atom+xml">
   
@@ -80,10 +81,10 @@ ga('send', 'pageview');
   </div>
 </header>
       <div class="outer">
-        <section id="main"><article id="post-Reading-Summary-2015-11" class="article article-type-post" itemscope itemprop="blogPost">
+        <section id="main"><article id="post-09-2018-07-09-Reading-Summary" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
-    <a href="/2015/11/11/Reading-Summary-2015-11/" class="article-date">
-  <time datetime="2015-11-12T05:20:46.000Z" itemprop="datePublished">11 11 2015</time>
+    <a href="/2018/07/09/09-2018-07-09-Reading-Summary/" class="article-date">
+  <time datetime="2018-07-09T05:04:23.000Z" itemprop="datePublished">07 09 2018</time>
 </a>
     
   <div class="article-category">
@@ -98,7 +99,7 @@ ga('send', 'pageview');
         
   
     <h1 class="article-title" itemprop="name">
-      Reading Summary 2015-11
+      Reading-Summary 2018-06
     </h1>
   
 
@@ -106,47 +107,42 @@ ga('send', 'pageview');
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h1 id="Compilers"><a href="#Compilers" class="headerlink" title="Compilers"></a>Compilers</h1><h3 id="Directed-graph-traversal-orderings-and-applications-to-data-flow-analysis"><a href="#Directed-graph-traversal-orderings-and-applications-to-data-flow-analysis" class="headerlink" title="Directed graph traversal, orderings and applications to data-flow analysis"></a><a href="http://eli.thegreenplace.net/2015/directed-graph-traversal-orderings-and-applications-to-data-flow-analysis/" target="_blank" rel="noopener">Directed graph traversal, orderings and applications to data-flow analysis</a></h3><p>On the graph traversal and their efficiency.</p>
+        <p>Posts I found interesting around the web:</p>
+<h3 id="man7-Linux-cgroups"><a href="#man7-Linux-cgroups" class="headerlink" title="man7 Linux cgroups"></a><a href="http://man7.org/linux/man-pages/man7/cgroups.7.html" target="_blank" rel="noopener">man7 Linux cgroups</a></h3><p>Linux manual page to cgroups feature in the kernel, which restricts Linux processes CPU, max process numbers, memory usage, network setup and etc..</p>
+<h3 id="man7-Linux-namespaces"><a href="#man7-Linux-namespaces" class="headerlink" title="man7 Linux namespaces"></a><a href="http://man7.org/linux/man-pages/man7/namespaces.7.html" target="_blank" rel="noopener">man7 Linux namespaces</a></h3><p>Linux manual page to namespaces feature in the kernel. Namespaces can be specified by the <code>clone</code> syscall, and isolates the child process’ cgroup, IPC, network, mount, domain names, and etc..</p>
+<h3 id="GOTO-2018-Containers-From-Scratch"><a href="#GOTO-2018-Containers-From-Scratch" class="headerlink" title="GOTO 2018 Containers From Scratch"></a><a href="https://www.youtube.com/watch?v=8fi7uSYlOdc" target="_blank" rel="noopener">GOTO 2018 Containers From Scratch</a></h3><p>When all the ingredients come together, it’s the foundation where Docker is built upon. This very interesting talk from GOTO2018 demonstrates how you can use the following technologies already built-in the Linux kernel to create your own very small proof-of-concept docker:</p>
 <ul>
-<li>Pre-order depth-first-search</li>
-<li>Reverse post-order depth-first-search</li>
+<li><code>chroot</code></li>
+<li><code>namespace</code></li>
+<li><code>cgroups</code></li>
 </ul>
-<p>This could be a very helpful reference when designing data-flow analysis on programs.</p>
-<h1 id="Programming"><a href="#Programming" class="headerlink" title="Programming"></a>Programming</h1><h3 id="Semantic-Version"><a href="#Semantic-Version" class="headerlink" title="Semantic Version"></a><a href="http://semver.org/" target="_blank" rel="noopener">Semantic Version</a></h3><p>How to use version numbers in a sensible way: the MAJOR.MINOR.PATCH format. And I quote:</p>
-<blockquote>
-<ol>
-<li>MAJOR version when you make incompatible API changes.</li>
-<li>MINOR version when you add functionality in a backwards-compatible manner.</li>
-<li>PATCH version when you make backwards-compatible bug fixes.</li>
-</ol>
-</blockquote>
-<h1 id="Internet"><a href="#Internet" class="headerlink" title="Internet"></a>Internet</h1><h3 id="I’m-a-Privacy-Advocate-but-I-Still-Use-Windows-10-and-Google-Now"><a href="#I’m-a-Privacy-Advocate-but-I-Still-Use-Windows-10-and-Google-Now" class="headerlink" title="I’m a Privacy Advocate, but I Still Use Windows 10 and Google Now"></a><a href="http://lifehacker.com/im-a-privacy-advocate-but-i-still-use-windows-10-and-g-1723611163" target="_blank" rel="noopener">I’m a Privacy Advocate, but I Still Use Windows 10 and Google Now</a></h3><p>Your personal data is the fuel to power the Internet today, and how should we face it.</p>
+<p>It also includes very interesting details including (but not limited to):</p>
+<ul>
+<li>You’ll need to mount the <code>/proc</code> virtual file systems for your ‘containerized’ child process.</li>
+<li>You’ll need to provide ‘UnshareFlag’ <code>CLONE_NEWNS</code> to the <code>clone</code> system call, to ‘unshare’ the mount point from the child process from the parent process, so that parent doesn’t see child’s mount points (which could be many and messy).</li>
+</ul>
+<h3 id="A-Classical-Math-Problem-Gets-Pulled-Into-the-Modern-World"><a href="#A-Classical-Math-Problem-Gets-Pulled-Into-the-Modern-World" class="headerlink" title="A Classical Math Problem Gets Pulled Into the Modern World"></a><a href="https://www.quantamagazine.org/a-classical-math-problem-gets-pulled-into-the-modern-world-20180523/" target="_blank" rel="noopener">A Classical Math Problem Gets Pulled Into the Modern World</a></h3><p>An optimization problem is being used in AI, and therefore all AI applications, including self-driving, etc. Math is magical.</p>
+<h3 id="Wikipedia-is-fixing-one-of-Internet’s-biggest-flaws"><a href="#Wikipedia-is-fixing-one-of-Internet’s-biggest-flaws" class="headerlink" title="Wikipedia is fixing one of Internet’s biggest flaws"></a><a href="https://www.washingtonpost.com/news/wonk/wp/2016/10/25/somethings-terribly-wrong-with-the-internet-and-wikipedia-might-be-able-to-fix-it/?utm_term=.9594628c76ca" target="_blank" rel="noopener">Wikipedia is fixing one of Internet’s biggest flaws</a></h3><p>As it actually encourages collaborations, discussions, and exposure to opposing views.</p>
+<h3 id="Golang-Patterns-Part-2"><a href="#Golang-Patterns-Part-2" class="headerlink" title="Golang Patterns - Part 2"></a><a href="https://dev.to/napicellatwit/golang-patterns---part-2-1906" target="_blank" rel="noopener">Golang Patterns - Part 2</a></h3><h3 id="Technical-Writing-Learning-from-Kernighan"><a href="#Technical-Writing-Learning-from-Kernighan" class="headerlink" title="Technical Writing: Learning from Kernighan"></a><a href="https://two-wrongs.com/technical-writing-learning-from-kernighan.html" target="_blank" rel="noopener">Technical Writing: Learning from Kernighan</a></h3><p>Learning technical writing from the author of your favorite C programming book, ‘The C Programming Language’.</p>
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://blog.kevinhu.me/2015/11/11/Reading-Summary-2015-11/" data-id="cjj3i8a59000tb1sck7eu2b6e" class="article-share-link">Share</a>
+      <a data-url="https://blog.kevinhu.me/2018/07/09/09-2018-07-09-Reading-Summary/" data-id="cjjdtt8ui0000b0scv9owbcwr" class="article-share-link">Share</a>
       
       
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Docker/">Docker</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Linux/">Linux</a></li></ul>
+
     </footer>
   </div>
   
     
 <nav id="article-nav">
   
-    <a href="/2015/11/30/Here-Comes-Everybody-Book-Review/" id="article-nav-newer" class="article-nav-link-wrap">
-      <strong class="article-nav-caption">Newer</strong>
-      <div class="article-nav-title">
-        
-          Here Comes Everybody - Book Review
-        
-      </div>
-    </a>
   
-  
-    <a href="/2015/10/24/Reading-Summary-in-2015-10/" id="article-nav-older" class="article-nav-link-wrap">
+    <a href="/2018/07/01/01-Linux-Hugepages/" id="article-nav-older" class="article-nav-link-wrap">
       <strong class="article-nav-caption">Older</strong>
-      <div class="article-nav-title">Reading Summary in 2015/10</div>
+      <div class="article-nav-title">A Note on Linux Hugepages</div>
     </a>
   
 </nav>

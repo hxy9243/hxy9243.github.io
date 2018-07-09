@@ -78,6 +78,65 @@ ga('send', 'pageview');
       <div class="outer">
         <section id="main">
   
+    <article id="post-09-2018-07-09-Reading-Summary" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2018/07/09/09-2018-07-09-Reading-Summary/" class="article-date">
+  <time datetime="2018-07-09T05:04:23.000Z" itemprop="datePublished">07 09 2018</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/Reading/">Reading</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2018/07/09/09-2018-07-09-Reading-Summary/">Reading-Summary 2018-06</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>Posts I found interesting around the web:</p>
+<h3 id="man7-Linux-cgroups"><a href="#man7-Linux-cgroups" class="headerlink" title="man7 Linux cgroups"></a><a href="http://man7.org/linux/man-pages/man7/cgroups.7.html" target="_blank" rel="noopener">man7 Linux cgroups</a></h3><p>Linux manual page to cgroups feature in the kernel, which restricts Linux processes CPU, max process numbers, memory usage, network setup and etc..</p>
+<h3 id="man7-Linux-namespaces"><a href="#man7-Linux-namespaces" class="headerlink" title="man7 Linux namespaces"></a><a href="http://man7.org/linux/man-pages/man7/namespaces.7.html" target="_blank" rel="noopener">man7 Linux namespaces</a></h3><p>Linux manual page to namespaces feature in the kernel. Namespaces can be specified by the <code>clone</code> syscall, and isolates the child process’ cgroup, IPC, network, mount, domain names, and etc..</p>
+<h3 id="GOTO-2018-Containers-From-Scratch"><a href="#GOTO-2018-Containers-From-Scratch" class="headerlink" title="GOTO 2018 Containers From Scratch"></a><a href="https://www.youtube.com/watch?v=8fi7uSYlOdc" target="_blank" rel="noopener">GOTO 2018 Containers From Scratch</a></h3><p>When all the ingredients come together, it’s the foundation where Docker is built upon. This very interesting talk from GOTO2018 demonstrates how you can use the following technologies already built-in the Linux kernel to create your own very small proof-of-concept docker:</p>
+<ul>
+<li><code>chroot</code></li>
+<li><code>namespace</code></li>
+<li><code>cgroups</code></li>
+</ul>
+<p>It also includes very interesting details including (but not limited to):</p>
+<ul>
+<li>You’ll need to mount the <code>/proc</code> virtual file systems for your ‘containerized’ child process.</li>
+<li>You’ll need to provide ‘UnshareFlag’ <code>CLONE_NEWNS</code> to the <code>clone</code> system call, to ‘unshare’ the mount point from the child process from the parent process, so that parent doesn’t see child’s mount points (which could be many and messy).</li>
+</ul>
+<h3 id="A-Classical-Math-Problem-Gets-Pulled-Into-the-Modern-World"><a href="#A-Classical-Math-Problem-Gets-Pulled-Into-the-Modern-World" class="headerlink" title="A Classical Math Problem Gets Pulled Into the Modern World"></a><a href="https://www.quantamagazine.org/a-classical-math-problem-gets-pulled-into-the-modern-world-20180523/" target="_blank" rel="noopener">A Classical Math Problem Gets Pulled Into the Modern World</a></h3><p>An optimization problem is being used in AI, and therefore all AI applications, including self-driving, etc. Math is magical.</p>
+<h3 id="Wikipedia-is-fixing-one-of-Internet’s-biggest-flaws"><a href="#Wikipedia-is-fixing-one-of-Internet’s-biggest-flaws" class="headerlink" title="Wikipedia is fixing one of Internet’s biggest flaws"></a><a href="https://www.washingtonpost.com/news/wonk/wp/2016/10/25/somethings-terribly-wrong-with-the-internet-and-wikipedia-might-be-able-to-fix-it/?utm_term=.9594628c76ca" target="_blank" rel="noopener">Wikipedia is fixing one of Internet’s biggest flaws</a></h3><p>As it actually encourages collaborations, discussions, and exposure to opposing views.</p>
+<h3 id="Golang-Patterns-Part-2"><a href="#Golang-Patterns-Part-2" class="headerlink" title="Golang Patterns - Part 2"></a><a href="https://dev.to/napicellatwit/golang-patterns---part-2-1906" target="_blank" rel="noopener">Golang Patterns - Part 2</a></h3><h3 id="Technical-Writing-Learning-from-Kernighan"><a href="#Technical-Writing-Learning-from-Kernighan" class="headerlink" title="Technical Writing: Learning from Kernighan"></a><a href="https://two-wrongs.com/technical-writing-learning-from-kernighan.html" target="_blank" rel="noopener">Technical Writing: Learning from Kernighan</a></h3><p>Learning technical writing from the author of your favorite C programming book, ‘The C Programming Language’.</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://blog.kevinhu.me/2018/07/09/09-2018-07-09-Reading-Summary/" data-id="cjjdtt8ui0000b0scv9owbcwr" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Docker/">Docker</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Linux/">Linux</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
     <article id="post-01-Linux-Hugepages" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
     <a href="/2018/07/01/01-Linux-Hugepages/" class="article-date">
@@ -134,7 +193,7 @@ ga('send', 'pageview');
   <div class="widget-wrap">
     <h3 class="widget-title">Categories</h3>
     <div class="widget">
-      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Algorithm/">Algorithm</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/CodeReading/">CodeReading</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Diary/">Diary</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Programming/">Programming</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/ProgrammingLanguage/">ProgrammingLanguage</a><span class="category-list-count">4</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Reading/">Reading</a><span class="category-list-count">13</span></li></ul>
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Algorithm/">Algorithm</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/CodeReading/">CodeReading</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Diary/">Diary</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Programming/">Programming</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/ProgrammingLanguage/">ProgrammingLanguage</a><span class="category-list-count">4</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Reading/">Reading</a><span class="category-list-count">14</span></li></ul>
     </div>
   </div>
 
@@ -143,7 +202,7 @@ ga('send', 'pageview');
   <div class="widget-wrap">
     <h3 class="widget-title">Tag Cloud</h3>
     <div class="widget tagcloud">
-      <a href="/tags/Algorithm/" style="font-size: 10px;">Algorithm</a> <a href="/tags/BitHacks/" style="font-size: 10px;">BitHacks</a> <a href="/tags/C/" style="font-size: 10px;">C</a> <a href="/tags/C-C/" style="font-size: 15px;">C/C++</a> <a href="/tags/CodeReading/" style="font-size: 15px;">CodeReading</a> <a href="/tags/Coding/" style="font-size: 10px;">Coding</a> <a href="/tags/Compilers/" style="font-size: 15px;">Compilers</a> <a href="/tags/Hugepage/" style="font-size: 10px;">Hugepage</a> <a href="/tags/Internet-BookReview/" style="font-size: 10px;">Internet, BookReview</a> <a href="/tags/Linux/" style="font-size: 10px;">Linux</a> <a href="/tags/PaperReading/" style="font-size: 10px;">PaperReading</a> <a href="/tags/Password/" style="font-size: 15px;">Password</a> <a href="/tags/Programming/" style="font-size: 10px;">Programming</a> <a href="/tags/ProgrammingLanguage/" style="font-size: 15px;">ProgrammingLanguage</a> <a href="/tags/Python/" style="font-size: 20px;">Python</a> <a href="/tags/Social/" style="font-size: 10px;">Social</a> <a href="/tags/Technology/" style="font-size: 15px;">Technology</a> <a href="/tags/Undefined-Behavior/" style="font-size: 15px;">Undefined Behavior</a>
+      <a href="/tags/Algorithm/" style="font-size: 10px;">Algorithm</a> <a href="/tags/BitHacks/" style="font-size: 10px;">BitHacks</a> <a href="/tags/C/" style="font-size: 10px;">C</a> <a href="/tags/C-C/" style="font-size: 15px;">C/C++</a> <a href="/tags/CodeReading/" style="font-size: 15px;">CodeReading</a> <a href="/tags/Coding/" style="font-size: 10px;">Coding</a> <a href="/tags/Compilers/" style="font-size: 15px;">Compilers</a> <a href="/tags/Docker/" style="font-size: 10px;">Docker</a> <a href="/tags/Hugepage/" style="font-size: 10px;">Hugepage</a> <a href="/tags/Internet-BookReview/" style="font-size: 10px;">Internet, BookReview</a> <a href="/tags/Linux/" style="font-size: 15px;">Linux</a> <a href="/tags/PaperReading/" style="font-size: 10px;">PaperReading</a> <a href="/tags/Password/" style="font-size: 15px;">Password</a> <a href="/tags/Programming/" style="font-size: 10px;">Programming</a> <a href="/tags/ProgrammingLanguage/" style="font-size: 15px;">ProgrammingLanguage</a> <a href="/tags/Python/" style="font-size: 20px;">Python</a> <a href="/tags/Social/" style="font-size: 10px;">Social</a> <a href="/tags/Technology/" style="font-size: 15px;">Technology</a> <a href="/tags/Undefined-Behavior/" style="font-size: 15px;">Undefined Behavior</a>
     </div>
   </div>
 
@@ -152,7 +211,7 @@ ga('send', 'pageview');
   <div class="widget-wrap">
     <h3 class="widget-title">Archives</h3>
     <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/07/">July 2018</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/05/">May 2018</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/06/">June 2017</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/03/">March 2017</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/01/">January 2017</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/11/">November 2016</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/09/">September 2016</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/08/">August 2016</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/05/">May 2016</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/02/">February 2016</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/12/">December 2015</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/11/">November 2015</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/10/">October 2015</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/04/">April 2015</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/03/">March 2015</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/01/">January 2015</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/11/">November 2014</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/10/">October 2014</a><span class="archive-list-count">4</span></li></ul>
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/07/">July 2018</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/05/">May 2018</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/06/">June 2017</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/03/">March 2017</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/01/">January 2017</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/11/">November 2016</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/09/">September 2016</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/08/">August 2016</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/05/">May 2016</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/02/">February 2016</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/12/">December 2015</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/11/">November 2015</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/10/">October 2015</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/04/">April 2015</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/03/">March 2015</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/01/">January 2015</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/11/">November 2014</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/10/">October 2014</a><span class="archive-list-count">4</span></li></ul>
     </div>
   </div>
 
@@ -162,6 +221,10 @@ ga('send', 'pageview');
     <h3 class="widget-title">Recents</h3>
     <div class="widget">
       <ul>
+        
+          <li>
+            <a href="/2018/07/09/09-2018-07-09-Reading-Summary/">Reading-Summary 2018-06</a>
+          </li>
         
           <li>
             <a href="/2018/07/01/01-Linux-Hugepages/">A Note on Linux Hugepages</a>
@@ -177,10 +240,6 @@ ga('send', 'pageview');
         
           <li>
             <a href="/2017/03/26/Reading-Summary-2017-03/">Reading Summary 2017-03</a>
-          </li>
-        
-          <li>
-            <a href="/2017/01/08/Reading-Summary-2016-12/">Reading Summary 2016-12</a>
           </li>
         
       </ul>

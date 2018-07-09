@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://blog.kevinhu.me/"/>
-  <updated>2018-07-02T00:57:58.976Z</updated>
+  <updated>2018-07-09T05:28:24.799Z</updated>
   <id>https://blog.kevinhu.me/</id>
   
   <author>
@@ -15,6 +15,34 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Reading-Summary 2018-06</title>
+    <link href="https://blog.kevinhu.me/2018/07/09/09-2018-07-09-Reading-Summary/"/>
+    <id>https://blog.kevinhu.me/2018/07/09/09-2018-07-09-Reading-Summary/</id>
+    <published>2018-07-09T05:04:23.000Z</published>
+    <updated>2018-07-09T05:28:24.799Z</updated>
+    
+    <content type="html"><![CDATA[<p>Posts I found interesting around the web:</p><h3 id="man7-Linux-cgroups"><a href="#man7-Linux-cgroups" class="headerlink" title="man7 Linux cgroups"></a><a href="http://man7.org/linux/man-pages/man7/cgroups.7.html" target="_blank" rel="noopener">man7 Linux cgroups</a></h3><p>Linux manual page to cgroups feature in the kernel, which restricts Linux processes CPU, max process numbers, memory usage, network setup and etc..</p><h3 id="man7-Linux-namespaces"><a href="#man7-Linux-namespaces" class="headerlink" title="man7 Linux namespaces"></a><a href="http://man7.org/linux/man-pages/man7/namespaces.7.html" target="_blank" rel="noopener">man7 Linux namespaces</a></h3><p>Linux manual page to namespaces feature in the kernel. Namespaces can be specified by the <code>clone</code> syscall, and isolates the child process’ cgroup, IPC, network, mount, domain names, and etc..</p><h3 id="GOTO-2018-Containers-From-Scratch"><a href="#GOTO-2018-Containers-From-Scratch" class="headerlink" title="GOTO 2018 Containers From Scratch"></a><a href="https://www.youtube.com/watch?v=8fi7uSYlOdc" target="_blank" rel="noopener">GOTO 2018 Containers From Scratch</a></h3><p>When all the ingredients come together, it’s the foundation where Docker is built upon. This very interesting talk from GOTO2018 demonstrates how you can use the following technologies already built-in the Linux kernel to create your own very small proof-of-concept docker:</p><ul><li><code>chroot</code></li><li><code>namespace</code></li><li><code>cgroups</code></li></ul><p>It also includes very interesting details including (but not limited to):</p><ul><li>You’ll need to mount the <code>/proc</code> virtual file systems for your ‘containerized’ child process.</li><li>You’ll need to provide ‘UnshareFlag’ <code>CLONE_NEWNS</code> to the <code>clone</code> system call, to ‘unshare’ the mount point from the child process from the parent process, so that parent doesn’t see child’s mount points (which could be many and messy).</li></ul><h3 id="A-Classical-Math-Problem-Gets-Pulled-Into-the-Modern-World"><a href="#A-Classical-Math-Problem-Gets-Pulled-Into-the-Modern-World" class="headerlink" title="A Classical Math Problem Gets Pulled Into the Modern World"></a><a href="https://www.quantamagazine.org/a-classical-math-problem-gets-pulled-into-the-modern-world-20180523/" target="_blank" rel="noopener">A Classical Math Problem Gets Pulled Into the Modern World</a></h3><p>An optimization problem is being used in AI, and therefore all AI applications, including self-driving, etc. Math is magical.</p><h3 id="Wikipedia-is-fixing-one-of-Internet’s-biggest-flaws"><a href="#Wikipedia-is-fixing-one-of-Internet’s-biggest-flaws" class="headerlink" title="Wikipedia is fixing one of Internet’s biggest flaws"></a><a href="https://www.washingtonpost.com/news/wonk/wp/2016/10/25/somethings-terribly-wrong-with-the-internet-and-wikipedia-might-be-able-to-fix-it/?utm_term=.9594628c76ca" target="_blank" rel="noopener">Wikipedia is fixing one of Internet’s biggest flaws</a></h3><p>As it actually encourages collaborations, discussions, and exposure to opposing views.</p><h3 id="Golang-Patterns-Part-2"><a href="#Golang-Patterns-Part-2" class="headerlink" title="Golang Patterns - Part 2"></a><a href="https://dev.to/napicellatwit/golang-patterns---part-2-1906" target="_blank" rel="noopener">Golang Patterns - Part 2</a></h3><h3 id="Technical-Writing-Learning-from-Kernighan"><a href="#Technical-Writing-Learning-from-Kernighan" class="headerlink" title="Technical Writing: Learning from Kernighan"></a><a href="https://two-wrongs.com/technical-writing-learning-from-kernighan.html" target="_blank" rel="noopener">Technical Writing: Learning from Kernighan</a></h3><p>Learning technical writing from the author of your favorite C programming book, ‘The C Programming Language’.</p>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;p&gt;Posts I found interesting around the web:&lt;/p&gt;
+&lt;h3 id=&quot;man7-Linux-cgroups&quot;&gt;&lt;a href=&quot;#man7-Linux-cgroups&quot; class=&quot;headerlink&quot; title=&quot;man7 Li
+      
+    
+    </summary>
+    
+      <category term="Reading" scheme="https://blog.kevinhu.me/categories/Reading/"/>
+    
+    
+      <category term="Linux" scheme="https://blog.kevinhu.me/tags/Linux/"/>
+    
+      <category term="Docker" scheme="https://blog.kevinhu.me/tags/Docker/"/>
+    
+  </entry>
   
   <entry>
     <title>A Note on Linux Hugepages</title>
