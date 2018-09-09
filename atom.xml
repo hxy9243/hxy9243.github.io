@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://blog.kevinhu.me/"/>
-  <updated>2018-07-09T05:28:24.799Z</updated>
+  <updated>2018-09-09T18:01:31.096Z</updated>
   <id>https://blog.kevinhu.me/</id>
   
   <author>
@@ -15,6 +15,38 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Weekly paper reading: C++ and the Perils of Double-Checked Locking</title>
+    <link href="https://blog.kevinhu.me/2018/09/09/Weekly-Paper-Reading-1-DCLP/"/>
+    <id>https://blog.kevinhu.me/2018/09/09/Weekly-Paper-Reading-1-DCLP/</id>
+    <published>2018-09-09T18:03:20.000Z</published>
+    <updated>2018-09-09T18:01:31.096Z</updated>
+    
+    <content type="html"><![CDATA[<p>An interesting paper on the perils of C++, design pattern and multi-threading when they’re mixed together:</p><p><a href="http://www.aristeia.com/Papers/DDJ_Jul_Aug_2004_revised.pdf" target="_blank" rel="noopener">C++ and the Perils of Double-Checked Locking</a></p><p>The DCLP(Double-Checked Locking Pattern) is often-used in singleton design pattern: you’d like to initialize a shared object for singleton pattern, you follow the steps:</p><ul><li>check lock if the resource is already initialized</li><li>if no, lock the mutex</li><li>check again if the resource is locked inside the mutex-protected area.</li><li>and again if no, initialize the object</li></ul><p>See C++ example:</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">Singleton* Singleton::instance() &#123;</span><br><span class="line">  if (pInstance == 0) &#123;              // 1st check, to avoid locking every time</span><br><span class="line">    Lock lock;</span><br><span class="line"></span><br><span class="line">    if (pInstance == 0) &#123;            // 2nd check, a safe check to guarantee correctness</span><br><span class="line">      pInstance = new Singleton;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  return pInstance</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><p>This pattern however, introduces subtle bugs when described in C++ with multi-threading.</p><p>The issue is with this statement:</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pInstance = new Singleton;</span><br></pre></td></tr></table></figure><p>The following steps happen:</p><ol><li>Allocate memory for the object</li><li>Construct an object in the allocated memory.</li><li>Assign <code>pInstance</code> to the allocated memory.</li></ol><p>But C++ specification don’t enforce the steps happen in order, and compilers are therefore not constrained to reorder them for sake of optimization. As long as the observable outcome of the instructions are correct, compilers are free to place instructions in an order so that CPUs are most utilized. Consider the following case with DCLP:</p><ul><li>Thread A execute the DCLP piece of code for the first time, performs the 1st check, lock the mutex, performs the 2nd check, allocates memory for Singleton object, points the pInstance to the allocated memory. But before the Singleton object is constructed, thread A is suspended or another thread is scheduled at the same time.</li><li>Thread B enters DCLP area, determines that <code>pInstance</code> is non-null, and start using the object even before it’s fully constructed, and start accessing the <code>Singleton</code> object.</li></ul><p>Oops. This is a very subtle bug, and hard to detect issue when we’re trying to initialize a shared resource once.</p><p>The paper digs into details on how compiler can leverage all sorts of different optimizations to spoil you effort to correct the DCLP code, and how to actually implement it correctly with <code>volatile</code> keyword.</p><p>It’s a very interesting paper on algorithm, C++, and programming, It makes you stand in awe of the difficulty and intricacies of C++ and multi-threaded programming.</p>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;p&gt;An interesting paper on the perils of C++, design pattern and multi-threading when they’re mixed together:&lt;/p&gt;
+&lt;p&gt;&lt;a href=&quot;http://www.ari
+      
+    
+    </summary>
+    
+      <category term="Reading" scheme="https://blog.kevinhu.me/categories/Reading/"/>
+    
+    
+      <category term="Programming" scheme="https://blog.kevinhu.me/tags/Programming/"/>
+    
+      <category term="C++" scheme="https://blog.kevinhu.me/tags/C/"/>
+    
+      <category term="Multithread" scheme="https://blog.kevinhu.me/tags/Multithread/"/>
+    
+      <category term="WeeklyPaper" scheme="https://blog.kevinhu.me/tags/WeeklyPaper/"/>
+    
+  </entry>
   
   <entry>
     <title>Reading-Summary 2018-06</title>

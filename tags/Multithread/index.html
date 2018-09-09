@@ -3,20 +3,15 @@
 <head>
   <meta charset="utf-8">
   
-  <title>Reading Summary 2017-06 | Kevin Hu&#39;s Blog</title>
+  <title>Tag: Multithread | Kevin Hu&#39;s Blog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="It’s been a while since I ever post a reading summary never mention a new blog post. Writing is a time demanding job. Society and TechnologyWhy do we manage academia so badly?“Managers want metrics th">
-<meta name="keywords" content="Technology">
-<meta property="og:type" content="article">
-<meta property="og:title" content="Reading Summary 2017-06">
-<meta property="og:url" content="https://blog.kevinhu.me/2017/06/11/Reading-Summary-2017-06/index.html">
+  <meta property="og:type" content="website">
+<meta property="og:title" content="Kevin Hu&#39;s Blog">
+<meta property="og:url" content="https://blog.kevinhu.me/tags/Multithread/index.html">
 <meta property="og:site_name" content="Kevin Hu&#39;s Blog">
-<meta property="og:description" content="It’s been a while since I ever post a reading summary never mention a new blog post. Writing is a time demanding job. Society and TechnologyWhy do we manage academia so badly?“Managers want metrics th">
 <meta property="og:locale" content="en-US">
-<meta property="og:updated_time" content="2018-03-25T21:29:55.938Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Reading Summary 2017-06">
-<meta name="twitter:description" content="It’s been a while since I ever post a reading summary never mention a new blog post. Writing is a time demanding job. Society and TechnologyWhy do we manage academia so badly?“Managers want metrics th">
+<meta name="twitter:title" content="Kevin Hu&#39;s Blog">
   
     <link rel="alternative" href="/atom.xml" title="Kevin Hu&#39;s Blog" type="application/atom+xml">
   
@@ -81,10 +76,12 @@ ga('send', 'pageview');
   </div>
 </header>
       <div class="outer">
-        <section id="main"><article id="post-Reading-Summary-2017-06" class="article article-type-post" itemscope itemprop="blogPost">
+        <section id="main">
+  
+    <article id="post-Weekly-Paper-Reading-1-DCLP" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
-    <a href="/2017/06/11/Reading-Summary-2017-06/" class="article-date">
-  <time datetime="2017-06-12T00:54:11.000Z" itemprop="datePublished">06 11 2017</time>
+    <a href="/2018/09/09/Weekly-Paper-Reading-1-DCLP/" class="article-date">
+  <time datetime="2018-09-09T18:03:20.000Z" itemprop="datePublished">09 09 2018</time>
 </a>
     
   <div class="article-category">
@@ -98,8 +95,8 @@ ga('send', 'pageview');
       <header class="article-header">
         
   
-    <h1 class="article-title" itemprop="name">
-      Reading Summary 2017-06
+    <h1 itemprop="name">
+      <a class="article-title" href="/2018/09/09/Weekly-Paper-Reading-1-DCLP/">Weekly paper reading: C++ and the Perils of Double-Checked Locking</a>
     </h1>
   
 
@@ -107,60 +104,51 @@ ga('send', 'pageview');
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>It’s been a while since I ever post a reading summary never mention a new blog post. Writing is a time demanding job.</p>
-<h1 id="Society-and-Technology"><a href="#Society-and-Technology" class="headerlink" title="Society and Technology"></a>Society and Technology</h1><h3 id="Why-do-we-manage-academia-so-badly"><a href="#Why-do-we-manage-academia-so-badly" class="headerlink" title="Why do we manage academia so badly?"></a><a href="https://svpow.com/2017/03/22/why-do-we-manage-academia-so-badly/" target="_blank" rel="noopener">Why do we manage academia so badly?</a></h3><p><strong>“Managers want metrics that are easy to calculate, easy to understand, and quick to yield a value …
-metrics with these desirable properties are almost always worse than useless.”</strong></p>
-<p>Easy metrics are also easily “hacked” - people “hack” the metrics to make statistics look good, while deviate from the original purpose of academia: to achieve good quality research.</p>
-<p>See also:</p>
-<p><a href="https://svpow.com/2017/03/17/every-attempt-to-manage-academia-makes-it-worse/" target="_blank" rel="noopener">Every attempt to manage academia makes it worse</a></p>
-<h3 id="Did-Reddit’s-April-Fool’s-gag-solve-the-issue-of-online-hate-speech"><a href="#Did-Reddit’s-April-Fool’s-gag-solve-the-issue-of-online-hate-speech" class="headerlink" title="Did Reddit’s April Fool’s gag solve the issue of online hate speech?"></a><a href="https://arstechnica.com/gaming/2017/04/in-memoriam-reddits-72-hour-live-graffiti-wall-as-a-social-experiment/" target="_blank" rel="noopener">Did Reddit’s April Fool’s gag solve the issue of online hate speech?</a></h3><p>An interesting, anarchic style experiment on Reddit: let thousands of Redditers draw a picture all at the same time, what would possibly happen? It turned out to be surprisingly good.</p>
-<h3 id="Tim-Berners-Lee-I-invented-the-web-Here-are-three-things-we-need-to-change-to-save-it"><a href="#Tim-Berners-Lee-I-invented-the-web-Here-are-three-things-we-need-to-change-to-save-it" class="headerlink" title="Tim Berners-Lee: I invented the web. Here are three things we need to change to save it"></a><a href="https://www.theguardian.com/technology/2017/mar/11/tim-berners-lee-web-inventor-save-internet" target="_blank" rel="noopener">Tim Berners-Lee: I invented the web. Here are three things we need to change to save it</a></h3><p>Tim Berners-Lee: The Father of the World Wide Web and Turing Award winner believes the web nowadays has serious flaws, namely the loss of control of personal privacy, rampant spreading of misinformation on the web, and manipulations from the political campaigns online. It took everyone to build the web we have today, and it takes everyone to fix it now.</p>
-<p>More reports and readings on Tim Berners-Lee:</p>
+        <p>An interesting paper on the perils of C++, design pattern and multi-threading when they’re mixed together:</p>
+<p><a href="http://www.aristeia.com/Papers/DDJ_Jul_Aug_2004_revised.pdf" target="_blank" rel="noopener">C++ and the Perils of Double-Checked Locking</a></p>
+<p>The DCLP(Double-Checked Locking Pattern) is often-used in singleton design pattern: you’d like to initialize a shared object for singleton pattern, you follow the steps:</p>
 <ul>
-<li><a href="https://www.theguardian.com/technology/2009/mar/11/berners-lee-internet-data" target="_blank" rel="noopener">Web inventor warns against third-party internet snooping</a></li>
-<li><a href="https://www.theguardian.com/technology/2017/apr/04/tim-berners-lee-online-privacy-interview-turing-award" target="_blank" rel="noopener">Tim Berners-Lee: selling private citizens’ browsing data is ‘disgusting’</a></li>
-<li><a href="https://www.w3.org/DesignIssues/GovData.html" target="_blank" rel="noopener">Putting Government Data Online</a></li>
+<li>check lock if the resource is already initialized</li>
+<li>if no, lock the mutex</li>
+<li>check again if the resource is locked inside the mutex-protected area.</li>
+<li>and again if no, initialize the object</li>
 </ul>
-<a id="more"></a>
-<h3 id="Alan-Kay’s-Reading-List"><a href="#Alan-Kay’s-Reading-List" class="headerlink" title="Alan Kay’s Reading List"></a><a href="http://shelfjoy.com/shelfjoy/alan-kay-from-viewpoints-research-institute-recommends-his-reading-list-for-beginners" target="_blank" rel="noopener">Alan Kay’s Reading List</a></h3><p>Posted here again. He did so many tons of readings to get his insights on science, Computer Science, technology and society. It’s gonna be a long but joyful road.</p>
-<h3 id="You’re-Not-Going-To-Believe-What-I’m-About-To-Tell-You"><a href="#You’re-Not-Going-To-Believe-What-I’m-About-To-Tell-You" class="headerlink" title="You’re Not Going To Believe What I’m About To Tell You"></a><a href="http://theoatmeal.com/comics/believe" target="_blank" rel="noopener">You’re Not Going To Believe What I’m About To Tell You</a></h3><p>Lesson 101 for a netizen: handling viewpoints that contradict your own. A good read.</p>
-<h3 id="Crypto-Tokens-A-Breakthrough-in-Open-Network-Design"><a href="#Crypto-Tokens-A-Breakthrough-in-Open-Network-Design" class="headerlink" title="Crypto Tokens: A Breakthrough in Open Network Design"></a><a href="https://medium.com/@cdixon/crypto-tokens-a-breakthrough-in-open-network-design-e600975be2ef" target="_blank" rel="noopener">Crypto Tokens: A Breakthrough in Open Network Design</a></h3><p>How Ethereum and BlockChain technology may bring us a truly open, distributed Internet. Maybe.</p>
-<h3 id="I-got-tired-of-commoditized-content-for-entrepreneurs-Here’s-what-I-started-watching-instead"><a href="#I-got-tired-of-commoditized-content-for-entrepreneurs-Here’s-what-I-started-watching-instead" class="headerlink" title="I got tired of commoditized content for entrepreneurs. Here’s what I started watching instead."></a><a href="https://blog.yalabot.com/i-got-sick-of-commoditized-content-for-entrepreneurs-heres-what-i-started-watching-instead-cdf9a5b28652" target="_blank" rel="noopener">I got tired of commoditized content for entrepreneurs. Here’s what I started watching instead.</a></h3><p>A curated list of video courses/podcasts for entrepreneurs.</p>
+<p>See C++ example:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">Singleton* Singleton::instance() &#123;</span><br><span class="line">  if (pInstance == 0) &#123;              // 1st check, to avoid locking every time</span><br><span class="line">    Lock lock;</span><br><span class="line"></span><br><span class="line">    if (pInstance == 0) &#123;            // 2nd check, a safe check to guarantee correctness</span><br><span class="line">      pInstance = new Singleton;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  return pInstance</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>This pattern however, introduces subtle bugs when described in C++ with multi-threading.</p>
+<p>The issue is with this statement:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pInstance = new Singleton;</span><br></pre></td></tr></table></figure>
+<p>The following steps happen:</p>
+<ol>
+<li>Allocate memory for the object</li>
+<li>Construct an object in the allocated memory.</li>
+<li>Assign <code>pInstance</code> to the allocated memory.</li>
+</ol>
+<p>But C++ specification don’t enforce the steps happen in order, and compilers are therefore not constrained to reorder them for sake of optimization. As long as the observable outcome of the instructions are correct, compilers are free to place instructions in an order so that CPUs are most utilized. Consider the following case with DCLP:</p>
+<ul>
+<li>Thread A execute the DCLP piece of code for the first time, performs the 1st check, lock the mutex, performs the 2nd check, allocates memory for Singleton object, points the pInstance to the allocated memory. But before the Singleton object is constructed, thread A is suspended or another thread is scheduled at the same time.</li>
+<li>Thread B enters DCLP area, determines that <code>pInstance</code> is non-null, and start using the object even before it’s fully constructed, and start accessing the <code>Singleton</code> object.</li>
+</ul>
+<p>Oops. This is a very subtle bug, and hard to detect issue when we’re trying to initialize a shared resource once.</p>
+<p>The paper digs into details on how compiler can leverage all sorts of different optimizations to spoil you effort to correct the DCLP code, and how to actually implement it correctly with <code>volatile</code> keyword.</p>
+<p>It’s a very interesting paper on algorithm, C++, and programming, It makes you stand in awe of the difficulty and intricacies of C++ and multi-threaded programming.</p>
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://blog.kevinhu.me/2017/06/11/Reading-Summary-2017-06/" data-id="cjj3i8a5o001eb1scl98850al" class="article-share-link">Share</a>
+      <a data-url="https://blog.kevinhu.me/2018/09/09/Weekly-Paper-Reading-1-DCLP/" data-id="cjlv5v1tf0000wav18fnka4jg" class="article-share-link">Share</a>
       
       
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Technology/">Technology</a></li></ul>
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/C/">C++</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Multithread/">Multithread</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Programming/">Programming</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/WeeklyPaper/">WeeklyPaper</a></li></ul>
 
     </footer>
   </div>
   
-    
-<nav id="article-nav">
-  
-    <a href="/2018/05/21/2018-05-21-Reading-Summary/" id="article-nav-newer" class="article-nav-link-wrap">
-      <strong class="article-nav-caption">Newer</strong>
-      <div class="article-nav-title">
-        
-          Reading-Summary 2018-05
-        
-      </div>
-    </a>
-  
-  
-    <a href="/2017/03/26/Reading-Summary-2017-03/" id="article-nav-older" class="article-nav-link-wrap">
-      <strong class="article-nav-caption">Older</strong>
-      <div class="article-nav-title">Reading Summary 2017-03</div>
-    </a>
-  
-</nav>
-
-  
 </article>
 
+
+  
+  
 </section>
         
           <aside id="sidebar">
