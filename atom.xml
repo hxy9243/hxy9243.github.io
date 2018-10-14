@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://blog.kevinhu.me/"/>
-  <updated>2018-09-09T18:01:31.096Z</updated>
+  <updated>2018-10-14T21:28:08.249Z</updated>
   <id>https://blog.kevinhu.me/</id>
   
   <author>
@@ -15,6 +15,32 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Reading-Summary 2018-10-14</title>
+    <link href="https://blog.kevinhu.me/2018/10/14/14-Reading-Summary-2018-10/"/>
+    <id>https://blog.kevinhu.me/2018/10/14/14-Reading-Summary-2018-10/</id>
+    <published>2018-10-14T20:52:00.000Z</published>
+    <updated>2018-10-14T21:28:08.249Z</updated>
+    
+    <content type="html"><![CDATA[<p>Posts I find interesting around the web:</p><h2 id="Miscalleneous-Posts"><a href="#Miscalleneous-Posts" class="headerlink" title="Miscalleneous Posts"></a>Miscalleneous Posts</h2><h3 id="Augumenting-Long-term-Memory"><a href="#Augumenting-Long-term-Memory" class="headerlink" title="Augumenting Long-term Memory"></a><a href="http://augmentingcognition.com/ltm.html" target="_blank" rel="noopener">Augumenting Long-term Memory</a></h3><p>A very interesting posts on augumenting long-term memory, based on Ebbinghaus’ forgetting curve theory: use flashcards to memorize everything you’ve learned, and even trivias like your friends’ birthday, etc.. It uses Anki flashcard software to go through the list of stuff.</p><p>Author also reasoned about the benefits of memorizing all the details, concepts, and “everything”: the details are the building blocks of a field of knowledge, and memorizing them dramatically helps the understanding this field.</p><p>It’s a long read but a deep discussion, and I find it a joyful read.</p><h3 id="How-To-Get-Rich"><a href="#How-To-Get-Rich" class="headerlink" title="How To Get Rich"></a><a href="https://www.edge.org/conversation/jared_diamond-how-to-get-rich" target="_blank" rel="noopener">How To Get Rich</a></h3><p>An interesting talk from Jared Diamond, the author of <em>Guns, Germs, and Steel</em>. Despite the kind of misleading title, it’s an interesting take on history and the progress of human civilizations, and how competitions between civilizations influence their prosperity.</p><h2 id="Systems-Design-and-Distributed-Systems"><a href="#Systems-Design-and-Distributed-Systems" class="headerlink" title="Systems Design and Distributed Systems"></a>Systems Design and Distributed Systems</h2><h3 id="SoftwareArch-You-are-going-to-need-it-—-Using-Interfaces-and-Dependency-Injection-to-future-proof-your-designs"><a href="#SoftwareArch-You-are-going-to-need-it-—-Using-Interfaces-and-Dependency-Injection-to-future-proof-your-designs" class="headerlink" title="SoftwareArch: You are going to need it — Using Interfaces and Dependency Injection to future proof your designs"></a><a href="https://medium.com/dm03514-tech-blog/you-are-going-to-need-it-using-interfaces-and-dependency-injection-to-future-proof-your-designs-2cf6f58db192" target="_blank" rel="noopener">SoftwareArch: You are going to need it — Using Interfaces and Dependency Injection to future proof your designs</a></h3><p>An introduction to interfaces in Golang, and how dependency injection can help you design large projects.</p><h3 id="System-Design-Primer"><a href="#System-Design-Primer" class="headerlink" title="System Design Primer"></a><a href="https://github.com/donnemartin/system-design-primer" target="_blank" rel="noopener">System Design Primer</a></h3><p>The basic concepts of system design, web design, basic principals and distributed systems design. A collaborated effort on Github.</p><h3 id="Distributed-Periodic-Scheduling-with-Cron"><a href="#Distributed-Periodic-Scheduling-with-Cron" class="headerlink" title="Distributed Periodic Scheduling with Cron"></a><a href="https://landing.google.com/sre/book/chapters/distributed-periodic-scheduling.html" target="_blank" rel="noopener">Distributed Periodic Scheduling with Cron</a></h3><p>A chapter from Google’s new Site Reliability Engineering book, on how to design a distributed cron job daemon, and handle problems including fault-tolerance, repeatedly scheduled jobs, overloading the cluster, etc.. The whole book is a very valuable summary of experience of automation and distributed systems design at Google, and at Google scale. Definitely will read through other chapters.</p><h3 id="Go-hits-the-concurrency-nail-right-on-the-head"><a href="#Go-hits-the-concurrency-nail-right-on-the-head" class="headerlink" title="Go hits the concurrency nail right on the head"></a><a href="https://eli.thegreenplace.net/2018/go-hits-the-concurrency-nail-right-on-the-head/" target="_blank" rel="noopener">Go hits the concurrency nail right on the head</a></h3><p>Eli Bendersky’s blog post on why Golang gracefully handles the problems of concurrency at language level, that other major languages handles rather awkwardly.</p><ul><li>Use goroutine to unify the interface to coroutines and thread.</li><li>Use channels to enforce the ‘share memory by communicating’ pattern.</li></ul><p>Which greatly reduces the programmer’s mental burden of design highly concurrent systems.</p><h3 id="Getting-started-with-Python-in-HPC"><a href="#Getting-started-with-Python-in-HPC" class="headerlink" title="Getting started with Python in HPC"></a><a href="http://andy.terrel.us/blog/2012/09/27/starting-with-python/" target="_blank" rel="noopener">Getting started with Python in HPC</a></h3><p>An introduction to learning Python in HPC, from introduction to Python language, to distributed HPC frameworks for Python.</p><h3 id="A-Whirlwind-Tour-of-Distributed-Systems"><a href="#A-Whirlwind-Tour-of-Distributed-Systems" class="headerlink" title="A Whirlwind Tour of Distributed Systems"></a><a href="https://medium.com/@marinsmiljanic/a-whirlwind-tour-of-distributed-systems-918d6632eb78" target="_blank" rel="noopener">A Whirlwind Tour of Distributed Systems</a></h3><p>A list of concepts, papers, and interesting blog posts on distributed systems design.</p>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;p&gt;Posts I find interesting around the web:&lt;/p&gt;
+&lt;h2 id=&quot;Miscalleneous-Posts&quot;&gt;&lt;a href=&quot;#Miscalleneous-Posts&quot; class=&quot;headerlink&quot; title=&quot;Miscal
+      
+    
+    </summary>
+    
+      <category term="Reading" scheme="https://blog.kevinhu.me/categories/Reading/"/>
+    
+    
+      <category term="systems" scheme="https://blog.kevinhu.me/tags/systems/"/>
+    
+  </entry>
   
   <entry>
     <title>Weekly paper reading: C++ and the Perils of Double-Checked Locking</title>
