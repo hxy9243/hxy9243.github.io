@@ -7,7 +7,7 @@ title: "Kevin Hu's Blog"
 subtitle: A Hungry Fool
 description:
 author: Kevin Hu
-email: 
+email:
 language: en-US
 
 # URL
@@ -48,6 +48,11 @@ highlight:
   auto_detect: false
   tab_replace:
 
+# Marked
+marked:
+  gfm: true
+  break: true
+
 # Category & Tag
 default_category: uncategorized
 category_map:
@@ -83,7 +88,7 @@ per_page: 10
 pagination_dir: page
 
 # Disqus
-# disqus_shortname: kevinhustechblog
+disqus_shortname: kevinhustechblog
 
 # Extensions
 # plugins:
