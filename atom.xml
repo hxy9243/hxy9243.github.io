@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://blog.kevinhu.me/"/>
-  <updated>2018-10-14T21:28:08.249Z</updated>
+  <updated>2018-10-15T06:24:06.857Z</updated>
   <id>https://blog.kevinhu.me/</id>
   
   <author>
@@ -15,6 +15,39 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Paper Reading: A Reconfigurable Fabric for Accelerating Large-Scale Datacenter Services</title>
+    <link href="https://blog.kevinhu.me/2018/10/14/14-Paper-Reading-2-Catapult/"/>
+    <id>https://blog.kevinhu.me/2018/10/14/14-Paper-Reading-2-Catapult/</id>
+    <published>2018-10-15T02:47:00.000Z</published>
+    <updated>2018-10-15T06:24:06.857Z</updated>
+    
+    <content type="html"><![CDATA[<p>This is one of the series of papers from Microsoft’s <a href="">Project Catapult</a>, which studiesleveraging reconfigurable devices (FPGA, etc.) to accelerate data center, from very specificaccelerating algorithms like page ranking for Bing search engine, to more sophisticated machinelearning frameworks like DNN.</p><p>This is one of their early publications, which introduces the basic design and implementationof the FPGA accelerated datacenter. It covers the very fundamental details of all aspects ofserver design, from hardware, network topology, FPGA core design, fault-tolerant cluster managementsoftware design, workload scheduling algorithm, and etc..</p><a id="more"></a><p>Some highlights and takeaways:</p><h2 id="Hardware"><a href="#Hardware" class="headerlink" title="Hardware"></a>Hardware</h2><p>Catapult hardware is integrated with existing server-grade blades, which takes the space on thePCIe of the motherboard, through a daughter board with one single high-end FPGA card.</p><h2 id="Network-Design"><a href="#Network-Design" class="headerlink" title="Network Design"></a>Network Design</h2><p>The daughter-boardcards connects each other with a fast secondary network, independent of the CPU network. The secondarynetworks form a 6x8 torus topology network (see more details in paper), which gives fast inter-FPGA communications,good routability but not too much cabling complexity. The CPU network connects to a 48-port switch foreach pod.</p><h2 id="Software-Interface"><a href="#Software-Interface" class="headerlink" title="Software Interface"></a>Software Interface</h2><p>On FPGA space has been divided into <em>Shell</em> and <em>Role</em>. <em>Shell</em> manages the common libraries or functionalitieslike memory management, serial link, or PCIe, reconfiguration logics, etc.. The <em>Role</em> space is responsible foractual acceleration algorithm, which will be reloaded for each reconfiguration when the FPGA functionality needsto be updated.</p><p>FPGAs will be reconfigured from time to time and certain software must be designed to ensure to take the FPGAcompletely offline and ignored by neighbors, to ensure correct operations.</p><p>Debugging might be hard to achieve through typical JTAG hardware debugging facilities, considering the scaleof the datacenter. The paper presents an ‘always-on’ data collector that captures the key components andsaves them to a circular-buffer log.</p><p>The software interfaces divides the algorithm into 7-stages and distributed them to a 8-node FPGA group, withone for redundancy. The paper describes how the network accelerates the ‘Feature Extraction’, which producesa single score at the last stage, indicating how close the document is to the search key word.</p><p>All the queries are queued in memory in DRAM. The Queue Manager takes documents from each queue, then sends themdown the pipeline. It also manages the model reloads in the pipeline, which calculates different feature ‘scores’ forqueries.</p><h2 id="Evaluation"><a href="#Evaluation" class="headerlink" title="Evaluation"></a>Evaluation</h2><p>The Catapult project, according to the paper, ‘reduces the worst-case latency by 29% in the 95 percentile distribution’in their evaluation environment, and provides 95% gain in throughput relative to software.</p>]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;This is one of the series of papers from Microsoft’s &lt;a href=&quot;&quot;&gt;Project Catapult&lt;/a&gt;, which studies
+leveraging reconfigurable devices (FPGA, etc.) to accelerate data center, from very specific
+accelerating algorithms like page ranking for Bing search engine, to more sophisticated machine
+learning frameworks like DNN.&lt;/p&gt;
+&lt;p&gt;This is one of their early publications, which introduces the basic design and implementation
+of the FPGA accelerated datacenter. It covers the very fundamental details of all aspects of
+server design, from hardware, network topology, FPGA core design, fault-tolerant cluster management
+software design, workload scheduling algorithm, and etc..&lt;/p&gt;
+    
+    </summary>
+    
+      <category term="Paper" scheme="https://blog.kevinhu.me/categories/Paper/"/>
+    
+    
+      <category term="HPC" scheme="https://blog.kevinhu.me/tags/HPC/"/>
+    
+      <category term="FPGA" scheme="https://blog.kevinhu.me/tags/FPGA/"/>
+    
+      <category term="Datacenter" scheme="https://blog.kevinhu.me/tags/Datacenter/"/>
+    
+  </entry>
   
   <entry>
     <title>Reading-Summary 2018-10-14</title>
