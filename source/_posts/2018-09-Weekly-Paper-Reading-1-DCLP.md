@@ -1,4 +1,5 @@
-title: 'Weekly paper reading: C++ and the Perils of Double-Checked Locking'
+title: >-
+    Paper Reading 09-09: C++ and the Perils of Double-Checked Locking
 date: 2018-09-09 13:03:20
 comments: true
 tags: ['C++', 'Programming', 'Multithread', 'WeeklyPaper']

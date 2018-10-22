@@ -1,5 +1,6 @@
 ---
-title: 'Paper Reading: A Reconfigurable Fabric for Accelerating Large-Scale Datacenter Services'
+title: >-
+    Paper Reading 10-14: A Reconfigurable Fabric for Accelerating Large-Scale Datacenter Services
 date: 2018-10-14 21:47:00
 comments: true
 tags: ["FPGA", "Datacenter", "HPC"]
