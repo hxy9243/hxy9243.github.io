@@ -2,7 +2,7 @@ title: 'Weekly paper reading: C++ and the Perils of Double-Checked Locking'
 date: 2018-09-09 13:03:20
 comments: true
 tags: ['C++', 'Programming', 'Multithread', 'WeeklyPaper']
-categories: Reading
+categories: Paper
 ---
 
 An interesting paper on the perils of C++, design pattern and multi-threading when they're mixed together:
