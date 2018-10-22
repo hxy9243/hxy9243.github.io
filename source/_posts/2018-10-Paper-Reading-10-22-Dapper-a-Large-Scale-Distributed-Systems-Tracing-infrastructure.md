@@ -1,6 +1,6 @@
 ---
 title: >-
-  Paper Reading 10-22 Dapper, a Large-Scale Distributed Systems Tracing
+  Paper Reading 10-22: Dapper, a Large-Scale Distributed Systems Tracing
   infrastructure
 date: 2018-10-22 01:24:08
 tags: ['distributed systems', 'tracing']
