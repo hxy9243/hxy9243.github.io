@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://blog.kevinhu.me/"/>
-  <updated>2018-10-22T07:14:17.793Z</updated>
+  <updated>2018-10-22T20:29:41.968Z</updated>
   <id>https://blog.kevinhu.me/</id>
   
   <author>
@@ -17,11 +17,11 @@
   <generator uri="http://hexo.io/">Hexo</generator>
   
   <entry>
-    <title>Paper Reading 10-22 Dapper, a Large-Scale Distributed Systems Tracing infrastructure</title>
+    <title>Paper Reading 10-22: Dapper, a Large-Scale Distributed Systems Tracing infrastructure</title>
     <link href="https://blog.kevinhu.me/2018/10/22/Paper-Reading-10-22-Dapper-a-Large-Scale-Distributed-Systems-Tracing-infrastructure/"/>
     <id>https://blog.kevinhu.me/2018/10/22/Paper-Reading-10-22-Dapper-a-Large-Scale-Distributed-Systems-Tracing-infrastructure/</id>
     <published>2018-10-22T06:24:08.000Z</published>
-    <updated>2018-10-22T07:14:17.793Z</updated>
+    <updated>2018-10-22T20:29:41.968Z</updated>
     
     <content type="html"><![CDATA[<p>Link: <a href="https://ai.google/research/pubs/pub36356" target="_blank" rel="noopener">https://ai.google/research/pubs/pub36356</a></p><p>This is a 2010 paper that presents Dapper, a tracing infrastructure from Google,to solve problems at Google scale, in its massive scale distributed systems,where a service could invoke very deep RPC calls across different nodes in thecluster, which makes tracing quite challenging.</p><a id="more"></a><p>Highlights and takeaways:</p><h2 id="Design"><a href="#Design" class="headerlink" title="Design"></a>Design</h2><p>The paper introduces the following concepts to describe the system:<code>tree</code>, <code>span</code>, and <code>annotation</code>.</p><h3 id="tree"><a href="#tree" class="headerlink" title="tree"></a><code>tree</code></h3><p><img src="figure1.png" alt="Figure1"></p><p>A simple service call could span a few different nodes in the system,forming a calling tree between different services, as shown abovein figure1.</p><h3 id="span"><a href="#span" class="headerlink" title="span"></a><code>span</code></h3><p><img src="figure2.png" alt="Figure2"></p><p>In Dapper trace tree, the tree nodes are basic units of work which isreferred to as <code>spans</code>. The edge indicates a casual relationship a spanand a parent. See figure2.</p><p>Each trace has a single trace id across all its children spans.Each span has one id, and records the relationships between parentand child. See figure2.Parent spans always starts before child and ends after children finish.</p><p>Dapper is designed to follow distributed control paths with near-zerointervention from the application developers, by instrumenting thefollowing libraries:</p><ul><li>thread library: Dapper attaches a trace context to thread-localstorage.</li><li>asynchronous control flow library: Dapper instruments the control flow library to ensureall async callbacks store the context of their creator.</li><li>IPC library: All Google’s inter-process communication is built arounda single RPC framework, for all communications on same machine,and across network.</li></ul><h3 id="annotation"><a href="#annotation" class="headerlink" title="annotation"></a><code>annotation</code></h3><p>The instrumentation above is sufficient to derive traces of complexdistributed systems and made transparent to users, but Dapper alsoprovides capabilities for users to annotate important sections totheir applications.</p><h2 id="Sampling"><a href="#Sampling" class="headerlink" title="Sampling"></a>Sampling</h2><p>To improve performance, one of Dapper’s design decision is sampling. Dapper team noticed that Samplingat a relative small rate can get pretty good results with insightsto critical performance issues.</p><h2 id="Trace-collection"><a href="#Trace-collection" class="headerlink" title="Trace collection"></a>Trace collection</h2><p>Trace collection is divided to the following steps:</p><ul><li>Dapper span data is written to local log files.</li><li>Local logs are collected by Dapper daemons.</li><li>And are finally written to Bigtable.</li><li>User can query and analyze different traces with a Dapper webinterface, which aggregates all logs and sort by tracing ids.</li></ul>]]></content>
     
