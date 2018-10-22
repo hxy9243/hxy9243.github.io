@@ -3,11 +3,11 @@
 <head>
   <meta charset="utf-8">
   
-  <title>Archives: 2017/6 | Kevin Hu&#39;s Blog</title>
+  <title>Tag: infrastructure | Kevin Hu&#39;s Blog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   <meta property="og:type" content="website">
 <meta property="og:title" content="Kevin Hu&#39;s Blog">
-<meta property="og:url" content="https://blog.kevinhu.me/archives/2017/06/index.html">
+<meta property="og:url" content="https://blog.kevinhu.me/tags/infrastructure/index.html">
 <meta property="og:site_name" content="Kevin Hu&#39;s Blog">
 <meta property="og:locale" content="en-US">
 <meta name="twitter:card" content="summary">
@@ -78,14 +78,14 @@ ga('send', 'pageview');
       <div class="outer">
         <section id="main">
   
-    <article id="post-Reading-Summary-2017-06" class="article article-type-post" itemscope itemprop="blogPost">
+    <article id="post-Paper-Reading-10-22-Dapper-a-Large-Scale-Distributed-Systems-Tracing-infrastructure" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
-    <a href="/2017/06/11/Reading-Summary-2017-06/" class="article-date">
-  <time datetime="2017-06-12T00:54:11.000Z" itemprop="datePublished">06 11 2017</time>
+    <a href="/2018/10/22/Paper-Reading-10-22-Dapper-a-Large-Scale-Distributed-Systems-Tracing-infrastructure/" class="article-date">
+  <time datetime="2018-10-22T06:24:08.000Z" itemprop="datePublished">10 22 2018</time>
 </a>
     
   <div class="article-category">
-    <a class="article-category-link" href="/categories/Reading/">Reading</a>
+    <a class="article-category-link" href="/categories/Paper/">Paper</a>
   </div>
 
   </div>
@@ -96,7 +96,7 @@ ga('send', 'pageview');
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2017/06/11/Reading-Summary-2017-06/">Reading Summary 2017-06</a>
+      <a class="article-title" href="/2018/10/22/Paper-Reading-10-22-Dapper-a-Large-Scale-Distributed-Systems-Tracing-infrastructure/">Paper Reading 10-22: Dapper, a Large-Scale Distributed Systems Tracing Infrastructure</a>
     </h1>
   
 
@@ -104,34 +104,25 @@ ga('send', 'pageview');
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>It’s been a while since I ever post a reading summary never mention a new blog post. Writing is a time demanding job.</p>
-<h1 id="Society-and-Technology"><a href="#Society-and-Technology" class="headerlink" title="Society and Technology"></a>Society and Technology</h1><h3 id="Why-do-we-manage-academia-so-badly"><a href="#Why-do-we-manage-academia-so-badly" class="headerlink" title="Why do we manage academia so badly?"></a><a href="https://svpow.com/2017/03/22/why-do-we-manage-academia-so-badly/" target="_blank" rel="noopener">Why do we manage academia so badly?</a></h3><p><strong>“Managers want metrics that are easy to calculate, easy to understand, and quick to yield a value …
-metrics with these desirable properties are almost always worse than useless.”</strong></p>
-<p>Easy metrics are also easily “hacked” - people “hack” the metrics to make statistics look good, while deviate from the original purpose of academia: to achieve good quality research.</p>
-<p>See also:</p>
-<p><a href="https://svpow.com/2017/03/17/every-attempt-to-manage-academia-makes-it-worse/" target="_blank" rel="noopener">Every attempt to manage academia makes it worse</a></p>
-<h3 id="Did-Reddit’s-April-Fool’s-gag-solve-the-issue-of-online-hate-speech"><a href="#Did-Reddit’s-April-Fool’s-gag-solve-the-issue-of-online-hate-speech" class="headerlink" title="Did Reddit’s April Fool’s gag solve the issue of online hate speech?"></a><a href="https://arstechnica.com/gaming/2017/04/in-memoriam-reddits-72-hour-live-graffiti-wall-as-a-social-experiment/" target="_blank" rel="noopener">Did Reddit’s April Fool’s gag solve the issue of online hate speech?</a></h3><p>An interesting, anarchic style experiment on Reddit: let thousands of Redditers draw a picture all at the same time, what would possibly happen? It turned out to be surprisingly good.</p>
-<h3 id="Tim-Berners-Lee-I-invented-the-web-Here-are-three-things-we-need-to-change-to-save-it"><a href="#Tim-Berners-Lee-I-invented-the-web-Here-are-three-things-we-need-to-change-to-save-it" class="headerlink" title="Tim Berners-Lee: I invented the web. Here are three things we need to change to save it"></a><a href="https://www.theguardian.com/technology/2017/mar/11/tim-berners-lee-web-inventor-save-internet" target="_blank" rel="noopener">Tim Berners-Lee: I invented the web. Here are three things we need to change to save it</a></h3><p>Tim Berners-Lee: The Father of the World Wide Web and Turing Award winner believes the web nowadays has serious flaws, namely the loss of control of personal privacy, rampant spreading of misinformation on the web, and manipulations from the political campaigns online. It took everyone to build the web we have today, and it takes everyone to fix it now.</p>
-<p>More reports and readings on Tim Berners-Lee:</p>
-<ul>
-<li><a href="https://www.theguardian.com/technology/2009/mar/11/berners-lee-internet-data" target="_blank" rel="noopener">Web inventor warns against third-party internet snooping</a></li>
-<li><a href="https://www.theguardian.com/technology/2017/apr/04/tim-berners-lee-online-privacy-interview-turing-award" target="_blank" rel="noopener">Tim Berners-Lee: selling private citizens’ browsing data is ‘disgusting’</a></li>
-<li><a href="https://www.w3.org/DesignIssues/GovData.html" target="_blank" rel="noopener">Putting Government Data Online</a></li>
-</ul>
+        <p>Link: <a href="https://ai.google/research/pubs/pub36356" target="_blank" rel="noopener">https://ai.google/research/pubs/pub36356</a></p>
+<p>This is a 2010 paper that presents Dapper, a tracing infrastructure from Google,
+to solve problems at Google scale, in its massive scale distributed systems,
+where a service could invoke very deep RPC calls across different nodes in the
+cluster, which makes tracing quite challenging.</p>
         
           <p class="article-more-link">
-            <a href="/2017/06/11/Reading-Summary-2017-06/#more">Read More</a>
+            <a href="/2018/10/22/Paper-Reading-10-22-Dapper-a-Large-Scale-Distributed-Systems-Tracing-infrastructure/#more">Read More</a>
           </p>
         
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://blog.kevinhu.me/2017/06/11/Reading-Summary-2017-06/" data-id="cjnjxx3qr001n4yv1gsvqnlqh" class="article-share-link">Share</a>
+      <a data-url="https://blog.kevinhu.me/2018/10/22/Paper-Reading-10-22-Dapper-a-Large-Scale-Distributed-Systems-Tracing-infrastructure/" data-id="cjnjxx3r200284yv16cvdy6fb" class="article-share-link">Share</a>
       
-        <a href="https://blog.kevinhu.me/2017/06/11/Reading-Summary-2017-06/#disqus_thread" class="article-comment-link">Comments</a>
+        <a href="https://blog.kevinhu.me/2018/10/22/Paper-Reading-10-22-Dapper-a-Large-Scale-Distributed-Systems-Tracing-infrastructure/#disqus_thread" class="article-comment-link">Comments</a>
       
       
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Technology/">Technology</a></li></ul>
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/distributed-systems/">distributed systems</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/infrastructure/">infrastructure</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/tracing/">tracing</a></li></ul>
 
     </footer>
   </div>
