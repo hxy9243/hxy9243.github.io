@@ -3,15 +3,23 @@
 <head>
   <meta charset="utf-8">
   
-  <title>Category: CodeReading | Kevin Hu&#39;s Blog</title>
+  <title>Paper Reading 10-22 Dapper, a Large-Scale Distributed Systems Tracing infrastructure | Kevin Hu&#39;s Blog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta property="og:type" content="website">
-<meta property="og:title" content="Kevin Hu&#39;s Blog">
-<meta property="og:url" content="https://blog.kevinhu.me/categories/CodeReading/index.html">
+  <meta name="description" content="Link: https://ai.google/research/pubs/pub36356 This is a 2010 paper that presents Dapper, a tracing infrastructure from Google, to solve problems at Google scale, in its massive scale distributed syst">
+<meta name="keywords" content="distributed systems,tracing">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Paper Reading 10-22 Dapper, a Large-Scale Distributed Systems Tracing infrastructure">
+<meta property="og:url" content="https://blog.kevinhu.me/2018/10/22/Paper-Reading-10-22-Dapper-a-Large-Scale-Distributed-Systems-Tracing-infrastructure/index.html">
 <meta property="og:site_name" content="Kevin Hu&#39;s Blog">
+<meta property="og:description" content="Link: https://ai.google/research/pubs/pub36356 This is a 2010 paper that presents Dapper, a tracing infrastructure from Google, to solve problems at Google scale, in its massive scale distributed syst">
 <meta property="og:locale" content="en-US">
+<meta property="og:image" content="https://blog.kevinhu.me/2018/10/22/Paper-Reading-10-22-Dapper-a-Large-Scale-Distributed-Systems-Tracing-infrastructure/figure1.png">
+<meta property="og:image" content="https://blog.kevinhu.me/2018/10/22/Paper-Reading-10-22-Dapper-a-Large-Scale-Distributed-Systems-Tracing-infrastructure/figure2.png">
+<meta property="og:updated_time" content="2018-10-22T07:14:17.793Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Kevin Hu&#39;s Blog">
+<meta name="twitter:title" content="Paper Reading 10-22 Dapper, a Large-Scale Distributed Systems Tracing infrastructure">
+<meta name="twitter:description" content="Link: https://ai.google/research/pubs/pub36356 This is a 2010 paper that presents Dapper, a tracing infrastructure from Google, to solve problems at Google scale, in its massive scale distributed syst">
+<meta name="twitter:image" content="https://blog.kevinhu.me/2018/10/22/Paper-Reading-10-22-Dapper-a-Large-Scale-Distributed-Systems-Tracing-infrastructure/figure1.png">
   
     <link rel="alternative" href="/atom.xml" title="Kevin Hu&#39;s Blog" type="application/atom+xml">
   
@@ -76,16 +84,14 @@ ga('send', 'pageview');
   </div>
 </header>
       <div class="outer">
-        <section id="main">
-  
-    <article id="post-31-more-on-passwd" class="article article-type-post" itemscope itemprop="blogPost">
+        <section id="main"><article id="post-Paper-Reading-10-22-Dapper-a-Large-Scale-Distributed-Systems-Tracing-infrastructure" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
-    <a href="/2014/10/31/31-more-on-passwd/" class="article-date">
-  <time datetime="2014-11-01T02:30:45.000Z" itemprop="datePublished">10 31 2014</time>
+    <a href="/2018/10/22/Paper-Reading-10-22-Dapper-a-Large-Scale-Distributed-Systems-Tracing-infrastructure/" class="article-date">
+  <time datetime="2018-10-22T06:24:08.000Z" itemprop="datePublished">10 22 2018</time>
 </a>
     
   <div class="article-category">
-    <a class="article-category-link" href="/categories/CodeReading/">CodeReading</a>
+    <a class="article-category-link" href="/categories/Paper/">Paper</a>
   </div>
 
   </div>
@@ -95,8 +101,8 @@ ga('send', 'pageview');
       <header class="article-header">
         
   
-    <h1 itemprop="name">
-      <a class="article-title" href="/2014/10/31/31-more-on-passwd/">More On Passwd</a>
+    <h1 class="article-title" itemprop="name">
+      Paper Reading 10-22 Dapper, a Large-Scale Distributed Systems Tracing infrastructure
     </h1>
   
 
@@ -104,82 +110,89 @@ ga('send', 'pageview');
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>A little bit more interesting discoveries while digging into the passwd code file.</p>
-<h2 id="The-‘s’-flag-in-file-permission"><a href="#The-‘s’-flag-in-file-permission" class="headerlink" title="The ‘s’ flag in file permission"></a>The ‘s’ flag in file permission</h2><p>First, the file permission of passwd executable is <code>-rwsr-xr-x</code>. There’s an ‘s’ flag which don’t usually appear in common Unix files. The usage of the ‘s’ field is explained here:</p>
-<p><a href="http://en.wikipedia.org/wiki/Setuid" target="_blank" rel="noopener">http://en.wikipedia.org/wiki/Setuid</a></p>
-        
-          <p class="article-more-link">
-            <a href="/2014/10/31/31-more-on-passwd/#more">Read More</a>
-          </p>
-        
+        <p>Link: <a href="https://ai.google/research/pubs/pub36356" target="_blank" rel="noopener">https://ai.google/research/pubs/pub36356</a></p>
+<p>This is a 2010 paper that presents Dapper, a tracing infrastructure from Google,
+to solve problems at Google scale, in its massive scale distributed systems,
+where a service could invoke very deep RPC calls across different nodes in the
+cluster, which makes tracing quite challenging.</p>
+<a id="more"></a>
+<p>Highlights and takeaways:</p>
+<h2 id="Design"><a href="#Design" class="headerlink" title="Design"></a>Design</h2><p>The paper introduces the following concepts to describe the system:
+<code>tree</code>, <code>span</code>, and <code>annotation</code>.</p>
+<h3 id="tree"><a href="#tree" class="headerlink" title="tree"></a><code>tree</code></h3><p><img src="figure1.png" alt="Figure1"></p>
+<p>A simple service call could span a few different nodes in the system,
+forming a calling tree between different services, as shown above
+in figure1.</p>
+<h3 id="span"><a href="#span" class="headerlink" title="span"></a><code>span</code></h3><p><img src="figure2.png" alt="Figure2"></p>
+<p>In Dapper trace tree, the tree nodes are basic units of work which is
+referred to as <code>spans</code>. The edge indicates a casual relationship a span
+and a parent. See figure2.</p>
+<p>Each trace has a single trace id across all its children spans.
+Each span has one id, and records the relationships between parent
+and child. See figure2.
+Parent spans always starts before child and ends after children finish.</p>
+<p>Dapper is designed to follow distributed control paths with near-zero
+intervention from the application developers, by instrumenting the
+following libraries:</p>
+<ul>
+<li>thread library: Dapper attaches a trace context to thread-local
+storage.</li>
+<li>asynchronous control flow library: Dapper instruments the control flow library to ensure
+all async callbacks store the context of their creator.</li>
+<li>IPC library: All Google’s inter-process communication is built around
+a single RPC framework, for all communications on same machine,
+and across network.</li>
+</ul>
+<h3 id="annotation"><a href="#annotation" class="headerlink" title="annotation"></a><code>annotation</code></h3><p>The instrumentation above is sufficient to derive traces of complex
+distributed systems and made transparent to users, but Dapper also
+provides capabilities for users to annotate important sections to
+their applications.</p>
+<h2 id="Sampling"><a href="#Sampling" class="headerlink" title="Sampling"></a>Sampling</h2><p>To improve performance, one of Dapper’s design decision is
+ sampling. Dapper team noticed that Sampling
+at a relative small rate can get pretty good results with insights
+to critical performance issues.</p>
+<h2 id="Trace-collection"><a href="#Trace-collection" class="headerlink" title="Trace collection"></a>Trace collection</h2><p>Trace collection is divided to the following steps:</p>
+<ul>
+<li>Dapper span data is written to local log files.</li>
+<li>Local logs are collected by Dapper daemons.</li>
+<li>And are finally written to Bigtable.</li>
+<li>User can query and analyze different traces with a Dapper web
+interface, which aggregates all logs and sort by tracing ids.</li>
+</ul>
+
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://blog.kevinhu.me/2014/10/31/31-more-on-passwd/" data-id="cjnjxx3pb00074yv1jy1bjr1x" class="article-share-link">Share</a>
+      <a data-url="https://blog.kevinhu.me/2018/10/22/Paper-Reading-10-22-Dapper-a-Large-Scale-Distributed-Systems-Tracing-infrastructure/" data-id="cjnjxx3r200284yv16cvdy6fb" class="article-share-link">Share</a>
       
-        <a href="https://blog.kevinhu.me/2014/10/31/31-more-on-passwd/#disqus_thread" class="article-comment-link">Comments</a>
+        <a href="https://blog.kevinhu.me/2018/10/22/Paper-Reading-10-22-Dapper-a-Large-Scale-Distributed-Systems-Tracing-infrastructure/#disqus_thread" class="article-comment-link">Comments</a>
       
       
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/CodeReading/">CodeReading</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Password/">Password</a></li></ul>
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/distributed-systems/">distributed systems</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/tracing/">tracing</a></li></ul>
 
     </footer>
   </div>
   
-</article>
-
-
+    
+<nav id="article-nav">
   
-    <article id="post-13-a-dive-into-password" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2014/10/13/13-a-dive-into-password/" class="article-date">
-  <time datetime="2014-10-14T02:08:55.000Z" itemprop="datePublished">10 13 2014</time>
-</a>
-    
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/CodeReading/">CodeReading</a>
-  </div>
-
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
   
-    <h1 itemprop="name">
-      <a class="article-title" href="/2014/10/13/13-a-dive-into-password/">A Dive Into Password</a>
-    </h1>
+    <a href="/2018/10/14/14-Paper-Reading-2-Catapult/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">Paper Reading: A Reconfigurable Fabric for Accelerating Large-Scale Datacenter Services</div>
+    </a>
   
+</nav>
 
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h2 id="Passwd"><a href="#Passwd" class="headerlink" title="Passwd"></a>Passwd</h2><p>The passwd is program on Unix systems to manage users’ passwords. The user and password information on most Unix systems is stored in two separate files: /etc/passwd for user information, and /etc/shadow for password information, including encrypted password value, expiration data, UID, GID, and etc.. The
-rationale behind storing information in separate files is discussed in <a href="http://www.tldp.org/HOWTO/Shadow-Password-HOWTO-2.html" target="_blank" rel="noopener">Why shadow your passwd file?</a>
-        
-          <p class="article-more-link">
-            <a href="/2014/10/13/13-a-dive-into-password/#more">Read More</a>
-          </p>
-        
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="https://blog.kevinhu.me/2014/10/13/13-a-dive-into-password/" data-id="cjnjxx3p700054yv1kgecy7kf" class="article-share-link">Share</a>
-      
-        <a href="https://blog.kevinhu.me/2014/10/13/13-a-dive-into-password/#disqus_thread" class="article-comment-link">Comments</a>
-      
-      
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/CodeReading/">CodeReading</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Password/">Password</a></li></ul>
-
-    </footer>
-  </div>
   
 </article>
 
 
-  
-  
+<section id="comments">
+  <div id="disqus_thread">
+    <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+  </div>
+</section>
 </section>
         
           <aside id="sidebar">
@@ -268,11 +281,13 @@ rationale behind storing information in separate files is discussed in <a href="
 <script>
   var disqus_shortname = 'kevinhustechblog';
   
+  var disqus_url = 'https://blog.kevinhu.me/2018/10/22/Paper-Reading-10-22-Dapper-a-Large-Scale-Distributed-Systems-Tracing-infrastructure/';
+  
   (function(){
     var dsq = document.createElement('script');
     dsq.type = 'text/javascript';
     dsq.async = true;
-    dsq.src = '//' + disqus_shortname + '.disqus.com/count.js';
+    dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
     (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
   })();
 </script>

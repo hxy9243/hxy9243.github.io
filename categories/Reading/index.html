@@ -124,84 +124,12 @@ ga('send', 'pageview');
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://blog.kevinhu.me/2018/10/14/14-Reading-Summary-2018-10/" data-id="cjn9ds6hs0000ybv1hqorhqyx" class="article-share-link">Share</a>
+      <a data-url="https://blog.kevinhu.me/2018/10/14/14-Reading-Summary-2018-10/" data-id="cjnjxx3r7002f4yv1x91q9c77" class="article-share-link">Share</a>
       
         <a href="https://blog.kevinhu.me/2018/10/14/14-Reading-Summary-2018-10/#disqus_thread" class="article-comment-link">Comments</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/systems/">systems</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-    <article id="post-Weekly-Paper-Reading-1-DCLP" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2018/09/09/Weekly-Paper-Reading-1-DCLP/" class="article-date">
-  <time datetime="2018-09-09T18:03:20.000Z" itemprop="datePublished">09 09 2018</time>
-</a>
-    
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/Reading/">Reading</a>
-  </div>
-
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2018/09/09/Weekly-Paper-Reading-1-DCLP/">Weekly paper reading: C++ and the Perils of Double-Checked Locking</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>An interesting paper on the perils of C++, design pattern and multi-threading when they’re mixed together:</p>
-<p><a href="http://www.aristeia.com/Papers/DDJ_Jul_Aug_2004_revised.pdf" target="_blank" rel="noopener">C++ and the Perils of Double-Checked Locking</a></p>
-<p>The DCLP(Double-Checked Locking Pattern) is often-used in singleton design pattern: you’d like to initialize a shared object for singleton pattern, you follow the steps:</p>
-<ul>
-<li>check lock if the resource is already initialized</li>
-<li>if no, lock the mutex</li>
-<li>check again if the resource is locked inside the mutex-protected area.</li>
-<li>and again if no, initialize the object</li>
-</ul>
-<p>See C++ example:</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">Singleton* Singleton::instance() &#123;</span><br><span class="line">  if (pInstance == 0) &#123;              // 1st check, to avoid locking every time</span><br><span class="line">    Lock lock;</span><br><span class="line"></span><br><span class="line">    if (pInstance == 0) &#123;            // 2nd check, a safe check to guarantee correctness</span><br><span class="line">      pInstance = new Singleton;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  return pInstance</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>This pattern however, introduces subtle bugs when described in C++ with multi-threading.</p>
-<p>The issue is with this statement:</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pInstance = new Singleton;</span><br></pre></td></tr></table></figure>
-<p>The following steps happen:</p>
-<ol>
-<li>Allocate memory for the object</li>
-<li>Construct an object in the allocated memory.</li>
-<li>Assign <code>pInstance</code> to the allocated memory.</li>
-</ol>
-<p>But C++ specification don’t enforce the steps happen in order, and compilers are therefore not constrained to reorder them for sake of optimization. As long as the observable outcome of the instructions are correct, compilers are free to place instructions in an order so that CPUs are most utilized. Consider the following case with DCLP:</p>
-<ul>
-<li>Thread A execute the DCLP piece of code for the first time, performs the 1st check, lock the mutex, performs the 2nd check, allocates memory for Singleton object, points the pInstance to the allocated memory. But before the Singleton object is constructed, thread A is suspended or another thread is scheduled at the same time.</li>
-<li>Thread B enters DCLP area, determines that <code>pInstance</code> is non-null, and start using the object even before it’s fully constructed, and start accessing the <code>Singleton</code> object.</li>
-</ul>
-<p>Oops. This is a very subtle bug, and hard to detect issue when we’re trying to initialize a shared resource once.</p>
-<p>The paper digs into details on how compiler can leverage all sorts of different optimizations to spoil you effort to correct the DCLP code, and how to actually implement it correctly with <code>volatile</code> keyword.</p>
-<p>It’s a very interesting paper on algorithm, C++, and programming, It makes you stand in awe of the difficulty and intricacies of C++ and multi-threaded programming.</p>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="https://blog.kevinhu.me/2018/09/09/Weekly-Paper-Reading-1-DCLP/" data-id="cjlv5v1tf0000wav18fnka4jg" class="article-share-link">Share</a>
-      
-        <a href="https://blog.kevinhu.me/2018/09/09/Weekly-Paper-Reading-1-DCLP/#disqus_thread" class="article-comment-link">Comments</a>
-      
-      
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/C/">C++</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Multithread/">Multithread</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Programming/">Programming</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/WeeklyPaper/">WeeklyPaper</a></li></ul>
 
     </footer>
   </div>
@@ -257,7 +185,7 @@ ga('send', 'pageview');
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://blog.kevinhu.me/2018/07/09/09-2018-07-09-Reading-Summary/" data-id="cjjdtt8ui0000b0scv9owbcwr" class="article-share-link">Share</a>
+      <a data-url="https://blog.kevinhu.me/2018/07/09/09-2018-07-09-Reading-Summary/" data-id="cjnjxx3qx001z4yv19qo7t8ss" class="article-share-link">Share</a>
       
         <a href="https://blog.kevinhu.me/2018/07/09/09-2018-07-09-Reading-Summary/#disqus_thread" class="article-comment-link">Comments</a>
       
@@ -311,7 +239,7 @@ centralized data storage and display.</p>
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://blog.kevinhu.me/2018/05/21/2018-05-21-Reading-Summary/" data-id="cjj3i8a5y001vb1scrwrzmtf1" class="article-share-link">Share</a>
+      <a data-url="https://blog.kevinhu.me/2018/05/21/2018-05-21-Reading-Summary/" data-id="cjnjxx3qu001s4yv1codjqwdo" class="article-share-link">Share</a>
       
         <a href="https://blog.kevinhu.me/2018/05/21/2018-05-21-Reading-Summary/#disqus_thread" class="article-comment-link">Comments</a>
       
@@ -373,7 +301,7 @@ metrics with these desirable properties are almost always worse than useless.”
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://blog.kevinhu.me/2017/06/11/Reading-Summary-2017-06/" data-id="cjj3i8a5o001eb1scl98850al" class="article-share-link">Share</a>
+      <a data-url="https://blog.kevinhu.me/2017/06/11/Reading-Summary-2017-06/" data-id="cjnjxx3qr001n4yv1gsvqnlqh" class="article-share-link">Share</a>
       
         <a href="https://blog.kevinhu.me/2017/06/11/Reading-Summary-2017-06/#disqus_thread" class="article-comment-link">Comments</a>
       
@@ -423,7 +351,7 @@ metrics with these desirable properties are almost always worse than useless.”
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://blog.kevinhu.me/2017/03/26/Reading-Summary-2017-03/" data-id="cjj3i8a5t001ob1sc3powd1yg" class="article-share-link">Share</a>
+      <a data-url="https://blog.kevinhu.me/2017/03/26/Reading-Summary-2017-03/" data-id="cjnjxx3qq001k4yv1nb21e8ep" class="article-share-link">Share</a>
       
         <a href="https://blog.kevinhu.me/2017/03/26/Reading-Summary-2017-03/#disqus_thread" class="article-comment-link">Comments</a>
       
@@ -476,7 +404,7 @@ metrics with these desirable properties are almost always worse than useless.”
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://blog.kevinhu.me/2017/01/08/Reading-Summary-2016-12/" data-id="cjj3i8a5q001ib1scjcp87m3j" class="article-share-link">Share</a>
+      <a data-url="https://blog.kevinhu.me/2017/01/08/Reading-Summary-2016-12/" data-id="cjnjxx3qo001g4yv1rstytsrj" class="article-share-link">Share</a>
       
         <a href="https://blog.kevinhu.me/2017/01/08/Reading-Summary-2016-12/#disqus_thread" class="article-comment-link">Comments</a>
       
@@ -525,7 +453,7 @@ metrics with these desirable properties are almost always worse than useless.”
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://blog.kevinhu.me/2016/11/27/Reading-Summary-2016-11/" data-id="cjj3i8a5s001kb1scmd70g903" class="article-share-link">Share</a>
+      <a data-url="https://blog.kevinhu.me/2016/11/27/Reading-Summary-2016-11/" data-id="cjnjxx3qn001f4yv16kh6stg1" class="article-share-link">Share</a>
       
         <a href="https://blog.kevinhu.me/2016/11/27/Reading-Summary-2016-11/#disqus_thread" class="article-comment-link">Comments</a>
       
@@ -570,7 +498,7 @@ metrics with these desirable properties are almost always worse than useless.”
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://blog.kevinhu.me/2016/09/28/Reading-Summary-2016-09/" data-id="cjj3i8a5k0017b1scof2zi906" class="article-share-link">Share</a>
+      <a data-url="https://blog.kevinhu.me/2016/09/28/Reading-Summary-2016-09/" data-id="cjnjxx3qk001b4yv15faczx75" class="article-share-link">Share</a>
       
         <a href="https://blog.kevinhu.me/2016/09/28/Reading-Summary-2016-09/#disqus_thread" class="article-comment-link">Comments</a>
       
@@ -616,9 +544,58 @@ metrics with these desirable properties are almost always worse than useless.”
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://blog.kevinhu.me/2016/08/15/Reading-Summary-2016-08/" data-id="cjj3i8a5g0013b1scpkgrgy7c" class="article-share-link">Share</a>
+      <a data-url="https://blog.kevinhu.me/2016/08/15/Reading-Summary-2016-08/" data-id="cjnjxx3qj00194yv1y08gv3n5" class="article-share-link">Share</a>
       
         <a href="https://blog.kevinhu.me/2016/08/15/Reading-Summary-2016-08/#disqus_thread" class="article-comment-link">Comments</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-Reading-Summary-2016-04" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2016/05/06/Reading-Summary-2016-04/" class="article-date">
+  <time datetime="2016-05-06T06:34:31.000Z" itemprop="datePublished">05 06 2016</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/Reading/">Reading</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2016/05/06/Reading-Summary-2016-04/">Reading Summary 2016-04</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="Programming"><a href="#Programming" class="headerlink" title="Programming"></a>Programming</h1><h3 id="Eli-Bendersky’s-Website"><a href="#Eli-Bendersky’s-Website" class="headerlink" title="Eli Bendersky’s Website"></a><a href="http://eli.thegreenplace.net/" target="_blank" rel="noopener">Eli Bendersky’s Website</a></h3><p>Eli Bendersky’s blog has always been a must-read to me. He never fails to regularly come up with posts of interesting and insightful ideas, or detailed tutorials.</p>
+<p>He also actively participates in LLVM-dev mailing list and based on his blogs, has board interests in programming language, computer systems and etc..</p>
+<h1 id="Computer-Science"><a href="#Computer-Science" class="headerlink" title="Computer Science"></a>Computer Science</h1><h3 id="What-is-HCI-research-And-what-is-its-relationship-to-computer-science"><a href="#What-is-HCI-research-And-what-is-its-relationship-to-computer-science" class="headerlink" title="What is HCI research? And what is its relationship to computer science?"></a><a href="http://www.pgbovine.net/what-is-hci-research.htm" target="_blank" rel="noopener">What is HCI research? And what is its relationship to computer science?</a></h3><p>Phillip Guo is another one of my favorite bloggers. This time he wrote an intro to HCI research.</p>
+        
+          <p class="article-more-link">
+            <a href="/2016/05/06/Reading-Summary-2016-04/#more">Read More</a>
+          </p>
+        
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://blog.kevinhu.me/2016/05/06/Reading-Summary-2016-04/" data-id="cjnjxx3qh00174yv13kj9srf4" class="article-share-link">Share</a>
+      
+        <a href="https://blog.kevinhu.me/2016/05/06/Reading-Summary-2016-04/#disqus_thread" class="article-comment-link">Comments</a>
       
       
     </footer>
@@ -641,7 +618,7 @@ metrics with these desirable properties are almost always worse than useless.”
   <div class="widget-wrap">
     <h3 class="widget-title">Categories</h3>
     <div class="widget">
-      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Algorithm/">Algorithm</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/CodeReading/">CodeReading</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Diary/">Diary</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Paper/">Paper</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Programming/">Programming</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/ProgrammingLanguage/">ProgrammingLanguage</a><span class="category-list-count">4</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Reading/">Reading</a><span class="category-list-count">16</span></li></ul>
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Algorithm/">Algorithm</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/CodeReading/">CodeReading</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Diary/">Diary</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Paper/">Paper</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Programming/">Programming</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/ProgrammingLanguage/">ProgrammingLanguage</a><span class="category-list-count">4</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Reading/">Reading</a><span class="category-list-count">15</span></li></ul>
     </div>
   </div>
 
@@ -650,7 +627,7 @@ metrics with these desirable properties are almost always worse than useless.”
   <div class="widget-wrap">
     <h3 class="widget-title">Tag Cloud</h3>
     <div class="widget tagcloud">
-      <a href="/tags/Algorithm/" style="font-size: 10px;">Algorithm</a> <a href="/tags/BitHacks/" style="font-size: 10px;">BitHacks</a> <a href="/tags/C/" style="font-size: 10px;">C</a> <a href="/tags/C/" style="font-size: 10px;">C++</a> <a href="/tags/C-C/" style="font-size: 15px;">C/C++</a> <a href="/tags/CodeReading/" style="font-size: 15px;">CodeReading</a> <a href="/tags/Coding/" style="font-size: 10px;">Coding</a> <a href="/tags/Compilers/" style="font-size: 15px;">Compilers</a> <a href="/tags/Datacenter/" style="font-size: 10px;">Datacenter</a> <a href="/tags/Docker/" style="font-size: 10px;">Docker</a> <a href="/tags/FPGA/" style="font-size: 10px;">FPGA</a> <a href="/tags/HPC/" style="font-size: 10px;">HPC</a> <a href="/tags/Hugepage/" style="font-size: 10px;">Hugepage</a> <a href="/tags/Internet-BookReview/" style="font-size: 10px;">Internet, BookReview</a> <a href="/tags/Linux/" style="font-size: 15px;">Linux</a> <a href="/tags/Multithread/" style="font-size: 10px;">Multithread</a> <a href="/tags/PaperReading/" style="font-size: 10px;">PaperReading</a> <a href="/tags/Password/" style="font-size: 15px;">Password</a> <a href="/tags/Programming/" style="font-size: 15px;">Programming</a> <a href="/tags/ProgrammingLanguage/" style="font-size: 15px;">ProgrammingLanguage</a> <a href="/tags/Python/" style="font-size: 20px;">Python</a> <a href="/tags/Social/" style="font-size: 10px;">Social</a> <a href="/tags/Technology/" style="font-size: 15px;">Technology</a> <a href="/tags/Undefined-Behavior/" style="font-size: 15px;">Undefined Behavior</a> <a href="/tags/WeeklyPaper/" style="font-size: 10px;">WeeklyPaper</a> <a href="/tags/systems/" style="font-size: 10px;">systems</a>
+      <a href="/tags/Algorithm/" style="font-size: 10px;">Algorithm</a> <a href="/tags/BitHacks/" style="font-size: 10px;">BitHacks</a> <a href="/tags/C/" style="font-size: 10px;">C</a> <a href="/tags/C/" style="font-size: 10px;">C++</a> <a href="/tags/C-C/" style="font-size: 15px;">C/C++</a> <a href="/tags/CodeReading/" style="font-size: 15px;">CodeReading</a> <a href="/tags/Coding/" style="font-size: 10px;">Coding</a> <a href="/tags/Compilers/" style="font-size: 15px;">Compilers</a> <a href="/tags/Datacenter/" style="font-size: 10px;">Datacenter</a> <a href="/tags/Docker/" style="font-size: 10px;">Docker</a> <a href="/tags/FPGA/" style="font-size: 10px;">FPGA</a> <a href="/tags/HPC/" style="font-size: 10px;">HPC</a> <a href="/tags/Hugepage/" style="font-size: 10px;">Hugepage</a> <a href="/tags/Internet-BookReview/" style="font-size: 10px;">Internet, BookReview</a> <a href="/tags/Linux/" style="font-size: 15px;">Linux</a> <a href="/tags/Multithread/" style="font-size: 10px;">Multithread</a> <a href="/tags/PaperReading/" style="font-size: 10px;">PaperReading</a> <a href="/tags/Password/" style="font-size: 15px;">Password</a> <a href="/tags/Programming/" style="font-size: 15px;">Programming</a> <a href="/tags/ProgrammingLanguage/" style="font-size: 15px;">ProgrammingLanguage</a> <a href="/tags/Python/" style="font-size: 20px;">Python</a> <a href="/tags/Social/" style="font-size: 10px;">Social</a> <a href="/tags/Technology/" style="font-size: 15px;">Technology</a> <a href="/tags/Undefined-Behavior/" style="font-size: 15px;">Undefined Behavior</a> <a href="/tags/WeeklyPaper/" style="font-size: 10px;">WeeklyPaper</a> <a href="/tags/distributed-systems/" style="font-size: 10px;">distributed systems</a> <a href="/tags/systems/" style="font-size: 10px;">systems</a> <a href="/tags/tracing/" style="font-size: 10px;">tracing</a>
     </div>
   </div>
 
@@ -659,7 +636,7 @@ metrics with these desirable properties are almost always worse than useless.”
   <div class="widget-wrap">
     <h3 class="widget-title">Archives</h3>
     <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/10/">October 2018</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/09/">September 2018</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/07/">July 2018</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/05/">May 2018</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/06/">June 2017</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/03/">March 2017</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/01/">January 2017</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/11/">November 2016</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/09/">September 2016</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/08/">August 2016</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/05/">May 2016</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/02/">February 2016</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/12/">December 2015</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/11/">November 2015</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/10/">October 2015</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/04/">April 2015</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/03/">March 2015</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/01/">January 2015</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/11/">November 2014</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/10/">October 2014</a><span class="archive-list-count">4</span></li></ul>
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/10/">October 2018</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/09/">September 2018</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/07/">July 2018</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/05/">May 2018</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/06/">June 2017</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/03/">March 2017</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/01/">January 2017</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/11/">November 2016</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/09/">September 2016</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/08/">August 2016</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/05/">May 2016</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/02/">February 2016</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/12/">December 2015</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/11/">November 2015</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/10/">October 2015</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/04/">April 2015</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/03/">March 2015</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/01/">January 2015</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/11/">November 2014</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/10/">October 2014</a><span class="archive-list-count">4</span></li></ul>
     </div>
   </div>
 
@@ -669,6 +646,10 @@ metrics with these desirable properties are almost always worse than useless.”
     <h3 class="widget-title">Recents</h3>
     <div class="widget">
       <ul>
+        
+          <li>
+            <a href="/2018/10/22/Paper-Reading-10-22-Dapper-a-Large-Scale-Distributed-Systems-Tracing-infrastructure/">Paper Reading 10-22 Dapper, a Large-Scale Distributed Systems Tracing infrastructure</a>
+          </li>
         
           <li>
             <a href="/2018/10/14/14-Paper-Reading-2-Catapult/">Paper Reading: A Reconfigurable Fabric for Accelerating Large-Scale Datacenter Services</a>
@@ -684,10 +665,6 @@ metrics with these desirable properties are almost always worse than useless.”
         
           <li>
             <a href="/2018/07/09/09-2018-07-09-Reading-Summary/">Reading-Summary 2018-06</a>
-          </li>
-        
-          <li>
-            <a href="/2018/07/01/01-Linux-Hugepages/">A Note on Linux Hugepages</a>
           </li>
         
       </ul>

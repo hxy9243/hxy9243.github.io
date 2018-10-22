@@ -3,11 +3,11 @@
 <head>
   <meta charset="utf-8">
   
-  <title>Category: CodeReading | Kevin Hu&#39;s Blog</title>
+  <title>Tag: distributed systems | Kevin Hu&#39;s Blog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   <meta property="og:type" content="website">
 <meta property="og:title" content="Kevin Hu&#39;s Blog">
-<meta property="og:url" content="https://blog.kevinhu.me/categories/CodeReading/index.html">
+<meta property="og:url" content="https://blog.kevinhu.me/tags/distributed-systems/index.html">
 <meta property="og:site_name" content="Kevin Hu&#39;s Blog">
 <meta property="og:locale" content="en-US">
 <meta name="twitter:card" content="summary">
@@ -78,14 +78,14 @@ ga('send', 'pageview');
       <div class="outer">
         <section id="main">
   
-    <article id="post-31-more-on-passwd" class="article article-type-post" itemscope itemprop="blogPost">
+    <article id="post-Paper-Reading-10-22-Dapper-a-Large-Scale-Distributed-Systems-Tracing-infrastructure" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
-    <a href="/2014/10/31/31-more-on-passwd/" class="article-date">
-  <time datetime="2014-11-01T02:30:45.000Z" itemprop="datePublished">10 31 2014</time>
+    <a href="/2018/10/22/Paper-Reading-10-22-Dapper-a-Large-Scale-Distributed-Systems-Tracing-infrastructure/" class="article-date">
+  <time datetime="2018-10-22T06:24:08.000Z" itemprop="datePublished">10 22 2018</time>
 </a>
     
   <div class="article-category">
-    <a class="article-category-link" href="/categories/CodeReading/">CodeReading</a>
+    <a class="article-category-link" href="/categories/Paper/">Paper</a>
   </div>
 
   </div>
@@ -96,7 +96,7 @@ ga('send', 'pageview');
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2014/10/31/31-more-on-passwd/">More On Passwd</a>
+      <a class="article-title" href="/2018/10/22/Paper-Reading-10-22-Dapper-a-Large-Scale-Distributed-Systems-Tracing-infrastructure/">Paper Reading 10-22 Dapper, a Large-Scale Distributed Systems Tracing infrastructure</a>
     </h1>
   
 
@@ -104,73 +104,25 @@ ga('send', 'pageview');
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>A little bit more interesting discoveries while digging into the passwd code file.</p>
-<h2 id="The-‘s’-flag-in-file-permission"><a href="#The-‘s’-flag-in-file-permission" class="headerlink" title="The ‘s’ flag in file permission"></a>The ‘s’ flag in file permission</h2><p>First, the file permission of passwd executable is <code>-rwsr-xr-x</code>. There’s an ‘s’ flag which don’t usually appear in common Unix files. The usage of the ‘s’ field is explained here:</p>
-<p><a href="http://en.wikipedia.org/wiki/Setuid" target="_blank" rel="noopener">http://en.wikipedia.org/wiki/Setuid</a></p>
+        <p>Link: <a href="https://ai.google/research/pubs/pub36356" target="_blank" rel="noopener">https://ai.google/research/pubs/pub36356</a></p>
+<p>This is a 2010 paper that presents Dapper, a tracing infrastructure from Google,
+to solve problems at Google scale, in its massive scale distributed systems,
+where a service could invoke very deep RPC calls across different nodes in the
+cluster, which makes tracing quite challenging.</p>
         
           <p class="article-more-link">
-            <a href="/2014/10/31/31-more-on-passwd/#more">Read More</a>
+            <a href="/2018/10/22/Paper-Reading-10-22-Dapper-a-Large-Scale-Distributed-Systems-Tracing-infrastructure/#more">Read More</a>
           </p>
         
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://blog.kevinhu.me/2014/10/31/31-more-on-passwd/" data-id="cjnjxx3pb00074yv1jy1bjr1x" class="article-share-link">Share</a>
+      <a data-url="https://blog.kevinhu.me/2018/10/22/Paper-Reading-10-22-Dapper-a-Large-Scale-Distributed-Systems-Tracing-infrastructure/" data-id="cjnjxx3r200284yv16cvdy6fb" class="article-share-link">Share</a>
       
-        <a href="https://blog.kevinhu.me/2014/10/31/31-more-on-passwd/#disqus_thread" class="article-comment-link">Comments</a>
-      
-      
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/CodeReading/">CodeReading</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Password/">Password</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-    <article id="post-13-a-dive-into-password" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2014/10/13/13-a-dive-into-password/" class="article-date">
-  <time datetime="2014-10-14T02:08:55.000Z" itemprop="datePublished">10 13 2014</time>
-</a>
-    
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/CodeReading/">CodeReading</a>
-  </div>
-
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2014/10/13/13-a-dive-into-password/">A Dive Into Password</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h2 id="Passwd"><a href="#Passwd" class="headerlink" title="Passwd"></a>Passwd</h2><p>The passwd is program on Unix systems to manage users’ passwords. The user and password information on most Unix systems is stored in two separate files: /etc/passwd for user information, and /etc/shadow for password information, including encrypted password value, expiration data, UID, GID, and etc.. The
-rationale behind storing information in separate files is discussed in <a href="http://www.tldp.org/HOWTO/Shadow-Password-HOWTO-2.html" target="_blank" rel="noopener">Why shadow your passwd file?</a>
-        
-          <p class="article-more-link">
-            <a href="/2014/10/13/13-a-dive-into-password/#more">Read More</a>
-          </p>
-        
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="https://blog.kevinhu.me/2014/10/13/13-a-dive-into-password/" data-id="cjnjxx3p700054yv1kgecy7kf" class="article-share-link">Share</a>
-      
-        <a href="https://blog.kevinhu.me/2014/10/13/13-a-dive-into-password/#disqus_thread" class="article-comment-link">Comments</a>
+        <a href="https://blog.kevinhu.me/2018/10/22/Paper-Reading-10-22-Dapper-a-Large-Scale-Distributed-Systems-Tracing-infrastructure/#disqus_thread" class="article-comment-link">Comments</a>
       
       
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/CodeReading/">CodeReading</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Password/">Password</a></li></ul>
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/distributed-systems/">distributed systems</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/tracing/">tracing</a></li></ul>
 
     </footer>
   </div>
