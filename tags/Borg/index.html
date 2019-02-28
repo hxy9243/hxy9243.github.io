@@ -3,11 +3,11 @@
 <head><meta name="generator" content="Hexo 3.8.0">
   <meta charset="utf-8">
   
-  <title>Tag: BitHacks | Kevin Hu&#39;s Blog</title>
+  <title>Tag: Borg | Kevin Hu&#39;s Blog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   <meta property="og:type" content="website">
 <meta property="og:title" content="Kevin Hu&#39;s Blog">
-<meta property="og:url" content="https://blog.kevinhu.me/tags/BitHacks/index.html">
+<meta property="og:url" content="https://blog.kevinhu.me/tags/Borg/index.html">
 <meta property="og:site_name" content="Kevin Hu&#39;s Blog">
 <meta property="og:locale" content="en-US">
 <meta name="twitter:card" content="summary">
@@ -78,14 +78,14 @@ ga('send', 'pageview');
       <div class="outer">
         <section id="main">
   
-    <article id="post-Bithacks" class="article article-type-post" itemscope="" itemprop="blogPost">
+    <article id="post-24-Paper-Reading-Borg" class="article article-type-post" itemscope="" itemprop="blogPost">
   <div class="article-meta">
-    <a href="/2015/03/07/Bithacks/" class="article-date">
-  <time datetime="2015-03-08T03:22:30.000Z" itemprop="datePublished">03 07 2015</time>
+    <a href="/2019/02/27/24-Paper-Reading-Borg/" class="article-date">
+  <time datetime="2019-02-27T17:05:34.000Z" itemprop="datePublished">02 27 2019</time>
 </a>
     
   <div class="article-category">
-    <a class="article-category-link" href="/categories/Algorithm/">Algorithm</a>
+    <a class="article-category-link" href="/categories/Paper/">Paper</a>
   </div>
 
   </div>
@@ -96,7 +96,8 @@ ga('send', 'pageview');
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2015/03/07/Bithacks/">BitHacks</a>
+      <a class="article-title" href="/2019/02/27/24-Paper-Reading-Borg/">Paper Reading: Large-scale cluster management at Google with Borg
+</a>
     </h1>
   
 
@@ -104,23 +105,22 @@ ga('send', 'pageview');
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>I’ve recently come across a very interesting article on <a href="https://graphics.stanford.edu/~seander/bithacks.html" target="_blank" rel="noopener">BitHacks</a> – the low level magics for bit level operations. Some of the tricks introduced here are really excellently clever, some of them may even make you exclaim for their genius!</p>
-<p>I had a lot of fun reading through some of the BitHacks. It’s also worth noticing these BitHacks are not only for intellectual pleasures, they provide actual boosts to algorithm performance as well. When an operations is used often enough, the overall performance benefits to the whole program might be significant.</p>
-<p>I couldn’t help but keep wondering how on earth did these clever CS guys ever come up with such algorithms. I tried very hard to find some answers and the following are some patterns I noticed in this attempt. Still, honestly, I highly doubt if I can come up with same solutions myself if I ever run into these problems again. Some of them are just to clever.</p>
+        <p>About: Borg is Google’s large cluster workload scheduling and management system, which handles Google’s most service and batch job workloads on a cluster on scale of thousands of machines. It hides users from burdens of management of cluster, and provides high-availability features that handles failures.</p>
+<p>The now very famous and popular open-source docker orchestration tool Kubernetes, is an open source successor to Borg, and keeps borrowing ideas from Borg (see <a href="https://kubernetes.io/blog/2015/04/borg-predecessor-to-kubernetes/" target="_blank" rel="noopener">kubernetes</a>).</p>
         
           <p class="article-more-link">
-            <a href="/2015/03/07/Bithacks/#more">Read More</a>
+            <a href="/2019/02/27/24-Paper-Reading-Borg/#more">Read More</a>
           </p>
         
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://blog.kevinhu.me/2015/03/07/Bithacks/" data-id="cjsj7ovb7004n24v1qf1e0199" class="article-share-link">Share</a>
+      <a data-url="https://blog.kevinhu.me/2019/02/27/24-Paper-Reading-Borg/" data-id="cjsj7pxxh00002pv1kbwjd093" class="article-share-link">Share</a>
       
-        <a href="https://blog.kevinhu.me/2015/03/07/Bithacks/#disqus_thread" class="article-comment-link">Comments</a>
+        <a href="https://blog.kevinhu.me/2019/02/27/24-Paper-Reading-Borg/#disqus_thread" class="article-comment-link">Comments</a>
       
       
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/BitHacks/">BitHacks</a></li></ul>
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Borg/">Borg</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/DistributedSystems/">DistributedSystems</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/PaperReading/">PaperReading</a></li></ul>
 
     </footer>
   </div>

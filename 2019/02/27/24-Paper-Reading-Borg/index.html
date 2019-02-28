@@ -3,15 +3,23 @@
 <head><meta name="generator" content="Hexo 3.8.0">
   <meta charset="utf-8">
   
-  <title>Tag: BitHacks | Kevin Hu&#39;s Blog</title>
+  <title>Paper Reading: Large-scale cluster management at Google with Borg
+ | Kevin Hu&#39;s Blog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta property="og:type" content="website">
-<meta property="og:title" content="Kevin Hu&#39;s Blog">
-<meta property="og:url" content="https://blog.kevinhu.me/tags/BitHacks/index.html">
+  <meta name="description" content="About: Borg is Google’s large cluster workload scheduling and management system, which handles Google’s most service and batch job workloads on a cluster on scale of thousands of machines. It hides us">
+<meta name="keywords" content="PaperReading,Borg,DistributedSystems">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Paper Reading: Large-scale cluster management at Google with Borg
+">
+<meta property="og:url" content="https://blog.kevinhu.me/2019/02/27/24-Paper-Reading-Borg/index.html">
 <meta property="og:site_name" content="Kevin Hu&#39;s Blog">
+<meta property="og:description" content="About: Borg is Google’s large cluster workload scheduling and management system, which handles Google’s most service and batch job workloads on a cluster on scale of thousands of machines. It hides us">
 <meta property="og:locale" content="en-US">
+<meta property="og:updated_time" content="2019-02-28T05:04:24.184Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Kevin Hu&#39;s Blog">
+<meta name="twitter:title" content="Paper Reading: Large-scale cluster management at Google with Borg
+">
+<meta name="twitter:description" content="About: Borg is Google’s large cluster workload scheduling and management system, which handles Google’s most service and batch job workloads on a cluster on scale of thousands of machines. It hides us">
   
     <link rel="alternative" href="/atom.xml" title="Kevin Hu&#39;s Blog" type="application/atom+xml">
   
@@ -76,16 +84,14 @@ ga('send', 'pageview');
   </div>
 </header>
       <div class="outer">
-        <section id="main">
-  
-    <article id="post-Bithacks" class="article article-type-post" itemscope="" itemprop="blogPost">
+        <section id="main"><article id="post-24-Paper-Reading-Borg" class="article article-type-post" itemscope="" itemprop="blogPost">
   <div class="article-meta">
-    <a href="/2015/03/07/Bithacks/" class="article-date">
-  <time datetime="2015-03-08T03:22:30.000Z" itemprop="datePublished">03 07 2015</time>
+    <a href="/2019/02/27/24-Paper-Reading-Borg/" class="article-date">
+  <time datetime="2019-02-27T17:05:34.000Z" itemprop="datePublished">02 27 2019</time>
 </a>
     
   <div class="article-category">
-    <a class="article-category-link" href="/categories/Algorithm/">Algorithm</a>
+    <a class="article-category-link" href="/categories/Paper/">Paper</a>
   </div>
 
   </div>
@@ -95,8 +101,9 @@ ga('send', 'pageview');
       <header class="article-header">
         
   
-    <h1 itemprop="name">
-      <a class="article-title" href="/2015/03/07/Bithacks/">BitHacks</a>
+    <h1 class="article-title" itemprop="name">
+      Paper Reading: Large-scale cluster management at Google with Borg
+
     </h1>
   
 
@@ -104,32 +111,80 @@ ga('send', 'pageview');
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>I’ve recently come across a very interesting article on <a href="https://graphics.stanford.edu/~seander/bithacks.html" target="_blank" rel="noopener">BitHacks</a> – the low level magics for bit level operations. Some of the tricks introduced here are really excellently clever, some of them may even make you exclaim for their genius!</p>
-<p>I had a lot of fun reading through some of the BitHacks. It’s also worth noticing these BitHacks are not only for intellectual pleasures, they provide actual boosts to algorithm performance as well. When an operations is used often enough, the overall performance benefits to the whole program might be significant.</p>
-<p>I couldn’t help but keep wondering how on earth did these clever CS guys ever come up with such algorithms. I tried very hard to find some answers and the following are some patterns I noticed in this attempt. Still, honestly, I highly doubt if I can come up with same solutions myself if I ever run into these problems again. Some of them are just to clever.</p>
-        
-          <p class="article-more-link">
-            <a href="/2015/03/07/Bithacks/#more">Read More</a>
-          </p>
-        
+        <p>About: Borg is Google’s large cluster workload scheduling and management system, which handles Google’s most service and batch job workloads on a cluster on scale of thousands of machines. It hides users from burdens of management of cluster, and provides high-availability features that handles failures.</p>
+<p>The now very famous and popular open-source docker orchestration tool Kubernetes, is an open source successor to Borg, and keeps borrowing ideas from Borg (see <a href="https://kubernetes.io/blog/2015/04/borg-predecessor-to-kubernetes/" target="_blank" rel="noopener">kubernetes</a>).</p>
+<a id="more"></a>
+<h2 id="Concepts"><a href="#Concepts" class="headerlink" title="Concepts"></a>Concepts</h2><h3 id="Workloads"><a href="#Workloads" class="headerlink" title="Workloads"></a>Workloads</h3><p>There are heterogeneous workloads on the cluster, that could mainly be categorized as</p>
+<ul>
+<li>long-running services: that responds to user requests.</li>
+<li>batch jobs: computation work that might take long time to finish.</li>
+</ul>
+<h3 id="Cluster-and-cells"><a href="#Cluster-and-cells" class="headerlink" title="Cluster and cells"></a>Cluster and cells</h3><p>A cell is a collection of machines in a datacenter. A cluster hosts one large cell or several smaller cells for testing.</p>
+<h3 id="Jobs-and-tasks"><a href="#Jobs-and-tasks" class="headerlink" title="Jobs and tasks"></a>Jobs and tasks</h3><p>A job is made of one of multiple tasks. Tasks can:</p>
+<ul>
+<li>have constraints on what OS, what IP, processor it requires,</li>
+<li>run inside a container with resources (CPU, memory, disk) limits with command-line flags.</li>
+</ul>
+<p>Users can operate by jobs with RPCs to Borg.</p>
+<h3 id="Allocs"><a href="#Allocs" class="headerlink" title="Allocs"></a>Allocs</h3><ul>
+<li>Alloc: is a reserved set of resources on a machine for one or more tasks to be run.</li>
+<li>Alloc Set: a set of Allocs on multiple machines. Once an Alloc Set is created, a job can be scheduled to run on it.</li>
+</ul>
+<h3 id="Priority-Quota-and-Admission-Control"><a href="#Priority-Quota-and-Admission-Control" class="headerlink" title="Priority, Quota and Admission Control"></a>Priority, Quota and Admission Control</h3><p>Every job has a priority, and the scheduler schedule them ranking by the priority.</p>
+<p>Quota is assigned to/purchased by the user. It’s defined by resources at a certain priority. Quota is managed by admission control, and a job/user is over quota, the job is immediately rejected.</p>
+<h3 id="Naming-and-monitoring"><a href="#Naming-and-monitoring" class="headerlink" title="Naming and monitoring"></a>Naming and monitoring</h3><p>Borg names and monitors tasks with:</p>
+<ul>
+<li>“Borg name service”, that assigns each task a name and a DNS name, so that a task can be reachable at a certain DNS address.</li>
+<li>Chubby consistency service: a task writes its info to Chubby upon creation, and updates when there’s a change in health.</li>
+<li>Almost every task has an HTTP endpoint that exposes health metrics that can be queried by Borg health monitoring service.</li>
+<li>Records all job submission and task events, resource usage metrics in a database for future query.</li>
+</ul>
+<h2 id="Architecture"><a href="#Architecture" class="headerlink" title="Architecture"></a>Architecture</h2><h3 id="Borgmaster-and-Borglet"><a href="#Borgmaster-and-Borglet" class="headerlink" title="Borgmaster and Borglet"></a>Borgmaster and Borglet</h3><p>Borg master records all the job status and manages state machines to all the objects in the system (machines, tasks, allocs, etc). And the data is saved in a Paxos-enabled Chubby store.</p>
+<p>Borglet is a local Borg agent that resides on every machine in a cell, which manages tasks on a single machine, and sends heartbeats to the master.</p>
+<h3 id="Scheduler"><a href="#Scheduler" class="headerlink" title="Scheduler"></a>Scheduler</h3><p>Borgmaster records jobs to Paxos store and pending queue, which is picked up by the scheduler, and gets scheduled. The scheduler uses an algorithm “E-PVM” for scoring, (sometimes called “worst fit”), or an algorithm that packs the tasks to minimal number of machines (sometimes called “best fit”).</p>
+<h3 id="Scalability"><a href="#Scalability" class="headerlink" title="Scalability"></a>Scalability</h3><p>Borg uses the following techniques for scalability:</p>
+<ul>
+<li>Scheduler uses a separate process, to operate in parallel with the other Borgmaster.</li>
+<li>A scheduler operates on a cached copy of the cell state.</li>
+<li>Uses separate threads to talk to Borglets and respond to read-only RPCs.</li>
+<li>Shards (partitioned) functions across five Borgmaster replicas.</li>
+</ul>
+<h2 id="Availability"><a href="#Availability" class="headerlink" title="Availability"></a>Availability</h2><p>Failures are normal and applications run on Borg on expected to handle failures, and automatically rescheduled when evicted due to failure, eviction, preemption, and etc.</p>
+<h2 id="Conclusion"><a href="#Conclusion" class="headerlink" title="Conclusion"></a>Conclusion</h2><p>Borg serves as an important example for the design of all other large-scale distributed scheduling systems, which performs in the challenges of functionality, scalability and availability, and high utilization of the cluster resources.</p>
+
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://blog.kevinhu.me/2015/03/07/Bithacks/" data-id="cjsj7ovb7004n24v1qf1e0199" class="article-share-link">Share</a>
+      <a data-url="https://blog.kevinhu.me/2019/02/27/24-Paper-Reading-Borg/" data-id="cjsj7pxxh00002pv1kbwjd093" class="article-share-link">Share</a>
       
-        <a href="https://blog.kevinhu.me/2015/03/07/Bithacks/#disqus_thread" class="article-comment-link">Comments</a>
+        <a href="https://blog.kevinhu.me/2019/02/27/24-Paper-Reading-Borg/#disqus_thread" class="article-comment-link">Comments</a>
       
       
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/BitHacks/">BitHacks</a></li></ul>
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Borg/">Borg</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/DistributedSystems/">DistributedSystems</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/PaperReading/">PaperReading</a></li></ul>
 
     </footer>
   </div>
   
+    
+<nav id="article-nav">
+  
+  
+    <a href="/2019/02/09/Debugging-An-Interesting-Deadlock-In-Go/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">Debugging An Interesting Deadlock in Golang</div>
+    </a>
+  
+</nav>
+
+  
 </article>
 
 
-  
-  
+<section id="comments">
+  <div id="disqus_thread">
+    <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+  </div>
+</section>
 </section>
         
           <aside id="sidebar">
@@ -219,11 +274,13 @@ ga('send', 'pageview');
 <script>
   var disqus_shortname = 'kevinhustechblog';
   
+  var disqus_url = 'https://blog.kevinhu.me/2019/02/27/24-Paper-Reading-Borg/';
+  
   (function(){
     var dsq = document.createElement('script');
     dsq.type = 'text/javascript';
     dsq.async = true;
-    dsq.src = '//' + disqus_shortname + '.disqus.com/count.js';
+    dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
     (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
   })();
 </script>
