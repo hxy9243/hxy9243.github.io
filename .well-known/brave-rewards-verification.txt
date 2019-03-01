@@ -1,0 +1,4 @@
+This is a Brave Rewards publisher verification file.
+
+Domain: kevinhu.me
+Token: e68a2435e7444c8dd12290e9b8071aade9d1cf7fa91e65b5e3fbb499013d022c
