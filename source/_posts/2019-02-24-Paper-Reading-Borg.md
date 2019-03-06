@@ -6,6 +6,8 @@ tags: ['Borg', 'PaperReading', 'DistributedSystems']
 categories: Paper
 ---
 
+Link: https://ai.google/research/pubs/pub43438
+
 About: Borg is Google's large cluster workload scheduling and management system, which handles Google's most service and batch job workloads on a cluster on scale of thousands of machines. It hides users from burdens of management of cluster, and provides high-availability features that handles failures.
 
 The now very famous and popular open-source docker orchestration tool Kubernetes, is an open source successor to Borg, and keeps borrowing ideas from Borg (see [kubernetes](https://kubernetes.io/blog/2015/04/borg-predecessor-to-kubernetes/)).
