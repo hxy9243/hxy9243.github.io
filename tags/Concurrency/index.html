@@ -3,11 +3,11 @@
 <head><meta name="generator" content="Hexo 3.8.0">
   <meta charset="utf-8">
   
-  <title>Archives: 2016/5 | Kevin Hu&#39;s Blog</title>
+  <title>Tag: Concurrency | Kevin Hu&#39;s Blog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   <meta property="og:type" content="website">
 <meta property="og:title" content="Kevin Hu&#39;s Blog">
-<meta property="og:url" content="https://blog.kevinhu.me/archives/2016/05/index.html">
+<meta property="og:url" content="https://blog.kevinhu.me/tags/Concurrency/index.html">
 <meta property="og:site_name" content="Kevin Hu&#39;s Blog">
 <meta property="og:locale" content="en-US">
 <meta name="twitter:card" content="summary">
@@ -78,14 +78,14 @@ ga('send', 'pageview');
       <div class="outer">
         <section id="main">
   
-    <article id="post-Reading-Summary-2016-04" class="article article-type-post" itemscope="" itemprop="blogPost">
+    <article id="post-Paper-Reading-Go-Concurrency-Bugs" class="article article-type-post" itemscope="" itemprop="blogPost">
   <div class="article-meta">
-    <a href="/2016/05/06/Reading-Summary-2016-04/" class="article-date">
-  <time datetime="2016-05-06T06:34:31.000Z" itemprop="datePublished">05 06 2016</time>
+    <a href="/2019/03/04/Paper-Reading-Go-Concurrency-Bugs/" class="article-date">
+  <time datetime="2019-03-04T06:46:03.000Z" itemprop="datePublished">03 04 2019</time>
 </a>
     
   <div class="article-category">
-    <a class="article-category-link" href="/categories/Reading/">Reading</a>
+    <a class="article-category-link" href="/categories/Paper/">Paper</a>
   </div>
 
   </div>
@@ -96,7 +96,8 @@ ga('send', 'pageview');
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2016/05/06/Reading-Summary-2016-04/">Reading Summary 2016-04</a>
+      <a class="article-title" href="/2019/03/04/Paper-Reading-Go-Concurrency-Bugs/">Paper Reading: Understanding Real-World Concurrency Bugs in Go
+</a>
     </h1>
   
 
@@ -104,22 +105,29 @@ ga('send', 'pageview');
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h1 id="Programming"><a href="#Programming" class="headerlink" title="Programming"></a>Programming</h1><h3 id="Eli-Bendersky’s-Website"><a href="#Eli-Bendersky’s-Website" class="headerlink" title="Eli Bendersky’s Website"></a><a href="http://eli.thegreenplace.net/" target="_blank" rel="noopener">Eli Bendersky’s Website</a></h3><p>Eli Bendersky’s blog has always been a must-read to me. He never fails to regularly come up with posts of interesting and insightful ideas, or detailed tutorials.</p>
-<p>He also actively participates in LLVM-dev mailing list and based on his blogs, has board interests in programming language, computer systems and etc..</p>
-<h1 id="Computer-Science"><a href="#Computer-Science" class="headerlink" title="Computer Science"></a>Computer Science</h1><h3 id="What-is-HCI-research-And-what-is-its-relationship-to-computer-science"><a href="#What-is-HCI-research-And-what-is-its-relationship-to-computer-science" class="headerlink" title="What is HCI research? And what is its relationship to computer science?"></a><a href="http://www.pgbovine.net/what-is-hci-research.htm" target="_blank" rel="noopener">What is HCI research? And what is its relationship to computer science?</a></h3><p>Phillip Guo is another one of my favorite bloggers. This time he wrote an intro to HCI research.</p>
+        <p>Link: <a href="https://golangweekly.com/link/59972/b208593eda" target="_blank" rel="noopener">https://golangweekly.com/link/59972/b208593eda</a></p>
+<p>A team from Penn State University and Purdue published their latest study on concurrency bugs found in Golang projects, namely large projects from Github: Docker and Kubernetes, two datacenter container systems, etcd, a distributedkey-value store system, gRPC, an RPC library, and CockroachDB and BoltDB. The authors searched commit histories of each repository to understand concurrency bug fixes for categorization and study.</p>
+<p><strong>TL;DR</strong>:</p>
+<ul>
+<li>Go’s message-passing concurrency mechanism, something Go is proud of, isn’t as easy to use as it’s generally perceived. It creates just as many bugs, if not more, than shared-memory concurrency model.</li>
+<li>Shared memory synchronization is still used more in Go projects.</li>
+<li>Go’s built-in race and deadlock bug detection library still cannot catch all the bugs. There’s room for more improvements.</li>
+</ul>
         
           <p class="article-more-link">
-            <a href="/2016/05/06/Reading-Summary-2016-04/#more">Read More</a>
+            <a href="/2019/03/04/Paper-Reading-Go-Concurrency-Bugs/#more">Read More</a>
           </p>
         
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://blog.kevinhu.me/2016/05/06/Reading-Summary-2016-04/" data-id="cjsj7ov53001024v1hh0otfn2" class="article-share-link">Share</a>
+      <a data-url="https://blog.kevinhu.me/2019/03/04/Paper-Reading-Go-Concurrency-Bugs/" data-id="cjswsocok0000glv18pboiveo" class="article-share-link">Share</a>
       
-        <a href="https://blog.kevinhu.me/2016/05/06/Reading-Summary-2016-04/#disqus_thread" class="article-comment-link">Comments</a>
+        <a href="https://blog.kevinhu.me/2019/03/04/Paper-Reading-Go-Concurrency-Bugs/#disqus_thread" class="article-comment-link">Comments</a>
       
       
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Concurrency/">Concurrency</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Golang/">Golang</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/PaperReading/">PaperReading</a></li></ul>
+
     </footer>
   </div>
   
