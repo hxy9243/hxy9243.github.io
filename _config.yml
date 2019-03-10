@@ -52,7 +52,11 @@ highlight:
 markdown:
   render:
     html: true
+    breaks: false
+    xhtmlOut: false
     linkify: true
+    typographer: true
+    quotes: '“”‘’'
 
 # Category & Tag
 default_category: uncategorized
