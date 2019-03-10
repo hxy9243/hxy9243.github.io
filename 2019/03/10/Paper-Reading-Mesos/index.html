@@ -16,7 +16,7 @@
 <meta property="og:image" content="https://blog.kevinhu.me/2019/03/10/Paper-Reading-Mesos/2019-03-Paper-Reading-Mesos-architecture3.jpg">
 <meta property="og:image" content="https://blog.kevinhu.me/2019/03/10/Paper-Reading-Mesos/2019-03-Paper-Reading-Mesos-architecture-example.jpg">
 <meta property="og:image" content="https://blog.kevinhu.me/2019/03/10/Paper-Reading-Mesos/2019-03-Paper-Reading-Mesos-Resource-Pooling.png">
-<meta property="og:updated_time" content="2019-03-10T22:36:49.418Z">
+<meta property="og:updated_time" content="2019-03-10T22:48:24.275Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Paper Reading: Mesos: A Platform for Fine-Grained Resource Sharing in the Data Center">
 <meta name="twitter:description" content="Link to paper: https://people.eecs.berkeley.edu/~alig/papers/mesos.pdf Presentation: https://www.usenix.org/conference/nsdi11/mesos-platform-fine-grained-resource-sharing-data-center Mesos is a cluste">
@@ -111,8 +111,8 @@ ga('send', 'pageview');
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>Link to paper: https://people.eecs.berkeley.edu/~alig/papers/mesos.pdf</p>
-<p>Presentation: https://www.usenix.org/conference/nsdi11/mesos-platform-fine-grained-resource-sharing-data-center</p>
+        <p>Link to paper: <a href="https://people.eecs.berkeley.edu/~alig/papers/mesos.pdf" target="_blank" rel="noopener">https://people.eecs.berkeley.edu/~alig/papers/mesos.pdf</a></p>
+<p>Presentation: <a href="https://www.usenix.org/conference/nsdi11/mesos-platform-fine-grained-resource-sharing-data-center" target="_blank" rel="noopener">https://www.usenix.org/conference/nsdi11/mesos-platform-fine-grained-resource-sharing-data-center</a></p>
 <p>Mesos is a cluster resource management software from UC Berkeley. Unlike many other
 frameworks already existed, Mesos is designed to support heterogeneous frameworks (Hadoop,
 MPI, etc) in the same cluster and share resources between them, by providing a thin layer
@@ -128,7 +128,7 @@ accommodate differnt computation needs.</li>
 <li>Find-grained sharing: Instead of allocating static amount of cluster to multiple
 frameworks, Mesos provides fine grained resources to all frameworks elastically.</li>
 <li>Resource offers: Instead of making all decisions for everyone, supporting all frameworks out
-there, Mesos implements &quot;a scheduler of schedulers&quot;, by providing <em>resources offers</em>
+there, Mesos implements “a scheduler of schedulers”, by providing <em>resources offers</em>
 to each framework and let it make scheduling and execution decisions, making
 Mesos itself thin, highly extensible, and scalable.</li>
 <li>Frameworks are provided <em>resource offers</em>, and can make decisions on whether to
@@ -166,7 +166,7 @@ offers.</li>
 <p>Mesos core is designed to be small, and from the paper it could scale to 50,000
 nodes with emulated load.</p>
 <ul>
-<li>Delay scheduling: The team built a new MapReduce framework on Mesos named &quot;Spark&quot;, to handle iterative
+<li>Delay scheduling: The team built a new MapReduce framework on Mesos named “Spark”, to handle iterative
 MapReduce workloads. Since Mesos allows framework scheduler to choose resources, it can choose
 resources so that data is retained on the executor. This avoids reloading data from disk
 each iteration, and allows Spark to achieve ~10x performance over traditional MapReduce
