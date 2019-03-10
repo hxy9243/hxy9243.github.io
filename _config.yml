@@ -49,9 +49,10 @@ highlight:
   tab_replace:
 
 # Marked
-marked:
-  gfm: true
-  break: true
+markdown:
+  render:
+    html: true
+    linkify: true
 
 # Category & Tag
 default_category: uncategorized
