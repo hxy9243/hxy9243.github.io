@@ -1,6 +1,6 @@
-<title: |
-  Blog Reading: The Log: What every software engineer should know about real-time data's unifying abstraction
-date: 2019-03-17 23:39:10
+title: |
+  Blog Reading: The log - What every software engineer should know about real-time data's unifying abstraction
+date: 2019-04-01 23:39:10
 comments: true
 tags: ['Kafka', 'Log']
 categories: PaperReading
