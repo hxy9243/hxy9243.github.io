@@ -3,15 +3,22 @@
 <head>
   <meta charset="utf-8">
   
-  <title>Archives: 2018/5 | Kevin Hu&#39;s Blog</title>
+  <title>Kevin Hu&#39;s Blog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta property="og:type" content="website">
+  <meta name="description" content="Link: https://engineering.linkedin.com/distributed-systems/log-what-every-software-engineer-should-know-about-real-time-datas-unifying Kafka is a message queue, a pub-sub system, an event sourcing too">
+<meta name="keywords" content="Kafka,Log">
+<meta property="og:type" content="article">
 <meta property="og:title" content="Kevin Hu&#39;s Blog">
-<meta property="og:url" content="https://blog.kevinhu.me/archives/2018/05/index.html">
+<meta property="og:url" content="https://blog.kevinhu.me/2019/03/17/31-Blog-Reading-Kafka/index.html">
 <meta property="og:site_name" content="Kevin Hu&#39;s Blog">
+<meta property="og:description" content="Link: https://engineering.linkedin.com/distributed-systems/log-what-every-software-engineer-should-know-about-real-time-datas-unifying Kafka is a message queue, a pub-sub system, an event sourcing too">
 <meta property="og:locale" content="en-US">
+<meta property="og:image" content="https://blog.kevinhu.me/2019/03/17/31-Blog-Reading-Kafka/2019-03-31-Blog-Reading-Kafka-active_and_passive_arch.png">
+<meta property="og:updated_time" content="2019-04-03T06:38:54.889Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Kevin Hu&#39;s Blog">
+<meta name="twitter:description" content="Link: https://engineering.linkedin.com/distributed-systems/log-what-every-software-engineer-should-know-about-real-time-datas-unifying Kafka is a message queue, a pub-sub system, an event sourcing too">
+<meta name="twitter:image" content="https://blog.kevinhu.me/2019/03/17/31-Blog-Reading-Kafka/2019-03-31-Blog-Reading-Kafka-active_and_passive_arch.png">
   
     <link rel="alternative" href="/atom.xml" title="Kevin Hu&#39;s Blog" type="application/atom+xml">
   
@@ -76,62 +83,150 @@ ga('send', 'pageview');
   </div>
 </header>
       <div class="outer">
-        <section id="main">
-  
-    <article id="post-2018-05-21-Reading-Summary" class="article article-type-post" itemscope itemprop="blogPost">
+        <section id="main"><article id="post-31-Blog-Reading-Kafka" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
-    <a href="/2018/05/21/2018-05-21-Reading-Summary/" class="article-date">
-  <time datetime="2018-05-21T05:48:06.000Z" itemprop="datePublished">05 21 2018</time>
+    <a href="/2019/03/17/31-Blog-Reading-Kafka/" class="article-date">
+  <time datetime="2019-03-18T04:39:10.000Z" itemprop="datePublished">03 17 2019</time>
 </a>
     
   <div class="article-category">
-    <a class="article-category-link" href="/categories/Reading/">Reading</a>
+    <a class="article-category-link" href="/categories/PaperReading/">PaperReading</a>
   </div>
 
   </div>
   <div class="article-inner">
     
     
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2018/05/21/2018-05-21-Reading-Summary/">Reading-Summary 2018-05</a>
-    </h1>
-  
-
-      </header>
-    
     <div class="article-entry" itemprop="articleBody">
       
-        <p>Posts I found interesting during my reading:</p>
-<h3 id="Writing-a-Time-Series-Database-from-Scratch"><a href="#Writing-a-Time-Series-Database-from-Scratch" class="headerlink" title="Writing a Time Series Database from Scratch"></a><a href="https://fabxc.org/tsdb/" target="_blank" rel="noopener">Writing a Time Series Database from Scratch</a></h3><p>The author’s experience in writing a time-series database from groundup, for Prometheus.</p>
-<h3 id="Introducing-Thanos-Prometheus-at-Scale"><a href="#Introducing-Thanos-Prometheus-at-Scale" class="headerlink" title="Introducing Thanos: Prometheus at Scale"></a><a href="https://improbable.io/games/blog/thanos-prometheus-at-scale" target="_blank" rel="noopener">Introducing Thanos: Prometheus at Scale</a></h3><p>The effort to scale Prometheus with a new project Thanos, with Kubernetes sidecar pattern, to read data from individual nodes, pre-process (e.g. sampling), and submit to a<br>centralized data storage and display.</p>
-<h3 id="A-Beginner’s-Guide-To-Scaling-To-11-Million-Users-On-Amazon’s-AWS"><a href="#A-Beginner’s-Guide-To-Scaling-To-11-Million-Users-On-Amazon’s-AWS" class="headerlink" title="A Beginner’s Guide To Scaling To 11 Million+ Users On Amazon’s AWS"></a><a href="http://highscalability.com/blog/2016/1/11/a-beginners-guide-to-scaling-to-11-million-users-on-amazons.html" target="_blank" rel="noopener">A Beginner’s Guide To Scaling To 11 Million+ Users On Amazon’s AWS</a></h3><p>What kind of machine/cluster you’ll need for different size of user base (from 1 to billions).</p>
-<h3 id="Nexflix-FlameScope"><a href="#Nexflix-FlameScope" class="headerlink" title="Nexflix FlameScope"></a><a href="https://medium.com/netflix-techblog/netflix-flamescope-a57ca19d47bb" target="_blank" rel="noopener">Nexflix FlameScope</a></h3><p>A display of CPU trace as a Github-style texture tiles.</p>
-<h3 id="A-Usable-C-Dialect-that-is-Safe-Against-Memory-Corruption"><a href="#A-Usable-C-Dialect-that-is-Safe-Against-Memory-Corruption" class="headerlink" title="A Usable C++ Dialect that is Safe Against Memory Corruption"></a><a href="http://ithare.com/a-usable-c-dialect-that-is-safe-against-memory-corruption/" target="_blank" rel="noopener">A Usable C++ Dialect that is Safe Against Memory Corruption</a></h3><p>IT-‘No Bug’-Hare is an interesting blog I found recently, focused on system, C++ language and game design. A good read for C++ fanatics and system designers.</p>
+        <p>Link: <a href="https://engineering.linkedin.com/distributed-systems/log-what-every-software-engineer-should-know-about-real-time-datas-unifying" target="_blank" rel="noopener">https://engineering.linkedin.com/distributed-systems/log-what-every-software-engineer-should-know-about-real-time-datas-unifying</a></p>
+<p>Kafka is a message queue, a pub-sub system, an event sourcing tool,
+and a stream processing infrastructure, is a key part of many streaming distributed
+systems that requires streaming data. Its underlying idea, is to aggregate data
+from a distributed sources, to a unifying linear log structure.</p>
+<p>The blog is from Kafka’s creator Jay Kreps when he was at LinkedIn,
+contemplating the log abstraction as a key part of any distributed systems. This
+is not Kafka’s design paper, implementation or a tutorial, but rather the process of brewing
+the idea that led to its birth, and I found it equally interesting. The following are
+my notes.</p>
+<p>The link to Kafka paper: <a href="https://www.semanticscholar.org/paper/Kafka-%3A-a-Distributed-Messaging-System-for-Log-Kreps/9f948448e7a5f0cc94cd53656410face8b31b18a" target="_blank" rel="noopener">https://www.semanticscholar.org/paper/Kafka-%3A-a-Distributed-Messaging-System-for-Log-Kreps/9f948448e7a5f0cc94cd53656410face8b31b18a</a></p>
+<a id="more"></a>
+<h2>What Is a Log?</h2>
+<p>Log is a simplest storage abstraction, similar to what we see in application logs,
+records are appended to the end of a log data structure, and reads proceeds left-to-right.
+This simple abstraction is powerful, in that:</p>
+<ul>
+<li>It keeps the records, and the ordering of records, by when it’s appended to the data structure.</li>
+<li>In a deterministic system, you can reconstruct the state of the systems at any time, by
+replaying the input in order for every single step of the input.</li>
+</ul>
+<p>The log centric approach arises from a simple observation that the author named
+&quot;State Machine Replication Principle&quot;:</p>
+<blockquote>
+<p>If two identical, deterministic processes begin in the same state and get
+the same inputs in the same order, they will produce the same output and end
+in the same state.</p>
+</blockquote>
+<p>And there are two major different ways of leveraging logs in distributed processing
+and replication:</p>
+<ul>
+<li>A “Primary Backup” Model, AKA “active-passive” model, where one node is elected as
+master, and writes its states to log. Upon master failure, a replica is elected and
+take over.</li>
+<li>The “State Machine Model”, AKA “active-active” model, where changes/operations
+are written to the log, and each replica picks up the log.</li>
+</ul>
+<p><img src="2019-03-31-Blog-Reading-Kafka-active_and_passive_arch.png" alt="Replication Architecture with Log"></p>
+<h2>What can log be used for</h2>
+<h3>Data Integration</h3>
+<p>Make all of an organization’s data easily available in all its storage and processing
+systems.</p>
+<p>An organization may have multiple data inputs, that gathers events and data from
+many places, and different consumers to digest that data. A log structure can serve
+as a buffer as well as a central pipeline for all the different producers and consumers.
+In this way, the log serves as an asynchronous messaging system.
+All producers and consumers can read buffered data from the log, with different pace.
+e.g. a real-time system may need to read instantly, while an analytic platform may
+read it only hourly or even daily.</p>
+<p>Also, in a system where there are M inputs and N output, you’ll need M * N pipelines to
+make sure each consumer can read from all data producers. But with a single unified data pipeline,
+every producer and consumer can all write and read from one single log. And that’s the
+idea behind Kafka.</p>
+<p>Also, Kafka’s log structure also enables high-performance optimizations, e.g.:</p>
+<ul>
+<li>Enables partitioning.</li>
+<li>Optimize high throughput by batching small reads and writes.</li>
+<li>Avoids needless data copies, as it can keep same binary data structure in memory,
+on disk and in network transfers.</li>
+</ul>
+<h3>Real-time Data Processing</h3>
+<p>Computing derived data streams.</p>
+<p>Log also makes real-time stream processing easier. Logs enables real-time data collection
+from events or different data input, at different speed, that the consumers can
+read from at scale.</p>
+<p>Log also enables more complicated data flow, e.g. when output of a log in the stream
+processing systems becomes the input of another. It can construct complicated data flow
+graphs. And log has benefits:</p>
+<ul>
+<li>It makes each dataset multi-subscriber and ordered, and the order is permanent.</li>
+<li>The log provides buffering to the processes, so that the system can work in
+asynchronous fashion.</li>
+</ul>
+<h3>Distributed System Desgin</h3>
+<p>Practical systems can be simplified with a log-centric design.</p>
+<p>Log enables high-performance and easy integration of data producers and consumers,
+distributed systems are more likely to move away from monolithic relational databases,
+and toward more diverse data sources and consumers. Building distributed systems
+would more feel like lego games with open-source data components.</p>
+<p>And a log system can work as the following role in system architecture.</p>
+<ul>
+<li>Handle data consistency by sequencing concurrent updates to nodes.</li>
+<li>Provide data replication between nodes.</li>
+<li>Provide “commit” semantics to the writer (respond only when your write is guaranteed
+not to be lost).</li>
+<li>Provide external data subscription feed from the system.</li>
+<li>Provide the capability to restore failed replicas.</li>
+<li>Handling data rebalancing of data between nodes.</li>
+</ul>
 <hr>
-<p>I’m feeling guilty for not updating for so long. But on the bright side: I’m back.</p>
-<p>As a part of work requirements I’m taking on Golang and some small distributed system design jobs. It’s an interesting language for this task: network, systems, infrastructures, etc. I’m having mixed but mostly positive feelings about this language, and maybe will share my experience when I got a chance.</p>
+<p>The author built the powerful ideas of a log into Kafka, one of the most influential
+data streaming platform. This long blog might bring some insights to incorporate
+Kafka into a distributed system, as well as provide inside in building new system
+infrastructures.</p>
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://blog.kevinhu.me/2018/05/21/2018-05-21-Reading-Summary/" data-id="cjt38t4ui001uaiv1jud1lkoj" class="article-share-link">Share</a>
+      <a data-url="https://blog.kevinhu.me/2019/03/17/31-Blog-Reading-Kafka/" data-id="cju0ub5l60000uav1cp28t29b" class="article-share-link">Share</a>
       
-        <a href="https://blog.kevinhu.me/2018/05/21/2018-05-21-Reading-Summary/#disqus_thread" class="article-comment-link">Comments</a>
+        <a href="https://blog.kevinhu.me/2019/03/17/31-Blog-Reading-Kafka/#disqus_thread" class="article-comment-link">Comments</a>
       
       
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Technology/">Technology</a></li></ul>
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Kafka/">Kafka</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Log/">Log</a></li></ul>
 
     </footer>
   </div>
   
+    
+<nav id="article-nav">
+  
+  
+    <a href="/2019/03/17/17-Reading-Summary-201903/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">Reading-Summary 2019-03</div>
+    </a>
+  
+</nav>
+
+  
 </article>
 
 
-  
-  
+<section id="comments">
+  <div id="disqus_thread">
+    <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+  </div>
+</section>
 </section>
         
           <aside id="sidebar">
@@ -222,11 +317,13 @@ ga('send', 'pageview');
 <script>
   var disqus_shortname = 'kevinhustechblog';
   
+  var disqus_url = 'https://blog.kevinhu.me/2019/03/17/31-Blog-Reading-Kafka/';
+  
   (function(){
     var dsq = document.createElement('script');
     dsq.type = 'text/javascript';
     dsq.async = true;
-    dsq.src = '//' + disqus_shortname + '.disqus.com/count.js';
+    dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
     (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
   })();
 </script>
