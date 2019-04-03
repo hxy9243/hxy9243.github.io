@@ -1,4 +1,4 @@
-title: |
+<title: |
   Blog Reading: The Log: What every software engineer should know about real-time data's unifying abstraction
 date: 2019-03-17 23:39:10
 comments: true
@@ -20,6 +20,8 @@ the idea that led to its birth, and I found it equally interesting. The followin
 my notes.
 
 The link to Kafka paper: https://www.semanticscholar.org/paper/Kafka-%3A-a-Distributed-Messaging-System-for-Log-Kreps/9f948448e7a5f0cc94cd53656410face8b31b18a
+
+<!-- more -->
 
 ## What Is a Log?
 
