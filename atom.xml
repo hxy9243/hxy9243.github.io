@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://blog.kevinhu.me/"/>
-  <updated>2019-04-03T06:41:44.467Z</updated>
+  <updated>2019-05-06T04:46:34.203Z</updated>
   <id>https://blog.kevinhu.me/</id>
   
   <author>
@@ -15,6 +15,31 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Reading Summary 2019-04</title>
+    <link href="https://blog.kevinhu.me/2019/05/05/05-Reading-Summary-201905/"/>
+    <id>https://blog.kevinhu.me/2019/05/05/05-Reading-Summary-201905/</id>
+    <published>2019-05-06T03:40:34.000Z</published>
+    <updated>2019-05-06T04:46:34.203Z</updated>
+    
+    <content type="html"><![CDATA[<h2><a href="https://www.alexedwards.net/blog/an-overview-of-go-tooling#diagnosing-problems-and-making-optimizations" target="_blank" rel="noopener">An Overview of Go’s Tooling</a></h2><p>If go is one of your favorite languages as well, this is a must read:it introduces all the basic tooling that comes with Go’s ecosystem, whichmight greatly save your time.</p><h2><a href="https://news.ycombinator.com/item?id=19634915" target="_blank" rel="noopener">HackerNews thread on TLA+:</a></h2><p>A thread from HackerNews, discussing the importance of formal verificationfor distributed systems.</p><p>TLA+ and formal verification is notoriously known for its complexity and steeplearning curve. This might be one of my very future goals.</p><h2><a href="https://www.infoq.com/articles/brown-are-you-a-software-architect" target="_blank" rel="noopener">Are You a Software Architect?</a></h2><p>What it takes to be a software architect, a great blog post from InfoQ.</p><h2><a href="https://www.influxdata.com/blog/influxdata-apache-arrow-go-implementation/" target="_blank" rel="noopener">InfluxData is Building a Fast Implementation of Apache Arrow in Go Using c2goasm and SIMD</a></h2><p>TIL that it is possible to convert your C/C++ assembly into Go’s assembly, andcall from Go’s code. InfluxData leverages the tooling to embed AVX/SSE instructionsinto Golang’s assembly, thus boosts Go code’s performance, sometimes by ordersof magnitude.</p><p>More information on this tool, c2goasm, <a href="https://github.com/minio/c2goasm" target="_blank" rel="noopener">work from Minio</a>.</p><h2><a href="https://karl-voit.at/2017/09/23/orgmode-as-markup-only/" target="_blank" rel="noopener">Org-Mode Is One of the Most Reasonable Markup Languages to Use for Text</a></h2><p>I think so, too. But it’ll require a community and proper tooling to see itreally prosper. Hope to see that some day.</p><h2><a href="https://www.economicprinciples.org/Why-and-How-Capitalism-Needs-To-Be-Reformed/" target="_blank" rel="noopener">Why and How Capitalism Needs to Be Reformed</a></h2><p>A great piece from <a href="https://en.wikipedia.org/wiki/Ray_Dalio" target="_blank" rel="noopener">Ray Dalio</a>, thefounder of investment firm Bridgewaters, a seasoned investor, discusses in hisrecent long post why American capitalism is sick in distributing resources,especially educational resources, and needs to be reformed to stay healthy.</p>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;h2&gt;&lt;a href=&quot;https://www.alexedwards.net/blog/an-overview-of-go-tooling#diagnosing-problems-and-making-optimizations&quot; target=&quot;_blank&quot; rel=&quot;n
+      
+    
+    </summary>
+    
+      <category term="Reading" scheme="https://blog.kevinhu.me/categories/Reading/"/>
+    
+    
+      <category term="Reading" scheme="https://blog.kevinhu.me/tags/Reading/"/>
+    
+  </entry>
   
   <entry>
     <title>Blog Reading: The log - What every software engineer should know about real-time data&#39;s unifying abstraction

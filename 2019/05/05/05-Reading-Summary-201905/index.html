@@ -3,15 +3,20 @@
 <head>
   <meta charset="utf-8">
   
-  <title>Archives: 2016/5 | Kevin Hu&#39;s Blog</title>
+  <title>Reading Summary 2019-04 | Kevin Hu&#39;s Blog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta property="og:type" content="website">
-<meta property="og:title" content="Kevin Hu&#39;s Blog">
-<meta property="og:url" content="https://blog.kevinhu.me/archives/2016/05/index.html">
+  <meta name="description" content="An Overview of Go’s Tooling If go is one of your favorite languages as well, this is a must read: it introduces all the basic tooling that comes with Go’s ecosystem, which might greatly save your time">
+<meta name="keywords" content="Reading">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Reading Summary 2019-04">
+<meta property="og:url" content="https://blog.kevinhu.me/2019/05/05/05-Reading-Summary-201905/index.html">
 <meta property="og:site_name" content="Kevin Hu&#39;s Blog">
+<meta property="og:description" content="An Overview of Go’s Tooling If go is one of your favorite languages as well, this is a must read: it introduces all the basic tooling that comes with Go’s ecosystem, which might greatly save your time">
 <meta property="og:locale" content="en-US">
+<meta property="og:updated_time" content="2019-05-06T04:46:34.203Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Kevin Hu&#39;s Blog">
+<meta name="twitter:title" content="Reading Summary 2019-04">
+<meta name="twitter:description" content="An Overview of Go’s Tooling If go is one of your favorite languages as well, this is a must read: it introduces all the basic tooling that comes with Go’s ecosystem, which might greatly save your time">
   
     <link rel="alternative" href="/atom.xml" title="Kevin Hu&#39;s Blog" type="application/atom+xml">
   
@@ -76,12 +81,10 @@ ga('send', 'pageview');
   </div>
 </header>
       <div class="outer">
-        <section id="main">
-  
-    <article id="post-Reading-Summary-2016-04" class="article article-type-post" itemscope itemprop="blogPost">
+        <section id="main"><article id="post-05-Reading-Summary-201905" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
-    <a href="/2016/05/06/Reading-Summary-2016-04/" class="article-date">
-  <time datetime="2016-05-06T06:34:31.000Z" itemprop="datePublished">05 06 2016</time>
+    <a href="/2019/05/05/05-Reading-Summary-201905/" class="article-date">
+  <time datetime="2019-05-06T03:40:34.000Z" itemprop="datePublished">05 05 2019</time>
 </a>
     
   <div class="article-category">
@@ -95,8 +98,8 @@ ga('send', 'pageview');
       <header class="article-header">
         
   
-    <h1 itemprop="name">
-      <a class="article-title" href="/2016/05/06/Reading-Summary-2016-04/">Reading Summary 2016-04</a>
+    <h1 class="article-title" itemprop="name">
+      Reading Summary 2019-04
     </h1>
   
 
@@ -104,30 +107,66 @@ ga('send', 'pageview');
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h1 id="Programming"><a href="#Programming" class="headerlink" title="Programming"></a>Programming</h1><h3 id="Eli-Bendersky’s-Website"><a href="#Eli-Bendersky’s-Website" class="headerlink" title="Eli Bendersky’s Website"></a><a href="http://eli.thegreenplace.net/" target="_blank" rel="noopener">Eli Bendersky’s Website</a></h3><p>Eli Bendersky’s blog has always been a must-read to me. He never fails to regularly come up with posts of interesting and insightful ideas, or detailed tutorials.</p>
-<p>He also actively participates in LLVM-dev mailing list and based on his blogs, has board interests in programming language, computer systems and etc..</p>
-<h1 id="Computer-Science"><a href="#Computer-Science" class="headerlink" title="Computer Science"></a>Computer Science</h1><h3 id="What-is-HCI-research-And-what-is-its-relationship-to-computer-science"><a href="#What-is-HCI-research-And-what-is-its-relationship-to-computer-science" class="headerlink" title="What is HCI research? And what is its relationship to computer science?"></a><a href="http://www.pgbovine.net/what-is-hci-research.htm" target="_blank" rel="noopener">What is HCI research? And what is its relationship to computer science?</a></h3><p>Phillip Guo is another one of my favorite bloggers. This time he wrote an intro to HCI research.</p>
-        
-          <p class="article-more-link">
-            <a href="/2016/05/06/Reading-Summary-2016-04/#more">Read More</a>
-          </p>
-        
+        <h2><a href="https://www.alexedwards.net/blog/an-overview-of-go-tooling#diagnosing-problems-and-making-optimizations" target="_blank" rel="noopener">An Overview of Go’s Tooling</a></h2>
+<p>If go is one of your favorite languages as well, this is a must read:
+it introduces all the basic tooling that comes with Go’s ecosystem, which
+might greatly save your time.</p>
+<h2><a href="https://news.ycombinator.com/item?id=19634915" target="_blank" rel="noopener">HackerNews thread on TLA+:</a></h2>
+<p>A thread from HackerNews, discussing the importance of formal verification
+for distributed systems.</p>
+<p>TLA+ and formal verification is notoriously known for its complexity and steep
+learning curve. This might be one of my very future goals.</p>
+<h2><a href="https://www.infoq.com/articles/brown-are-you-a-software-architect" target="_blank" rel="noopener">Are You a Software Architect?</a></h2>
+<p>What it takes to be a software architect, a great blog post from InfoQ.</p>
+<h2><a href="https://www.influxdata.com/blog/influxdata-apache-arrow-go-implementation/" target="_blank" rel="noopener">InfluxData is Building a Fast Implementation of Apache Arrow in Go Using c2goasm and SIMD</a></h2>
+<p>TIL that it is possible to convert your C/C++ assembly into Go’s assembly, and
+call from Go’s code. InfluxData leverages the tooling to embed AVX/SSE instructions
+into Golang’s assembly, thus boosts Go code’s performance, sometimes by orders
+of magnitude.</p>
+<p>More information on this tool, c2goasm, <a href="https://github.com/minio/c2goasm" target="_blank" rel="noopener">work from Minio</a>.</p>
+<h2><a href="https://karl-voit.at/2017/09/23/orgmode-as-markup-only/" target="_blank" rel="noopener">Org-Mode Is One of the Most Reasonable Markup Languages to Use for Text</a></h2>
+<p>I think so, too. But it’ll require a community and proper tooling to see it
+really prosper. Hope to see that some day.</p>
+<h2><a href="https://www.economicprinciples.org/Why-and-How-Capitalism-Needs-To-Be-Reformed/" target="_blank" rel="noopener">Why and How Capitalism Needs to Be Reformed</a></h2>
+<p>A great piece from <a href="https://en.wikipedia.org/wiki/Ray_Dalio" target="_blank" rel="noopener">Ray Dalio</a>, the
+founder of investment firm Bridgewaters, a seasoned investor, discusses in his
+recent long post why American capitalism is sick in distributing resources,
+especially educational resources, and needs to be reformed to stay healthy.</p>
+
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://blog.kevinhu.me/2016/05/06/Reading-Summary-2016-04/" data-id="cjt38t4u6001aaiv1qstjffqn" class="article-share-link">Share</a>
+      <a data-url="https://blog.kevinhu.me/2019/05/05/05-Reading-Summary-201905/" data-id="cjvbw0l7z0000e4v1llwgstwn" class="article-share-link">Share</a>
       
-        <a href="https://blog.kevinhu.me/2016/05/06/Reading-Summary-2016-04/#disqus_thread" class="article-comment-link">Comments</a>
+        <a href="https://blog.kevinhu.me/2019/05/05/05-Reading-Summary-201905/#disqus_thread" class="article-comment-link">Comments</a>
       
       
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Reading/">Reading</a></li></ul>
+
     </footer>
   </div>
+  
+    
+<nav id="article-nav">
+  
+  
+    <a href="/2019/04/01/31-Blog-Reading-Kafka/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">Blog Reading: The log - What every software engineer should know about real-time data&#39;s unifying abstraction
+</div>
+    </a>
+  
+</nav>
+
   
 </article>
 
 
-  
-  
+<section id="comments">
+  <div id="disqus_thread">
+    <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+  </div>
+</section>
 </section>
         
           <aside id="sidebar">
@@ -218,11 +257,13 @@ ga('send', 'pageview');
 <script>
   var disqus_shortname = 'kevinhustechblog';
   
+  var disqus_url = 'https://blog.kevinhu.me/2019/05/05/05-Reading-Summary-201905/';
+  
   (function(){
     var dsq = document.createElement('script');
     dsq.type = 'text/javascript';
     dsq.async = true;
-    dsq.src = '//' + disqus_shortname + '.disqus.com/count.js';
+    dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
     (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
   })();
 </script>
