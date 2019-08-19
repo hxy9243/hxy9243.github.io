@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://blog.kevinhu.me/"/>
-  <updated>2019-05-06T04:46:34.203Z</updated>
+  <updated>2019-08-19T04:35:03.227Z</updated>
   <id>https://blog.kevinhu.me/</id>
   
   <author>
@@ -15,6 +15,35 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Reading Summary 2019-08</title>
+    <link href="https://blog.kevinhu.me/2019/08/18/18-Reading-Summary/"/>
+    <id>https://blog.kevinhu.me/2019/08/18/18-Reading-Summary/</id>
+    <published>2019-08-19T03:15:57.000Z</published>
+    <updated>2019-08-19T04:35:03.227Z</updated>
+    
+    <content type="html"><![CDATA[<h2><a href="http://msvaljek.blogspot.com/2015/11/cassandra-time-series-bucketing.html" target="_blank" rel="noopener">Cassandra Time Series Bucketing</a></h2><p>How to model timeseries data with Cassandra.</p><h2><a href="https://github.com/ankur-anand/simple-go-rpc" target="_blank" rel="noopener">Simple GoRPC</a></h2><p>The best way to understand something, is to build one yourself. This tutorial covers basic network programming in Go, struct design and the usage of <code>reflect</code> package.</p><h2><a href="https://eng.uber.com/optimizing-m3/" target="_blank" rel="noopener">Optimizing M3: How Uber Halved Our Metrics Ingestion Latency by Forking the Go Compiler</a></h2><p>A great experience sharing blog on how to debug a performance issue in their services. And with profiling and analysis tools, the Uber team was able to pinpoint this issue in worker pool and goroutine stack allocation, and then they forked the Go compiler to prove it’s a regression in the Go compiler. A very nice read and analysis process.</p><h2><a href="https://github.com/heathermiller/dist-prog-book" target="_blank" rel="noopener">Book: Programming Models for Distributed Computation</a></h2><p>A programming book on topics in distributed computation, from teaching experience in distributed system course, from Northeastern University.</p><h2><a href="https://labs.spotify.com/2014/03/27/spotify-engineering-culture-part-1/" target="_blank" rel="noopener">Spotify Engineering Culture</a></h2><p>A very nice engineering blog from 2014. A excellent overview of Spotify culture, and an introduction on how to build the “agile” team.</p><h2><a href="https://open.nytimes.com/how-we-helped-our-reporters-learn-to-love-spreadsheets-adc43a93b919?gi=26f780cc274a" target="_blank" rel="noopener">How We Helped Our Reporters Learn to Love Spreadsheets</a></h2><p>NYTimes has released its in-house course to teach journalists data science. Journalism can also benefit from a little coding/data analytics skills.</p>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;h2&gt;&lt;a href=&quot;http://msvaljek.blogspot.com/2015/11/cassandra-time-series-bucketing.html&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;Cassandra Time Series
+      
+    
+    </summary>
+    
+      <category term="Reading" scheme="https://blog.kevinhu.me/categories/Reading/"/>
+    
+    
+      <category term="Reading" scheme="https://blog.kevinhu.me/tags/Reading/"/>
+    
+      <category term="DistributedSystems" scheme="https://blog.kevinhu.me/tags/DistributedSystems/"/>
+    
+      <category term="Debug" scheme="https://blog.kevinhu.me/tags/Debug/"/>
+    
+  </entry>
   
   <entry>
     <title>Reading Summary 2019-04</title>
