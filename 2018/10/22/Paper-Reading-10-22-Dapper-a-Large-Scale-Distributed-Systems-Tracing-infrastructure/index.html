@@ -5,20 +5,20 @@
   
   <title>Paper Reading 10-22: Dapper, a Large-Scale Distributed Systems Tracing Infrastructure | Kevin Hu&#39;s Blog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="Link: https://ai.google/research/pubs/pub36356 This is a 2010 paper that presents Dapper, a tracing infrastructure from Google,to solve problems at Google scale, in its massive scale distributed syste">
+  <meta name="description" content="Link: https://ai.google/research/pubs/pub36356 This is a 2010 paper that presents Dapper, a tracing infrastructure from Google, to solve problems at Google scale, in its massive scale distributed syst">
 <meta name="keywords" content="distributed systems,tracing,infrastructure">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Paper Reading 10-22: Dapper, a Large-Scale Distributed Systems Tracing Infrastructure">
 <meta property="og:url" content="https://blog.kevinhu.me/2018/10/22/Paper-Reading-10-22-Dapper-a-Large-Scale-Distributed-Systems-Tracing-infrastructure/index.html">
 <meta property="og:site_name" content="Kevin Hu&#39;s Blog">
-<meta property="og:description" content="Link: https://ai.google/research/pubs/pub36356 This is a 2010 paper that presents Dapper, a tracing infrastructure from Google,to solve problems at Google scale, in its massive scale distributed syste">
+<meta property="og:description" content="Link: https://ai.google/research/pubs/pub36356 This is a 2010 paper that presents Dapper, a tracing infrastructure from Google, to solve problems at Google scale, in its massive scale distributed syst">
 <meta property="og:locale" content="en-US">
 <meta property="og:image" content="https://blog.kevinhu.me/2018/10/22/Paper-Reading-10-22-Dapper-a-Large-Scale-Distributed-Systems-Tracing-infrastructure/figure1.png">
 <meta property="og:image" content="https://blog.kevinhu.me/2018/10/22/Paper-Reading-10-22-Dapper-a-Large-Scale-Distributed-Systems-Tracing-infrastructure/figure2.png">
-<meta property="og:updated_time" content="2018-10-22T20:32:40.381Z">
+<meta property="og:updated_time" content="2019-09-07T18:33:07.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Paper Reading 10-22: Dapper, a Large-Scale Distributed Systems Tracing Infrastructure">
-<meta name="twitter:description" content="Link: https://ai.google/research/pubs/pub36356 This is a 2010 paper that presents Dapper, a tracing infrastructure from Google,to solve problems at Google scale, in its massive scale distributed syste">
+<meta name="twitter:description" content="Link: https://ai.google/research/pubs/pub36356 This is a 2010 paper that presents Dapper, a tracing infrastructure from Google, to solve problems at Google scale, in its massive scale distributed syst">
 <meta name="twitter:image" content="https://blog.kevinhu.me/2018/10/22/Paper-Reading-10-22-Dapper-a-Large-Scale-Distributed-Systems-Tracing-infrastructure/figure1.png">
   
     <link rel="alternative" href="/atom.xml" title="Kevin Hu&#39;s Blog" type="application/atom+xml">
@@ -111,35 +111,65 @@ ga('send', 'pageview');
     <div class="article-entry" itemprop="articleBody">
       
         <p>Link: <a href="https://ai.google/research/pubs/pub36356" target="_blank" rel="noopener">https://ai.google/research/pubs/pub36356</a></p>
-<p>This is a 2010 paper that presents Dapper, a tracing infrastructure from Google,<br>to solve problems at Google scale, in its massive scale distributed systems,<br>where a service could invoke very deep RPC calls across different nodes in the<br>cluster, which makes tracing quite challenging.</p>
+<p>This is a 2010 paper that presents Dapper, a tracing infrastructure from Google,
+to solve problems at Google scale, in its massive scale distributed systems,
+where a service could invoke very deep RPC calls across different nodes in the
+cluster, which makes tracing quite challenging.</p>
 <a id="more"></a>
 <p>Highlights and takeaways:</p>
-<h2 id="Design"><a href="#Design" class="headerlink" title="Design"></a>Design</h2><p>The paper introduces the following concepts to describe the system:<br><code>tree</code>, <code>span</code>, and <code>annotation</code>.</p>
-<h3 id="tree"><a href="#tree" class="headerlink" title="tree"></a><code>tree</code></h3><p><img src="figure1.png" alt="Figure1"></p>
-<p>A simple service call could span a few different nodes in the system,<br>forming a calling tree between different services, as shown above<br>in figure1.</p>
-<h3 id="span"><a href="#span" class="headerlink" title="span"></a><code>span</code></h3><p><img src="figure2.png" alt="Figure2"></p>
-<p>In Dapper trace tree, the tree nodes are basic units of work which is<br>referred to as <code>spans</code>. The edge indicates a casual relationship a span<br>and a parent. See figure2.</p>
-<p>Each trace has a single trace id across all its children spans.<br>Each span has one id, and records the relationships between parent<br>and child. See figure2.<br>Parent spans always starts before child and ends after children finish.</p>
-<p>Dapper is designed to follow distributed control paths with near-zero<br>intervention from the application developers, by instrumenting the<br>following libraries:</p>
+<h2>Design</h2>
+<p>The paper introduces the following concepts to describe the system:
+<code>tree</code>, <code>span</code>, and <code>annotation</code>.</p>
+<h3><code>tree</code></h3>
+<p><img src="figure1.png" alt="Figure1"></p>
+<p>A simple service call could span a few different nodes in the system,
+forming a calling tree between different services, as shown above
+in figure1.</p>
+<h3><code>span</code></h3>
+<p><img src="figure2.png" alt="Figure2"></p>
+<p>In Dapper trace tree, the tree nodes are basic units of work which is
+referred to as <code>spans</code>. The edge indicates a casual relationship a span
+and a parent. See figure2.</p>
+<p>Each trace has a single trace id across all its children spans.
+Each span has one id, and records the relationships between parent
+and child. See figure2.
+Parent spans always starts before child and ends after children finish.</p>
+<p>Dapper is designed to follow distributed control paths with near-zero
+intervention from the application developers, by instrumenting the
+following libraries:</p>
 <ul>
-<li>thread library: Dapper attaches a trace context to thread-local<br>storage.</li>
-<li>asynchronous control flow library: Dapper instruments the control flow library to ensure<br>all async callbacks store the context of their creator.</li>
-<li>IPC library: All Google’s inter-process communication is built around<br>a single RPC framework, for all communications on same machine,<br>and across network.</li>
+<li>thread library: Dapper attaches a trace context to thread-local
+storage.</li>
+<li>asynchronous control flow library: Dapper instruments the control flow library to ensure
+all async callbacks store the context of their creator.</li>
+<li>IPC library: All Google’s inter-process communication is built around
+a single RPC framework, for all communications on same machine,
+and across network.</li>
 </ul>
-<h3 id="annotation"><a href="#annotation" class="headerlink" title="annotation"></a><code>annotation</code></h3><p>The instrumentation above is sufficient to derive traces of complex<br>distributed systems and made transparent to users, but Dapper also<br>provides capabilities for users to annotate important sections to<br>their applications.</p>
-<h2 id="Sampling"><a href="#Sampling" class="headerlink" title="Sampling"></a>Sampling</h2><p>To improve performance, one of Dapper’s design decision is<br> sampling. Dapper team noticed that Sampling<br>at a relative small rate can get pretty good results with insights<br>to critical performance issues.</p>
-<h2 id="Trace-collection"><a href="#Trace-collection" class="headerlink" title="Trace collection"></a>Trace collection</h2><p>Trace collection is divided to the following steps:</p>
+<h3><code>annotation</code></h3>
+<p>The instrumentation above is sufficient to derive traces of complex
+distributed systems and made transparent to users, but Dapper also
+provides capabilities for users to annotate important sections to
+their applications.</p>
+<h2>Sampling</h2>
+<p>To improve performance, one of Dapper’s design decision is
+sampling. Dapper team noticed that Sampling
+at a relative small rate can get pretty good results with insights
+to critical performance issues.</p>
+<h2>Trace collection</h2>
+<p>Trace collection is divided to the following steps:</p>
 <ul>
 <li>Dapper span data is written to local log files.</li>
 <li>Local logs are collected by Dapper daemons.</li>
 <li>And are finally written to Bigtable.</li>
-<li>User can query and analyze different traces with a Dapper web<br>interface, which aggregates all logs and sort by tracing ids.</li>
+<li>User can query and analyze different traces with a Dapper web
+interface, which aggregates all logs and sort by tracing ids.</li>
 </ul>
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://blog.kevinhu.me/2018/10/22/Paper-Reading-10-22-Dapper-a-Large-Scale-Distributed-Systems-Tracing-infrastructure/" data-id="cjt38t4ur002daiv1spg7pio0" class="article-share-link">Share</a>
+      <a data-url="https://blog.kevinhu.me/2018/10/22/Paper-Reading-10-22-Dapper-a-Large-Scale-Distributed-Systems-Tracing-infrastructure/" data-id="ck0lyk8u4002i06scvo6scpuw" class="article-share-link">Share</a>
       
         <a href="https://blog.kevinhu.me/2018/10/22/Paper-Reading-10-22-Dapper-a-Large-Scale-Distributed-Systems-Tracing-infrastructure/#disqus_thread" class="article-comment-link">Comments</a>
       
@@ -186,7 +216,7 @@ ga('send', 'pageview');
   <div class="widget-wrap">
     <h3 class="widget-title">Categories</h3>
     <div class="widget">
-      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Algorithm/">Algorithm</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/CodeReading/">CodeReading</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Diary/">Diary</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Paper/">Paper</a><span class="category-list-count">5</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/PaperReading/">PaperReading</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Programming/">Programming</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/ProgrammingLanguage/">ProgrammingLanguage</a><span class="category-list-count">4</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Reading/">Reading</a><span class="category-list-count">19</span></li></ul>
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Algorithm/">Algorithm</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/CodeReading/">CodeReading</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Diary/">Diary</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Paper/">Paper</a><span class="category-list-count">5</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/PaperReading/">PaperReading</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Programming/">Programming</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/ProgrammingLanguage/">ProgrammingLanguage</a><span class="category-list-count">4</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Reading/">Reading</a><span class="category-list-count">20</span></li></ul>
     </div>
   </div>
 
@@ -195,7 +225,7 @@ ga('send', 'pageview');
   <div class="widget-wrap">
     <h3 class="widget-title">Tag Cloud</h3>
     <div class="widget tagcloud">
-      <a href="/tags/Algorithm/" style="font-size: 10px;">Algorithm</a> <a href="/tags/BitHacks/" style="font-size: 10px;">BitHacks</a> <a href="/tags/BookReview/" style="font-size: 10px;">BookReview</a> <a href="/tags/Borg/" style="font-size: 10px;">Borg</a> <a href="/tags/C/" style="font-size: 10px;">C</a> <a href="/tags/C/" style="font-size: 10px;">C++</a> <a href="/tags/C-C/" style="font-size: 13.33px;">C/C++</a> <a href="/tags/Channel/" style="font-size: 10px;">Channel</a> <a href="/tags/CodeReading/" style="font-size: 13.33px;">CodeReading</a> <a href="/tags/Coding/" style="font-size: 10px;">Coding</a> <a href="/tags/Compilers/" style="font-size: 13.33px;">Compilers</a> <a href="/tags/Concurrency/" style="font-size: 10px;">Concurrency</a> <a href="/tags/Datacenter/" style="font-size: 10px;">Datacenter</a> <a href="/tags/Debug/" style="font-size: 10px;">Debug</a> <a href="/tags/DistributedSystems/" style="font-size: 16.67px;">DistributedSystems</a> <a href="/tags/Docker/" style="font-size: 10px;">Docker</a> <a href="/tags/FPGA/" style="font-size: 10px;">FPGA</a> <a href="/tags/Golang/" style="font-size: 13.33px;">Golang</a> <a href="/tags/HPC/" style="font-size: 10px;">HPC</a> <a href="/tags/Hugepage/" style="font-size: 10px;">Hugepage</a> <a href="/tags/Internet-BookReview/" style="font-size: 10px;">Internet, BookReview</a> <a href="/tags/Kafka/" style="font-size: 10px;">Kafka</a> <a href="/tags/Linux/" style="font-size: 16.67px;">Linux</a> <a href="/tags/Log/" style="font-size: 10px;">Log</a> <a href="/tags/Mesos/" style="font-size: 10px;">Mesos</a> <a href="/tags/Multithread/" style="font-size: 10px;">Multithread</a> <a href="/tags/Mutex/" style="font-size: 10px;">Mutex</a> <a href="/tags/PaperReading/" style="font-size: 20px;">PaperReading</a> <a href="/tags/Password/" style="font-size: 13.33px;">Password</a> <a href="/tags/Programming/" style="font-size: 13.33px;">Programming</a> <a href="/tags/ProgrammingLanguage/" style="font-size: 13.33px;">ProgrammingLanguage</a> <a href="/tags/Python/" style="font-size: 16.67px;">Python</a> <a href="/tags/Reading/" style="font-size: 16.67px;">Reading</a> <a href="/tags/Social/" style="font-size: 10px;">Social</a> <a href="/tags/Technology/" style="font-size: 16.67px;">Technology</a> <a href="/tags/Undefined-Behavior/" style="font-size: 13.33px;">Undefined Behavior</a> <a href="/tags/WeeklyPaper/" style="font-size: 10px;">WeeklyPaper</a> <a href="/tags/WorldWideWeb/" style="font-size: 10px;">WorldWideWeb</a> <a href="/tags/distributed-systems/" style="font-size: 10px;">distributed systems</a> <a href="/tags/infrastructure/" style="font-size: 10px;">infrastructure</a> <a href="/tags/systems/" style="font-size: 10px;">systems</a> <a href="/tags/tracing/" style="font-size: 10px;">tracing</a>
+      <a href="/tags/Algorithm/" style="font-size: 10px;">Algorithm</a> <a href="/tags/BitHacks/" style="font-size: 10px;">BitHacks</a> <a href="/tags/Book/" style="font-size: 10px;">Book</a> <a href="/tags/BookReview/" style="font-size: 10px;">BookReview</a> <a href="/tags/Borg/" style="font-size: 10px;">Borg</a> <a href="/tags/C/" style="font-size: 10px;">C</a> <a href="/tags/C/" style="font-size: 10px;">C++</a> <a href="/tags/C-C/" style="font-size: 13.33px;">C/C++</a> <a href="/tags/Channel/" style="font-size: 10px;">Channel</a> <a href="/tags/CodeReading/" style="font-size: 13.33px;">CodeReading</a> <a href="/tags/Coding/" style="font-size: 10px;">Coding</a> <a href="/tags/Compilers/" style="font-size: 13.33px;">Compilers</a> <a href="/tags/Concurrency/" style="font-size: 10px;">Concurrency</a> <a href="/tags/Datacenter/" style="font-size: 10px;">Datacenter</a> <a href="/tags/Debug/" style="font-size: 10px;">Debug</a> <a href="/tags/DistributedSystems/" style="font-size: 16.67px;">DistributedSystems</a> <a href="/tags/Docker/" style="font-size: 10px;">Docker</a> <a href="/tags/FPGA/" style="font-size: 10px;">FPGA</a> <a href="/tags/Golang/" style="font-size: 13.33px;">Golang</a> <a href="/tags/HPC/" style="font-size: 10px;">HPC</a> <a href="/tags/Hugepage/" style="font-size: 10px;">Hugepage</a> <a href="/tags/Internet-BookReview/" style="font-size: 10px;">Internet, BookReview</a> <a href="/tags/Kafka/" style="font-size: 10px;">Kafka</a> <a href="/tags/Linux/" style="font-size: 16.67px;">Linux</a> <a href="/tags/Log/" style="font-size: 10px;">Log</a> <a href="/tags/Mesos/" style="font-size: 10px;">Mesos</a> <a href="/tags/Multithread/" style="font-size: 10px;">Multithread</a> <a href="/tags/Mutex/" style="font-size: 10px;">Mutex</a> <a href="/tags/PaperReading/" style="font-size: 20px;">PaperReading</a> <a href="/tags/Password/" style="font-size: 13.33px;">Password</a> <a href="/tags/Programming/" style="font-size: 13.33px;">Programming</a> <a href="/tags/ProgrammingLanguage/" style="font-size: 13.33px;">ProgrammingLanguage</a> <a href="/tags/Python/" style="font-size: 16.67px;">Python</a> <a href="/tags/Reading/" style="font-size: 20px;">Reading</a> <a href="/tags/Social/" style="font-size: 10px;">Social</a> <a href="/tags/Technology/" style="font-size: 16.67px;">Technology</a> <a href="/tags/Undefined-Behavior/" style="font-size: 13.33px;">Undefined Behavior</a> <a href="/tags/WeeklyPaper/" style="font-size: 10px;">WeeklyPaper</a> <a href="/tags/WorldWideWeb/" style="font-size: 10px;">WorldWideWeb</a> <a href="/tags/distributed-systems/" style="font-size: 10px;">distributed systems</a> <a href="/tags/infrastructure/" style="font-size: 10px;">infrastructure</a> <a href="/tags/systems/" style="font-size: 10px;">systems</a> <a href="/tags/tracing/" style="font-size: 10px;">tracing</a>
     </div>
   </div>
 
@@ -204,7 +234,7 @@ ga('send', 'pageview');
   <div class="widget-wrap">
     <h3 class="widget-title">Archives</h3>
     <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/08/">August 2019</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/05/">May 2019</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/04/">April 2019</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/03/">March 2019</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/02/">February 2019</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/01/">January 2019</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/10/">October 2018</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/09/">September 2018</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/07/">July 2018</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/05/">May 2018</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/06/">June 2017</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/03/">March 2017</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/01/">January 2017</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/11/">November 2016</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/09/">September 2016</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/08/">August 2016</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/05/">May 2016</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/02/">February 2016</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/12/">December 2015</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/11/">November 2015</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/10/">October 2015</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/04/">April 2015</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/03/">March 2015</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/01/">January 2015</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/11/">November 2014</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/10/">October 2014</a><span class="archive-list-count">4</span></li></ul>
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/09/">September 2019</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/08/">August 2019</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/05/">May 2019</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/04/">April 2019</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/03/">March 2019</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/02/">February 2019</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/01/">January 2019</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/10/">October 2018</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/09/">September 2018</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/07/">July 2018</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/05/">May 2018</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/06/">June 2017</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/03/">March 2017</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/01/">January 2017</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/11/">November 2016</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/09/">September 2016</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/08/">August 2016</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/05/">May 2016</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/02/">February 2016</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/12/">December 2015</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/11/">November 2015</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/10/">October 2015</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/04/">April 2015</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/03/">March 2015</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/01/">January 2015</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/11/">November 2014</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/10/">October 2014</a><span class="archive-list-count">4</span></li></ul>
     </div>
   </div>
 
@@ -214,6 +244,10 @@ ga('send', 'pageview');
     <h3 class="widget-title">Recents</h3>
     <div class="widget">
       <ul>
+        
+          <li>
+            <a href="/2019/09/16/16-Book-Summary-Bigdata-Goliath/">Book Review: Big Data and Goliath</a>
+          </li>
         
           <li>
             <a href="/2019/08/18/18-Reading-Summary/">Reading Summary 2019-08</a>
@@ -230,10 +264,6 @@ ga('send', 'pageview');
         
           <li>
             <a href="/2019/03/17/17-Reading-Summary-201903/">Reading-Summary 2019-03</a>
-          </li>
-        
-          <li>
-            <a href="/2019/03/10/Paper-Reading-Mesos/">Paper Reading: Mesos: A Platform for Fine-Grained Resource Sharing in the Data Center</a>
           </li>
         
       </ul>
