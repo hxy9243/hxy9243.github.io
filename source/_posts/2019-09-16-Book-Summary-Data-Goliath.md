@@ -1,4 +1,4 @@
-title: 'Book Review: Big Data and Goliath'
+title: 'Book Review: Data and Goliath'
 date: 2019-09-16 00:29:00
 tags: ['Reading', 'Book']
 categories: Reading
@@ -7,8 +7,8 @@ categories: Reading
 https://play.google.com/store/books/details/Bruce_Schneier_Data_and_Goliath_The_Hidden_Battles?id=MwF-BAAAQBAJ
 https://www.amazon.com/dp/039335217X/
 
-"Big Data and Goliath" is an excellent book a friend recommended.
-It's a summary of all the dangerous and negative ways "Big Data" can
+"Data and Goliath" is an excellent book a friend recommended.
+It's a summary of all the dangerous and negative ways data, and the "Big Data" technology can
 shape our societies. The author Bruce Schneier is
 a prominent expert in cryptography who published impactful works on
 cryptography and issues on privacy. He's also on the board of directors of Electronic Frontier Foundation.
@@ -22,7 +22,7 @@ cryptography and issues on privacy. He's also on the board of directors of Elect
 
 The book provides abundant amount of
 cases and examples related to big data misuse, as well as author's careful
-and in-depth analysis of different impacts "Big Data" has on our societies,
+and in-depth analysis of different impacts data has on our societies,
 and pragmatic recommendations to different sides of the society on solving
 the "Big Data" problem.
 
