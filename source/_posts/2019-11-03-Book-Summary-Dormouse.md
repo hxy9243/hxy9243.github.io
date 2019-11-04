@@ -4,6 +4,9 @@ tags: ['Reading', 'Book']
 categories: Reading
 ---
 
+- https://play.google.com/store/books/details?pcampaignid=books_read_action&id=cTyfxP-g2IIC
+- https://www.amazon.com/What-Dormouse-Said-Counterculture-Personal/dp/0143036769
+
 > When logic and proportion
 >
 > Have fallen sloppy dead
