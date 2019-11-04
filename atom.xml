@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://blog.kevinhu.me/"/>
-  <updated>2019-09-22T14:41:59.012Z</updated>
+  <updated>2019-11-04T03:01:25.710Z</updated>
   <id>https://blog.kevinhu.me/</id>
   
   <author>
@@ -15,6 +15,38 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Book Review: What the Dormouse Said</title>
+    <link href="https://blog.kevinhu.me/2019/11/03/03-Book-Summary-Dormouse/"/>
+    <id>https://blog.kevinhu.me/2019/11/03/03-Book-Summary-Dormouse/</id>
+    <published>2019-11-04T02:39:00.000Z</published>
+    <updated>2019-11-04T03:01:25.710Z</updated>
+    
+    <content type="html"><![CDATA[<blockquote><p>When logic and proportion</p><p>Have fallen sloppy dead</p><p>And the White Knight is talking backwards</p><p>And the Red Queen’s off with her head</p><p>Remember what the dormouse said</p><p>Feed your head</p><p>Feed your head</p></blockquote><a id="more"></a><p>I recently came across this book on how the 1960’s counter-culture and anti-war movemententangled with the personal computer movement in California. Much have we known abouthow the pirates of the Silicon Valley: Bill Gates and Steve Jobs shaped built personalcomputing enterprises, but this book recorded some very fascinating details of the storiesbefore their age, and how they inspired the generation of Bill Gates and Steve Jobsby first putting forward this very extraordinary idea of personal computing.</p><p>Story dates back to 1945 when Doug Engelbart started his musing on a device that can extend human mind,with inspirations from “Memex”, a device conceived by Vannevar Bush. It’s a machine that could track andretrieve vast volumes of information.</p><p>After school, a year of teaching and several failed attempts to find a job that can pursue his digitalcomputer dream, he landed in Stanford Research Institute, where he began his research in digital computer system.</p><p>At the same time in California, Myron Stolaroff first came in touch with the power of LSD, and laterdevoted his entire life to researching and promoting the power of it. The LSD was popular among engineersdescribed in the book, many, including Engelbart himself, used it as a mind-expanding tool.</p><p>In 1959, a young man named Fred Moore came into the campus of Berkeley. As a young man with some radicallyprogressive ideas in mind, he quickly rose to fame in the anti-ROTC student protests, and became oneof the leaders of the student movement in the 1960s and 1970s.</p><p>Three major threads led to the birth of personal computing. Engelbart had this vision of creatingan augmenting device with the power of machines. Stolaroff was experimenting with this substancethat can expand on human creativity as well as human spirituality.And Fred Moore set out on a crusade to spread freedom and peace. All three contributed to the creation of personal computing.</p><p>With funding from military, Engelbart continued his endeavor to Intelligence Augmentation.</p><p>On Dec 9, 1968, Engelbart introduced his system that works on a terminal with remote connectionsthrough ARPANET in the annual Fall Joint Computer Conference. Dubbed “the mother of all demos”,Engelbart and his team first demonstrated to the world the power of computers in empowering humans,and inspired a generation of young engineers to join his team, or pursue smiliar goals.</p><p>Book also introduced many interesting and important figures that influenced that age, e.g.</p><ul><li><strong>John McCarthy</strong>: who was a legendary figure who led the development of Stanford AI Lab (SAIL),not too far from SRI, but with different goal in mind: AI should totally be overpower human mind.</li><li><strong>Alan Kay</strong>: later the Turing Award laureate, the father of SamllTalk and the concept of Dynabook.He pioneered the research in language design and human computer interactions in Stanford.</li><li><strong>Steward Brand</strong>: one of many influenced by Staroloff’s experiments on LSD. He later influenced thewhole generation with the lengendary Whole Earth Catalog.</li><li><strong>Jim Warren</strong>, a teacher in school at the time, he later was involved in the radical movementsof Midpeninsula Free U movement, and founded the most respected West Coast Computer Faire,an annual convention for minicomputers. He was also the founder of Dr. Dobb’s Journal.</li><li><strong>JCR Licklider</strong>, the head of DARPA and the early funder of Engelbart’s research.</li><li><strong>Bill English</strong>, one of the engineers on Engelbart’s team, who later worked at Xerox PARC.He and Engelbart both shared credit for creating the world’s first mouse.</li></ul><p>With visionary and persistent figures like Engelbart, to genius engineers like Bill English,and student movement activists like Fred Moore, 1960s-1970s America, especially California,saw the shift of engineers sterotypes from uptight traditional stereotypes they used to be, to the LSD-sippinghippies who valued freedom and liberal ideas most, and pursued personal empowerment and individualism.The engineers in this story had influences from the radical Californian shifts in ideologies and activism,as well as the MIT hacker spirits. These people were not just geniuses, butthe ones who pursued individualism, and believed personal computers were the key to it.And maybe that, in turn, pushed forward the developmentof the most personal empowering device that we saw in the last century - personal computer.</p><p>Though their efforts and visions were not immediately celebrated in their time, theirinfluenced from SRI, to Xerox PARC was felt throughout the world, when young Steven Jobs and Steven Wozniakstarted from the Home-brew Computer Lab, and brought research ideas like GUI, mouse and personalcomputing to the whole world.</p><p>In all it was a very interesting book that’s worth a read if you’re interested in computer developmentat the age, and the tremendous stories behind how personal computing came into being.</p>]]></content>
+    
+    <summary type="html">
+    
+      &lt;blockquote&gt;
+&lt;p&gt;When logic and proportion&lt;/p&gt;
+&lt;p&gt;Have fallen sloppy dead&lt;/p&gt;
+&lt;p&gt;And the White Knight is talking backwards&lt;/p&gt;
+&lt;p&gt;And the Red Queen’s off with her head&lt;/p&gt;
+&lt;p&gt;Remember what the dormouse said&lt;/p&gt;
+&lt;p&gt;Feed your head&lt;/p&gt;
+&lt;p&gt;Feed your head&lt;/p&gt;
+&lt;/blockquote&gt;
+    
+    </summary>
+    
+      <category term="Reading" scheme="https://blog.kevinhu.me/categories/Reading/"/>
+    
+    
+      <category term="Reading" scheme="https://blog.kevinhu.me/tags/Reading/"/>
+    
+      <category term="Book" scheme="https://blog.kevinhu.me/tags/Book/"/>
+    
+  </entry>
   
   <entry>
     <title>Book Review: Data and Goliath</title>
