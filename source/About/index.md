@@ -5,7 +5,7 @@ date: 2014-12-01 21:03:29
 * Blog:
     <a href="https://blog.kevinhu.me/" target="_blank">This blog</a>
 * My Chinese Blog:
-    <a href="https://blog.kevinhu.me/" target="_blank">My Chinese Blog</a>
+    <a href="https://oldgunix.wordpress.com/" target="_blank">My Chinese Blog</a>
 * Twitter:
     <a href="https://twitter.com/Oldgunix" target="_blank">@Oldgunix</a>
 * Telegram:
