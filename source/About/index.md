@@ -7,8 +7,10 @@ __<a href="/categories/Reading/" target="_blank">
 This blog:</a>__ A record of articles and books that I find interesting.
 
 * __WRITE__
-__<a href="http://blog.kevinhu.me/" target="_blank">
+__<a href="https://blog.kevinhu.me/" target="_blank">
 This blog:</a>__ I dump my thoughts here in this blog.
+
+__<a href="https://blog.kevinhu.me/" target="_blank">My Chinese Blog:</a>__ My blogs in Chinese.
 
 * __EXECUTE__
 __<a href="http://github.com/hxy9243/" target="_blank">
