@@ -2,30 +2,17 @@ title: About Me
 date: 2014-12-01 21:03:29
 ---
 
-* __READ__
-__<a href="/categories/Reading/" target="_blank">
-This blog:</a>__ A record of articles and books that I find interesting.
-
-* __WRITE__
-__<a href="https://blog.kevinhu.me/" target="_blank">
-This blog:</a>__ I dump my thoughts here in this blog.
-
-__<a href="https://blog.kevinhu.me/" target="_blank">My Chinese Blog:</a>__ My blogs in Chinese.
-
-* __EXECUTE__
-__<a href="http://github.com/hxy9243/" target="_blank">
-My Github Profile:</a>__ Coding for love and fun. :)
-
-# Contact Me
-
-__NOTE: This page is trustworthy only when its address starts with <code>https://</code>.__
-
+* Blog:
+    <a href="https://blog.kevinhu.me/" target="_blank">This blog</a>
+* My Chinese Blog:
+    <a href="https://blog.kevinhu.me/" target="_blank">My Chinese Blog</a>
 * Twitter:
-    [@Oldgunix](https://twitter.com/Oldgunix)
-
+    <a href="https://twitter.com/Oldgunix" target="_blank">@Oldgunix</a>
 * Telegram:
-    [@Oldgun](https://telegram.me/oldgun)
-
+    <a href="https://telegram.me/oldgun" target="_blank">@Oldgun</a>
+* Github:
+    <a href="http://github.com/hxy9243/" target="_blank">My Github Profile</a>
 * Email:
-      ID: gpg2 --recv 14039F1B
-      Fingerprint: 1FEC 53C7 6563 4A01 743D  D60B D24F 1493 1403 9F1B
+
+    ID: gpg2 --recv 14039F1B
+    Fingerprint: 1FEC 53C7 6563 4A01 743D  D60B D24F 1493 1403 9F1B
