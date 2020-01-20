@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://blog.kevinhu.me/"/>
-  <updated>2019-11-04T03:03:16.999Z</updated>
+  <updated>2020-01-20T22:35:06.437Z</updated>
   <id>https://blog.kevinhu.me/</id>
   
   <author>
@@ -15,6 +15,31 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Paper Reading: Zookeeper</title>
+    <link href="https://blog.kevinhu.me/2020/01/20/20-Paper-Reading-Zookeeper/"/>
+    <id>https://blog.kevinhu.me/2020/01/20/20-Paper-Reading-Zookeeper/</id>
+    <published>2020-01-20T20:28:00.000Z</published>
+    <updated>2020-01-20T22:35:06.437Z</updated>
+    
+    <content type="html"><![CDATA[<p>Paper: <a href="https://www.usenix.org/legacy/events/atc10/tech/full_papers/Hunt.pdf" target="_blank" rel="noopener">https://www.usenix.org/legacy/events/atc10/tech/full_papers/Hunt.pdf</a></p><p>Presentation: <a href="https://www.usenix.org/conference/usenix-atc-10/zookeeper-wait-free-coordination-internet-scale-systems" target="_blank" rel="noopener">https://www.usenix.org/conference/usenix-atc-10/zookeeper-wait-free-coordination-internet-scale-systems</a></p><a id="more"></a><h2>Data Model</h2><p><img src="zookeeper_datamodel.png" alt="Zookeeper DataModel"></p><p>Zookeeper’s data model is very like that of Unix tree-like file system paths.Every node is called a znode, with a key name and value, and may have its own children (except for ephermeral nodes).</p><p>Each znodes contain metadata like timestamps and data version number.</p><p>Nodes may be regular nodes, or ephermeral nodes, where clients keep alive bysending heartbeats to the server, and are removed in server after timeout.Handy for keeping membership information.</p><p>Provides basic client API like <code>create</code>, <code>get</code>, <code>set</code>, <code>delete</code>, <code>getChildren</code>,and <code>sync</code>, for clients to read the most up to date information.</p><h2>Guarantees</h2><p>Keeps two consistency guarantees:</p><ul><li><strong>Linearizable writes</strong>: All writes are linearizable, and specifically<code>Asynchronous linearizabile</code>, meaning client requests are non-blocking (or wait-free),but requests are processed in serialized fashion.</li><li><strong>FIFO client order</strong>: All requests from clients are in processed in requestedorder. Meaning the client will see results in order when it’s issued. Thisprovides consistency guarantees in many applications.</li></ul><p>Zookeeper writes are processed at leader level, while reads are processed at all nodes,for better scalability and performance, and therefore doesn’t provide strongconsistency. Zookeeper provides a <code>sync()</code> API for clients to read up to date data.</p><h2>Primitives and Applications</h2><p>With Zookeeper’s consistency model in mind, we can create powerful primitives based onZookeeper’s, for cluster key configuration management.</p><ul><li><strong>Configuration Management</strong>: Zookeeper’s A-Linearizibility consistency makes it idealfor managing consensus data across cluster. It also provides <code>watch</code> primitives for clientsto watch value changes.</li><li><strong>Rendezvous</strong>: Saves information when cluster is bootstrapping, and master of anotherapplication is undecided. Clients can read from a designated znode for cluster configuration.It works as a service discovery mechanism.</li><li><strong>Group Membership</strong>: Using ephemeral znodes, clients can save their liveness information,by keep sending heartbeats to the znodes. Once client disconnects/network partitions, znodegoes away. Can also use <code>SEQUENTIAL</code> flag to obtain unique name assignment.</li><li><strong>Locks</strong>: Client can create a ephemeral znode as a lock, all future clients will read iflock is in place befor modifying data. Lock is release when holder unlocks or dies/network partitions. Fancier locks are possible with some modifications.</li></ul><h2>Implementation</h2><p><img src="zookeeper_components.png" alt="Zookeeper Components"></p><h3>Request Processor</h3><p>Request processor in Zookeeper is idempotent.</p><p>All write requests are processed as transactions, it either generates a new version number for datawhen request version number matched, or generates an error if failed.</p><h3>Atomic Broadcast</h3><p>All servers process reads, and writes are forwarded to the leader. Zookeeper usesa protocol named <code>Zab</code> to keep consensus among the cluster. Like Paxos, it requiresa quorum to reach consensus.</p><h3>Replicated Database</h3><p>Zookeeper replicates data in all followers’ database. It takes snapshots to compact data.</p><p>Zookeeper snapshots are called <code>fuzzy snapshot</code>, as it’s not necessarily a valid state of theZookeeper data tree. But during recovery data can be recovered with fuzzy snapshot andoperation logs.</p><h3>Client-Server Communication</h3><p>Client reads from all servers for performance, and writes are transactions.To read the latest data, client <code>sync</code>s before read.</p><p>Followers process syncs by appending to previous write queues to leader.If there are no new writes before <code>sync</code>, it generates a dummy <code>sync</code> to guaranteethe leader is still leader.</p>]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;Paper: &lt;a href=&quot;https://www.usenix.org/legacy/events/atc10/tech/full_papers/Hunt.pdf&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;https://www.usenix.org/legacy/events/atc10/tech/full_papers/Hunt.pdf&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;Presentation: &lt;a href=&quot;https://www.usenix.org/conference/usenix-atc-10/zookeeper-wait-free-coordination-internet-scale-systems&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;https://www.usenix.org/conference/usenix-atc-10/zookeeper-wait-free-coordination-internet-scale-systems&lt;/a&gt;&lt;/p&gt;
+    
+    </summary>
+    
+      <category term="PaperReading" scheme="https://blog.kevinhu.me/categories/PaperReading/"/>
+    
+    
+      <category term="PaperReading" scheme="https://blog.kevinhu.me/tags/PaperReading/"/>
+    
+      <category term="Zookeeper" scheme="https://blog.kevinhu.me/tags/Zookeeper/"/>
+    
+  </entry>
   
   <entry>
     <title>Book Review: What the Dormouse Said</title>
