@@ -9,7 +9,9 @@ tags: ['Learning']
 Ultralearning is a quite interesting book from one of my favorite bloggers: Scott Young. 
 Famous for his "MIT Challenge" – which he completed four years of MIT coursework in one single year 
 by completely self-studying – he now blogs regularly on studying methods, student cognitions, 
-and everything related. This book is his summary of his researches and experiences of studying.
+and everything related. 
+
+This book is his summary of his researches and experiences of studying.
 The book's author argued that: there's one possible way to learn and improve yourself, 
 with intensive training and exercises. Like training muscles, you can adopt an extraordinary, 
 unorthodox training plan for your brains, and pick up a new skill in a short amount of time, 
@@ -17,9 +19,11 @@ be it a foreign language, programming, sketch, or even public speaking. He calle
 In the book, he researched many references and interviewed like-minded friends, 
 who had similar experiences of acquiring or improving a skill intensively. 
 And he summarizes all the essential principles, as the guide to a successful "ultralearning" project.
-Draw a Map: Research and layout a roadmap of what you try to study. 
-Carve out enough time and make it a routine for you to follow.
 
+<!--more-->
+
+- __Draw a Map__: Research and layout a roadmap of what you try to study. 
+Carve out enough time and make it a routine for you to follow.
 - __Focus__: Train your focus. You cannot learn with efficiency if you can't focus. It's one of the most critical capabilities, yet it's the most difficult to obtain. Most people suffer from not being able to start focusing (procrastination) or not being able to sustain focus (fatigue). It requires a large amount of practice.
 - __Directness__: Contrary to some beliefs that learning can easily migrate from one skill to another, the author recommends directly target the very skill you're trying to improve and be laser-focus on it.
 - __Drill__: This is an area where you need excellent will power: keep finding out your weakest point and attack it ferociously. Do not live in the illusion of improvement, but keep exposing your week point.
