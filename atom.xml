@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://blog.kevinhu.me/"/>
-  <updated>2020-01-20T22:35:06.437Z</updated>
+  <updated>2020-01-25T22:56:17.057Z</updated>
   <id>https://blog.kevinhu.me/</id>
   
   <author>
@@ -15,6 +15,32 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Reading Summary: Ultralearning</title>
+    <link href="https://blog.kevinhu.me/2020/01/25/25-Ultralearning/"/>
+    <id>https://blog.kevinhu.me/2020/01/25/25-Ultralearning/</id>
+    <published>2020-01-25T22:55:34.000Z</published>
+    <updated>2020-01-25T22:56:17.057Z</updated>
+    
+    <content type="html"><![CDATA[<p>Ultralearning is a quite interesting book from one of my favorite bloggers: Scott Young.Famous for his “MIT Challenge” – which he completed four years of MIT coursework in one single yearby completely self-studying – he now blogs regularly on studying methods, student cognitions,and everything related. This book is his summary of his researches and experiences of studying.The book’s author argued that: there’s one possible way to learn and improve yourself,with intensive training and exercises. Like training muscles, you can adopt an extraordinary,unorthodox training plan for your brains, and pick up a new skill in a short amount of time,be it a foreign language, programming, sketch, or even public speaking. He called it &quot;ultralearning.&quot;In the book, he researched many references and interviewed like-minded friends,who had similar experiences of acquiring or improving a skill intensively.And he summarizes all the essential principles, as the guide to a successful “ultralearning” project.Draw a Map: Research and layout a roadmap of what you try to study.Carve out enough time and make it a routine for you to follow.</p><ul><li><strong>Focus</strong>: Train your focus. You cannot learn with efficiency if you can’t focus. It’s one of the most critical capabilities, yet it’s the most difficult to obtain. Most people suffer from not being able to start focusing (procrastination) or not being able to sustain focus (fatigue). It requires a large amount of practice.</li><li><strong>Directness</strong>: Contrary to some beliefs that learning can easily migrate from one skill to another, the author recommends directly target the very skill you’re trying to improve and be laser-focus on it.</li><li><strong>Drill</strong>: This is an area where you need excellent will power: keep finding out your weakest point and attack it ferociously. Do not live in the illusion of improvement, but keep exposing your week point.</li><li><strong>Retrieval</strong>: Test yourself to learn. The author notices though many students complain about missing lectures on online courses, few complain about missing tests. But learning isn’t about passively accepting knowledge. It’s really about acquiring and absorbing. Use the “Feynman techniques” to keep challenging your understanding.</li><li><strong>Feedback</strong>: Get feedback from others, preferably professionals. Their opinions can help you realize your blind spots.</li><li><strong>Retention</strong>: Memory is a huge aspect of learning. Use techniques to retain your knowledge of a subject, like spaced-repetition.</li><li><strong>Intuition</strong>: Study your subject and practice so hard, so that you develop insights on it, and put together what you’ve learned like jigsaw pieces.</li><li><strong>Experimentation</strong>: Finally, once you’ve gained enough skills, try to apply the skills and experiment on it to develop your original creations.</li></ul><p>I’ve finished this book in less than a week, and it was a pretty fun read.It included many anecdotes from authors’ friends and intellectual celebrities with high achievements (like Feynman, Ramanujan, Van Gogh, etc.)Also, it comes as a practical guidebook to your own learning projects.Although the book is named “ultralearning,” it does provide principles and tricks on learning, in or outside of school. In many places, it resonates with me as a student.</p><p>If I have to pick bones, as a guidebook to learning, this book feels a little verbose on stories.And as research on learning psychology, many of the stories don’t feel formal and convincing enough.But in all, it was a fun read for all the guidelines the book provides. I’d recommend it to anyone who believes learning is an essential part of their life.</p>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;p&gt;Ultralearning is a quite interesting book from one of my favorite bloggers: Scott Young.
+Famous for his “MIT Challenge” – which he comple
+      
+    
+    </summary>
+    
+      <category term="Reading" scheme="https://blog.kevinhu.me/categories/Reading/"/>
+    
+    
+      <category term="Learning" scheme="https://blog.kevinhu.me/tags/Learning/"/>
+    
+  </entry>
   
   <entry>
     <title>Paper Reading: Zookeeper</title>
@@ -46,7 +72,7 @@
     <link href="https://blog.kevinhu.me/2019/11/03/03-Book-Summary-Dormouse/"/>
     <id>https://blog.kevinhu.me/2019/11/03/03-Book-Summary-Dormouse/</id>
     <published>2019-11-04T02:39:00.000Z</published>
-    <updated>2019-11-04T03:03:16.999Z</updated>
+    <updated>2019-12-14T05:41:30.763Z</updated>
     
     <content type="html"><![CDATA[<ul><li><a href="https://play.google.com/store/books/details?pcampaignid=books_read_action&amp;id=cTyfxP-g2IIC" target="_blank" rel="noopener">https://play.google.com/store/books/details?pcampaignid=books_read_action&amp;id=cTyfxP-g2IIC</a></li><li><a href="https://www.amazon.com/What-Dormouse-Said-Counterculture-Personal/dp/0143036769" target="_blank" rel="noopener">https://www.amazon.com/What-Dormouse-Said-Counterculture-Personal/dp/0143036769</a></li></ul><blockquote><p>When logic and proportion</p><p>Have fallen sloppy dead</p><p>And the White Knight is talking backwards</p><p>And the Red Queen’s off with her head</p><p>Remember what the dormouse said</p><p>Feed your head</p><p>Feed your head</p></blockquote><a id="more"></a><p>I recently came across this book on how the 1960’s counter-culture and anti-war movemententangled with the personal computer movement in California. Much have we known abouthow the pirates of the Silicon Valley: Bill Gates and Steve Jobs shaped built personalcomputing enterprises, but this book recorded some very fascinating details of the storiesbefore their age, and how they inspired the generation of Bill Gates and Steve Jobsby first putting forward this very extraordinary idea of personal computing.</p><p>Story dates back to 1945 when Doug Engelbart started his musing on a device that can extend human mind,with inspirations from “Memex”, a device conceived by Vannevar Bush. It’s a machine that could track andretrieve vast volumes of information.</p><p>After school, a year of teaching and several failed attempts to find a job that can pursue his digitalcomputer dream, he landed in Stanford Research Institute, where he began his research in digital computer system.</p><p>At the same time in California, Myron Stolaroff first came in touch with the power of LSD, and laterdevoted his entire life to researching and promoting the power of it. The LSD was popular among engineersdescribed in the book, many, including Engelbart himself, used it as a mind-expanding tool.</p><p>In 1959, a young man named Fred Moore came into the campus of Berkeley. As a young man with some radicallyprogressive ideas in mind, he quickly rose to fame in the anti-ROTC student protests, and became oneof the leaders of the student movement in the 1960s and 1970s.</p><p>Three major threads led to the birth of personal computing. Engelbart had this vision of creatingan augmenting device with the power of machines. Stolaroff was experimenting with this substancethat can expand on human creativity as well as human spirituality.And Fred Moore set out on a crusade to spread freedom and peace. All three contributed to the creation of personal computing.</p><p>With funding from military, Engelbart continued his endeavor to Intelligence Augmentation.</p><p>On Dec 9, 1968, Engelbart introduced his system that works on a terminal with remote connectionsthrough ARPANET in the annual Fall Joint Computer Conference. Dubbed “the mother of all demos”,Engelbart and his team first demonstrated to the world the power of computers in empowering humans,and inspired a generation of young engineers to join his team, or pursue smiliar goals.</p><p>Book also introduced many interesting and important figures that influenced that age, e.g.</p><ul><li><strong>John McCarthy</strong>: who was a legendary figure who led the development of Stanford AI Lab (SAIL),not too far from SRI, but with different goal in mind: AI should totally be overpower human mind.</li><li><strong>Alan Kay</strong>: later the Turing Award laureate, the father of SamllTalk and the concept of Dynabook.He pioneered the research in language design and human computer interactions in Stanford.</li><li><strong>Steward Brand</strong>: one of many influenced by Staroloff’s experiments on LSD. He later influenced thewhole generation with the lengendary Whole Earth Catalog.</li><li><strong>Jim Warren</strong>, a teacher in school at the time, he later was involved in the radical movementsof Midpeninsula Free U movement, and founded the most respected West Coast Computer Faire,an annual convention for minicomputers. He was also the founder of Dr. Dobb’s Journal.</li><li><strong>JCR Licklider</strong>, the head of DARPA and the early funder of Engelbart’s research.</li><li><strong>Bill English</strong>, one of the engineers on Engelbart’s team, who later worked at Xerox PARC.He and Engelbart both shared credit for creating the world’s first mouse.</li></ul><p>With visionary and persistent figures like Engelbart, to genius engineers like Bill English,and student movement activists like Fred Moore, 1960s-1970s America, especially California,saw the shift of engineers sterotypes from uptight traditional stereotypes they used to be, to the LSD-sippinghippies who valued freedom and liberal ideas most, and pursued personal empowerment and individualism.The engineers in this story had influences from the radical Californian shifts in ideologies and activism,as well as the MIT hacker spirits. These people were not just geniuses, butthe ones who pursued individualism, and believed personal computers were the key to it.And maybe that, in turn, pushed forward the developmentof the most personal empowering device that we saw in the last century - personal computer.</p><p>Though their efforts and visions were not immediately celebrated in their time, theirinfluenced from SRI, to Xerox PARC was felt throughout the world, when young Steven Jobs and Steven Wozniakstarted from the Home-brew Computer Lab, and brought research ideas like GUI, mouse and personalcomputing to the whole world.</p><p>In all it was a very interesting book that’s worth a read if you’re interested in computer developmentat the age, and the tremendous stories behind how personal computing came into being.</p>]]></content>
     
@@ -1085,9 +1111,9 @@ By default, it generates right recursive table driven LALR parser.&lt;/p&gt;
       <category term="CodeReading" scheme="https://blog.kevinhu.me/categories/CodeReading/"/>
     
     
-      <category term="Password" scheme="https://blog.kevinhu.me/tags/Password/"/>
-    
       <category term="CodeReading" scheme="https://blog.kevinhu.me/tags/CodeReading/"/>
+    
+      <category term="Password" scheme="https://blog.kevinhu.me/tags/Password/"/>
     
   </entry>
   
@@ -1111,9 +1137,9 @@ rationale behind storing information in separate files is discussed in &lt;a hre
       <category term="CodeReading" scheme="https://blog.kevinhu.me/categories/CodeReading/"/>
     
     
-      <category term="Password" scheme="https://blog.kevinhu.me/tags/Password/"/>
-    
       <category term="CodeReading" scheme="https://blog.kevinhu.me/tags/CodeReading/"/>
+    
+      <category term="Password" scheme="https://blog.kevinhu.me/tags/Password/"/>
     
   </entry>
   
