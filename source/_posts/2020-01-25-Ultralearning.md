@@ -1,3 +1,11 @@
+layout: post
+title: 'Reading Summary: Ultralearning'
+date: 2020-01-25 16:55:34
+comments: true
+categories: Reading
+tags: ['Learning']
+---
+
 Ultralearning is a quite interesting book from one of my favorite bloggers: Scott Young. 
 Famous for his "MIT Challenge" – which he completed four years of MIT coursework in one single year 
 by completely self-studying – he now blogs regularly on studying methods, student cognitions, 
