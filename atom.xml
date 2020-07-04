@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://blog.kevinhu.me/"/>
-  <updated>2020-04-05T22:18:03.709Z</updated>
+  <updated>2020-07-04T04:06:50.662Z</updated>
   <id>https://blog.kevinhu.me/</id>
   
   <author>
@@ -15,6 +15,44 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Reading: Cassandra Data Modeling</title>
+    <link href="https://blog.kevinhu.me/2020/07/03/03-Cassandra-Data-Modeling/"/>
+    <id>https://blog.kevinhu.me/2020/07/03/03-Cassandra-Data-Modeling/</id>
+    <published>2020-07-04T03:55:00.000Z</published>
+    <updated>2020-07-04T04:06:50.662Z</updated>
+    
+    <content type="html"><![CDATA[<p>Reading from Cassandra official website: <a href="https://www.datastax.com/sites/default/files/content/whitepaper/files/2019-10/CM2019236%20-%20Data%20Modeling%20in%20Apache%20Cassandra%20%E2%84%A2%20White%20Paper-4.pdf" target="_blank" rel="noopener">https://www.datastax.com/sites/default/files/content/whitepaper/files/2019-10/CM2019236 - Data Modeling in Apache Cassandra ™ White Paper-4.pdf</a></p><p>Cassandra is a exemplary implmentation of NoSQL database, and gained popularity in various web, big data, and ML applications.Recently I’ve stumbled upon a good summary of Cassandra handbook, which includes a decent introduction to its datamodeling techniques, which can in term be used in other NoSQL databases.</p><p>Here are my notes and summaries:</p><h1>Data Modeling Concepts</h1><p>There are great many ways Cassandra and traditional RDBMS are different: Cassandra is a wide-column database, with BASE eventual consistency guarantees, has looser relationships between tables. Therefore one needs to model their data very differently than traditional RDBMS for the application to run efficiently.</p><p>Namely NoSQL has following differences:</p><ul><li><strong>No Joins:</strong> tables have loose relationships with each other without database level joining.</li><li><strong>No Referential Integrity</strong>: RDBMS requires foreign keys to refer to primary key in another table. NoSQL doesn’t enforce this.</li><li><strong>Denormalization:</strong> contrary to what RDBMS normalization techniques, denormalization is first-class citizen in NoSQL. Many NoSQL databases supports aggregating fields in the same table to achieve row level atomicity.</li><li><strong>Query Firs</strong>t: SQL data modeling starts with entities and relations, while NoSQL data modeling starts with application queries.</li><li><strong>Sorting</strong>: Sorting is an important design decision, for Cassandra and many NoSQL databases.</li></ul><a id="more"></a><blockquote><p>(?) What are the major differences between NoSQL and SQL data modeling?</p></blockquote><h1>Logical Data Modeling in Cassandra</h1><p>A Cassandra table uses a composite key as primary key: with a <strong>partition key (K)</strong> and a <strong>cluster key ©</strong>.</p><ul><li>Partition key (K) decides where the row stores in the cluster.</li><li>Clustering key © decides how the row is sorted under the same partition key.</li><li>Primary key can be composite of multiple Partition Keys (K) and Clustering Keys ©.e.g.: ((K1, K2), (C1, C2, C3)).</li></ul><p>Primary key is crucially important in Cassandra data modeling, as:</p><ul><li>Cassandra doesn’t support query filtering without partition key.</li><li>It impacts partitioning of data across databases, and therefore potentially impacts performance.</li><li>Sorting is a very important decision and it impacts query performance.</li></ul><blockquote><p>(?) What is Cassandra key and why is it important?</p></blockquote><h2>I. Build Application Workflow</h2><p>Logical Data Modeling starts with overall Application workflow, known as the “query-first design.”</p><h2>II. Build E-R Diagram</h2><p>Entity-Relation Diagram often used for SQL data modeling, but helpful to think through the E-Rs involved in the NoSQL modeling.</p><p>Iterate between Application Query Workflow and E-R Diagram.</p><h2>III. Use Chetboko Diagrams</h2><p>Chetboko Diagram is a good tool to model the queries and tables required by the NoSQL application.</p><ul><li>It captures the schema, highlights the partition key (K) and clustering key © for each table.</li><li>It shows the application query workflow, and how queries link the tables together.</li></ul><p><img src="chetboko.png" alt="Chetboko Diagram"></p><blockquote><p>(?) In NoSQL data modeling, what is a Chetboko Diagram and how does it help with modeling?</p></blockquote><h2>IV. Create Tables</h2><p>Some items to consider when creating the tables:</p><ul><li>Design keys well. Create unique keys.</li><li>Use data types effectively. Cassandra supports collection (set, list, map, tuple, …).</li><li>Use user-defined data-types by creating types.</li><li>Denormalization is normal.</li><li>Use secondary indexes and materialized views when necessary.</li></ul><h1><strong>References</strong></h1><ul><li>NoSQL Data Modeling Techniques: <a href="https://highlyscalable.wordpress.com/2012/03/01/nosql-data-modeling-techniques/" target="_blank" rel="noopener">https://highlyscalable.wordpress.com/2012/03/01/nosql-data-modeling-techniques/</a></li><li>Data Modeling in Cassandra: <a href="https://www.datastax.com/sites/default/files/content/whitepaper/files/2019-10/CM2019236%20-%20Data%20Modeling%20in%20Apache%20Cassandra%20%E2%84%A2%20White%20Paper-4.pdf" target="_blank" rel="noopener">https://www.datastax.com/sites/default/files/content/whitepaper/files/2019-10/CM2019236 - Data Modeling in Apache Cassandra ™ White Paper-4.pdf</a></li><li>Cassandra the Definitive Guide: <a href="https://www.datastax.com/resources/ebook/oreilly-cassandra-definitive-guide" target="_blank" rel="noopener">https://www.datastax.com/resources/ebook/oreilly-cassandra-definitive-guide</a></li></ul>]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;Reading from Cassandra official website: &lt;a href=&quot;https://www.datastax.com/sites/default/files/content/whitepaper/files/2019-10/CM2019236%20-%20Data%20Modeling%20in%20Apache%20Cassandra%20%E2%84%A2%20White%20Paper-4.pdf&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;https://www.datastax.com/sites/default/files/content/whitepaper/files/2019-10/CM2019236 - Data Modeling in Apache Cassandra ™ White Paper-4.pdf&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;Cassandra is a exemplary implmentation of NoSQL database, and gained popularity in various web, big data, and ML applications.
+Recently I’ve stumbled upon a good summary of Cassandra handbook, which includes a decent introduction to its data
+modeling techniques, which can in term be used in other NoSQL databases.&lt;/p&gt;
+&lt;p&gt;Here are my notes and summaries:&lt;/p&gt;
+&lt;h1&gt;Data Modeling Concepts&lt;/h1&gt;
+&lt;p&gt;There are great many ways Cassandra and traditional RDBMS are different: Cassandra is a wide-column database, with BASE eventual consistency guarantees, has looser relationships between tables. Therefore one needs to model their data very differently than traditional RDBMS for the application to run efficiently.&lt;/p&gt;
+&lt;p&gt;Namely NoSQL has following differences:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;No Joins:&lt;/strong&gt; tables have loose relationships with each other without database level joining.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;No Referential Integrity&lt;/strong&gt;: RDBMS requires foreign keys to refer to primary key in another table. NoSQL doesn’t enforce this.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Denormalization:&lt;/strong&gt; contrary to what RDBMS normalization techniques, denormalization is first-class citizen in NoSQL. Many NoSQL databases supports aggregating fields in the same table to achieve row level atomicity.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Query Firs&lt;/strong&gt;t: SQL data modeling starts with entities and relations, while NoSQL data modeling starts with application queries.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Sorting&lt;/strong&gt;: Sorting is an important design decision, for Cassandra and many NoSQL databases.&lt;/li&gt;
+&lt;/ul&gt;
+    
+    </summary>
+    
+      <category term="PaperReading" scheme="https://blog.kevinhu.me/categories/PaperReading/"/>
+    
+    
+      <category term="PaperReading" scheme="https://blog.kevinhu.me/tags/PaperReading/"/>
+    
+      <category term="Cassandra" scheme="https://blog.kevinhu.me/tags/Cassandra/"/>
+    
+  </entry>
   
   <entry>
     <title>Book Review: Black Swan - The Impact of the Highly Improbable</title>
