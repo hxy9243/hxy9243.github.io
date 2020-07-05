@@ -1,6 +1,6 @@
 title: 'Reading: Cassandra Data Modeling'
 date: 2020-07-03 22:55
-tags: ['PaperReading', 'Cassandra']
+tags: ['PaperReading', 'Cassandra', 'Database', 'NoSQL']
 categories: PaperReading
 ---
 
