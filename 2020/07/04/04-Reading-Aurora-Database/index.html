@@ -5,19 +5,19 @@
   
   <title>Paper Reading: Aurora: Distributed Relational Database | Kevin Hu&#39;s Blog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="The following is my very simple summary of paper reading. Aurora is a geo-distributed SQL database that supports replication, high-availability, and transactions, with its distributed design around re">
+  <meta name="description" content="The following is my overly simplified summary of paper reading. Aurora is a geo-distributed SQL database that supports replication, high-availability, and transactions, with its distributed design aro">
 <meta name="keywords" content="PaperReading,Aurora,Database">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Paper Reading: Aurora: Distributed Relational Database">
 <meta property="og:url" content="https://blog.kevinhu.me/2020/07/04/04-Reading-Aurora-Database/index.html">
 <meta property="og:site_name" content="Kevin Hu&#39;s Blog">
-<meta property="og:description" content="The following is my very simple summary of paper reading. Aurora is a geo-distributed SQL database that supports replication, high-availability, and transactions, with its distributed design around re">
+<meta property="og:description" content="The following is my overly simplified summary of paper reading. Aurora is a geo-distributed SQL database that supports replication, high-availability, and transactions, with its distributed design aro">
 <meta property="og:locale" content="en-US">
 <meta property="og:image" content="https://blog.kevinhu.me/2020/07/04/04-Reading-Aurora-Database/aurora_io.png">
-<meta property="og:updated_time" content="2020-07-05T03:32:21.179Z">
+<meta property="og:updated_time" content="2020-07-05T03:35:56.611Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Paper Reading: Aurora: Distributed Relational Database">
-<meta name="twitter:description" content="The following is my very simple summary of paper reading. Aurora is a geo-distributed SQL database that supports replication, high-availability, and transactions, with its distributed design around re">
+<meta name="twitter:description" content="The following is my overly simplified summary of paper reading. Aurora is a geo-distributed SQL database that supports replication, high-availability, and transactions, with its distributed design aro">
 <meta name="twitter:image" content="https://blog.kevinhu.me/2020/07/04/04-Reading-Aurora-Database/aurora_io.png">
   
     <link rel="alternative" href="/atom.xml" title="Kevin Hu&#39;s Blog" type="application/atom+xml">
@@ -109,10 +109,10 @@ ga('send', 'pageview');
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>The following is my <strong>very simple</strong> summary of paper reading.</p>
+        <p>The following is my <strong>overly simplified</strong> summary of paper reading.</p>
 <p>Aurora is a geo-distributed SQL database that supports replication, high-availability, and transactions,
 with its distributed design around replicating the database WAL log.</p>
-<h1>Reference</h1>
+<h1>References</h1>
 <ul>
 <li><strong>Course Syllabus:</strong> <a href="https://pdos.csail.mit.edu/6.824/schedule.html" target="_blank" rel="noopener">https://pdos.csail.mit.edu/6.824/schedule.html</a></li>
 <li><strong>Video Lectures:</strong> <a href="https://www.youtube.com/channel/UC_7WrbZTCODu1o_kfUMq88g/videos" target="_blank" rel="noopener">https://www.youtube.com/channel/UC_7WrbZTCODu1o_kfUMq88g/videos</a></li>
@@ -121,7 +121,7 @@ with its distributed design around replicating the database WAL log.</p>
 <a id="more"></a>
 <h1>Design Choices</h1>
 <ul>
-<li>Saving data on EBS is too slow, unreliable, and generates too much traffic (x).</li>
+<li>Saving data on EBS is too slow, unreliable, and generates too much traffic.</li>
 <li>Building Storage as an independent Fault-Tolerant self healing service across data-centers.</li>
 <li>Writing only redo log to disk, and across the network across AZs (Availability Zones).</li>
 </ul>
@@ -130,11 +130,7 @@ with its distributed design around replicating the database WAL log.</p>
 <p><strong>The log is the Database</strong>: write only redo log to disk and across the network. Backup disk to s3 on the background.</p>
 <h2>Durability, Replication and Quorum Model</h2>
 <ul>
-<li>Traditional Quorum is inadequate.
-<ul>
-<li>Doesn’t prevent total AZ (Availability Zone) failure.</li>
-</ul>
-</li>
+<li>Traditional Quorum is inadequate: Doesn’t prevent total AZ (Availability Zone) failure.</li>
 <li>2 * 3 architecture:
 3 different AZ, 2 nodes per AZ, 6 way copy.
 Vw=4, Vr=3. Need 4 nodes to write, 3 nodes to read.</li>
@@ -175,7 +171,6 @@ During a recovery, logs after VDLs are truncated. It ensures all log records ≤
 <li>When a client commits a transaction, the thread handling the commit requests sets the transaction aside by recording its “commit LSN”.</li>
 <li>When WAL’s VDL ≥ “commit LSN”, transaction is committed. Use dedicated thread to send ACK to client.</li>
 </ul>
-<p>(A bit like optimistic MVCC?)</p>
 <p><strong>Reads:</strong></p>
 <ul>
 <li>Pages are served from the buffer cache.</li>
@@ -191,7 +186,7 @@ During a recovery, logs after VDLs are truncated. It ensures all log records ≤
 </ul>
 <p><strong>Recovery:</strong></p>
 <ul>
-<li>Aurora uses a Quorum read.</li>
+<li>Aurora uses a Quorum read for recovery process.</li>
 </ul>
 
       
