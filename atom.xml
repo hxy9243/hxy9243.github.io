@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://blog.kevinhu.me/"/>
-  <updated>2020-07-05T03:35:56.611Z</updated>
+  <updated>2020-07-20T06:43:09.145Z</updated>
   <id>https://blog.kevinhu.me/</id>
   
   <author>
@@ -15,6 +15,32 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Reading Summary: 07/20/2020</title>
+    <link href="https://blog.kevinhu.me/2020/07/20/20-Reading-Summary/"/>
+    <id>https://blog.kevinhu.me/2020/07/20/20-Reading-Summary/</id>
+    <published>2020-07-20T06:30:00.000Z</published>
+    <updated>2020-07-20T06:43:09.145Z</updated>
+    
+    <content type="html"><![CDATA[<h1>Social</h1><h3><a href="https://amp.economist.com/china/2020/07/11/a-sino-american-bond-forged-by-chinese-students-is-in-peril" target="_blank" rel="noopener">A Sino-American bond, forged by Chinese students, is in peril $</a></h3><p>How Chinese-American relationship is impacting the lives of many “stuck in between.”</p><h3><a href="https://www.technologyreview.com/2018/08/14/240325/how-social-media-took-us-from-tahrir-square-to-donald-trump/amp/" target="_blank" rel="noopener">How social media took us from Tahrir Square to Donald Trump</a></h3><p>The author had the foresight about the dangerous impact social media has on a society,and he was right.</p><p>He also proposes: the cure cannot be a pure technological one, it requires fixing thevulnerabilities inside economics, political, and social systems.</p><h1>Technology</h1><h3><a href="https://writings.stephenwolfram.com/2019/06/testifying-at-the-senate-about-a-i-selected-content-on-the-internet/" target="_blank" rel="noopener">Testifying at the Senate about A.I.‑Selected Content on the Internet, from Stephen Wolfram</a></h3><p>Stephen Wolfram’s testimony at the Senate, on A.I. selected content, his ideas onwhy algorithmic bias is dangerous, and how we can address it with proper regulations,transparency, and user choice.</p><p>He basically proposed that users should have an idea of what algorithm is feeding them data,and the capability to choose. This requires some open benchmarks on recommendation algorithms,and frameworks for users to choose.</p><h1>Programming</h1><h3><a href="https://davidwells.io/blog/rise-of-embarrassingly-parallel-serverless-compute" target="_blank" rel="noopener">The Rise of Embarrassingly Parallel Serverless Compute</a></h3><p>What is serverless computing, why it is on the rise,and why is it useful for parallel data processing (data processing,CI/CD, compilation, ML, visualization, …, you name it).</p><h3><a href="https://highlyscalable.wordpress.com/2012/03/01/nosql-data-modeling-techniques/" target="_blank" rel="noopener">NoSQL Data Modeling Techniques</a></h3><p>A detailed guide for modeling your NoSQL data schemes.</p>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;h1&gt;Social&lt;/h1&gt;
+&lt;h3&gt;&lt;a href=&quot;https://amp.economist.com/china/2020/07/11/a-sino-american-bond-forged-by-chinese-students-is-in-peril&quot; target=
+      
+    
+    </summary>
+    
+      <category term="Reading" scheme="https://blog.kevinhu.me/categories/Reading/"/>
+    
+    
+      <category term="Reading" scheme="https://blog.kevinhu.me/tags/Reading/"/>
+    
+  </entry>
   
   <entry>
     <title>Paper Reading: Aurora: Distributed Relational Database</title>
