@@ -1,0 +1,364 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>Blog Reading: The log - What every software engineer should know about real-time data&#39;s unifying abstraction
+ | Kevin Hu&#39;s Blog</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="Link: https://engineering.linkedin.com/distributed-systems/log-what-every-software-engineer-should-know-about-real-time-datas-unifying Kafka is a message queue, a pub-sub system, an event sourcing too">
+<meta name="keywords" content="Kafka,Log">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Blog Reading: The log - What every software engineer should know about real-time data&#39;s unifying abstraction
+">
+<meta property="og:url" content="https://blog.kevinhu.me/2019/04/01/31-Blog-Reading-Kafka/index.html">
+<meta property="og:site_name" content="Kevin Hu&#39;s Blog">
+<meta property="og:description" content="Link: https://engineering.linkedin.com/distributed-systems/log-what-every-software-engineer-should-know-about-real-time-datas-unifying Kafka is a message queue, a pub-sub system, an event sourcing too">
+<meta property="og:locale" content="en-US">
+<meta property="og:image" content="https://blog.kevinhu.me/2019/04/01/31-Blog-Reading-Kafka/2019-03-31-Blog-Reading-Kafka-active_and_passive_arch.png">
+<meta property="og:updated_time" content="2019-09-07T18:33:08.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Blog Reading: The log - What every software engineer should know about real-time data&#39;s unifying abstraction
+">
+<meta name="twitter:description" content="Link: https://engineering.linkedin.com/distributed-systems/log-what-every-software-engineer-should-know-about-real-time-datas-unifying Kafka is a message queue, a pub-sub system, an event sourcing too">
+<meta name="twitter:image" content="https://blog.kevinhu.me/2019/04/01/31-Blog-Reading-Kafka/2019-03-31-Blog-Reading-Kafka-active_and_passive_arch.png">
+  
+    <link rel="alternative" href="/atom.xml" title="Kevin Hu&#39;s Blog" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  <link rel="stylesheet" href="/css/style.css">
+  
+<!-- Google Analytics -->
+<script type="text/javascript">
+(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+ga('create', 'UA-57072621-1', 'auto');
+ga('send', 'pageview');
+
+</script>
+<!-- End Google Analytics -->
+
+
+</head>
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">Kevin Hu&#39;s Blog</a>
+      </h1>
+      
+        <h2 id="subtitle-wrap">
+          <a href="/" id="subtitle">A Hungry Fool</a>
+        </h2>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/About/">About</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="https://blog.kevinhu.me"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-31-Blog-Reading-Kafka" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2019/04/01/31-Blog-Reading-Kafka/" class="article-date">
+  <time datetime="2019-04-02T04:39:10.000Z" itemprop="datePublished">04 01 2019</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/PaperReading/">PaperReading</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      Blog Reading: The log - What every software engineer should know about real-time data&#39;s unifying abstraction
+
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>Link: <a href="https://engineering.linkedin.com/distributed-systems/log-what-every-software-engineer-should-know-about-real-time-datas-unifying" target="_blank" rel="noopener">https://engineering.linkedin.com/distributed-systems/log-what-every-software-engineer-should-know-about-real-time-datas-unifying</a></p>
+<p>Kafka is a message queue, a pub-sub system, an event sourcing tool,
+and a stream processing infrastructure, is a key part of many streaming distributed
+systems that requires streaming data. Its underlying idea, is to aggregate data
+from a distributed sources, to a unifying linear log structure.</p>
+<p>The blog is from Kafka’s creator Jay Kreps when he was at LinkedIn,
+contemplating the log abstraction as a key part of any distributed systems. This
+is not Kafka’s design paper, implementation or a tutorial, but rather the process of brewing
+the idea that led to its birth, and I found it equally interesting. The following are
+my notes.</p>
+<p>The link to Kafka paper: <a href="https://www.semanticscholar.org/paper/Kafka-%3A-a-Distributed-Messaging-System-for-Log-Kreps/9f948448e7a5f0cc94cd53656410face8b31b18a" target="_blank" rel="noopener">https://www.semanticscholar.org/paper/Kafka-%3A-a-Distributed-Messaging-System-for-Log-Kreps/9f948448e7a5f0cc94cd53656410face8b31b18a</a></p>
+<a id="more"></a>
+<h2>What Is a Log?</h2>
+<p>Log is a simplest storage abstraction, similar to what we see in application logs,
+records are appended to the end of a log data structure, and reads proceeds left-to-right.
+This simple abstraction is powerful, in that:</p>
+<ul>
+<li>It keeps the records, and the ordering of records, by when it’s appended to the data structure.</li>
+<li>In a deterministic system, you can reconstruct the state of the systems at any time, by
+replaying the input in order for every single step of the input.</li>
+</ul>
+<p>The log centric approach arises from a simple observation that the author named
+&quot;State Machine Replication Principle&quot;:</p>
+<blockquote>
+<p>If two identical, deterministic processes begin in the same state and get
+the same inputs in the same order, they will produce the same output and end
+in the same state.</p>
+</blockquote>
+<p>And there are two major different ways of leveraging logs in distributed processing
+and replication:</p>
+<ul>
+<li>A “Primary Backup” Model, AKA “active-passive” model, where one node is elected as
+master, and writes its states to log. Upon master failure, a replica is elected and
+take over.</li>
+<li>The “State Machine Model”, AKA “active-active” model, where changes/operations
+are written to the log, and each replica picks up the log.</li>
+</ul>
+<p><img src="2019-03-31-Blog-Reading-Kafka-active_and_passive_arch.png" alt="Replication Architecture with Log"></p>
+<h2>What can log be used for</h2>
+<h3>Data Integration</h3>
+<p>Make all of an organization’s data easily available in all its storage and processing
+systems.</p>
+<p>An organization may have multiple data inputs, that gathers events and data from
+many places, and different consumers to digest that data. A log structure can serve
+as a buffer as well as a central pipeline for all the different producers and consumers.
+In this way, the log serves as an asynchronous messaging system.
+All producers and consumers can read buffered data from the log, with different pace.
+e.g. a real-time system may need to read instantly, while an analytic platform may
+read it only hourly or even daily.</p>
+<p>Also, in a system where there are M inputs and N output, you’ll need M * N pipelines to
+make sure each consumer can read from all data producers. But with a single unified data pipeline,
+every producer and consumer can all write and read from one single log. And that’s the
+idea behind Kafka.</p>
+<p>Also, Kafka’s log structure also enables high-performance optimizations, e.g.:</p>
+<ul>
+<li>Enables partitioning.</li>
+<li>Optimize high throughput by batching small reads and writes.</li>
+<li>Avoids needless data copies, as it can keep same binary data structure in memory,
+on disk and in network transfers.</li>
+</ul>
+<h3>Real-time Data Processing</h3>
+<p>Computing derived data streams.</p>
+<p>Log also makes real-time stream processing easier. Logs enables real-time data collection
+from events or different data input, at different speed, that the consumers can
+read from at scale.</p>
+<p>Log also enables more complicated data flow, e.g. when output of a log in the stream
+processing systems becomes the input of another. It can construct complicated data flow
+graphs. And log has benefits:</p>
+<ul>
+<li>It makes each dataset multi-subscriber and ordered, and the order is permanent.</li>
+<li>The log provides buffering to the processes, so that the system can work in
+asynchronous fashion.</li>
+</ul>
+<h3>Distributed System Desgin</h3>
+<p>Practical systems can be simplified with a log-centric design.</p>
+<p>Log enables high-performance and easy integration of data producers and consumers,
+distributed systems are more likely to move away from monolithic relational databases,
+and toward more diverse data sources and consumers. Building distributed systems
+would more feel like lego games with open-source data components.</p>
+<p>And a log system can work as the following role in system architecture.</p>
+<ul>
+<li>Handle data consistency by sequencing concurrent updates to nodes.</li>
+<li>Provide data replication between nodes.</li>
+<li>Provide “commit” semantics to the writer (respond only when your write is guaranteed
+not to be lost).</li>
+<li>Provide external data subscription feed from the system.</li>
+<li>Provide the capability to restore failed replicas.</li>
+<li>Handling data rebalancing of data between nodes.</li>
+</ul>
+<hr>
+<p>The author built the powerful ideas of a log into Kafka, one of the most influential
+data streaming platform. This long blog might bring some insights to incorporate
+Kafka into a distributed system, as well as provide inside in building new system
+infrastructures.</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://blog.kevinhu.me/2019/04/01/31-Blog-Reading-Kafka/" data-id="ckh5y4pnd003cjmsclqxrvit8" class="article-share-link">Share</a>
+      
+        <a href="https://blog.kevinhu.me/2019/04/01/31-Blog-Reading-Kafka/#disqus_thread" class="article-comment-link">Comments</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Kafka/">Kafka</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Log/">Log</a></li></ul>
+
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2019/05/05/05-Reading-Summary-201905/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          Reading Summary 2019-04
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2019/03/17/17-Reading-Summary-201903/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">Reading-Summary 2019-03</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+
+<section id="comments">
+  <div id="disqus_thread">
+    <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+  </div>
+</section>
+</section>
+        
+          <aside id="sidebar">
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Categories</h3>
+    <div class="widget">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Algorithm/">Algorithm</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/CodeReading/">CodeReading</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Diary/">Diary</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Paper/">Paper</a><span class="category-list-count">5</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/PaperReading/">PaperReading</a><span class="category-list-count">6</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Programming/">Programming</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/ProgrammingLanguage/">ProgrammingLanguage</a><span class="category-list-count">4</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Reading/">Reading</a><span class="category-list-count">24</span></li></ul>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tag Cloud</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/Algorithm/" style="font-size: 10px;">Algorithm</a> <a href="/tags/Aurora/" style="font-size: 10px;">Aurora</a> <a href="/tags/BitHacks/" style="font-size: 10px;">BitHacks</a> <a href="/tags/Book/" style="font-size: 12.5px;">Book</a> <a href="/tags/BookReview/" style="font-size: 12.5px;">BookReview</a> <a href="/tags/Borg/" style="font-size: 10px;">Borg</a> <a href="/tags/C/" style="font-size: 10px;">C</a> <a href="/tags/C/" style="font-size: 10px;">C++</a> <a href="/tags/C-C/" style="font-size: 12.5px;">C/C++</a> <a href="/tags/Cassandra/" style="font-size: 10px;">Cassandra</a> <a href="/tags/Channel/" style="font-size: 10px;">Channel</a> <a href="/tags/CodeReading/" style="font-size: 12.5px;">CodeReading</a> <a href="/tags/Coding/" style="font-size: 10px;">Coding</a> <a href="/tags/Compilers/" style="font-size: 12.5px;">Compilers</a> <a href="/tags/Concurrency/" style="font-size: 10px;">Concurrency</a> <a href="/tags/Database/" style="font-size: 12.5px;">Database</a> <a href="/tags/Datacenter/" style="font-size: 10px;">Datacenter</a> <a href="/tags/Debug/" style="font-size: 10px;">Debug</a> <a href="/tags/DistributedSystems/" style="font-size: 15px;">DistributedSystems</a> <a href="/tags/Docker/" style="font-size: 10px;">Docker</a> <a href="/tags/FPGA/" style="font-size: 10px;">FPGA</a> <a href="/tags/Golang/" style="font-size: 12.5px;">Golang</a> <a href="/tags/HPC/" style="font-size: 10px;">HPC</a> <a href="/tags/Hugepage/" style="font-size: 10px;">Hugepage</a> <a href="/tags/Internet-BookReview/" style="font-size: 10px;">Internet, BookReview</a> <a href="/tags/Julia/" style="font-size: 10px;">Julia</a> <a href="/tags/Kafka/" style="font-size: 10px;">Kafka</a> <a href="/tags/Learning/" style="font-size: 10px;">Learning</a> <a href="/tags/Linux/" style="font-size: 15px;">Linux</a> <a href="/tags/Log/" style="font-size: 10px;">Log</a> <a href="/tags/Mesos/" style="font-size: 10px;">Mesos</a> <a href="/tags/Multithread/" style="font-size: 10px;">Multithread</a> <a href="/tags/Mutex/" style="font-size: 10px;">Mutex</a> <a href="/tags/NoSQL/" style="font-size: 10px;">NoSQL</a> <a href="/tags/PaperReading/" style="font-size: 20px;">PaperReading</a> <a href="/tags/Password/" style="font-size: 12.5px;">Password</a> <a href="/tags/Programming/" style="font-size: 12.5px;">Programming</a> <a href="/tags/ProgrammingLanguage/" style="font-size: 15px;">ProgrammingLanguage</a> <a href="/tags/Python/" style="font-size: 15px;">Python</a> <a href="/tags/Reading/" style="font-size: 17.5px;">Reading</a> <a href="/tags/Social/" style="font-size: 10px;">Social</a> <a href="/tags/Technology/" style="font-size: 15px;">Technology</a> <a href="/tags/Undefined-Behavior/" style="font-size: 12.5px;">Undefined Behavior</a> <a href="/tags/WeeklyPaper/" style="font-size: 10px;">WeeklyPaper</a> <a href="/tags/WorldWideWeb/" style="font-size: 10px;">WorldWideWeb</a> <a href="/tags/Zookeeper/" style="font-size: 10px;">Zookeeper</a> <a href="/tags/distributed-systems/" style="font-size: 10px;">distributed systems</a> <a href="/tags/infrastructure/" style="font-size: 10px;">infrastructure</a> <a href="/tags/systems/" style="font-size: 10px;">systems</a> <a href="/tags/tracing/" style="font-size: 10px;">tracing</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/11/">November 2020</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/07/">July 2020</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/04/">April 2020</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/01/">January 2020</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/11/">November 2019</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/09/">September 2019</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/08/">August 2019</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/05/">May 2019</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/04/">April 2019</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/03/">March 2019</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/02/">February 2019</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/01/">January 2019</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/10/">October 2018</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/09/">September 2018</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/07/">July 2018</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/05/">May 2018</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/06/">June 2017</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/03/">March 2017</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/01/">January 2017</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/11/">November 2016</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/09/">September 2016</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/08/">August 2016</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/05/">May 2016</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/02/">February 2016</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/12/">December 2015</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/11/">November 2015</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/10/">October 2015</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/04/">April 2015</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/03/">March 2015</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/01/">January 2015</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/11/">November 2014</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/10/">October 2014</a><span class="archive-list-count">4</span></li></ul>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recents</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2020/11/05/05-Paper-Reading-Julia-Design/">Paper Reading: Julia: Dynamism and Performance Reconciled by Design</a>
+          </li>
+        
+          <li>
+            <a href="/2020/07/20/20-Reading-Summary/">Reading Summary: 07/20/2020</a>
+          </li>
+        
+          <li>
+            <a href="/2020/07/04/04-Reading-Aurora-Database/">Paper Reading: Aurora: Distributed Relational Database</a>
+          </li>
+        
+          <li>
+            <a href="/2020/07/03/03-Cassandra-Data-Modeling/">Reading: Cassandra Data Modeling</a>
+          </li>
+        
+          <li>
+            <a href="/2020/04/05/05-Book-Review-Black-Swan/">Book Review: Black Swan - The Impact of the Highly Improbable</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2020 Kevin Hu<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/About/" class="mobile-nav-link">About</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+<script>
+  var disqus_shortname = 'kevinhustechblog';
+  
+  var disqus_url = 'https://blog.kevinhu.me/2019/04/01/31-Blog-Reading-Kafka/';
+  
+  (function(){
+    var dsq = document.createElement('script');
+    dsq.type = 'text/javascript';
+    dsq.async = true;
+    dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+    (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+  })();
+</script>
+
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/script.js"></script>
+
+  </div>
+</body>
+</html>

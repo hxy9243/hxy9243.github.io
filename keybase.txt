@@ -1,0 +1,54 @@
+==================================================================
+https://keybase.io/oldgun
+--------------------------------------------------------------------
+
+I hereby claim:
+
+  * I am an admin of https://blog.kevinhu.me
+  * I am oldgun (https://keybase.io/oldgun) on keybase.
+  * I have a public key ASCpBZhdA8Z1lKvj-A67IVXFOoXgJdMVEWa5b9gyvsAb_Ao
+
+To do so, I am signing this object:
+
+{
+    "body": {
+        "key": {
+            "eldest_kid": "0101faf275b5eec9ec8fafce80f7950700136cf17c26307193b99f42eb5a12d75e290a",
+            "host": "keybase.io",
+            "kid": "0120a905985d03c67594abe3f80ebb2155c53a85e025d3151166b96fd832bec01bfc0a",
+            "uid": "ab94e81100017686c75b6b7bc467fe19",
+            "username": "oldgun"
+        },
+        "service": {
+            "hostname": "blog.kevinhu.me",
+            "protocol": "https:"
+        },
+        "type": "web_service_binding",
+        "version": 1
+    },
+    "client": {
+        "name": "keybase.io go client",
+        "version": "1.0.17"
+    },
+    "ctime": 1473732356,
+    "expire_in": 504576000,
+    "merkle_root": {
+        "ctime": 1473732263,
+        "hash": "c3b59f519947ebe499be95b3bf1fe0c6f360a84d98de1f6723857cdc15728110b3aa57a8c08c01f90bd96593024906e63291093fefb6df9323252a6c94699d93",
+        "seqno": 632359
+    },
+    "prev": "6297c3e4f551a7a4c2bd00383da67796c7cae711d6c1b8c9089c3239b98a679e",
+    "seqno": 13,
+    "tag": "signature"
+}
+
+which yields the signature:
+
+hKRib2R5hqhkZXRhY2hlZMOpaGFzaF90eXBlCqNrZXnEIwEgqQWYXQPGdZSr4/gOuyFVxTqF4CXTFRFmuW/YMr7AG/wKp3BheWxvYWTFAvZ7ImJvZHkiOnsia2V5Ijp7ImVsZGVzdF9raWQiOiIwMTAxZmFmMjc1YjVlZWM5ZWM4ZmFmY2U4MGY3OTUwNzAwMTM2Y2YxN2MyNjMwNzE5M2I5OWY0MmViNWExMmQ3NWUyOTBhIiwiaG9zdCI6ImtleWJhc2UuaW8iLCJraWQiOiIwMTIwYTkwNTk4NWQwM2M2NzU5NGFiZTNmODBlYmIyMTU1YzUzYTg1ZTAyNWQzMTUxMTY2Yjk2ZmQ4MzJiZWMwMWJmYzBhIiwidWlkIjoiYWI5NGU4MTEwMDAxNzY4NmM3NWI2YjdiYzQ2N2ZlMTkiLCJ1c2VybmFtZSI6Im9sZGd1biJ9LCJzZXJ2aWNlIjp7Imhvc3RuYW1lIjoiYmxvZy5rZXZpbmh1Lm1lIiwicHJvdG9jb2wiOiJodHRwczoifSwidHlwZSI6IndlYl9zZXJ2aWNlX2JpbmRpbmciLCJ2ZXJzaW9uIjoxfSwiY2xpZW50Ijp7Im5hbWUiOiJrZXliYXNlLmlvIGdvIGNsaWVudCIsInZlcnNpb24iOiIxLjAuMTcifSwiY3RpbWUiOjE0NzM3MzIzNTYsImV4cGlyZV9pbiI6NTA0NTc2MDAwLCJtZXJrbGVfcm9vdCI6eyJjdGltZSI6MTQ3MzczMjI2MywiaGFzaCI6ImMzYjU5ZjUxOTk0N2ViZTQ5OWJlOTViM2JmMWZlMGM2ZjM2MGE4NGQ5OGRlMWY2NzIzODU3Y2RjMTU3MjgxMTBiM2FhNTdhOGMwOGMwMWY5MGJkOTY1OTMwMjQ5MDZlNjMyOTEwOTNmZWZiNmRmOTMyMzI1MmE2Yzk0Njk5ZDkzIiwic2Vxbm8iOjYzMjM1OX0sInByZXYiOiI2Mjk3YzNlNGY1NTFhN2E0YzJiZDAwMzgzZGE2Nzc5NmM3Y2FlNzExZDZjMWI4YzkwODljMzIzOWI5OGE2NzllIiwic2Vxbm8iOjEzLCJ0YWciOiJzaWduYXR1cmUifaNzaWfEQFnTKytnuvhrpbmnfWNWHMJRcDpe1c8BcW76kUM+v2lAMAJEUj912Dl682tclRBPGPgMZznPFCn1xJDlZ4TWfwWoc2lnX3R5cGUgpGhhc2iCpHR5cGUIpXZhbHVlxCB/cbDSS0aI8jZRpWWtfdPQ07p2D/Esd4VTnlkDWpnvSaN0YWfNAgKndmVyc2lvbgE=
+
+And finally, I am proving ownership of this host by posting or
+appending to this document.
+
+View my publicly-auditable identity here: https://keybase.io/oldgun
+
+==================================================================

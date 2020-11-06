@@ -1,0 +1,539 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>Category: PaperReading | Kevin Hu&#39;s Blog</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta property="og:type" content="website">
+<meta property="og:title" content="Kevin Hu&#39;s Blog">
+<meta property="og:url" content="https://blog.kevinhu.me/categories/PaperReading/index.html">
+<meta property="og:site_name" content="Kevin Hu&#39;s Blog">
+<meta property="og:locale" content="en-US">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Kevin Hu&#39;s Blog">
+  
+    <link rel="alternative" href="/atom.xml" title="Kevin Hu&#39;s Blog" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  <link rel="stylesheet" href="/css/style.css">
+  
+<!-- Google Analytics -->
+<script type="text/javascript">
+(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+ga('create', 'UA-57072621-1', 'auto');
+ga('send', 'pageview');
+
+</script>
+<!-- End Google Analytics -->
+
+
+</head>
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">Kevin Hu&#39;s Blog</a>
+      </h1>
+      
+        <h2 id="subtitle-wrap">
+          <a href="/" id="subtitle">A Hungry Fool</a>
+        </h2>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/About/">About</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="https://blog.kevinhu.me"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main">
+  
+    <article id="post-05-Paper-Reading-Julia-Design" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2020/11/05/05-Paper-Reading-Julia-Design/" class="article-date">
+  <time datetime="2020-11-05T23:54:00.000Z" itemprop="datePublished">11 05 2020</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/PaperReading/">PaperReading</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2020/11/05/05-Paper-Reading-Julia-Design/">Paper Reading: Julia: Dynamism and Performance Reconciled by Design</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>Link: <a href="https://dl.acm.org/doi/pdf/10.1145/3276490" target="_blank" rel="noopener">https://dl.acm.org/doi/pdf/10.1145/3276490</a></p>
+<p>The paper outlines the Julia programming language’s some most important design choices, and
+explains how they build a bridge between user-friendliness and performance.</p>
+<p>The paper provided with a few benchmarks, to compare its performance with a C baseline,
+along with other dynamic languages like Python, MATLAB, JavaScript, and so on.
+While other dynamic programming languages suffer great performance loss, due to its dynamism,
+Julia can compete relatively close with the C/C++ baseline, with up to native performance in a few
+cases, most of the benchmarks are within 2x of C or C++, while Python can suffer more than 70x slower
+performance than C++.</p>
+<p>This is significant, as it may eliminate the “prototype in dynamic language, then reimplement
+in static language for faster performance” cycle, eliminating extra time on coding to achieve
+efficiency without sacrificing much performance.</p>
+<p>Some key takeouts from this paper:</p>
+        
+          <p class="article-more-link">
+            <a href="/2020/11/05/05-Paper-Reading-Julia-Design/#more">Read More</a>
+          </p>
+        
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://blog.kevinhu.me/2020/11/05/05-Paper-Reading-Julia-Design/" data-id="ckh5y4pnt0041jmscqs8y6ur1" class="article-share-link">Share</a>
+      
+        <a href="https://blog.kevinhu.me/2020/11/05/05-Paper-Reading-Julia-Design/#disqus_thread" class="article-comment-link">Comments</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Julia/">Julia</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/PaperReading/">PaperReading</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/ProgrammingLanguage/">ProgrammingLanguage</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-04-Reading-Aurora-Database" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2020/07/04/04-Reading-Aurora-Database/" class="article-date">
+  <time datetime="2020-07-05T03:17:00.000Z" itemprop="datePublished">07 04 2020</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/PaperReading/">PaperReading</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2020/07/04/04-Reading-Aurora-Database/">Paper Reading: Aurora: Distributed Relational Database</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>The following is my <strong>overly simplified</strong> summary of paper reading.</p>
+<p>Aurora is a geo-distributed SQL database that supports replication, high-availability, and transactions,
+with its distributed design around replicating the database WAL log.</p>
+<h1>References</h1>
+<ul>
+<li><strong>Course Syllabus:</strong> <a href="https://pdos.csail.mit.edu/6.824/schedule.html" target="_blank" rel="noopener">https://pdos.csail.mit.edu/6.824/schedule.html</a></li>
+<li><strong>Video Lectures:</strong> <a href="https://www.youtube.com/channel/UC_7WrbZTCODu1o_kfUMq88g/videos" target="_blank" rel="noopener">https://www.youtube.com/channel/UC_7WrbZTCODu1o_kfUMq88g/videos</a></li>
+<li><strong>Lecture</strong>: <a href="https://www.youtube.com/watch?v=jJSh54J1s5o" target="_blank" rel="noopener">https://www.youtube.com/watch?v=jJSh54J1s5o</a></li>
+</ul>
+        
+          <p class="article-more-link">
+            <a href="/2020/07/04/04-Reading-Aurora-Database/#more">Read More</a>
+          </p>
+        
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://blog.kevinhu.me/2020/07/04/04-Reading-Aurora-Database/" data-id="ckh5y4pno003rjmscz991s11p" class="article-share-link">Share</a>
+      
+        <a href="https://blog.kevinhu.me/2020/07/04/04-Reading-Aurora-Database/#disqus_thread" class="article-comment-link">Comments</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Aurora/">Aurora</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Database/">Database</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/PaperReading/">PaperReading</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-03-Cassandra-Data-Modeling" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2020/07/03/03-Cassandra-Data-Modeling/" class="article-date">
+  <time datetime="2020-07-04T03:55:00.000Z" itemprop="datePublished">07 03 2020</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/PaperReading/">PaperReading</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2020/07/03/03-Cassandra-Data-Modeling/">Reading: Cassandra Data Modeling</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>Reading from Cassandra official website: <a href="https://www.datastax.com/sites/default/files/content/whitepaper/files/2019-10/CM2019236%20-%20Data%20Modeling%20in%20Apache%20Cassandra%20%E2%84%A2%20White%20Paper-4.pdf" target="_blank" rel="noopener">https://www.datastax.com/sites/default/files/content/whitepaper/files/2019-10/CM2019236 - Data Modeling in Apache Cassandra ™ White Paper-4.pdf</a></p>
+<p>Cassandra is a exemplary implmentation of NoSQL database, and gained popularity in various web, big data, and ML applications.
+Recently I’ve stumbled upon a good summary of Cassandra handbook, which includes a decent introduction to its data
+modeling techniques, which can in term be used in other NoSQL databases.</p>
+<p>Here are my notes and summaries:</p>
+<h1>Data Modeling Concepts</h1>
+<p>There are great many ways Cassandra and traditional RDBMS are different: Cassandra is a wide-column database, with BASE eventual consistency guarantees, has looser relationships between tables. Therefore one needs to model their data very differently than traditional RDBMS for the application to run efficiently.</p>
+<p>Namely NoSQL has following differences:</p>
+<ul>
+<li><strong>No Joins:</strong> tables have loose relationships with each other without database level joining.</li>
+<li><strong>No Referential Integrity</strong>: RDBMS requires foreign keys to refer to primary key in another table. NoSQL doesn’t enforce this.</li>
+<li><strong>Denormalization:</strong> contrary to what RDBMS normalization techniques, denormalization is first-class citizen in NoSQL. Many NoSQL databases supports aggregating fields in the same table to achieve row level atomicity.</li>
+<li><strong>Query Firs</strong>t: SQL data modeling starts with entities and relations, while NoSQL data modeling starts with application queries.</li>
+<li><strong>Sorting</strong>: Sorting is an important design decision, for Cassandra and many NoSQL databases.</li>
+</ul>
+        
+          <p class="article-more-link">
+            <a href="/2020/07/03/03-Cassandra-Data-Modeling/#more">Read More</a>
+          </p>
+        
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://blog.kevinhu.me/2020/07/03/03-Cassandra-Data-Modeling/" data-id="ckh5y4pnr003yjmscnpesw1t7" class="article-share-link">Share</a>
+      
+        <a href="https://blog.kevinhu.me/2020/07/03/03-Cassandra-Data-Modeling/#disqus_thread" class="article-comment-link">Comments</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Cassandra/">Cassandra</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Database/">Database</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/NoSQL/">NoSQL</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/PaperReading/">PaperReading</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-20-Paper-Reading-Zookeeper" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2020/01/20/20-Paper-Reading-Zookeeper/" class="article-date">
+  <time datetime="2020-01-20T20:28:00.000Z" itemprop="datePublished">01 20 2020</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/PaperReading/">PaperReading</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2020/01/20/20-Paper-Reading-Zookeeper/">Paper Reading: Zookeeper</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>Paper: <a href="https://www.usenix.org/legacy/events/atc10/tech/full_papers/Hunt.pdf" target="_blank" rel="noopener">https://www.usenix.org/legacy/events/atc10/tech/full_papers/Hunt.pdf</a></p>
+<p>Presentation: <a href="https://www.usenix.org/conference/usenix-atc-10/zookeeper-wait-free-coordination-internet-scale-systems" target="_blank" rel="noopener">https://www.usenix.org/conference/usenix-atc-10/zookeeper-wait-free-coordination-internet-scale-systems</a></p>
+        
+          <p class="article-more-link">
+            <a href="/2020/01/20/20-Paper-Reading-Zookeeper/#more">Read More</a>
+          </p>
+        
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://blog.kevinhu.me/2020/01/20/20-Paper-Reading-Zookeeper/" data-id="ckh5y4pnn003pjmscczqb9hac" class="article-share-link">Share</a>
+      
+        <a href="https://blog.kevinhu.me/2020/01/20/20-Paper-Reading-Zookeeper/#disqus_thread" class="article-comment-link">Comments</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/PaperReading/">PaperReading</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Zookeeper/">Zookeeper</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-31-Blog-Reading-Kafka" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2019/04/01/31-Blog-Reading-Kafka/" class="article-date">
+  <time datetime="2019-04-02T04:39:10.000Z" itemprop="datePublished">04 01 2019</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/PaperReading/">PaperReading</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2019/04/01/31-Blog-Reading-Kafka/">Blog Reading: The log - What every software engineer should know about real-time data&#39;s unifying abstraction
+</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>Link: <a href="https://engineering.linkedin.com/distributed-systems/log-what-every-software-engineer-should-know-about-real-time-datas-unifying" target="_blank" rel="noopener">https://engineering.linkedin.com/distributed-systems/log-what-every-software-engineer-should-know-about-real-time-datas-unifying</a></p>
+<p>Kafka is a message queue, a pub-sub system, an event sourcing tool,
+and a stream processing infrastructure, is a key part of many streaming distributed
+systems that requires streaming data. Its underlying idea, is to aggregate data
+from a distributed sources, to a unifying linear log structure.</p>
+<p>The blog is from Kafka’s creator Jay Kreps when he was at LinkedIn,
+contemplating the log abstraction as a key part of any distributed systems. This
+is not Kafka’s design paper, implementation or a tutorial, but rather the process of brewing
+the idea that led to its birth, and I found it equally interesting. The following are
+my notes.</p>
+<p>The link to Kafka paper: <a href="https://www.semanticscholar.org/paper/Kafka-%3A-a-Distributed-Messaging-System-for-Log-Kreps/9f948448e7a5f0cc94cd53656410face8b31b18a" target="_blank" rel="noopener">https://www.semanticscholar.org/paper/Kafka-%3A-a-Distributed-Messaging-System-for-Log-Kreps/9f948448e7a5f0cc94cd53656410face8b31b18a</a></p>
+        
+          <p class="article-more-link">
+            <a href="/2019/04/01/31-Blog-Reading-Kafka/#more">Read More</a>
+          </p>
+        
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://blog.kevinhu.me/2019/04/01/31-Blog-Reading-Kafka/" data-id="ckh5y4pnd003cjmsclqxrvit8" class="article-share-link">Share</a>
+      
+        <a href="https://blog.kevinhu.me/2019/04/01/31-Blog-Reading-Kafka/#disqus_thread" class="article-comment-link">Comments</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Kafka/">Kafka</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Log/">Log</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-Paper-Reading-Mesos" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2019/03/10/Paper-Reading-Mesos/" class="article-date">
+  <time datetime="2019-03-10T18:14:56.000Z" itemprop="datePublished">03 10 2019</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/PaperReading/">PaperReading</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2019/03/10/Paper-Reading-Mesos/">Paper Reading: Mesos: A Platform for Fine-Grained Resource Sharing in the Data Center</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>Link to paper: <a href="https://people.eecs.berkeley.edu/~alig/papers/mesos.pdf" target="_blank" rel="noopener">https://people.eecs.berkeley.edu/~alig/papers/mesos.pdf</a></p>
+<p>Presentation: <a href="https://www.usenix.org/conference/nsdi11/mesos-platform-fine-grained-resource-sharing-data-center" target="_blank" rel="noopener">https://www.usenix.org/conference/nsdi11/mesos-platform-fine-grained-resource-sharing-data-center</a></p>
+<p>Mesos is a cluster resource management software from UC Berkeley. Unlike many other
+frameworks already existed, Mesos is designed to support heterogeneous frameworks (Hadoop,
+MPI, etc) in the same cluster and share resources between them, by providing a thin layer
+that making resource offers to the framework schedulers, and delegate the scheduling
+decision to the frameworks themselves.</p>
+<p>With this design, Mesos can achieve pretty good elasticity between frameworks, and
+letting frameworks choose their own resources results in better data locality.</p>
+        
+          <p class="article-more-link">
+            <a href="/2019/03/10/Paper-Reading-Mesos/#more">Read More</a>
+          </p>
+        
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://blog.kevinhu.me/2019/03/10/Paper-Reading-Mesos/" data-id="ckh5y4pnc0039jmsc1jkabqri" class="article-share-link">Share</a>
+      
+        <a href="https://blog.kevinhu.me/2019/03/10/Paper-Reading-Mesos/#disqus_thread" class="article-comment-link">Comments</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/DistributedSystems/">DistributedSystems</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Mesos/">Mesos</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/PaperReading/">PaperReading</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+  
+</section>
+        
+          <aside id="sidebar">
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Categories</h3>
+    <div class="widget">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Algorithm/">Algorithm</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/CodeReading/">CodeReading</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Diary/">Diary</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Paper/">Paper</a><span class="category-list-count">5</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/PaperReading/">PaperReading</a><span class="category-list-count">6</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Programming/">Programming</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/ProgrammingLanguage/">ProgrammingLanguage</a><span class="category-list-count">4</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Reading/">Reading</a><span class="category-list-count">24</span></li></ul>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tag Cloud</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/Algorithm/" style="font-size: 10px;">Algorithm</a> <a href="/tags/Aurora/" style="font-size: 10px;">Aurora</a> <a href="/tags/BitHacks/" style="font-size: 10px;">BitHacks</a> <a href="/tags/Book/" style="font-size: 12.5px;">Book</a> <a href="/tags/BookReview/" style="font-size: 12.5px;">BookReview</a> <a href="/tags/Borg/" style="font-size: 10px;">Borg</a> <a href="/tags/C/" style="font-size: 10px;">C</a> <a href="/tags/C/" style="font-size: 10px;">C++</a> <a href="/tags/C-C/" style="font-size: 12.5px;">C/C++</a> <a href="/tags/Cassandra/" style="font-size: 10px;">Cassandra</a> <a href="/tags/Channel/" style="font-size: 10px;">Channel</a> <a href="/tags/CodeReading/" style="font-size: 12.5px;">CodeReading</a> <a href="/tags/Coding/" style="font-size: 10px;">Coding</a> <a href="/tags/Compilers/" style="font-size: 12.5px;">Compilers</a> <a href="/tags/Concurrency/" style="font-size: 10px;">Concurrency</a> <a href="/tags/Database/" style="font-size: 12.5px;">Database</a> <a href="/tags/Datacenter/" style="font-size: 10px;">Datacenter</a> <a href="/tags/Debug/" style="font-size: 10px;">Debug</a> <a href="/tags/DistributedSystems/" style="font-size: 15px;">DistributedSystems</a> <a href="/tags/Docker/" style="font-size: 10px;">Docker</a> <a href="/tags/FPGA/" style="font-size: 10px;">FPGA</a> <a href="/tags/Golang/" style="font-size: 12.5px;">Golang</a> <a href="/tags/HPC/" style="font-size: 10px;">HPC</a> <a href="/tags/Hugepage/" style="font-size: 10px;">Hugepage</a> <a href="/tags/Internet-BookReview/" style="font-size: 10px;">Internet, BookReview</a> <a href="/tags/Julia/" style="font-size: 10px;">Julia</a> <a href="/tags/Kafka/" style="font-size: 10px;">Kafka</a> <a href="/tags/Learning/" style="font-size: 10px;">Learning</a> <a href="/tags/Linux/" style="font-size: 15px;">Linux</a> <a href="/tags/Log/" style="font-size: 10px;">Log</a> <a href="/tags/Mesos/" style="font-size: 10px;">Mesos</a> <a href="/tags/Multithread/" style="font-size: 10px;">Multithread</a> <a href="/tags/Mutex/" style="font-size: 10px;">Mutex</a> <a href="/tags/NoSQL/" style="font-size: 10px;">NoSQL</a> <a href="/tags/PaperReading/" style="font-size: 20px;">PaperReading</a> <a href="/tags/Password/" style="font-size: 12.5px;">Password</a> <a href="/tags/Programming/" style="font-size: 12.5px;">Programming</a> <a href="/tags/ProgrammingLanguage/" style="font-size: 15px;">ProgrammingLanguage</a> <a href="/tags/Python/" style="font-size: 15px;">Python</a> <a href="/tags/Reading/" style="font-size: 17.5px;">Reading</a> <a href="/tags/Social/" style="font-size: 10px;">Social</a> <a href="/tags/Technology/" style="font-size: 15px;">Technology</a> <a href="/tags/Undefined-Behavior/" style="font-size: 12.5px;">Undefined Behavior</a> <a href="/tags/WeeklyPaper/" style="font-size: 10px;">WeeklyPaper</a> <a href="/tags/WorldWideWeb/" style="font-size: 10px;">WorldWideWeb</a> <a href="/tags/Zookeeper/" style="font-size: 10px;">Zookeeper</a> <a href="/tags/distributed-systems/" style="font-size: 10px;">distributed systems</a> <a href="/tags/infrastructure/" style="font-size: 10px;">infrastructure</a> <a href="/tags/systems/" style="font-size: 10px;">systems</a> <a href="/tags/tracing/" style="font-size: 10px;">tracing</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/11/">November 2020</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/07/">July 2020</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/04/">April 2020</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/01/">January 2020</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/11/">November 2019</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/09/">September 2019</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/08/">August 2019</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/05/">May 2019</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/04/">April 2019</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/03/">March 2019</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/02/">February 2019</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/01/">January 2019</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/10/">October 2018</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/09/">September 2018</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/07/">July 2018</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/05/">May 2018</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/06/">June 2017</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/03/">March 2017</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/01/">January 2017</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/11/">November 2016</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/09/">September 2016</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/08/">August 2016</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/05/">May 2016</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/02/">February 2016</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/12/">December 2015</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/11/">November 2015</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/10/">October 2015</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/04/">April 2015</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/03/">March 2015</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/01/">January 2015</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/11/">November 2014</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/10/">October 2014</a><span class="archive-list-count">4</span></li></ul>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recents</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2020/11/05/05-Paper-Reading-Julia-Design/">Paper Reading: Julia: Dynamism and Performance Reconciled by Design</a>
+          </li>
+        
+          <li>
+            <a href="/2020/07/20/20-Reading-Summary/">Reading Summary: 07/20/2020</a>
+          </li>
+        
+          <li>
+            <a href="/2020/07/04/04-Reading-Aurora-Database/">Paper Reading: Aurora: Distributed Relational Database</a>
+          </li>
+        
+          <li>
+            <a href="/2020/07/03/03-Cassandra-Data-Modeling/">Reading: Cassandra Data Modeling</a>
+          </li>
+        
+          <li>
+            <a href="/2020/04/05/05-Book-Review-Black-Swan/">Book Review: Black Swan - The Impact of the Highly Improbable</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2020 Kevin Hu<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/About/" class="mobile-nav-link">About</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+<script>
+  var disqus_shortname = 'kevinhustechblog';
+  
+  (function(){
+    var dsq = document.createElement('script');
+    dsq.type = 'text/javascript';
+    dsq.async = true;
+    dsq.src = '//' + disqus_shortname + '.disqus.com/count.js';
+    (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+  })();
+</script>
+
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/script.js"></script>
+
+  </div>
+</body>
+</html>
