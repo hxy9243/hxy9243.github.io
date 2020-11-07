@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://blog.kevinhu.me/"/>
-  <updated>2020-11-06T07:09:17.298Z</updated>
+  <updated>2020-11-07T07:44:51.018Z</updated>
   <id>https://blog.kevinhu.me/</id>
   
   <author>
@@ -15,6 +15,52 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Reading Summary: 11/06/2020</title>
+    <link href="https://blog.kevinhu.me/2020/11/06/06-Reading-Summary-2020-11/"/>
+    <id>https://blog.kevinhu.me/2020/11/06/06-Reading-Summary-2020-11/</id>
+    <published>2020-11-07T05:23:00.000Z</published>
+    <updated>2020-11-07T07:44:51.018Z</updated>
+    
+    <content type="html"><![CDATA[<h1>Technology</h1><h2><a href="https://inference-review.com/article/the-man-who-carried-computer-science-on-his-shoulders" target="_blank" rel="noopener">Edsger Dijkstra: The Man Who Carried Computer Science on His Shoulders</a></h2><p>The often untold story behind a mastermind of Computer Science: Dijkstra, whose name has been an importantalgorithm widely used in GPS navigation.</p><p>The blog described a wise, hard-thinker, a great mind who made unparallel contributions to both ComputerScience as a mathematical and logical view, as well as Software Engineering which focuses on buildingsoftware and hardware components.</p><p>He’s most famous for his private reports, named “EWD”, and continued for more than forty years,describing his views on Computer Science and Software Engineering in general, and sometimes workedas reviews for others’ work. One of the most influencing “EWD” report was &quot;Notes on Structured Programming,&quot;which argued programming as a serious form of skill that demands intellectual rigor.</p><p>In 1972, Dijkstra received the ACM Turing Award, he was recognized for:</p><blockquote><p>contributions to programming as a high, intellectual challenge; for eloquent insistence and practical demonstration that programs should be composed correctly, not just debugged into correctness; for illuminating perception of problems at the foundations of program design.</p></blockquote><p>He has great passion for his art, and his strong personality sometimes sparked controversies.One of the most famous was the discussion on critiquing “GOTO” statements as harmful. Itbrought widespread, heated debate, yet Dijkstra’s view finally prevailed, and his insistencemade a monumental change to programming paradigm.</p><p>There are much more interesting details around his personal and academic life in the original post,too long to be summarized here. For example, his had a mini-van in Austin, which he often drove tonational parks with his wife, and it was named the “Touring Machine.” If you are passionate with computers and software,have a long weekend afternoon, it’s worth a good read.</p><a id="more"></a><h1>Programming</h1><h2><a href="https://github.com/satwikkansal/wtfpython#-some-fancy-title" target="_blank" rel="noopener">WTF Python!</a></h2><p>The quirks around the Python programming language. The use cases described in the document areusually not recommended way of using Python, as it might trigger unexpected behaviors.They expose some underlying implementation details, the majority of which for optimizations,and may have some counter-intuitive side-effects.</p><p>No programming language, or tool, frameworks is perfect. If you’d like to use somethingfluently, you’ll also need to understand its weird corner cases.</p><h1>Studying</h1><h2><a href="https://zettelkasten.de/introduction/" target="_blank" rel="noopener">Introduction to the Zettelkasten Method</a></h2><p>An interesting notebook method I’ve recently bumped into. And I’ve been using Notion notebookwith it.</p><p>The idea is that: you’ll read and learn many small facts and concepts, but would forget them quickly.Zettelkasten method will record, and connect them into much more powerful ideas and concepts, sinceinnovations often arrive when ideas clash. Used correctly, this personal notebook methodcould be a significant way of boosting your creativity.</p><h1>Society</h1><h2><a href="https://theconversation.com/to-combat-conspiracy-theories-teach-critical-thinking-and-community-values-147314?s=09" target="_blank" rel="noopener">To Combat Conspiracy Theories, Teach Critical Thinking - And Community Values</a></h2><p>An interesting idea from studying the spread of conspiracy theory: most followers and spreadersare drawn to conspiracy theories, as they find comfort and a sense of community in it.</p><p>Fighting disinformation and conspiracy theories can be hard, but this idea could provide a way ofpreventing the agents from spreading it.</p><p>When someone feels unfit or even abandoned by the mainstream society, they seek comfort inoutlandish ideas. The conclusion? One important aspect of fighting conspiracy theory is to buildcommunity value.</p><h2><a href="https://thephilosophicalsalon.com/how-scientism-spawns-pseudoscience-and-science-denialism/" target="_blank" rel="noopener">How Scientism Spawns Pseudoscience And Science Denialism</a></h2><p>Scientism is the idea that we should believe in science and scientists no matter what.This idea is the wrong way of pursuing the true spirit of science,is actually considered harmful, and might backfire with denial.</p>]]></content>
+    
+    <summary type="html">
+    
+      &lt;h1&gt;Technology&lt;/h1&gt;
+&lt;h2&gt;&lt;a href=&quot;https://inference-review.com/article/the-man-who-carried-computer-science-on-his-shoulders&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;Edsger Dijkstra: The Man Who Carried Computer Science on His Shoulders&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;The often untold story behind a mastermind of Computer Science: Dijkstra, whose name has been an important
+algorithm widely used in GPS navigation.&lt;/p&gt;
+&lt;p&gt;The blog described a wise, hard-thinker, a great mind who made unparallel contributions to both Computer
+Science as a mathematical and logical view, as well as Software Engineering which focuses on building
+software and hardware components.&lt;/p&gt;
+&lt;p&gt;He’s most famous for his private reports, named “EWD”, and continued for more than forty years,
+describing his views on Computer Science and Software Engineering in general, and sometimes worked
+as reviews for others’ work. One of the most influencing “EWD” report was &amp;quot;Notes on Structured Programming,&amp;quot;
+which argued programming as a serious form of skill that demands intellectual rigor.&lt;/p&gt;
+&lt;p&gt;In 1972, Dijkstra received the ACM Turing Award, he was recognized for:&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;contributions to programming as a high, intellectual challenge; for eloquent insistence and practical demonstration that programs should be composed correctly, not just debugged into correctness; for illuminating perception of problems at the foundations of program design.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;He has great passion for his art, and his strong personality sometimes sparked controversies.
+One of the most famous was the discussion on critiquing “GOTO” statements as harmful. It
+brought widespread, heated debate, yet Dijkstra’s view finally prevailed, and his insistence
+made a monumental change to programming paradigm.&lt;/p&gt;
+&lt;p&gt;There are much more interesting details around his personal and academic life in the original post,
+too long to be summarized here. For example, his had a mini-van in Austin, which he often drove to
+national parks with his wife, and it was named the “Touring Machine.” If you are passionate with computers and software,
+have a long weekend afternoon, it’s worth a good read.&lt;/p&gt;
+    
+    </summary>
+    
+      <category term="Reading" scheme="https://blog.kevinhu.me/categories/Reading/"/>
+    
+    
+      <category term="Programming" scheme="https://blog.kevinhu.me/tags/Programming/"/>
+    
+      <category term="Reading" scheme="https://blog.kevinhu.me/tags/Reading/"/>
+    
+  </entry>
   
   <entry>
     <title>Paper Reading: Julia: Dynamism and Performance Reconciled by Design</title>

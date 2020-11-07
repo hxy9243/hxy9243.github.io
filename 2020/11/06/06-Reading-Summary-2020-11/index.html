@@ -3,15 +3,20 @@
 <head>
   <meta charset="utf-8">
   
-  <title>Tag: Hugepage | Kevin Hu&#39;s Blog</title>
+  <title>Reading Summary: 11/06/2020 | Kevin Hu&#39;s Blog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta property="og:type" content="website">
-<meta property="og:title" content="Kevin Hu&#39;s Blog">
-<meta property="og:url" content="https://blog.kevinhu.me/tags/Hugepage/index.html">
+  <meta name="description" content="Technology Edsger Dijkstra: The Man Who Carried Computer Science on His Shoulders The often untold story behind a mastermind of Computer Science: Dijkstra, whose name has been an important algorithm w">
+<meta name="keywords" content="Programming,Reading">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Reading Summary: 11&#x2F;06&#x2F;2020">
+<meta property="og:url" content="https://blog.kevinhu.me/2020/11/06/06-Reading-Summary-2020-11/index.html">
 <meta property="og:site_name" content="Kevin Hu&#39;s Blog">
+<meta property="og:description" content="Technology Edsger Dijkstra: The Man Who Carried Computer Science on His Shoulders The often untold story behind a mastermind of Computer Science: Dijkstra, whose name has been an important algorithm w">
 <meta property="og:locale" content="en-US">
+<meta property="og:updated_time" content="2020-11-07T07:44:51.018Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Kevin Hu&#39;s Blog">
+<meta name="twitter:title" content="Reading Summary: 11&#x2F;06&#x2F;2020">
+<meta name="twitter:description" content="Technology Edsger Dijkstra: The Man Who Carried Computer Science on His Shoulders The often untold story behind a mastermind of Computer Science: Dijkstra, whose name has been an important algorithm w">
   
     <link rel="alternative" href="/atom.xml" title="Kevin Hu&#39;s Blog" type="application/atom+xml">
   
@@ -76,16 +81,14 @@ ga('send', 'pageview');
   </div>
 </header>
       <div class="outer">
-        <section id="main">
-  
-    <article id="post-01-Linux-Hugepages" class="article article-type-post" itemscope itemprop="blogPost">
+        <section id="main"><article id="post-06-Reading-Summary-2020-11" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
-    <a href="/2018/07/01/01-Linux-Hugepages/" class="article-date">
-  <time datetime="2018-07-01T23:30:20.000Z" itemprop="datePublished">07 01 2018</time>
+    <a href="/2020/11/06/06-Reading-Summary-2020-11/" class="article-date">
+  <time datetime="2020-11-07T05:23:00.000Z" itemprop="datePublished">11 06 2020</time>
 </a>
     
   <div class="article-category">
-    <a class="article-category-link" href="/categories/Programming/">Programming</a>
+    <a class="article-category-link" href="/categories/Reading/">Reading</a>
   </div>
 
   </div>
@@ -95,8 +98,8 @@ ga('send', 'pageview');
       <header class="article-header">
         
   
-    <h1 itemprop="name">
-      <a class="article-title" href="/2018/07/01/01-Linux-Hugepages/">A Note on Linux Hugepages</a>
+    <h1 class="article-title" itemprop="name">
+      Reading Summary: 11/06/2020
     </h1>
   
 
@@ -104,30 +107,93 @@ ga('send', 'pageview');
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>Page table is where Linux stores virtual to physical page address translation, and its size can get huge when memory usage is high. One way to reduce the size of page tables, and reduce the number of page faults, is to use huge pages. I’ve been digging some information on hugepages for my own curiosity, and it looks like Linux has pretty good support for huge pages. And this blog serves as a quick note on my readings.</p>
-        
-          <p class="article-more-link">
-            <a href="/2018/07/01/01-Linux-Hugepages/#more">Read More</a>
-          </p>
-        
+        <h1>Technology</h1>
+<h2><a href="https://inference-review.com/article/the-man-who-carried-computer-science-on-his-shoulders" target="_blank" rel="noopener">Edsger Dijkstra: The Man Who Carried Computer Science on His Shoulders</a></h2>
+<p>The often untold story behind a mastermind of Computer Science: Dijkstra, whose name has been an important
+algorithm widely used in GPS navigation.</p>
+<p>The blog described a wise, hard-thinker, a great mind who made unparallel contributions to both Computer
+Science as a mathematical and logical view, as well as Software Engineering which focuses on building
+software and hardware components.</p>
+<p>He’s most famous for his private reports, named “EWD”, and continued for more than forty years,
+describing his views on Computer Science and Software Engineering in general, and sometimes worked
+as reviews for others’ work. One of the most influencing “EWD” report was &quot;Notes on Structured Programming,&quot;
+which argued programming as a serious form of skill that demands intellectual rigor.</p>
+<p>In 1972, Dijkstra received the ACM Turing Award, he was recognized for:</p>
+<blockquote>
+<p>contributions to programming as a high, intellectual challenge; for eloquent insistence and practical demonstration that programs should be composed correctly, not just debugged into correctness; for illuminating perception of problems at the foundations of program design.</p>
+</blockquote>
+<p>He has great passion for his art, and his strong personality sometimes sparked controversies.
+One of the most famous was the discussion on critiquing “GOTO” statements as harmful. It
+brought widespread, heated debate, yet Dijkstra’s view finally prevailed, and his insistence
+made a monumental change to programming paradigm.</p>
+<p>There are much more interesting details around his personal and academic life in the original post,
+too long to be summarized here. For example, his had a mini-van in Austin, which he often drove to
+national parks with his wife, and it was named the “Touring Machine.” If you are passionate with computers and software,
+have a long weekend afternoon, it’s worth a good read.</p>
+<a id="more"></a>
+<h1>Programming</h1>
+<h2><a href="https://github.com/satwikkansal/wtfpython#-some-fancy-title" target="_blank" rel="noopener">WTF Python!</a></h2>
+<p>The quirks around the Python programming language. The use cases described in the document are
+usually not recommended way of using Python, as it might trigger unexpected behaviors.
+They expose some underlying implementation details, the majority of which for optimizations,
+and may have some counter-intuitive side-effects.</p>
+<p>No programming language, or tool, frameworks is perfect. If you’d like to use something
+fluently, you’ll also need to understand its weird corner cases.</p>
+<h1>Studying</h1>
+<h2><a href="https://zettelkasten.de/introduction/" target="_blank" rel="noopener">Introduction to the Zettelkasten Method</a></h2>
+<p>An interesting notebook method I’ve recently bumped into. And I’ve been using Notion notebook
+with it.</p>
+<p>The idea is that: you’ll read and learn many small facts and concepts, but would forget them quickly.
+Zettelkasten method will record, and connect them into much more powerful ideas and concepts, since
+innovations often arrive when ideas clash. Used correctly, this personal notebook method
+could be a significant way of boosting your creativity.</p>
+<h1>Society</h1>
+<h2><a href="https://theconversation.com/to-combat-conspiracy-theories-teach-critical-thinking-and-community-values-147314?s=09" target="_blank" rel="noopener">To Combat Conspiracy Theories, Teach Critical Thinking - And Community Values</a></h2>
+<p>An interesting idea from studying the spread of conspiracy theory: most followers and spreaders
+are drawn to conspiracy theories, as they find comfort and a sense of community in it.</p>
+<p>Fighting disinformation and conspiracy theories can be hard, but this idea could provide a way of
+preventing the agents from spreading it.</p>
+<p>When someone feels unfit or even abandoned by the mainstream society, they seek comfort in
+outlandish ideas. The conclusion? One important aspect of fighting conspiracy theory is to build
+community value.</p>
+<h2><a href="https://thephilosophicalsalon.com/how-scientism-spawns-pseudoscience-and-science-denialism/" target="_blank" rel="noopener">How Scientism Spawns Pseudoscience And Science Denialism</a></h2>
+<p>Scientism is the idea that we should believe in science and scientists no matter what.
+This idea is the wrong way of pursuing the true spirit of science,
+is actually considered harmful, and might backfire with denial.</p>
+
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://blog.kevinhu.me/2018/07/01/01-Linux-Hugepages/" data-id="ckh5y4pml0024jmscmhfnlp8d" class="article-share-link">Share</a>
+      <a data-url="https://blog.kevinhu.me/2020/11/06/06-Reading-Summary-2020-11/" data-id="ckh5ynlbs00000dsco1a1nw23" class="article-share-link">Share</a>
       
-        <a href="https://blog.kevinhu.me/2018/07/01/01-Linux-Hugepages/#disqus_thread" class="article-comment-link">Comments</a>
+        <a href="https://blog.kevinhu.me/2020/11/06/06-Reading-Summary-2020-11/#disqus_thread" class="article-comment-link">Comments</a>
       
       
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Hugepage/">Hugepage</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Linux/">Linux</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Programming/">Programming</a></li></ul>
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Programming/">Programming</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Reading/">Reading</a></li></ul>
 
     </footer>
   </div>
   
+    
+<nav id="article-nav">
+  
+  
+    <a href="/2020/11/05/05-Paper-Reading-Julia-Design/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">Paper Reading: Julia: Dynamism and Performance Reconciled by Design</div>
+    </a>
+  
+</nav>
+
+  
 </article>
 
 
-  
-  
+<section id="comments">
+  <div id="disqus_thread">
+    <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+  </div>
+</section>
 </section>
         
           <aside id="sidebar">
@@ -216,11 +282,13 @@ ga('send', 'pageview');
 <script>
   var disqus_shortname = 'kevinhustechblog';
   
+  var disqus_url = 'https://blog.kevinhu.me/2020/11/06/06-Reading-Summary-2020-11/';
+  
   (function(){
     var dsq = document.createElement('script');
     dsq.type = 'text/javascript';
     dsq.async = true;
-    dsq.src = '//' + disqus_shortname + '.disqus.com/count.js';
+    dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
     (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
   })();
 </script>
