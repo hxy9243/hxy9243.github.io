@@ -58,6 +58,15 @@ markdown:
     typographer: true
     quotes: '“”‘’'
 
+toc:
+  maxdepth: 3
+  class: toc
+  slugify: transliteration
+  achor:
+    position: after
+    symbol: '#'
+    style: header-anchor
+
 # Category & Tag
 default_category: uncategorized
 category_map:
