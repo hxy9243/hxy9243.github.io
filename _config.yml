@@ -49,14 +49,13 @@ highlight:
   tab_replace:
 
 # Marked
-markdown:
-  render:
-    html: true
-    breaks: false
-    xhtmlOut: false
-    linkify: true
-    typographer: true
-    quotes: '“”‘’'
+markdown_it_plus:
+  breaks: false
+  html: true
+  xhtmlOut: true
+  linkify: true
+  typographer: true
+  quotes: '“”‘’'
 
 toc:
   maxdepth: 3
@@ -65,7 +64,7 @@ toc:
   achor:
     position: after
     symbol: '#'
-    style: header-anchor
+  style: header-anchor
 
 # Category & Tag
 default_category: uncategorized
