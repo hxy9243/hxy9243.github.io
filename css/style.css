@@ -1368,3 +1368,6 @@ pre .javascript .function {
 .tagcloud a {
   margin-right: 5px;
 }
+.katex-html {
+  display: none;
+}
