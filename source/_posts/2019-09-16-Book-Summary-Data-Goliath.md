@@ -1,6 +1,6 @@
 title: 'Book Review: Data and Goliath'
 date: 2019-09-16 00:29:00
-tags: ['Reading', 'Book']
+tags: ['Reading', 'BookReview']
 categories: Reading
 ---
 

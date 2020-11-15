@@ -1,6 +1,6 @@
 title: 'Book Review: What the Dormouse Said'
 date: 2019-11-03 20:39:00
-tags: ['Reading', 'Book']
+tags: ['Reading', 'BookReview']
 categories: Reading
 ---
 
