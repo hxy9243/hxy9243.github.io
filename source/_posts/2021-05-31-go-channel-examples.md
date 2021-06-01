@@ -6,12 +6,14 @@ categories: Golang
 tags: ['Learning', 'Golang', 'Channel']
 ---
 
-After picking up Golang, I was fascinated with how powerful Golang's goroutines and channels can be. I've had much joy using them to solve problems while bumping into many headaches along the way.
-
+While learning Golang, I was fascinated with the power Golang's goroutines and channels.
 Channel is a powerful tool to tackle synchronization problems
-in asynchronous programs. It acts as a bridge between async goroutines. Together they can be powerful weapons in building async applications. On the other hand, when misused, they can be a nightmare to debug.
+in asynchronous programs. It acts as a bridge between async goroutines and can describe 
+some complicated logic expressively.
+Together they can be powerful weapons in building async applications. On the other hand, when misused, they can be a nightmare to debug.
 
-Here I've summarized a few of the valuable idioms of using Golang routines from multiple references as well as my own experience. They can serve as a toolbox that comes in handy when you bump into similar problems so that you don't have to design something from scratch, which might help you avoid potential synchronization errors when you are not careful in the design.
+Here I've summarized a few of the valuable idioms of using Golang routines from multiple references as well as my own experience. They can serve as a helpful toolbox that comes in handy for similar problems. 
+So that you don't have to design them from scratch, which might help you avoid synchronization errors.
 
 <!--more-->
 
@@ -19,9 +21,11 @@ For more information on Golang channels, see links in the [references](#referenc
 They should give you a good introduction to channels and their
 basic behaviors.
 
-If you found any problems or some idioms that you think this experience summary can provide. Please feel free to message me and let me know. Many thanks in advance!
+If you found any problems or some idioms that you think this experience summary can provide. 
+Please feel free to message me and let me know. Many thanks in advance!
 
-I suggest you read the description and implement a toy version of each of these idioms first. Building your own implementation serves as a great exercise.
+I suggest you read the description and implement a toy version of each of these idioms first. 
+Building your own implementation serves as a good exercise.
 
 # 1. Use Channels To Get Results
 
