@@ -1,0 +1,303 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>Paper Reading: Understanding Real-World Concurrency Bugs in Go
+ | Kevin Hu&#39;s Blog</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="Link: https:&#x2F;&#x2F;golangweekly.com&#x2F;link&#x2F;59972&#x2F;b208593eda A team from Penn State University and Purdue published their latest study on concurrency bugs found in Golang projects, namely large projects from">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Paper Reading: Understanding Real-World Concurrency Bugs in Go
+">
+<meta property="og:url" content="https://blog.kevinhu.me/2019/03/04/Paper-Reading-Go-Concurrency-Bugs/index.html">
+<meta property="og:site_name" content="Kevin Hu&#39;s Blog">
+<meta property="og:description" content="Link: https:&#x2F;&#x2F;golangweekly.com&#x2F;link&#x2F;59972&#x2F;b208593eda A team from Penn State University and Purdue published their latest study on concurrency bugs found in Golang projects, namely large projects from">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2019-03-04T06:46:03.000Z">
+<meta property="article:modified_time" content="2019-09-07T18:33:07.000Z">
+<meta property="article:author" content="Kevin Hu">
+<meta property="article:tag" content="PaperReading">
+<meta property="article:tag" content="Golang">
+<meta property="article:tag" content="Concurrency">
+<meta name="twitter:card" content="summary">
+  
+    <link rel="alternative" href="/atom.xml" title="Kevin Hu&#39;s Blog" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+<link href="//https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.9.0/katex.min.css" rel="stylesheet" type="text/css">
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  
+<!-- Google Analytics -->
+<script type="text/javascript">
+(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+ga('create', 'UA-57072621-1', 'auto');
+ga('send', 'pageview');
+
+</script>
+<!-- End Google Analytics -->
+
+
+<meta name="generator" content="Hexo 5.4.0"></head>
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">Kevin Hu&#39;s Blog</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/About/">About</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="https://blog.kevinhu.me"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-Paper-Reading-Go-Concurrency-Bugs" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2019/03/04/Paper-Reading-Go-Concurrency-Bugs/" class="article-date">
+  <time datetime="2019-03-04T06:46:03.000Z" itemprop="datePublished">03 04 2019</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/Paper/">Paper</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      Paper Reading: Understanding Real-World Concurrency Bugs in Go
+
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>Link: <a target="_blank" rel="noopener" href="https://golangweekly.com/link/59972/b208593eda">https://golangweekly.com/link/59972/b208593eda</a></p>
+<p>A team from Penn State University and Purdue published their latest study on concurrency bugs found in Golang projects, namely large projects from Github: Docker and Kubernetes, two datacenter container systems, etcd, a distributedkey-value store system, gRPC, an RPC library, and CockroachDB and BoltDB. The authors searched commit histories of each repository to understand concurrency bug fixes for categorization and study.</p>
+<p><strong>TL;DR</strong>:</p>
+<ul>
+<li>Go’s message-passing concurrency mechanism, something Go is proud of, isn’t as easy to use as it’s generally perceived. It creates just as many bugs, if not more, than shared-memory concurrency model.</li>
+<li>Shared memory synchronization is still used more in Go projects.</li>
+<li>Go’s built-in race and deadlock bug detection library still cannot catch all the bugs. There’s room for more improvements.</li>
+</ul>
+<span id="more"></span>
+<p>Abstract: The author of this paper analyzed 171 bugs in 6 aforementioned open-source Go projects for a systematic study of Go concurrency bugs, providing better understanding for go bugs and concurrency bug detection tools.</p>
+<h2 id="type-of-bugs"><a class="markdownIt-Anchor" href="#type-of-bugs"></a> Type of Bugs</h2>
+<p>The author categorized the bugs into <strong>blocking</strong> and <strong>non-blocking</strong> bugs. <strong>Blocking</strong> bugs are misuse of synchronization primitives that causes the program, or a subset of goroutines to hang. <strong>Non-Blocking</strong> bugs happen when shared memory is unprotected, causing data races, or errorneous message passing, e.g.: when goroutines don’t quit properly, causing resource leaks.</p>
+<h3 id="blocking-bugs"><a class="markdownIt-Anchor" href="#blocking-bugs"></a> Blocking bugs</h3>
+<p>The paper further divided blocking bugs into traditional shared memory bugs, and bugs caused by misuse of message passing, or libraries related to messaging.</p>
+<p>This led to an interesting observation from this paper: contrary to common belief, message passing are potentially more likely to cause blocking bugs than shared memory.</p>
+<p>An example of blocking bugs related to message passing, with its fix. similar to the one I had before:</p>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">  <span class="comment">// goroutine 1</span></span><br><span class="line"></span><br><span class="line">  <span class="function"><span class="keyword">func</span> <span class="title">goroutine1</span><span class="params">()</span></span> &#123;</span><br><span class="line">      m.Lock()</span><br><span class="line">-     ch &lt;- request <span class="comment">// blocks</span></span><br><span class="line">+     <span class="keyword">select</span> &#123;</span><br><span class="line">+         <span class="keyword">case</span> ch &lt;- request</span><br><span class="line">+         <span class="keyword">default</span>:</span><br><span class="line">+     &#125;</span><br><span class="line">      m.Unlock()</span><br><span class="line">  &#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// goroutine 2</span></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">goroutine2</span><span class="params">()</span></span> &#123;</span><br><span class="line">    <span class="keyword">for</span> &#123;</span><br><span class="line">        m.Lock()   <span class="comment">// blocks</span></span><br><span class="line">        m.Unlock()</span><br><span class="line">        request &lt;- ch</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>An example for blocking bug related to messaging library from the paper is <code>Pipe</code> library.</p>
+<p>The paper also noticed that for blocking bugs, there’s a high correlation between blocking bugs (shared memory as well as message passing) to their fixes, indicating there’s high potential in developing automated tools to help fix such bugs.</p>
+<h3 id="non-blocking-bugs"><a class="markdownIt-Anchor" href="#non-blocking-bugs"></a> Non-Blocking bugs</h3>
+<p>For non-blocking bugs, the paper also divided them into traditional bugs, (e.g. unprotected shared memory causing data races), misuse of channels, or shared data in special libraries.</p>
+<p>An interesting example related to non-blocking bug caused by message passing, mentioned in the paper:</p>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// when multiple goroutines execute the following code, default</span></span><br><span class="line"><span class="comment">// can execute multiple times, closing the channel more than once,</span></span><br><span class="line"><span class="comment">// which leads to panic in Go runtime</span></span><br><span class="line"></span><br><span class="line">- <span class="keyword">select</span> &#123;</span><br><span class="line">-     <span class="keyword">case</span> &lt;- c.closed:</span><br><span class="line">          <span class="comment">// do something</span></span><br><span class="line">-     <span class="keyword">default</span>:</span><br><span class="line">+         Once.Do(<span class="function"><span class="keyword">func</span><span class="params">()</span></span> &#123;</span><br><span class="line">              <span class="built_in">close</span>(c.closed)</span><br><span class="line">+         &#125;)</span><br><span class="line">- &#125;</span><br></pre></td></tr></table></figure>
+<p>Example regarding non-blocking bug related to library, the paper mentioned the <code>context</code> library, where <code>context</code> object type is designed to be accessed by mulitple goroutines. And accessing string type in the <code>context</code> library could potentially lead to data races.</p>
+<p>The paper observes some traditional data race detector cannot detect all types, calling for future researches on this topic.</p>
+<h2 id="more-discussions"><a class="markdownIt-Anchor" href="#more-discussions"></a> More Discussions</h2>
+<p>More discussions from HackerNews: <a target="_blank" rel="noopener" href="https://news.ycombinator.com/item?id=19280927">https://news.ycombinator.com/item?id=19280927</a></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://blog.kevinhu.me/2019/03/04/Paper-Reading-Go-Concurrency-Bugs/" data-id="ckpdbwgcd002zkgscdpanbmt8" class="article-share-link">Share</a>
+      
+        <a href="https://blog.kevinhu.me/2019/03/04/Paper-Reading-Go-Concurrency-Bugs/#disqus_thread" class="article-comment-link">Comments</a>
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Concurrency/" rel="tag">Concurrency</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Golang/" rel="tag">Golang</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/PaperReading/" rel="tag">PaperReading</a></li></ul>
+
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2019/03/10/Paper-Reading-Mesos/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          Paper Reading: Mesos: A Platform for Fine-Grained Resource Sharing in the Data Center
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2019/02/27/24-Paper-Reading-Borg/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">Paper Reading: Large-scale cluster management at Google with Borg
+</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+
+<section id="comments">
+  <div id="disqus_thread">
+    <noscript>Please enable JavaScript to view the <a target="_blank" rel="noopener" href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+  </div>
+</section>
+</section>
+        
+          <aside id="sidebar">
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Categories</h3>
+    <div class="widget">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Algorithm/">Algorithm</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/BookReview/">BookReview</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/CodeReading/">CodeReading</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Diary/">Diary</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Golang/">Golang</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Paper/">Paper</a><span class="category-list-count">5</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/PaperReading/">PaperReading</a><span class="category-list-count">7</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Programming/">Programming</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/ProgrammingLanguage/">ProgrammingLanguage</a><span class="category-list-count">4</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Reading/">Reading</a><span class="category-list-count">25</span></li></ul>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tag Cloud</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/AI/" style="font-size: 10px;">AI</a> <a href="/tags/Algorithm/" style="font-size: 10px;">Algorithm</a> <a href="/tags/Aurora/" style="font-size: 10px;">Aurora</a> <a href="/tags/BitHacks/" style="font-size: 10px;">BitHacks</a> <a href="/tags/BookReview/" style="font-size: 17.5px;">BookReview</a> <a href="/tags/Borg/" style="font-size: 10px;">Borg</a> <a href="/tags/C/" style="font-size: 10px;">C</a> <a href="/tags/C/" style="font-size: 10px;">C++</a> <a href="/tags/C-C/" style="font-size: 12.5px;">C/C++</a> <a href="/tags/Cassandra/" style="font-size: 10px;">Cassandra</a> <a href="/tags/Channel/" style="font-size: 12.5px;">Channel</a> <a href="/tags/CodeReading/" style="font-size: 12.5px;">CodeReading</a> <a href="/tags/Coding/" style="font-size: 10px;">Coding</a> <a href="/tags/Compilers/" style="font-size: 12.5px;">Compilers</a> <a href="/tags/Concurrency/" style="font-size: 10px;">Concurrency</a> <a href="/tags/Data-Science/" style="font-size: 10px;">Data Science</a> <a href="/tags/Database/" style="font-size: 12.5px;">Database</a> <a href="/tags/Datacenter/" style="font-size: 10px;">Datacenter</a> <a href="/tags/Debug/" style="font-size: 10px;">Debug</a> <a href="/tags/DistributedSystems/" style="font-size: 15px;">DistributedSystems</a> <a href="/tags/Docker/" style="font-size: 10px;">Docker</a> <a href="/tags/FPGA/" style="font-size: 10px;">FPGA</a> <a href="/tags/Golang/" style="font-size: 15px;">Golang</a> <a href="/tags/HPC/" style="font-size: 10px;">HPC</a> <a href="/tags/Hugepage/" style="font-size: 10px;">Hugepage</a> <a href="/tags/Internet-BookReview/" style="font-size: 10px;">Internet, BookReview</a> <a href="/tags/Julia/" style="font-size: 10px;">Julia</a> <a href="/tags/Kafka/" style="font-size: 10px;">Kafka</a> <a href="/tags/Learning/" style="font-size: 15px;">Learning</a> <a href="/tags/Linux/" style="font-size: 15px;">Linux</a> <a href="/tags/Log/" style="font-size: 10px;">Log</a> <a href="/tags/Machine-Learning/" style="font-size: 10px;">Machine Learning</a> <a href="/tags/Mesos/" style="font-size: 10px;">Mesos</a> <a href="/tags/Multithread/" style="font-size: 10px;">Multithread</a> <a href="/tags/Mutex/" style="font-size: 10px;">Mutex</a> <a href="/tags/NoSQL/" style="font-size: 10px;">NoSQL</a> <a href="/tags/Paper/" style="font-size: 10px;">Paper</a> <a href="/tags/PaperReading/" style="font-size: 20px;">PaperReading</a> <a href="/tags/Password/" style="font-size: 12.5px;">Password</a> <a href="/tags/Programming/" style="font-size: 15px;">Programming</a> <a href="/tags/ProgrammingLanguage/" style="font-size: 15px;">ProgrammingLanguage</a> <a href="/tags/Python/" style="font-size: 15px;">Python</a> <a href="/tags/Reading/" style="font-size: 20px;">Reading</a> <a href="/tags/Social/" style="font-size: 10px;">Social</a> <a href="/tags/Sociology/" style="font-size: 10px;">Sociology</a> <a href="/tags/Technology/" style="font-size: 15px;">Technology</a> <a href="/tags/Undefined-Behavior/" style="font-size: 12.5px;">Undefined Behavior</a> <a href="/tags/WeeklyPaper/" style="font-size: 10px;">WeeklyPaper</a> <a href="/tags/WorldWideWeb/" style="font-size: 10px;">WorldWideWeb</a> <a href="/tags/Zookeeper/" style="font-size: 10px;">Zookeeper</a> <a href="/tags/distributed-systems/" style="font-size: 10px;">distributed systems</a> <a href="/tags/infrastructure/" style="font-size: 10px;">infrastructure</a> <a href="/tags/systems/" style="font-size: 10px;">systems</a> <a href="/tags/tracing/" style="font-size: 10px;">tracing</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/05/">May 2021</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/04/">April 2021</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/11/">November 2020</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/07/">July 2020</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/04/">April 2020</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/01/">January 2020</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/11/">November 2019</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/09/">September 2019</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/08/">August 2019</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/05/">May 2019</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/04/">April 2019</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/03/">March 2019</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/02/">February 2019</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/01/">January 2019</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/10/">October 2018</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/09/">September 2018</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/07/">July 2018</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/05/">May 2018</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/06/">June 2017</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/03/">March 2017</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/01/">January 2017</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/11/">November 2016</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/09/">September 2016</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/08/">August 2016</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/05/">May 2016</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/02/">February 2016</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/12/">December 2015</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/11/">November 2015</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/10/">October 2015</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/04/">April 2015</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/03/">March 2015</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/01/">January 2015</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/11/">November 2014</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/10/">October 2014</a><span class="archive-list-count">4</span></li></ul>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recents</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2021/05/31/31-go-channel-examples/">Golang Channel Idioms</a>
+          </li>
+        
+          <li>
+            <a href="/2021/04/25/25-Paper-Reading-Booking.com-Experiences/">Paper Reading: 150 Successful Machine Learning Models Deployed: 6 Lessons Learned At Booking.com</a>
+          </li>
+        
+          <li>
+            <a href="/2020/11/14/08-Book-Review-Death-Of-Expertise/">Book Review: The Death of Expertise</a>
+          </li>
+        
+          <li>
+            <a href="/2020/11/06/06-Reading-Summary-2020-11/">Reading Summary: 11/06/2020</a>
+          </li>
+        
+          <li>
+            <a href="/2020/11/05/05-Paper-Reading-Julia-Design/">Paper Reading: Julia: Dynamism and Performance Reconciled by Design</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2021 Kevin Hu<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/About/" class="mobile-nav-link">About</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+<script>
+  var disqus_shortname = 'kevinhustechblog';
+  
+  var disqus_url = 'https://blog.kevinhu.me/2019/03/04/Paper-Reading-Go-Concurrency-Bugs/';
+  
+  (function(){
+    var dsq = document.createElement('script');
+    dsq.type = 'text/javascript';
+    dsq.async = true;
+    dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+    (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+  })();
+</script>
+
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+
+  
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+
+
+<script src="/js/script.js"></script>
+
+
+  </div>
+</body>
+</html>
