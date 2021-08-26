@@ -35,6 +35,7 @@ As an alternative, ScyllaDB could be a very neat open-source replacement for Cas
 - Cassandra: Principle and Applications http://disi.unitn.it/~montreso/ds/papers/Cassandra.pdf
 - ScyllaDB https://www.scylladb.com/
 - ScyllaDB User Stories https://www.scylladb.com/category/user-stories/
+- How Discord Stores Billions of Messages https://blog.discord.com/how-discord-stores-billions-of-messages-7fa6ec7ee4c7
 
 # Cassandra Architecture For the Impatient
 
@@ -165,6 +166,8 @@ https://github.com/scylladb/care-pet/blob/master/docs/design_and_data_model.md
 
 - On Chetbotko Diagram: https://www.researchgate.net/publication/308856170_A_Big_Data_Modeling_Methodology_for_Apache_Cassandra
 - Scylla Example: https://www.scylladb.com/2020/09/09/carepet-an-example-iot-use-case-for-hands-on-app-developers/
+- My Previous Notes on NoSQL Data Modeling: https://blog.kevinhu.me/2020/07/03/03-Cassandra-Data-Modeling/
+- Detailed Guide From DataStax: https://www.datastax.com/sites/default/files/content/whitepaper/files/2019-10/CM2019236%20-%20Data%20Modeling%20in%20Apache%20Cassandra%20%E2%84%A2%20White%20Paper-4.pdf
 
 # Summary
 
