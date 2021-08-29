@@ -61,12 +61,15 @@ So Cassandra's architecture decides that:
 
 For more information, I found the book _"Cassandra: The Definitive Guide"_ a very helpful reference.
 
+Update: though it's a blog about ScyllaDB, it's closely modeled after Cassandra and DynamoDB: https://docs.scylladb.com/architecture/. And I've found it a very helpful source as well.
+
 ## References
 
 - Cassandra Paper: http://www.cs.cornell.edu/projects/ladis2009/papers/lakshman-ladis2009.pdf
 - Cassandra and CAP theorem https://www.ibm.com/cloud/learn/cap-theorem
 - Consistent Hashing https://en.wikipedia.org/wiki/Consistent_hashing
 - Cassandra: The Definitive Guide https://www.oreilly.com/library/view/cassandra-the-definitive/9781098115159/
+- ScyllaDB Architecture: https://docs.scylladb.com/architecture/
 
 # Data Modeling
 
