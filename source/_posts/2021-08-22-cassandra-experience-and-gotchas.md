@@ -27,7 +27,6 @@ Some optimizations you can do while saving time-series data with a deadline in m
 
 https://thelastpickle.com/blog/2016/12/08/TWCS-part1.html
 
-# Gotchas
 
 ## Membership Change When One Node is Down
 
