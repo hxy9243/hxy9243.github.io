@@ -6,6 +6,7 @@ menu:
 rss: /atom.xml
 
 # Content
+subtitle: A Hungry Fool
 excerpt_link: Read More
 fancybox: true
 
@@ -20,7 +21,7 @@ widgets:
 # Miscellaneous
 google_analytics: UA-57072621-1
 favicon: /favicon.png
-twitter: "@Oldgunix"
+twitter: "Oldgunix"
 google_plus:
 fb_admins:
 fb_app_id:

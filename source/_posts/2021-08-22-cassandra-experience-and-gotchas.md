@@ -6,11 +6,11 @@ categories: ComputerSystem
 tags: ['Cassandra', 'Database', 'NoSQL']
 ---
 
-Recently I've summarized [some experience on quickly getting started with Cassadra](/2021/08/21/17-cassandra-experience/). And for this post I'd like to introduce some of our experience and gotchas in using and operating Cassandra. Hopefully it could be useful to you, and help you avoid future unwanted surprises.
+Recently I've summarized [some experience on quickly getting started with Cassadra](/2021/08/21/17-cassandra-experience/). And for this post I'd like to keep writing about some of our experience using and operating Cassandra. Hopefully it could be useful to you, and help you avoid future unwanted surprises.
 
 # Election and Paxos
 
-Cassandra is always considered to be favoring the "AP" in "CAP" theorem, where it guarantees eventual consistency for availability and performance. But when really necessary, you can still leverage Cassandra's built-in Light-weight Transactions for elections to determine a leader node in the cluster.
+Cassandra is always considered to be favoring the "AP" in "CAP" theorem, where it guarantees eventual consistency for availability and performance. But when really necessary, you can still leverage Cassandra's built-in ["Light-weight Transaction"](https://docs.datastax.com/en/cql-oss/3.3/cql/cql_using/useInsertLWT.html) for elections to determine a leader node in the cluster.
 
 Basically, it works by writing to a table with your own lease:
 
@@ -18,7 +18,7 @@ Basically, it works by writing to a table with your own lease:
 INSERT INTO leases (name, owner) VALUES ('lease_master', 'server_1') IF NOT EXISTS;
 ```
 
-The `IF NOT EXISTS` triggers the Cassandra built-in ["Light-weight Transaction"](https://docs.datastax.com/en/cql-oss/3.3/cql/cql_using/useInsertLWT.html) and can be used to declare a consensus among a cluster. With a default TTL in the table, this can be used for leases control, or master election. For example:
+The `IF NOT EXISTS` triggers the Cassandra built-in Light-weight Transaction and can be used to declare a consensus among a cluster. With a default TTL in the table, this can be used for leases control, or master election. For example:
 
 ```sql
 CREATE table leases (
@@ -29,7 +29,7 @@ CREATE table leases (
 
 So that the lease owner needs to keep writing to the lease row for heartbeats.
 
-I'm not sure about the performance characteristics of Cassandra's election behavior with other applications (etcd, Zookeeper, ...) and it'll be interesting to see a study. But since those are already more full-featured and well-understood in keeping consensus, I'd recommend delegating this behavior to them unless you're stuck with one database.
+I'm not sure about the performance characteristics of Cassandra's election behavior with other applications (etcd, Zookeeper, ...) and it'll be interesting to see a study. But since those are already more full-featured and well-understood in keeping consensus, I'd recommend delegating this behavior to them unless you're stuck with Cassandra for your application.
 
 <!--more-->
 # Optimizing Time-series Data Retention
@@ -68,6 +68,8 @@ If you wish to move the data from a potentially inconsistent replica, restart th
 It turns out that Cassandra needs to move the data consistently to the new node. And when one node is down and Cassandra cannot form a quorum for the data with one node missing, it'll be reluctant to hand the potentially broken data to the newcomer.
 
 Here's also an interesting [blog](https://medium.com/analytics-vidhya/replacing-a-dead-node-in-cassandra-and-surprises-4681287eeddf) about replacing Cassandra dead node and all the surprises along the way. The lesson is: managing Cassandra membership could be harder than you actually thought. So it might be a good idea to read the manual.
+
+In short, if you don't understand Cassandra, it'll give you surprises.
 
 # Dynamically Manipulating Tables Is Bad
 
@@ -110,7 +112,7 @@ Basically if you are not careful, deletion in Cassandra could actually be a part
 - Lightweight Transactions in Cassandra: https://docs.datastax.com/en/cassandra-oss/3.0/cassandra/dml/dmlLtwtTransactions.html
 - Leader election with Cassandra https://www.dotconferences.com/2015/06/matthieu-nantern-leader-election-with-cassandra
 - Time Window CompactionStrategy https://cassandra.apache.org/doc/latest/cassandra/operating/compaction/twcs.html
--  TWCS part 1 - how does it work and when should you use it ?  https://thelastpickle.com/blog/2016/12/08/TWCS-part1.html
+-  TWCS part 1 - how does it work and when should you use it?  https://thelastpickle.com/blog/2016/12/08/TWCS-part1.html
 - Replacing a dead node in Cassandra and surprises https://medium.com/analytics-vidhya/replacing-a-dead-node-in-cassandra-and-surprises-4681287eeddf
 - StackOverflow https://stackoverflow.com/questions/28376437/how-to-recover-cassandra-node-from-failed-bootstrap/28379751
 - Manual For Adding/Removing Node: https://docs.datastax.com/en/cassandra-oss/2.1/cassandra/operations/opsAddingRemovingNodeTOC.html

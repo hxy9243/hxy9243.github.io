@@ -4,8 +4,8 @@
 
 # Site
 title: "Kevin Hu's Blog"
-subtitle: A Hungry Fool
-description:
+subtitle: "A Hungry Fool"
+description: "https://twitter.com/Oldgunix"
 author: Kevin Hu
 email:
 language: en-US
@@ -55,7 +55,7 @@ markdown_it_plus:
   xhtmlOut: true
   linkify: true
   typographer: true
-  quotes: '“”‘’'
+  quotes: "“”‘’"
 
 toc:
   maxdepth: 3
@@ -63,7 +63,7 @@ toc:
   slugify: transliteration
   achor:
     position: after
-    symbol: '#'
+    symbol: "#"
   style: header-anchor
 
 # Category & Tag
