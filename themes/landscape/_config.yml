@@ -12,15 +12,15 @@ fancybox: true
 # Sidebar
 sidebar: right
 widgets:
-- category
-- tagcloud
-- archive
-- recent_posts
+  - category
+  - tagcloud
+  - archive
+  - recent_posts
 
 # Miscellaneous
 google_analytics: UA-57072621-1
 favicon: /favicon.png
-twitter:
+twitter: "@Oldgunix"
 google_plus:
 fb_admins:
 fb_app_id:
