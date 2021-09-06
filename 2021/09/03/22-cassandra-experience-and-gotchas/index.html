@@ -5,20 +5,21 @@
   
   <title>Building Applications With Cassandra: Experience And Gotchas | Kevin Hu&#39;s Blog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="Recently I’ve summarized some experience on quickly getting started with Cassadra. And for this post I’d like to introduce some of our experience and gotchas in using and operating Cassandra. Hopefull">
+  <meta name="description" content="Recently I’ve summarized some experience on quickly getting started with Cassadra. And for this post I’d like to keep writing about some of our experience using and operating Cassandra. Hopefully it c">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Building Applications With Cassandra: Experience And Gotchas">
 <meta property="og:url" content="https://blog.kevinhu.me/2021/09/03/22-cassandra-experience-and-gotchas/index.html">
 <meta property="og:site_name" content="Kevin Hu&#39;s Blog">
-<meta property="og:description" content="Recently I’ve summarized some experience on quickly getting started with Cassadra. And for this post I’d like to introduce some of our experience and gotchas in using and operating Cassandra. Hopefull">
+<meta property="og:description" content="Recently I’ve summarized some experience on quickly getting started with Cassadra. And for this post I’d like to keep writing about some of our experience using and operating Cassandra. Hopefully it c">
 <meta property="og:locale" content="en_US">
 <meta property="article:published_time" content="2021-09-03T06:30:00.000Z">
-<meta property="article:modified_time" content="2021-09-06T05:47:39.753Z">
+<meta property="article:modified_time" content="2021-09-06T17:08:02.767Z">
 <meta property="article:author" content="Kevin Hu">
 <meta property="article:tag" content="Cassandra">
 <meta property="article:tag" content="Database">
 <meta property="article:tag" content="NoSQL">
 <meta name="twitter:card" content="summary">
+<meta name="twitter:creator" content="@Oldgunix">
   
     <link rel="alternative" href="/atom.xml" title="Kevin Hu&#39;s Blog" type="application/atom+xml">
   
@@ -56,6 +57,10 @@ ga('send', 'pageview');
       <h1 id="logo-wrap">
         <a href="/" id="logo">Kevin Hu&#39;s Blog</a>
       </h1>
+      
+        <h2 id="subtitle-wrap">
+          <a href="/" id="subtitle">A Hungry Fool</a>
+        </h2>
       
     </div>
     <div id="header-inner" class="inner">
@@ -108,15 +113,15 @@ ga('send', 'pageview');
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>Recently I’ve summarized <a href="/2021/08/21/17-cassandra-experience/">some experience on quickly getting started with Cassadra</a>. And for this post I’d like to introduce some of our experience and gotchas in using and operating Cassandra. Hopefully it could be useful to you, and help you avoid future unwanted surprises.</p>
+        <p>Recently I’ve summarized <a href="/2021/08/21/17-cassandra-experience/">some experience on quickly getting started with Cassadra</a>. And for this post I’d like to keep writing about some of our experience using and operating Cassandra. Hopefully it could be useful to you, and help you avoid future unwanted surprises.</p>
 <h1 id="election-and-paxos"><a class="markdownIt-Anchor" href="#election-and-paxos"></a> Election and Paxos</h1>
-<p>Cassandra is always considered to be favoring the “AP” in “CAP” theorem, where it guarantees eventual consistency for availability and performance. But when really necessary, you can still leverage Cassandra’s built-in Light-weight Transactions for elections to determine a leader node in the cluster.</p>
+<p>Cassandra is always considered to be favoring the “AP” in “CAP” theorem, where it guarantees eventual consistency for availability and performance. But when really necessary, you can still leverage Cassandra’s built-in <a target="_blank" rel="noopener" href="https://docs.datastax.com/en/cql-oss/3.3/cql/cql_using/useInsertLWT.html">“Light-weight Transaction”</a> for elections to determine a leader node in the cluster.</p>
 <p>Basically, it works by writing to a table with your own lease:</p>
 <figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">INSERT</span> <span class="keyword">INTO</span> leases (name, owner) <span class="keyword">VALUES</span> (<span class="string">&#x27;lease_master&#x27;</span>, <span class="string">&#x27;server_1&#x27;</span>) IF <span class="keyword">NOT</span> <span class="keyword">EXISTS</span>;</span><br></pre></td></tr></table></figure>
-<p>The <code>IF NOT EXISTS</code> triggers the Cassandra built-in <a target="_blank" rel="noopener" href="https://docs.datastax.com/en/cql-oss/3.3/cql/cql_using/useInsertLWT.html">“Light-weight Transaction”</a> and can be used to declare a consensus among a cluster. With a default TTL in the table, this can be used for leases control, or master election. For example:</p>
+<p>The <code>IF NOT EXISTS</code> triggers the Cassandra built-in Light-weight Transaction and can be used to declare a consensus among a cluster. With a default TTL in the table, this can be used for leases control, or master election. For example:</p>
 <figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">CREATE</span> <span class="keyword">table</span> leases (</span><br><span class="line">    name text,</span><br><span class="line">    owner text,</span><br><span class="line">) <span class="keyword">WITH</span> default_time_to_live <span class="operator">=</span> <span class="number">16</span>; </span><br></pre></td></tr></table></figure>
 <p>So that the lease owner needs to keep writing to the lease row for heartbeats.</p>
-<p>I’m not sure about the performance characteristics of Cassandra’s election behavior with other applications (etcd, Zookeeper, …) and it’ll be interesting to see a study. But since those are already more full-featured and well-understood in keeping consensus, I’d recommend delegating this behavior to them unless you’re stuck with one database.</p>
+<p>I’m not sure about the performance characteristics of Cassandra’s election behavior with other applications (etcd, Zookeeper, …) and it’ll be interesting to see a study. But since those are already more full-featured and well-understood in keeping consensus, I’d recommend delegating this behavior to them unless you’re stuck with Cassandra for your application.</p>
 <span id="more"></span>
 <h1 id="optimizing-time-series-data-retention"><a class="markdownIt-Anchor" href="#optimizing-time-series-data-retention"></a> Optimizing Time-series Data Retention</h1>
 <p>One great use case of Cassandra is logs and timeseries data saving. But what if you’d want to automatically drop stale data and don’t want to populate the tombstones in Cassandra? Removing and updating data frequently <a target="_blank" rel="noopener" href="https://www.instaclustr.com/support/documentation/cassandra/using-cassandra/managing-tombstones-in-cassandra/#section-when-do-tombstones-cause-problems">may actually cause problems</a> in Cassandra.</p>
@@ -129,6 +134,7 @@ ga('send', 'pageview');
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">CassandraDaemon.java:465 - Exception encountered during startup</span><br><span class="line">java.lang.RuntimeException: A node required to move the data consistently is down (/x.x.x.x).  </span><br><span class="line">If you wish to move the data from a potentially inconsistent replica, restart the node with -Dcassandra.consistent.rangemovement=false</span><br></pre></td></tr></table></figure>
 <p>It turns out that Cassandra needs to move the data consistently to the new node. And when one node is down and Cassandra cannot form a quorum for the data with one node missing, it’ll be reluctant to hand the potentially broken data to the newcomer.</p>
 <p>Here’s also an interesting <a target="_blank" rel="noopener" href="https://medium.com/analytics-vidhya/replacing-a-dead-node-in-cassandra-and-surprises-4681287eeddf">blog</a> about replacing Cassandra dead node and all the surprises along the way. The lesson is: managing Cassandra membership could be harder than you actually thought. So it might be a good idea to read the manual.</p>
+<p>In short, if you don’t understand Cassandra, it’ll give you surprises.</p>
 <h1 id="dynamically-manipulating-tables-is-bad"><a class="markdownIt-Anchor" href="#dynamically-manipulating-tables-is-bad"></a> Dynamically Manipulating Tables Is Bad</h1>
 <p>When we started building our application, we used a way to automatically create new tables. It worked well for a while, and then we kept hitting this weird error:</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Caused by: org.apache.cassandra.exceptions.ConfigurationException: </span><br><span class="line">  Column family ID mismatch (found &lt;SOME UUID-1&gt;; expected &lt;SOME UUID-2&gt;)</span><br></pre></td></tr></table></figure>
@@ -157,10 +163,11 @@ If you have been paying attention you might remember how Cassandra handles delet
 <li>Lightweight Transactions in Cassandra: <a target="_blank" rel="noopener" href="https://docs.datastax.com/en/cassandra-oss/3.0/cassandra/dml/dmlLtwtTransactions.html">https://docs.datastax.com/en/cassandra-oss/3.0/cassandra/dml/dmlLtwtTransactions.html</a></li>
 <li>Leader election with Cassandra <a target="_blank" rel="noopener" href="https://www.dotconferences.com/2015/06/matthieu-nantern-leader-election-with-cassandra">https://www.dotconferences.com/2015/06/matthieu-nantern-leader-election-with-cassandra</a></li>
 <li>Time Window CompactionStrategy <a target="_blank" rel="noopener" href="https://cassandra.apache.org/doc/latest/cassandra/operating/compaction/twcs.html">https://cassandra.apache.org/doc/latest/cassandra/operating/compaction/twcs.html</a></li>
-<li>TWCS part 1 - how does it work and when should you use it ?  <a target="_blank" rel="noopener" href="https://thelastpickle.com/blog/2016/12/08/TWCS-part1.html">https://thelastpickle.com/blog/2016/12/08/TWCS-part1.html</a></li>
+<li>TWCS part 1 - how does it work and when should you use it?  <a target="_blank" rel="noopener" href="https://thelastpickle.com/blog/2016/12/08/TWCS-part1.html">https://thelastpickle.com/blog/2016/12/08/TWCS-part1.html</a></li>
 <li>Replacing a dead node in Cassandra and surprises <a target="_blank" rel="noopener" href="https://medium.com/analytics-vidhya/replacing-a-dead-node-in-cassandra-and-surprises-4681287eeddf">https://medium.com/analytics-vidhya/replacing-a-dead-node-in-cassandra-and-surprises-4681287eeddf</a></li>
 <li>StackOverflow <a target="_blank" rel="noopener" href="https://stackoverflow.com/questions/28376437/how-to-recover-cassandra-node-from-failed-bootstrap/28379751">https://stackoverflow.com/questions/28376437/how-to-recover-cassandra-node-from-failed-bootstrap/28379751</a></li>
 <li>Manual For Adding/Removing Node: <a target="_blank" rel="noopener" href="https://docs.datastax.com/en/cassandra-oss/2.1/cassandra/operations/opsAddingRemovingNodeTOC.html">https://docs.datastax.com/en/cassandra-oss/2.1/cassandra/operations/opsAddingRemovingNodeTOC.html</a></li>
+<li>How Discord Stores Billions of Messages <a target="_blank" rel="noopener" href="https://blog.discord.com/how-discord-stores-billions-of-messages-7fa6ec7ee4c7">https://blog.discord.com/how-discord-stores-billions-of-messages-7fa6ec7ee4c7</a></li>
 </ul>
 
       

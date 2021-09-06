@@ -5,13 +5,16 @@
   
   <title>Kevin Hu&#39;s Blog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta property="og:type" content="website">
+  <meta name="description" content="https:&#x2F;&#x2F;twitter.com&#x2F;Oldgunix">
+<meta property="og:type" content="website">
 <meta property="og:title" content="Kevin Hu&#39;s Blog">
 <meta property="og:url" content="https://blog.kevinhu.me/index.html">
 <meta property="og:site_name" content="Kevin Hu&#39;s Blog">
+<meta property="og:description" content="https:&#x2F;&#x2F;twitter.com&#x2F;Oldgunix">
 <meta property="og:locale" content="en_US">
 <meta property="article:author" content="Kevin Hu">
 <meta name="twitter:card" content="summary">
+<meta name="twitter:creator" content="@Oldgunix">
   
     <link rel="alternative" href="/atom.xml" title="Kevin Hu&#39;s Blog" type="application/atom+xml">
   
@@ -49,6 +52,10 @@ ga('send', 'pageview');
       <h1 id="logo-wrap">
         <a href="/" id="logo">Kevin Hu&#39;s Blog</a>
       </h1>
+      
+        <h2 id="subtitle-wrap">
+          <a href="/" id="subtitle">A Hungry Fool</a>
+        </h2>
       
     </div>
     <div id="header-inner" class="inner">
@@ -103,15 +110,15 @@ ga('send', 'pageview');
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>Recently I’ve summarized <a href="/2021/08/21/17-cassandra-experience/">some experience on quickly getting started with Cassadra</a>. And for this post I’d like to introduce some of our experience and gotchas in using and operating Cassandra. Hopefully it could be useful to you, and help you avoid future unwanted surprises.</p>
+        <p>Recently I’ve summarized <a href="/2021/08/21/17-cassandra-experience/">some experience on quickly getting started with Cassadra</a>. And for this post I’d like to keep writing about some of our experience using and operating Cassandra. Hopefully it could be useful to you, and help you avoid future unwanted surprises.</p>
 <h1 id="election-and-paxos"><a class="markdownIt-Anchor" href="#election-and-paxos"></a> Election and Paxos</h1>
-<p>Cassandra is always considered to be favoring the “AP” in “CAP” theorem, where it guarantees eventual consistency for availability and performance. But when really necessary, you can still leverage Cassandra’s built-in Light-weight Transactions for elections to determine a leader node in the cluster.</p>
+<p>Cassandra is always considered to be favoring the “AP” in “CAP” theorem, where it guarantees eventual consistency for availability and performance. But when really necessary, you can still leverage Cassandra’s built-in <a target="_blank" rel="noopener" href="https://docs.datastax.com/en/cql-oss/3.3/cql/cql_using/useInsertLWT.html">“Light-weight Transaction”</a> for elections to determine a leader node in the cluster.</p>
 <p>Basically, it works by writing to a table with your own lease:</p>
 <figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">INSERT</span> <span class="keyword">INTO</span> leases (name, owner) <span class="keyword">VALUES</span> (<span class="string">&#x27;lease_master&#x27;</span>, <span class="string">&#x27;server_1&#x27;</span>) IF <span class="keyword">NOT</span> <span class="keyword">EXISTS</span>;</span><br></pre></td></tr></table></figure>
-<p>The <code>IF NOT EXISTS</code> triggers the Cassandra built-in <a target="_blank" rel="noopener" href="https://docs.datastax.com/en/cql-oss/3.3/cql/cql_using/useInsertLWT.html">“Light-weight Transaction”</a> and can be used to declare a consensus among a cluster. With a default TTL in the table, this can be used for leases control, or master election. For example:</p>
+<p>The <code>IF NOT EXISTS</code> triggers the Cassandra built-in Light-weight Transaction and can be used to declare a consensus among a cluster. With a default TTL in the table, this can be used for leases control, or master election. For example:</p>
 <figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">CREATE</span> <span class="keyword">table</span> leases (</span><br><span class="line">    name text,</span><br><span class="line">    owner text,</span><br><span class="line">) <span class="keyword">WITH</span> default_time_to_live <span class="operator">=</span> <span class="number">16</span>; </span><br></pre></td></tr></table></figure>
 <p>So that the lease owner needs to keep writing to the lease row for heartbeats.</p>
-<p>I’m not sure about the performance characteristics of Cassandra’s election behavior with other applications (etcd, Zookeeper, …) and it’ll be interesting to see a study. But since those are already more full-featured and well-understood in keeping consensus, I’d recommend delegating this behavior to them unless you’re stuck with one database.</p>
+<p>I’m not sure about the performance characteristics of Cassandra’s election behavior with other applications (etcd, Zookeeper, …) and it’ll be interesting to see a study. But since those are already more full-featured and well-understood in keeping consensus, I’d recommend delegating this behavior to them unless you’re stuck with Cassandra for your application.</p>
         
           <p class="article-more-link">
             <a href="/2021/09/03/22-cassandra-experience-and-gotchas/#more">Read More</a>
