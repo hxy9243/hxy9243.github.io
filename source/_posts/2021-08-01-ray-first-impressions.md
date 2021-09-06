@@ -3,7 +3,7 @@ title: 'Paper Reading: Ray: A Distributed Framework for Emerging AI Applications
 date: 2021-08-02 00:21
 comments: true
 categories: PaperReading
-tags: ['Ray', 'Distributed System', 'PaperReading']
+tags: ['Ray', 'DistributedSystems', 'PaperReading']
 ---
 
 Paper link: https://www.usenix.org/system/files/osdi18-moritz.pdf

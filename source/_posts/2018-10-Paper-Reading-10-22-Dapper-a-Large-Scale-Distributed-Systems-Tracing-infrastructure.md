@@ -3,7 +3,7 @@ title: >-
   Paper Reading 10-22: Dapper, a Large-Scale Distributed Systems Tracing
   Infrastructure
 date: 2018-10-22 01:24:08
-tags: ['distributed systems', 'tracing', 'infrastructure']
+tags: ['DistributedSystems', 'tracing', 'infrastructure']
 category: Paper
 ---
 

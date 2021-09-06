@@ -1,6 +1,6 @@
 title: Here Comes Everybody - Book Review
 date: 2015-11-30 00:52:28
-tags: Internet, BookReview
+tags: ['Internet', 'BookReview']
 categories: Reading
 ---
 
