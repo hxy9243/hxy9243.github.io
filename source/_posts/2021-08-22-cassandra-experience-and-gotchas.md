@@ -116,4 +116,5 @@ Basically if you are not careful, deletion in Cassandra could actually be a part
 - Replacing a dead node in Cassandra and surprises https://medium.com/analytics-vidhya/replacing-a-dead-node-in-cassandra-and-surprises-4681287eeddf
 - StackOverflow https://stackoverflow.com/questions/28376437/how-to-recover-cassandra-node-from-failed-bootstrap/28379751
 - Manual For Adding/Removing Node: https://docs.datastax.com/en/cassandra-oss/2.1/cassandra/operations/opsAddingRemovingNodeTOC.html
+- How Discord Stores Billions of Messages https://blog.discord.com/how-discord-stores-billions-of-messages-7fa6ec7ee4c7
 
