@@ -84,6 +84,64 @@ ga('send', 'pageview');
       <div class="outer">
         <section id="main">
   
+    <article id="post-04-reading-src-bboltdb" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2022/06/04/04-reading-src-bboltdb/" class="article-date">
+  <time datetime="2022-06-05T03:00:00.000Z" itemprop="datePublished">06 04 2022</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/CodeReading/">CodeReading</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2022/06/04/04-reading-src-bboltdb/">Reading BBoltDB</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>By trying to understand databases in general, I’ve recently dived into the source code
+of <a target="_blank" rel="noopener" href="https://github.com/etcd-io/bbolt">BBoltDB</a> for a deeper understanding of its implementation.
+It’s a fairly small, nifty local KV store for source-code reading and studying, especially you’re a Golang
+programmer. At the same time it’s widely used and tested, embeded as the powerful storage engine for
+systems like <a target="_blank" rel="noopener" href="https://github.com/etcd-io/etcd">Etcd</a> and <a target="_blank" rel="noopener" href="https://github.com/hashicorp/consul">Consul</a>.
+Though it’s only backed by one file, it’s capable of serving data size up to
+<a target="_blank" rel="noopener" href="https://github.com/etcd-io/bbolt/#project-status">TB level</a>.</p>
+<p>Below is my notes for the very quick reading from its source code, hopefully providing anyone
+interested in data systems a quick glimpse of what’s under the hood. It’s not meant as an exhaustive
+and deep analysis.</p>
+        
+          <p class="article-more-link">
+            <a href="/2022/06/04/04-reading-src-bboltdb/#more">Read More</a>
+          </p>
+        
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://blog.kevinhu.me/2022/06/04/04-reading-src-bboltdb/" data-id="cl40k23oz004vtexga6xrbml7" class="article-share-link">Share</a>
+      
+        <a href="https://blog.kevinhu.me/2022/06/04/04-reading-src-bboltdb/#disqus_thread" class="article-comment-link">Comments</a>
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Database/" rel="tag">Database</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/DistributedSystems/" rel="tag">DistributedSystems</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Golang/" rel="tag">Golang</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Learning/" rel="tag">Learning</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
     <article id="post-22-cassandra-experience-and-gotchas" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
     <a href="/2021/09/03/22-cassandra-experience-and-gotchas/" class="article-date">
@@ -127,7 +185,7 @@ ga('send', 'pageview');
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://blog.kevinhu.me/2021/09/03/22-cassandra-experience-and-gotchas/" data-id="ckt3w16fk0000xfsc0wb829oh" class="article-share-link">Share</a>
+      <a data-url="https://blog.kevinhu.me/2021/09/03/22-cassandra-experience-and-gotchas/" data-id="cl40k23ox004stexg0w3m4k6i" class="article-share-link">Share</a>
       
         <a href="https://blog.kevinhu.me/2021/09/03/22-cassandra-experience-and-gotchas/#disqus_thread" class="article-comment-link">Comments</a>
       
@@ -185,7 +243,7 @@ ga('send', 'pageview');
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://blog.kevinhu.me/2021/08/21/17-cassandra-experience/" data-id="cksfpybf30000yzsc6qxxc4ks" class="article-share-link">Share</a>
+      <a data-url="https://blog.kevinhu.me/2021/08/21/17-cassandra-experience/" data-id="cl40k23ov004otexg0bql8mdg" class="article-share-link">Share</a>
       
         <a href="https://blog.kevinhu.me/2021/08/21/17-cassandra-experience/#disqus_thread" class="article-comment-link">Comments</a>
       
@@ -238,7 +296,7 @@ This paper (OSDI 18’) explains its API and architecture design to fulfill this
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://blog.kevinhu.me/2021/08/02/01-ray-first-impressions/" data-id="ckru6qpzh0000v7sc0vpk8f30" class="article-share-link">Share</a>
+      <a data-url="https://blog.kevinhu.me/2021/08/02/01-ray-first-impressions/" data-id="cl40k23ot004ktexg7ozoh7u0" class="article-share-link">Share</a>
       
         <a href="https://blog.kevinhu.me/2021/08/02/01-ray-first-impressions/#disqus_thread" class="article-comment-link">Comments</a>
       
@@ -293,7 +351,7 @@ So that you don’t have to design them from scratch, which might help you avoid
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://blog.kevinhu.me/2021/05/31/31-go-channel-examples/" data-id="ckpdbwgd5004bkgsc4u488prs" class="article-share-link">Share</a>
+      <a data-url="https://blog.kevinhu.me/2021/05/31/31-go-channel-examples/" data-id="cl40k23os004gtexg8llpb0tw" class="article-share-link">Share</a>
       
         <a href="https://blog.kevinhu.me/2021/05/31/31-go-channel-examples/#disqus_thread" class="article-comment-link">Comments</a>
       
@@ -345,7 +403,7 @@ So that you don’t have to design them from scratch, which might help you avoid
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://blog.kevinhu.me/2021/04/25/25-Paper-Reading-Booking.com-Experiences/" data-id="ckpdbwgd30048kgsc67ukehky" class="article-share-link">Share</a>
+      <a data-url="https://blog.kevinhu.me/2021/04/25/25-Paper-Reading-Booking.com-Experiences/" data-id="cl40k23oq004ctexgb31276r9" class="article-share-link">Share</a>
       
         <a href="https://blog.kevinhu.me/2021/04/25/25-Paper-Reading-Booking.com-Experiences/#disqus_thread" class="article-comment-link">Comments</a>
       
@@ -404,7 +462,7 @@ in experts, and experts are increasingly finding it difficult to communicate wit
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://blog.kevinhu.me/2020/11/14/08-Book-Review-Death-Of-Expertise/" data-id="ckpdbwgd10045kgsc00ni4lnm" class="article-share-link">Share</a>
+      <a data-url="https://blog.kevinhu.me/2020/11/14/08-Book-Review-Death-Of-Expertise/" data-id="cl40k23op0048texgaffo8mpo" class="article-share-link">Share</a>
       
         <a href="https://blog.kevinhu.me/2020/11/14/08-Book-Review-Death-Of-Expertise/#disqus_thread" class="article-comment-link">Comments</a>
       
@@ -475,7 +533,7 @@ have a long weekend afternoon, it’s worth a good read.</p>
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://blog.kevinhu.me/2020/11/06/06-Reading-Summary-2020-11/" data-id="ckpdbwgcz0042kgsca28nh6hn" class="article-share-link">Share</a>
+      <a data-url="https://blog.kevinhu.me/2020/11/06/06-Reading-Summary-2020-11/" data-id="cl40k23on0044texghrbccljc" class="article-share-link">Share</a>
       
         <a href="https://blog.kevinhu.me/2020/11/06/06-Reading-Summary-2020-11/#disqus_thread" class="article-comment-link">Comments</a>
       
@@ -536,7 +594,7 @@ efficiency without sacrificing much performance.</p>
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://blog.kevinhu.me/2020/11/05/05-Paper-Reading-Julia-Design/" data-id="ckpdbwgcx003zkgscfdzm1ynu" class="article-share-link">Share</a>
+      <a data-url="https://blog.kevinhu.me/2020/11/05/05-Paper-Reading-Julia-Design/" data-id="cl40k23om0040texgahfqhvqo" class="article-share-link">Share</a>
       
         <a href="https://blog.kevinhu.me/2020/11/05/05-Paper-Reading-Julia-Design/#disqus_thread" class="article-comment-link">Comments</a>
       
@@ -603,69 +661,12 @@ CI/CD, compilation, ML, visualization, …, you name it).</p>
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://blog.kevinhu.me/2020/07/20/20-Reading-Summary/" data-id="ckpdbwgcv003wkgsc0r8hdl8k" class="article-share-link">Share</a>
+      <a data-url="https://blog.kevinhu.me/2020/07/20/20-Reading-Summary/" data-id="cl40k23ol003xtexg5pmx19js" class="article-share-link">Share</a>
       
         <a href="https://blog.kevinhu.me/2020/07/20/20-Reading-Summary/#disqus_thread" class="article-comment-link">Comments</a>
       
       
   <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Reading/" rel="tag">Reading</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-    <article id="post-04-Reading-Aurora-Database" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2020/07/04/04-Reading-Aurora-Database/" class="article-date">
-  <time datetime="2020-07-05T03:17:00.000Z" itemprop="datePublished">07 04 2020</time>
-</a>
-    
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/PaperReading/">PaperReading</a>
-  </div>
-
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2020/07/04/04-Reading-Aurora-Database/">Paper Reading: Aurora: Distributed Relational Database</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>The following is my <strong>overly simplified</strong> summary of paper reading.</p>
-<p>Aurora is a geo-distributed SQL database that supports replication, high-availability, and transactions,
-with its distributed design around replicating the database WAL log.</p>
-<h1 id="references"><a class="markdownIt-Anchor" href="#references"></a> References</h1>
-<ul>
-<li><strong>Course Syllabus:</strong> <a target="_blank" rel="noopener" href="https://pdos.csail.mit.edu/6.824/schedule.html">https://pdos.csail.mit.edu/6.824/schedule.html</a></li>
-<li><strong>Video Lectures:</strong> <a target="_blank" rel="noopener" href="https://www.youtube.com/channel/UC_7WrbZTCODu1o_kfUMq88g/videos">https://www.youtube.com/channel/UC_7WrbZTCODu1o_kfUMq88g/videos</a></li>
-<li><strong>Lecture</strong>: <a target="_blank" rel="noopener" href="https://www.youtube.com/watch?v=jJSh54J1s5o">https://www.youtube.com/watch?v=jJSh54J1s5o</a></li>
-</ul>
-        
-          <p class="article-more-link">
-            <a href="/2020/07/04/04-Reading-Aurora-Database/#more">Read More</a>
-          </p>
-        
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="https://blog.kevinhu.me/2020/07/04/04-Reading-Aurora-Database/" data-id="ckpdbwgct003skgscg0vdfa8f" class="article-share-link">Share</a>
-      
-        <a href="https://blog.kevinhu.me/2020/07/04/04-Reading-Aurora-Database/#disqus_thread" class="article-comment-link">Comments</a>
-      
-      
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Aurora/" rel="tag">Aurora</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Database/" rel="tag">Database</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/PaperReading/" rel="tag">PaperReading</a></li></ul>
 
     </footer>
   </div>
@@ -687,7 +688,7 @@ with its distributed design around replicating the database WAL log.</p>
   <div class="widget-wrap">
     <h3 class="widget-title">Categories</h3>
     <div class="widget">
-      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Algorithm/">Algorithm</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/BookReview/">BookReview</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/CodeReading/">CodeReading</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/ComputerSystem/">ComputerSystem</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Diary/">Diary</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Golang/">Golang</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Paper/">Paper</a><span class="category-list-count">5</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/PaperReading/">PaperReading</a><span class="category-list-count">8</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Programming/">Programming</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/ProgrammingLanguage/">ProgrammingLanguage</a><span class="category-list-count">4</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Reading/">Reading</a><span class="category-list-count">25</span></li></ul>
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Algorithm/">Algorithm</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/BookReview/">BookReview</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/CodeReading/">CodeReading</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/ComputerSystem/">ComputerSystem</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Diary/">Diary</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Golang/">Golang</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Paper/">Paper</a><span class="category-list-count">5</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/PaperReading/">PaperReading</a><span class="category-list-count">8</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Programming/">Programming</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/ProgrammingLanguage/">ProgrammingLanguage</a><span class="category-list-count">4</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Reading/">Reading</a><span class="category-list-count">25</span></li></ul>
     </div>
   </div>
 
@@ -696,7 +697,7 @@ with its distributed design around replicating the database WAL log.</p>
   <div class="widget-wrap">
     <h3 class="widget-title">Tag Cloud</h3>
     <div class="widget tagcloud">
-      <a href="/tags/AI/" style="font-size: 10px;">AI</a> <a href="/tags/Algorithm/" style="font-size: 10px;">Algorithm</a> <a href="/tags/Aurora/" style="font-size: 10px;">Aurora</a> <a href="/tags/BitHacks/" style="font-size: 10px;">BitHacks</a> <a href="/tags/BookReview/" style="font-size: 17.14px;">BookReview</a> <a href="/tags/Borg/" style="font-size: 10px;">Borg</a> <a href="/tags/C/" style="font-size: 10px;">C</a> <a href="/tags/C/" style="font-size: 10px;">C++</a> <a href="/tags/C-C/" style="font-size: 11.43px;">C/C++</a> <a href="/tags/Cassandra/" style="font-size: 12.86px;">Cassandra</a> <a href="/tags/Channel/" style="font-size: 11.43px;">Channel</a> <a href="/tags/CodeReading/" style="font-size: 11.43px;">CodeReading</a> <a href="/tags/Coding/" style="font-size: 10px;">Coding</a> <a href="/tags/Compilers/" style="font-size: 11.43px;">Compilers</a> <a href="/tags/Concurrency/" style="font-size: 10px;">Concurrency</a> <a href="/tags/Data-Science/" style="font-size: 10px;">Data Science</a> <a href="/tags/Database/" style="font-size: 14.29px;">Database</a> <a href="/tags/Datacenter/" style="font-size: 10px;">Datacenter</a> <a href="/tags/Debug/" style="font-size: 10px;">Debug</a> <a href="/tags/DistributedSystems/" style="font-size: 15.71px;">DistributedSystems</a> <a href="/tags/Docker/" style="font-size: 10px;">Docker</a> <a href="/tags/FPGA/" style="font-size: 10px;">FPGA</a> <a href="/tags/Golang/" style="font-size: 12.86px;">Golang</a> <a href="/tags/HPC/" style="font-size: 10px;">HPC</a> <a href="/tags/Hugepage/" style="font-size: 10px;">Hugepage</a> <a href="/tags/Internet/" style="font-size: 10px;">Internet</a> <a href="/tags/Julia/" style="font-size: 10px;">Julia</a> <a href="/tags/Kafka/" style="font-size: 10px;">Kafka</a> <a href="/tags/Learning/" style="font-size: 12.86px;">Learning</a> <a href="/tags/Linux/" style="font-size: 12.86px;">Linux</a> <a href="/tags/Log/" style="font-size: 10px;">Log</a> <a href="/tags/Machine-Learning/" style="font-size: 10px;">Machine Learning</a> <a href="/tags/Mesos/" style="font-size: 10px;">Mesos</a> <a href="/tags/Multithread/" style="font-size: 10px;">Multithread</a> <a href="/tags/Mutex/" style="font-size: 10px;">Mutex</a> <a href="/tags/NoSQL/" style="font-size: 12.86px;">NoSQL</a> <a href="/tags/Paper/" style="font-size: 10px;">Paper</a> <a href="/tags/PaperReading/" style="font-size: 20px;">PaperReading</a> <a href="/tags/Password/" style="font-size: 11.43px;">Password</a> <a href="/tags/Programming/" style="font-size: 12.86px;">Programming</a> <a href="/tags/ProgrammingLanguage/" style="font-size: 12.86px;">ProgrammingLanguage</a> <a href="/tags/Python/" style="font-size: 12.86px;">Python</a> <a href="/tags/Ray/" style="font-size: 10px;">Ray</a> <a href="/tags/Reading/" style="font-size: 18.57px;">Reading</a> <a href="/tags/Social/" style="font-size: 10px;">Social</a> <a href="/tags/Sociology/" style="font-size: 10px;">Sociology</a> <a href="/tags/Technology/" style="font-size: 12.86px;">Technology</a> <a href="/tags/Undefined-Behavior/" style="font-size: 11.43px;">Undefined Behavior</a> <a href="/tags/WeeklyPaper/" style="font-size: 10px;">WeeklyPaper</a> <a href="/tags/WorldWideWeb/" style="font-size: 10px;">WorldWideWeb</a> <a href="/tags/Zookeeper/" style="font-size: 10px;">Zookeeper</a> <a href="/tags/infrastructure/" style="font-size: 10px;">infrastructure</a> <a href="/tags/systems/" style="font-size: 10px;">systems</a> <a href="/tags/tracing/" style="font-size: 10px;">tracing</a>
+      <a href="/tags/AI/" style="font-size: 10px;">AI</a> <a href="/tags/Algorithm/" style="font-size: 10px;">Algorithm</a> <a href="/tags/Aurora/" style="font-size: 10px;">Aurora</a> <a href="/tags/BitHacks/" style="font-size: 10px;">BitHacks</a> <a href="/tags/BookReview/" style="font-size: 17.14px;">BookReview</a> <a href="/tags/Borg/" style="font-size: 10px;">Borg</a> <a href="/tags/C/" style="font-size: 10px;">C</a> <a href="/tags/C/" style="font-size: 10px;">C++</a> <a href="/tags/C-C/" style="font-size: 11.43px;">C/C++</a> <a href="/tags/Cassandra/" style="font-size: 12.86px;">Cassandra</a> <a href="/tags/Channel/" style="font-size: 11.43px;">Channel</a> <a href="/tags/CodeReading/" style="font-size: 11.43px;">CodeReading</a> <a href="/tags/Coding/" style="font-size: 10px;">Coding</a> <a href="/tags/Compilers/" style="font-size: 11.43px;">Compilers</a> <a href="/tags/Concurrency/" style="font-size: 10px;">Concurrency</a> <a href="/tags/Data-Science/" style="font-size: 10px;">Data Science</a> <a href="/tags/Database/" style="font-size: 15.71px;">Database</a> <a href="/tags/Datacenter/" style="font-size: 10px;">Datacenter</a> <a href="/tags/Debug/" style="font-size: 10px;">Debug</a> <a href="/tags/DistributedSystems/" style="font-size: 17.14px;">DistributedSystems</a> <a href="/tags/Docker/" style="font-size: 10px;">Docker</a> <a href="/tags/FPGA/" style="font-size: 10px;">FPGA</a> <a href="/tags/Golang/" style="font-size: 14.29px;">Golang</a> <a href="/tags/HPC/" style="font-size: 10px;">HPC</a> <a href="/tags/Hugepage/" style="font-size: 10px;">Hugepage</a> <a href="/tags/Internet/" style="font-size: 10px;">Internet</a> <a href="/tags/Julia/" style="font-size: 10px;">Julia</a> <a href="/tags/Kafka/" style="font-size: 10px;">Kafka</a> <a href="/tags/Learning/" style="font-size: 14.29px;">Learning</a> <a href="/tags/Linux/" style="font-size: 12.86px;">Linux</a> <a href="/tags/Log/" style="font-size: 10px;">Log</a> <a href="/tags/Machine-Learning/" style="font-size: 10px;">Machine Learning</a> <a href="/tags/Mesos/" style="font-size: 10px;">Mesos</a> <a href="/tags/Multithread/" style="font-size: 10px;">Multithread</a> <a href="/tags/Mutex/" style="font-size: 10px;">Mutex</a> <a href="/tags/NoSQL/" style="font-size: 12.86px;">NoSQL</a> <a href="/tags/Paper/" style="font-size: 10px;">Paper</a> <a href="/tags/PaperReading/" style="font-size: 20px;">PaperReading</a> <a href="/tags/Password/" style="font-size: 11.43px;">Password</a> <a href="/tags/Programming/" style="font-size: 12.86px;">Programming</a> <a href="/tags/ProgrammingLanguage/" style="font-size: 12.86px;">ProgrammingLanguage</a> <a href="/tags/Python/" style="font-size: 12.86px;">Python</a> <a href="/tags/Ray/" style="font-size: 10px;">Ray</a> <a href="/tags/Reading/" style="font-size: 18.57px;">Reading</a> <a href="/tags/Social/" style="font-size: 10px;">Social</a> <a href="/tags/Sociology/" style="font-size: 10px;">Sociology</a> <a href="/tags/Technology/" style="font-size: 12.86px;">Technology</a> <a href="/tags/Undefined-Behavior/" style="font-size: 11.43px;">Undefined Behavior</a> <a href="/tags/WeeklyPaper/" style="font-size: 10px;">WeeklyPaper</a> <a href="/tags/WorldWideWeb/" style="font-size: 10px;">WorldWideWeb</a> <a href="/tags/Zookeeper/" style="font-size: 10px;">Zookeeper</a> <a href="/tags/infrastructure/" style="font-size: 10px;">infrastructure</a> <a href="/tags/systems/" style="font-size: 10px;">systems</a> <a href="/tags/tracing/" style="font-size: 10px;">tracing</a>
     </div>
   </div>
 
@@ -705,7 +706,7 @@ with its distributed design around replicating the database WAL log.</p>
   <div class="widget-wrap">
     <h3 class="widget-title">Archives</h3>
     <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/09/">September 2021</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/08/">August 2021</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/05/">May 2021</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/04/">April 2021</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/11/">November 2020</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/07/">July 2020</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/04/">April 2020</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/01/">January 2020</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/11/">November 2019</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/09/">September 2019</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/08/">August 2019</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/05/">May 2019</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/04/">April 2019</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/03/">March 2019</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/02/">February 2019</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/01/">January 2019</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/10/">October 2018</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/09/">September 2018</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/07/">July 2018</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/05/">May 2018</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/06/">June 2017</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/03/">March 2017</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/01/">January 2017</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/11/">November 2016</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/09/">September 2016</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/08/">August 2016</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/05/">May 2016</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/02/">February 2016</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/12/">December 2015</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/11/">November 2015</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/10/">October 2015</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/04/">April 2015</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/03/">March 2015</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/01/">January 2015</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/11/">November 2014</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/10/">October 2014</a><span class="archive-list-count">4</span></li></ul>
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/06/">June 2022</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/09/">September 2021</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/08/">August 2021</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/05/">May 2021</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/04/">April 2021</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/11/">November 2020</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/07/">July 2020</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/04/">April 2020</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/01/">January 2020</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/11/">November 2019</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/09/">September 2019</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/08/">August 2019</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/05/">May 2019</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/04/">April 2019</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/03/">March 2019</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/02/">February 2019</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/01/">January 2019</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/10/">October 2018</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/09/">September 2018</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/07/">July 2018</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/05/">May 2018</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/06/">June 2017</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/03/">March 2017</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/01/">January 2017</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/11/">November 2016</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/09/">September 2016</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/08/">August 2016</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/05/">May 2016</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/02/">February 2016</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/12/">December 2015</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/11/">November 2015</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/10/">October 2015</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/04/">April 2015</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/03/">March 2015</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/01/">January 2015</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/11/">November 2014</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/10/">October 2014</a><span class="archive-list-count">4</span></li></ul>
     </div>
   </div>
 
@@ -715,6 +716,10 @@ with its distributed design around replicating the database WAL log.</p>
     <h3 class="widget-title">Recents</h3>
     <div class="widget">
       <ul>
+        
+          <li>
+            <a href="/2022/06/04/04-reading-src-bboltdb/">Reading BBoltDB</a>
+          </li>
         
           <li>
             <a href="/2021/09/03/22-cassandra-experience-and-gotchas/">Building Applications With Cassandra: Experience And Gotchas</a>
@@ -732,10 +737,6 @@ with its distributed design around replicating the database WAL log.</p>
             <a href="/2021/05/31/31-go-channel-examples/">Golang Channel Idioms</a>
           </li>
         
-          <li>
-            <a href="/2021/04/25/25-Paper-Reading-Booking.com-Experiences/">Paper Reading: 150 Successful Machine Learning Models Deployed: 6 Lessons Learned At Booking.com</a>
-          </li>
-        
       </ul>
     </div>
   </div>
@@ -748,7 +749,7 @@ with its distributed design around replicating the database WAL log.</p>
   
   <div class="outer">
     <div id="footer-info" class="inner">
-      &copy; 2021 Kevin Hu<br>
+      &copy; 2022 Kevin Hu<br>
       Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
     </div>
   </div>
