@@ -7,7 +7,8 @@ tags: ['Learning', 'Golang', 'API', 'openAPI', 'web']
 ---
 
 
-Openapi Generator for Go API development and Go webapp works surprisingly well, but somehow is not so often mentioned and not well documented.
+The [Openapi Generator](https://openapi-generator.tech/) for Go API and Go web app development works surprisingly well,
+but somehow I found that it's not so often mentioned.
 Recently I've tried it in one of my projects, and in my (limited) experience with it, I was pleasantly surprised by how good it was.
 With some setup, it could generate Go code with decent quality, and it's fairly easy to use once you get a hang of it.
 Whether you’re building a standalone web-app from scratch or creating a service with REST API endpoints, openapi-generator might come up handy for you.
@@ -22,7 +23,8 @@ and testing between code and specs. The best way IMHO is to automate the process
 Many toolings support either one of these, and `openapi-generator` is one of the really nice tools that I'm going to introduce in this blog post.
 
 Openapi Generator supports many languages on the server as well as on the client side.
-And it has generator for different frameworks of Go. Right here I’m going to use `go-server` generator as an example.
+And it has generator for different frameworks of Go. Right here I’m going to use [`go-server` generator](https://openapi-generator.tech/docs/generators/go-server/)
+as an example.
 It uses the Gorilla framework for the server-side code.
 
 For this blog post I’ve also made an example of code generation in my Github repo. I've generated the code,
