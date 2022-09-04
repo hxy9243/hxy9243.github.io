@@ -110,7 +110,8 @@ ga('send', 'pageview');
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>Openapi Generator for Go API development and Go webapp works surprisingly well, but somehow is not so often mentioned and not well documented.
+        <p>The <a target="_blank" rel="noopener" href="https://openapi-generator.tech/">Openapi Generator</a> for Go API and Go web app development works surprisingly well,
+but somehow I found that it’s not so often mentioned.
 Recently I’ve tried it in one of my projects, and in my (limited) experience with it, I was pleasantly surprised by how good it was.
 With some setup, it could generate Go code with decent quality, and it’s fairly easy to use once you get a hang of it.
 Whether you’re building a standalone web-app from scratch or creating a service with REST API endpoints, openapi-generator might come up handy for you.</p>
@@ -122,7 +123,8 @@ I used to highly doubt this, and now I don’t think I can live without it.</p>
 and testing between code and specs. The best way IMHO is to automate the process, by either generating the API code from spec, or the other around.
 Many toolings support either one of these, and <code>openapi-generator</code> is one of the really nice tools that I’m going to introduce in this blog post.</p>
 <p>Openapi Generator supports many languages on the server as well as on the client side.
-And it has generator for different frameworks of Go. Right here I’m going to use <code>go-server</code> generator as an example.
+And it has generator for different frameworks of Go. Right here I’m going to use <a target="_blank" rel="noopener" href="https://openapi-generator.tech/docs/generators/go-server/"><code>go-server</code> generator</a>
+as an example.
 It uses the Gorilla framework for the server-side code.</p>
 <p>For this blog post I’ve also made an example of code generation in my Github repo. I’ve generated the code,
 and implemented only one endpoint <code>/books</code> with example data:</p>
