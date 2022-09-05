@@ -17,6 +17,7 @@ widgets:
   - tagcloud
   - archive
   - recent_posts
+  - follow
 
 # Miscellaneous
 google_analytics: UA-57072621-1
