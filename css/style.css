@@ -114,8 +114,8 @@ button::-moz-focus-inner {
   font-family: FontAwesome;
   font-style: normal;
   font-weight: normal;
-  src: url("fonts/fontawesome-webfont.eot?v=#4.0.3");
-  src: url("fonts/fontawesome-webfont.eot?#iefix&v=#4.0.3") format("embedded-opentype"), url("fonts/fontawesome-webfont.woff?v=#4.0.3") format("woff"), url("fonts/fontawesome-webfont.ttf?v=#4.0.3") format("truetype"), url("fonts/fontawesome-webfont.svg#fontawesomeregular?v=#4.0.3") format("svg");
+  src: url("fonts/.eot?v=#4.0.3");
+  src: url("fonts/.eot?#iefix&v=#4.0.3") format("embedded-opentype"), url("fonts/.woff?v=#4.0.3") format("woff"), url("fonts/.ttf?v=#4.0.3") format("truetype"), url("fonts/.svg#fontawesomeregular?v=#4.0.3") format("svg");
 }
 html,
 body,
@@ -123,8 +123,8 @@ body,
   height: 100%;
 }
 body {
-  background: #eee;
-  font: 14px "Helvetica Neue", Helvetica, Arial, sans-serif;
+  background: #f0f0ff;
+  font: 14px Arial, Fira Sans, Arial, sans-serif;
   -webkit-text-size-adjust: 100%;
 }
 .outer {
@@ -174,7 +174,7 @@ body {
   -ms-transition: 0.2s ease-out;
   transition: 0.2s ease-out;
   z-index: 1;
-  background: #eee;
+  background: #f0f0ff;
 }
 .mobile-nav-on #wrap {
   left: 280px;
@@ -206,7 +206,7 @@ body {
   background: #fff;
   -webkit-box-shadow: 1px 2px 3px #ddd;
   box-shadow: 1px 2px 3px #ddd;
-  border: 1px solid #ddd;
+  border: 1px solid #adcff0;
   border-radius: 3px;
 }
 .article-entry h1,
@@ -236,7 +236,7 @@ body {
 }
 .article-entry hr,
 .widget hr {
-  border: 1px dashed #ddd;
+  border: 1px dashed #adcff0;
 }
 .article-entry strong,
 .widget strong {
@@ -310,7 +310,7 @@ body {
 #header {
   height: 300px;
   position: relative;
-  border-bottom: 1px solid #ddd;
+  border-bottom: 1px solid #adcff0;
 }
 #header:before,
 #header:after {
@@ -482,7 +482,7 @@ body {
   background: none;
   color: #555;
   width: 100%;
-  font: 13px "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font: 13px Arial, Fira Sans, Arial, sans-serif;
   outline: none;
 }
 .search-form-input::-webkit-search-results-decoration,
@@ -540,7 +540,7 @@ body {
 .article-title {
   text-decoration: none;
   font-size: 2em;
-  font-weight: bold;
+  font-weight: thin;
   color: #555;
   line-height: 1.1em;
   -webkit-transition: color 0.2s;
@@ -574,7 +574,8 @@ a.article-title:hover {
 .article-entry h4,
 .article-entry h5,
 .article-entry h6 {
-  font-weight: bold;
+  font-weight: thin;
+  text-shadow: 0 1px #aaf;
 }
 .article-entry h1,
 .article-entry h2,
@@ -614,12 +615,12 @@ a.article-title:hover {
   border-spacing: 0;
 }
 .article-entry th {
-  font-weight: bold;
-  border-bottom: 3px solid #ddd;
+  font-weight: thin;
+  border-bottom: 3px solid #adcff0;
   padding-bottom: 0.5em;
 }
 .article-entry td {
-  border-bottom: 1px solid #ddd;
+  border-bottom: 1px solid #adcff0;
   padding: 10px 0;
 }
 .article-entry blockquote {
@@ -631,7 +632,7 @@ a.article-title:hover {
 .article-entry blockquote footer {
   font-size: 14px;
   margin: 1.6em 0;
-  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-family: Arial, Fira Sans, Arial, sans-serif;
 }
 .article-entry blockquote footer cite:before {
   content: "—";
@@ -679,7 +680,7 @@ a.article-title:hover {
   line-height: 1em;
   padding: 6px 15px;
   border-radius: 15px;
-  background: #eee;
+  background: #f0f0ff;
   color: #999;
   text-shadow: 0 1px #fff;
   text-decoration: none;
@@ -693,7 +694,7 @@ a.article-title:hover {
 .article-footer {
   font-size: 0.85em;
   line-height: 1.6em;
-  border-top: 1px solid #ddd;
+  border-top: 1px solid #adcff0;
   padding-top: 1.6em;
   margin: 0 20px 20px;
 }
@@ -762,7 +763,7 @@ a.article-title:hover {
     margin-left: -4px;
     content: "";
     border-radius: 50%;
-    background: #ddd;
+    background: #adcff0;
     -webkit-box-shadow: 0 1px 2px #fff;
     box-shadow: 0 1px 2px #fff;
   }
@@ -804,9 +805,9 @@ a.article-title:hover {
 .article-nav-caption {
   text-transform: uppercase;
   letter-spacing: 2px;
-  color: #ddd;
+  color: #adcff0;
   line-height: 1em;
-  font-weight: bold;
+  font-weight: thin;
 }
 #article-nav-newer .article-nav-caption {
   margin-right: -2px;
@@ -836,17 +837,17 @@ a.article-title:hover {
   -webkit-box-sizing: border-box;
   -moz-box-sizing: border-box;
   box-sizing: border-box;
-  font: 14px "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font: 14px Arial, Fira Sans, Arial, sans-serif;
   padding: 0 15px;
   color: #555;
   outline: none;
-  border: 1px solid #ddd;
+  border: 1px solid #adcff0;
   border-radius: 3px 3px 0 0;
   height: 36px;
   line-height: 36px;
 }
 .article-share-links {
-  background: #eee;
+  background: #f0f0ff;
 }
 .article-share-links:before,
 .article-share-links:after {
@@ -946,7 +947,7 @@ a.article-title:hover {
   -webkit-box-shadow: 1px 2px 3px #ddd;
   box-shadow: 1px 2px 3px #ddd;
   padding: 20px;
-  border: 1px solid #ddd;
+  border: 1px solid #adcff0;
   border-radius: 3px;
   margin: 50px 0;
 }
@@ -1025,7 +1026,7 @@ a.article-title:hover {
   background: #fff;
   -webkit-box-shadow: 1px 2px 3px #ddd;
   box-shadow: 1px 2px 3px #ddd;
-  border: 1px solid #ddd;
+  border: 1px solid #adcff0;
   border-radius: 3px;
   text-align: center;
   color: #999;
@@ -1072,12 +1073,12 @@ a.article-title:hover {
   font-weight: bold;
 }
 #page-nav .space {
-  color: #ddd;
+  color: #adcff0;
 }
 #footer {
   background: #262a30;
   padding: 50px 0;
-  border-top: 1px solid #ddd;
+  border-top: 1px solid #adcff0;
   color: #999;
 }
 #footer a {
@@ -1093,11 +1094,11 @@ a.article-title:hover {
 }
 .article-entry pre,
 .article-entry .highlight {
-  background: #2d2d2d;
+  background: #021f77;
   margin: 0 -20px;
   padding: 15px 20px;
   border-style: solid;
-  border-color: #ddd;
+  border-color: #adcff0;
   border-width: 1px 0;
   overflow: auto;
   color: #ccc;
@@ -1113,7 +1114,7 @@ a.article-title:hover {
   font-family: "Source Code Pro", Consolas, Monaco, Menlo, Consolas, monospace;
 }
 .article-entry code {
-  background: #eee;
+  background: #f0f0ff;
   text-shadow: 0 1px #fff;
   padding: 0 0.3em;
 }
@@ -1162,9 +1163,9 @@ a.article-title:hover {
 .article-entry .gist {
   margin: 0 -20px;
   border-style: solid;
-  border-color: #ddd;
+  border-color: #adcff0;
   border-width: 1px 0;
-  background: #2d2d2d;
+  background: #021f77;
   padding: 15px 20px 15px 0;
 }
 .article-entry .gist .gist-file {
@@ -1190,9 +1191,9 @@ a.article-title:hover {
   border: none;
 }
 .article-entry .gist .gist-file .gist-meta {
-  background: #2d2d2d;
+  background: #021f77;
   color: #999;
-  font: 0.85em "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font: 0.85em Arial, Fira Sans, Arial, sans-serif;
   text-shadow: 0 0;
   padding: 0;
   margin-top: 1em;
@@ -1298,10 +1299,10 @@ pre .javascript .function {
 .widget {
   color: #777;
   text-shadow: 0 1px #fff;
-  background: #ddd;
-  -webkit-box-shadow: 0 -1px 4px #ccc inset;
-  box-shadow: 0 -1px 4px #ccc inset;
-  border: 1px solid #ccc;
+  background: #dee8fc;
+  -webkit-box-shadow: 2px -5px 15px #adcff0 inset;
+  box-shadow: 2px -5px 15px #adcff0 inset;
+  border: 2px -5px 15px solid #adcff0;
   padding: 15px;
   border-radius: 3px;
 }
