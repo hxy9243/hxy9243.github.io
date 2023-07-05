@@ -13,11 +13,11 @@ fancybox: true
 # Sidebar
 sidebar: right
 widgets:
+  - follow
+  - recent_posts
   - category
   - tagcloud
   - archive
-  - recent_posts
-  - follow
 
 # Miscellaneous
 favicon: /favicon.png
