@@ -1,5 +1,5 @@
 layout: post
-title: 'Hacking LangChain For Fun and Profit'
+title: 'Hacking LangChain For Fun and Profit - I'
 date: 2023-07-10 00:29:30
 comments: true
 categories: 'PaperReading'
@@ -16,7 +16,7 @@ The path to understanding this new project weren't really smooth. It has its own
 
 Hence I have taken the initiative to document my personal cognitive process throughout this journey. By doing so, I aim to clarify my own understanding while also providing assistance to y'all who are interested in hacking LangChain for fun and profit.
 
-I found it really helpful to start by understanding the concepts that directly interacts with the LLM, especially the core API interfaces. Once you have the mindmap of all the LangChain abstractions, it's much more intuitive to hack and extend your own implementation.
+This blog post will dedicate to the overall understanding of all the concepts. I found it really helpful to start by understanding the concepts that directly interacts with the LLM, especially the core API interfaces. Once you have the mindmap of all the LangChain abstractions, it's much more intuitive to hack and extend your own implementation.
 
 <!--more-->
 
