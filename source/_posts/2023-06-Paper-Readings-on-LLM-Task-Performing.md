@@ -108,7 +108,7 @@ The LLM examines its own logic and decides if the solution is satisfactory. If n
 
 The paper also examines how best to compose all the sub-problems into a single problem and what's the gap in achieving that.
 
-# 3 Langchain: One Chain to Bring Them All
+## 2.8 Langchain: One Chain to Bring Them All
 
 And you can put them all together with the magical [Langchain](https://github.com/hwchase17/langchain) project. Langchain integrated all the above-mentioned tool-performing ideas into a single project, as can be seen from its source code and documentation:
 
@@ -125,6 +125,6 @@ There are a number of good resources on Langchin out there:
 - <https://www.pinecone.io/learn/langchain/>
 - <https://www.deeplearning.ai/short-courses/langchain-for-llm-application-development/>
 
-# 4 More to Follow
+# 3 More to Follow
 
 As we look to the future, the potential of LLMs is limitless. I'll keep the watch on the most interesting and exciting research advances that brings more intelligence into AI systems. Stay tuned.
