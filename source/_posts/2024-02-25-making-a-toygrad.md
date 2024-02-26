@@ -7,7 +7,7 @@ categories: 'Learning'
 tags: ['Learning', 'AI']
 ---
 
-# Introduction
+# 1 Introduction
 
 I've recently came across a few of [Andrej Karpathy](https://karpathy.ai/)'s
 [video tutorial series](https://www.youtube.com/@AndrejKarpathy) on various topics
@@ -31,9 +31,9 @@ And this blog post is my notes during this experience. Even writing this post he
 
 ![Training and inference example using toygrad](input_predict_chart.png)
 
-# Key Concepts
+# 2 Key Concepts
 
-## Chain Rule
+## 2.1 Chain Rule
 
 In differentiation, the chain rule shows the basic rules for finding the derivative
 of the composite functions.
@@ -49,7 +49,7 @@ $$ \frac{dsin(x^2)}{dx} = \frac{dsin(x^2)}{dx} \cdot \frac{dx^2}{x} = cos(x^2) \
 With chain-rule, we could derive the auto-grad algorithm to implement backpropagation
 on complex compute graphs.
 
-## Backpropagation
+## 2.2 Backpropagation
 
 Backpropagation, or backward propagation of errors, is the algorithm to find the derivative
 of the loss function (which is a function that computes the difference between prediction and the actual output data).
@@ -73,7 +73,7 @@ Conceptually, the gradients represent the slope rate at the level of the current
 the direction of the gradient by a small amount (decided by the learning rate). It's a process of moving the loss function closer
 to the minimal value, at the speed of the learning rate.
 
-## AutoGrad
+## 2.3 AutoGrad
 
 AutoGrad, or Automatic Differentiation, is the core of the backpropagation algorithm in the backward step.
 It applies the gradient by chain rule in a reverse manner, calculating the derivative of all
@@ -114,9 +114,9 @@ With this chain rule in mind, we could start with the seed 1 at the result of th
 
 See more at: https://en.wikipedia.org/wiki/Automatic_differentiation#Reverse_accumulation
 
-# ToyGrad Architecture
+# 3 ToyGrad Architecture
 
-## Value Engine Design
+## 3.1 Value Engine Design
 
 The core of this autograd engine design is the `Value` class that could both express the feed-forward computation
 as well as the backward propagation of gradients. These are the steps when considering its design:
@@ -154,7 +154,7 @@ class Value:
     ...
 ```
 
-## Neural Network Design
+## 3.2 Neural Network Design
 
 With the Value engine designed, we could now chain these value computation to form a feed-forward neural network
 with dense layers, where all Values are connected to the next layer's values.
@@ -223,13 +223,13 @@ Also let me know if you found any problems in this blog post or my version of im
 
 https://github.com/hxy9243/toygrad
 
-## Things to Notice
+## 3.3 Things to Notice
 
 - Parameters include weights of the neural network and bias.
 - Init all the parameters with random values instead of zero.
 - You need to clean up all the gradients for each iteration of backpropagation. It's easy to forget this step.
 
-# References
+# 4 References
 
 - https://www.britannica.com/science/differentiation-mathematics
 - https://en.wikipedia.org/wiki/Derivative
