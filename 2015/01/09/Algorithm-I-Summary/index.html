@@ -1,0 +1,477 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>Algorithm I Summary | Kevin Hu&#39;s Blog</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="Finally! Just finished all the lecture videos of “Algorithm I” from Coursera, and I believe now it’s a good time to review and summarize.">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Algorithm I Summary">
+<meta property="og:url" content="https://blog.kevinhu.me/2015/01/09/Algorithm-I-Summary/index.html">
+<meta property="og:site_name" content="Kevin Hu&#39;s Blog">
+<meta property="og:description" content="Finally! Just finished all the lecture videos of “Algorithm I” from Coursera, and I believe now it’s a good time to review and summarize.">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://blog.kevinhu.me/2015/01/09/Algorithm-I-Summary/HeapRepresentation.png">
+<meta property="og:image" content="https://blog.kevinhu.me/2015/01/09/Algorithm-I-Summary/bst-delete.png">
+<meta property="og:image" content="https://blog.kevinhu.me/2015/01/09/Algorithm-I-Summary/23tree-insert3c.png">
+<meta property="og:image" content="https://blog.kevinhu.me/2015/01/09/Algorithm-I-Summary/redblack-left-rotate.png">
+<meta property="og:image" content="https://blog.kevinhu.me/2015/01/09/Algorithm-I-Summary/LLRBT_insert_3node.png">
+<meta property="article:published_time" content="2015-01-10T07:54:07.000Z">
+<meta property="article:modified_time" content="2023-10-05T23:42:27.957Z">
+<meta property="article:author" content="Kevin Hu">
+<meta property="article:tag" content="Algorithm">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://blog.kevinhu.me/2015/01/09/Algorithm-I-Summary/HeapRepresentation.png">
+<meta name="twitter:creator" content="@Oldgunix">
+  
+    <link rel="alternative" href="/atom.xml" title="Kevin Hu&#39;s Blog" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+<link href="//https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.9.0/katex.min.css" rel="stylesheet" type="text/css">
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  
+
+
+    <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-8ENJJHKTMX"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+
+    gtag('config', 'G-8ENJJHKTMX');
+  </script>
+
+<meta name="generator" content="Hexo 5.4.0"></head>
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">Kevin Hu&#39;s Blog</a>
+      </h1>
+      
+        <h2 id="subtitle-wrap">
+          <a href="/" id="subtitle">A Hungry Fool</a>
+        </h2>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/About/">About</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="https://blog.kevinhu.me"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-Algorithm-I-Summary" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2015/01/09/Algorithm-I-Summary/" class="article-date">
+  <time datetime="2015-01-10T07:54:07.000Z" itemprop="datePublished">01 09 2015</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/Algorithm/">Algorithm</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      Algorithm I Summary
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>Finally! Just finished all the lecture videos of “Algorithm I” from Coursera, and I believe now it’s a good time to review and summarize.</p>
+<span id="more"></span>
+<p>All contents are based on Coursera course slides, as well as other helpful sites (Wikipedia, StackOverflow, <a target="_blank" rel="noopener" href="http://algs4.cs.princeton.edu/home/">Algorithm - 4th Edition</a> from Princeton U). All pictures are from the slides and the <a target="_blank" rel="noopener" href="http://algs4.cs.princeton.edu/home/">Algorithm - 4th Edition</a>.</p>
+<h2 id="stacks-and-queues"><a class="markdownIt-Anchor" href="#stacks-and-queues"></a> Stacks and Queues</h2>
+<p>Stacks and Queues are probably the most commonly seen data structures seen in the software. Stacks are “First-In-Last-Out”, while Queues are “First-In-First-Out”. The basic operations they support are push() and pop().</p>
+<p>The underlying implementations could be linked-list, arrays and etc… Linked list provides with more flexible memory management, constant time operations, but brings more time overhead and memory overhead for the link operations. Arrays on the other hand, brings tricky issues of resizing, but the operations are also constant time, and has less memory overheads.</p>
+<h2 id="priority-queues-and-heaps"><a class="markdownIt-Anchor" href="#priority-queues-and-heaps"></a> Priority Queues and Heaps</h2>
+<h3 id="priority-queues"><a class="markdownIt-Anchor" href="#priority-queues"></a> Priority Queues</h3>
+<p>Although often mentioned together, Priority Queue and Heap are <a target="_blank" rel="noopener" href="http://en.wikipedia.org/wiki/Priority_queue">different concepts</a>. Priority Queue is an abstract data type which is like a queue or stack data structure, but is often implemented in heaps, just like lists could be implemented as arrays or linked lists.</p>
+<p>Priority Queue, as its name suggests, could give the element with highest priority. Usually it requires O(1) performance for this operation as it’s crucial to many applications, to name a few (From course slides):</p>
+<ul>
+<li>Event-driven simulation [give the next event for simulation]</li>
+<li>Graph searching [Dijkstra’s Algorithm]</li>
+<li>Data compression</li>
+<li>Statistics [Maintain largest M values]</li>
+<li>Operating Systems [Load balancing, interrupt handling]</li>
+<li>…</li>
+</ul>
+<h3 id="heap"><a class="markdownIt-Anchor" href="#heap"></a> Heap</h3>
+<p>Binary Heap is one most common implementation of Priority Heap. It uses a binary tree to maintain the data relationship, and could be implemented with arrays. As shown below. (Picture from slide of <a target="_blank" rel="noopener" href="https://class.coursera.org/algs4partI-006">Coursera Algorithm I Course</a>).</p>
+<p><img src="HeapRepresentation.png" alt="Binary Heap Representation" /></p>
+<p>A Binary Heap has the following properties:</p>
+<ul>
+<li>Is a complete binary tree.</li>
+<li>Largest key is root node of binary tree, which is represented as list[1].</li>
+<li>In array representation, the 0 node is often a dummy node, therefore,</li>
+<li>Parent of node k is at k/2.</li>
+<li>Children of node k are at 2k and 2k+1</li>
+</ul>
+<p>The following operations are supported by Binary Heap:</p>
+<ul>
+<li>
+<p><strong>Insertion</strong>: To insert, add a node at the end, then swim it up. Meaning: keep comparing it with its parent, if larger than parent, then switch position with it.</p>
+</li>
+<li>
+<p><strong>Deletion</strong>: Binary heap supports deletion from the root node (extract the max element). It removes the root node, then replace the root node with the last element on the last level, then sink it. Meaning: keep switching position with the larger one of its children.</p>
+</li>
+</ul>
+<p>Binary Heaps, both insertion and deletion takes O(logN) time to swim or sink, which makes finding max M elements in N O(MlogN).</p>
+<p>For Heap Sort, I’d like to categorize it together with all the sorting algorithms, described as following.</p>
+<h2 id="sorting-algorithms"><a class="markdownIt-Anchor" href="#sorting-algorithms"></a> Sorting Algorithms</h2>
+<h2 id="elementary-sort"><a class="markdownIt-Anchor" href="#elementary-sort"></a> Elementary Sort</h2>
+<p>The elementary sorting algorithm part introduces <strong>Insertion Sort</strong>, <strong>Selection Sort</strong>, along with <strong>Shell Sort</strong>.</p>
+<p><strong>Selection Sort</strong>: As name suggests, selection sort traverse the unsorted part of the list to find the minimum element, and put it in the front of the unsorted part, and consider this element sorted.</p>
+<p>Selection Sort has O(N^2) of average time complexity, even when the list is almost sorted.</p>
+<p><strong>Insertion Sort</strong>: For each element, keep comparing it to the element in front of it and switch position if it’s smaller than the front element, until it’s the larger one.</p>
+<p>It has O(N^2) of average time complexity as well, but only ~N operations when the list is almost sorted, which makes it actually quite useful in certain cases.</p>
+<p><strong>Shell Sort</strong>: The algorithm starts with sorting elements h elements apart with insertion sort, then keep decreasing h to have the list “h-sorted”, until h reaches 1, and the whole list is sorted.</p>
+<p>With these two gap sequences, Shell Sort is known to have <a target="_blank" rel="noopener" href="http://www.sorting-algorithms.com/shell-sort">O(N^3/2) average time complexity</a>, <a target="_blank" rel="noopener" href="http://www.sorting-algorithms.com/shell-sort">O(Nlog(N)) time complexity</a> for nearly sorted lists, which gives it pretty good performance.The value of the gap h is commonly chosen by 3k+1, or an experiment found array of [1, 4, 10, 23, 57, 132, 301, 701]. Also as it doesn’t require function calls, it’s actually used in many cases such as embedded systems, and Linux kernel.</p>
+<h3 id="merge-sort"><a class="markdownIt-Anchor" href="#merge-sort"></a> Merge Sort</h3>
+<p>Merge Sort is best described recursively. It takes the following procedures to the list of elements:</p>
+<ul>
+<li>Divide array into two halves.</li>
+<li>Recursively divide and sort each half.</li>
+<li>Merge two halves in order.</li>
+</ul>
+<p>One important feature of Merge Sort is that, it takes O(N) of extra memory space. Also, it has so much overhead for tiny subarrays. Therefore, for small sized subarrays, Merge Sort could use Insertion Sort for speed up.</p>
+<p>Time complexity for Merge Sort is O(NlogN). It is stable - meaning previously sorted items would not be rearranged by new sorts.</p>
+<h3 id="quick-sort"><a class="markdownIt-Anchor" href="#quick-sort"></a> Quick Sort</h3>
+<p>The steps for quick sort are as follows:</p>
+<ul>
+<li>Choose an element of the list to be the pivot.</li>
+<li>Put all elements smaller than the pivot to the left, elements larger than the pivot to the right.</li>
+<li>Recursively sort the left and right partition.</li>
+<li>Join the left, pivot, and the right.</li>
+</ul>
+<p>Quick Sort, as its name suggests, has the <a target="_blank" rel="noopener" href="http://rosettacode.org/wiki/Sorting_algorithms/Quicksort">reputation for the fastest sort</a>. It has O(NlogN) time complexity, although for certain inputs and bad pivot selection (e.g. a sorted list and first element for pivot), the worst case could be O(N^2). Also, for small subarrays, Quick Sort could use Insertion Sort to reduce overhead.</p>
+<p>One problem with Quick Sort is that its performance decreases when dealing with lists with many identical elements. This could be solved by a variation: The 3 way Quick Sort, which separates the list into 3 separations of less-than, equal, and larger than.</p>
+<p>Quick Sort is known as fast, and is therefore widely used in many system applications.</p>
+<h3 id="heap-sort"><a class="markdownIt-Anchor" href="#heap-sort"></a> Heap Sort</h3>
+<p>The idea for Heap Sort is to create a heap with all the keys, and repeatedly remove the max key. As described above, when the max value is deleted, the last element replaces the root node, and sunk down to the appropriate place.</p>
+<p>One significant feature of Heap Sort is that: it has O(NlogN) worst-case performance. But (From Course Slides):</p>
+<ul>
+<li>Inner loop longer than Quick Sort.</li>
+<li>Cache unfriendly.</li>
+<li>Not stable.</li>
+</ul>
+<h3 id="summary-for-sorting"><a class="markdownIt-Anchor" href="#summary-for-sorting"></a> Summary for Sorting</h3>
+<p>There is an website introducing the details of different sorting algorithms, with sorting animations: <a target="_blank" rel="noopener" href="http://www.sorting-algorithms.com/">http://www.sorting-algorithms.com/</a> . The following table summarizes some of the common sorting algorithms.</p>
+<p>| Algorithm | Average Time | Worst Time | Extra Space | Adaptive | Stable |
+|-----------------------------------|
+| Selection Sort | O(N^2) | O(N^2) | O(1) | No | No |
+| Insertion Sort | O(N^2) | O(N^2) | O(1) | Yes | Yes |
+| Shell Sort | O(N^3/2) | O(N^2) | O(1) | Yes | No |
+| Merge Sort | O(NlogN) | O(N^2) | O(N) | No | Yes |
+| Quick Sort | O(NlogN) | O(N^2) | O(1) | No | No |
+| 3-Way Quick Sort | O(NlogN) | O(N^2) | O(1) | Yes | No |
+| Heap Sort | O(NlogN) | O(NlogN) | O(1) | No | No |</p>
+<h2 id="binary-search-trees"><a class="markdownIt-Anchor" href="#binary-search-trees"></a> Binary Search Trees</h2>
+<p>A Binary Search Tree is a Binary Tree in Symmetric Order. Meaning: each node has a key, that’s larger than all keys in its left subtree, but smaller than all keys in its right subtree.</p>
+<p><strong>Search</strong>: Searching in Binary Search Tree is intuitive: if search key is less than node, go left, if greater, go right, if equal, search hit.</p>
+<p>Search in Binary Tree has average time complexity of O(logN) for N elements.</p>
+<p><strong>Insert</strong>: Inserting in Binary Search Tree is similar to search. It keeps finding in the tree until see NULL node.</p>
+<p>Both Search Insertion requires O(logN) of time in average, but could be O(N) in worst case when the tree is unbalanced (e.g. The tree is inserted in sequential order).</p>
+<p><strong>Deletion</strong>: One famous deletion technique for Binary Search Tree is the <a target="_blank" rel="noopener" href="http://algs4.cs.princeton.edu/32bst/">Hibbard deletion</a>. As Hibbard deletion describes, when deleting:</p>
+<ul>
+<li><strong>Node with one child:</strong> Delete the node and replace it with its child.</li>
+<li><strong>Node with two children:</strong>
+<ul>
+<li>Find the node t to delete.</li>
+<li>Find successor x of t, so that x has no left child (the min in t’s right subtree).</li>
+<li>Put x in t’s spot.</li>
+</ul>
+</li>
+</ul>
+<p>See below:</p>
+<p><img src="bst-delete.png" alt="BST deletion" /></p>
+<p>Deletion is said to have O(sqrt(N)) average time complexity (From course slides), but still suffers from performance worsening when the tree is unbalanced. One way to tackle this issue is to use a Balanced Search Tree, as described below.</p>
+<h2 id="balanced-search-trees"><a class="markdownIt-Anchor" href="#balanced-search-trees"></a> Balanced Search Trees</h2>
+<h3 id="2-3-search-trees"><a class="markdownIt-Anchor" href="#2-3-search-trees"></a> 2-3 Search Trees</h3>
+<p>2-3 Tree has the following properties:</p>
+<ul>
+<li>Allow 1 or 2 keys per node.
+<ul>
+<li>2-node: 1 key, 2 children.</li>
+<li>3-node: 2 keys, 3 children.</li>
+</ul>
+</li>
+<li>In symmetric order.</li>
+<li>Perfect balance: every path from root to null link has same length.</li>
+</ul>
+<p>2-3 Tree is designed to keep the tree perfectly balanced, since all its transformation keeps the tree symmetric.</p>
+<p><strong>Insertion for 2-3 Search Tree:</strong></p>
+<ul>
+<li>Search and find the node to insert in, as in Binary Search Tree.</li>
+<li>If the node is a 2 node, then insert the key to make it a 3 node.</li>
+<li>If the node is a 3 node, then insert the key to make it a temp 4 node, then:
+<ul>
+<li>Split the 4 node, percolate the middle node up to the parent.</li>
+<li>Split the rest 2 keys as two separate 2 nodes.</li>
+<li>If the parent becomes 4 node, recursively split the parent node in the same way.</li>
+</ul>
+</li>
+</ul>
+<p>As shown below:</p>
+<p><img src="23tree-insert3c.png" alt="2-3 Tree Insertion to 3 Node" /></p>
+<p>The idea for 2-3 Tree is a beautiful idea, but complicated in implementation. So there are variations and derivations of implementations. Red-Black Tree is one of them.</p>
+<h3 id="red-black-trees"><a class="markdownIt-Anchor" href="#red-black-trees"></a> Red-Black Trees</h3>
+<p>One variation of Red-Black Tree discussed in the course is called the Left-Leaning Red-Black Tree. (Guibas-Sedgewick 1979 and Sedgewick 2007, and Sedgewick is the instructor of this online course!)</p>
+<p>LLRBT uses a red node to represent the glue for 3-nodes in 2-3 Tree. Therefore it has the following properties:</p>
+<ul>
+<li>No node has two red links connected to it.</li>
+<li>Every path from root to null link has the same number of black links. (Because the corresponding 2-3 Tree is balanced.)</li>
+<li>Red links lean left.</li>
+</ul>
+<p>To understand the operations in LLRBT, we can build all operations with the following basic operations:</p>
+<ul>
+<li><strong>Left Rotation:</strong> Orient a temporarily right-leaning red link to lean left.
+as follows:
+<img src="redblack-left-rotate.png" alt="Left Rotate In LLRBT" /></li>
+<li><strong>Right Rotation:</strong> Same as Left Rotation, rotate node to the right.</li>
+<li><strong>Color Flip:</strong> If a node has two red children, flip the color of children to black and mark itself red.</li>
+</ul>
+<p>And with these basic transformations, we can operate with insertion on the LLRBT, in case of following scenarios:</p>
+<ul>
+<li><strong>Inserting into a single node</strong> (A 2 node in 2-3 Tree):
+<ul>
+<li><strong>Insert to the left:</strong> Add to the left, and mark the new node red.</li>
+<li><strong>Insert to the right:</strong> Add to the right, and since there’s a right-leaning red link, left rotate its parent node, to make the parent a left-leaning red node.</li>
+</ul>
+</li>
+<li><strong>Inserting into a 3 node</strong>:
+<ul>
+<li><strong>To the left of a 3 node:</strong> This makes its parent in the middle of two left leaning red links. Right rotate the parent node, and flip color.</li>
+<li><strong>To the center of a 3 node:</strong> This makes its parent in the middle of a two red links, the parent node is left leaning, and the inserted node is left leaning. Left rotate the parent node, then right flip the inserted node, then flip color.</li>
+<li><strong>To the right of a 3 node:</strong> This makes the parent has two red children, then flip color.</li>
+</ul>
+</li>
+</ul>
+<p>As the graph shows:</p>
+<p><img src="LLRBT_insert_3node.png" alt="Basic operations for inserting into 3-node in LLRBT" /></p>
+<p>Although the operations in each cases look really complicated, the actual code could be made concise and elegant using with recursion. To keep in mind that all these operations are used to guarantee that the tree is fully balanced, and there are no right leaning red links.</p>
+<p>The Java example for inserting in LLRBT from the course slide is shown as follows. The insertion searches in the tree for appropriate insert position, and add a new red node at the end. Then determine if the node is violating the properties for LLRBT (Right leaning red node? Two consecutive red links? …), and operate on the node accordingly.</p>
+<p>Code example for LLRBT insertion in Java:</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">private</span> Node <span class="title">put</span><span class="params">(Node h, Key key, Value val)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (h == NULL) <span class="keyword">return</span> <span class="keyword">new</span> Node(key, val, RED);</span><br><span class="line">    <span class="keyword">int</span> cmp = key.compareTo(h.key);</span><br><span class="line">    <span class="keyword">if</span>      (cmp &lt; <span class="number">0</span>) h.left = put(h.left, key, val);</span><br><span class="line">    <span class="keyword">else</span> <span class="keyword">if</span> (cmp &gt; <span class="number">0</span>) h.right = put(h.right, key, val);</span><br><span class="line">    <span class="keyword">else</span>              h.val = val;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span> (isRed(h.right) &amp;&amp; !isRed(h.left))    h = rotateLeft(h);</span><br><span class="line">    <span class="keyword">if</span> (isRed(h.left) &amp;&amp; isRed(h.left.left)) h = rotateRight(h);</span><br><span class="line">    <span class="keyword">if</span> (isRed(h.left) &amp;&amp; !isRed(h.right))    flipColors(h);</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> h;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="symbol-tables-and-hash-tables"><a class="markdownIt-Anchor" href="#symbol-tables-and-hash-tables"></a> Symbol Tables And Hash Tables</h2>
+<p>The Symbol Table, again, is an abstract data type, which maps from keys to values. It supports operations of insertion, deletion, search by key, and etc… It’s commonly implemented with Hash Tables, which is used everywhere. Some languages have built-in support for Hash Tables.</p>
+<h3 id="hash-table"><a class="markdownIt-Anchor" href="#hash-table"></a> Hash Table</h3>
+<p>Hash Table is a key-indexed table, that maps from its keys to value, and index is a function of the key (hashing function).</p>
+<p>The ideal scenario is that the index distributed uniformly in the hashing index, so that the access to each element requires O(1) time. Somehow when there are collisions, there are two ways to resolve collisions.</p>
+<p><strong>Separate Chaining:</strong> For separate chaining, each collision is stored under the same index, but uses a linked-list to store all the elements under the same index.</p>
+<p><strong>Open Addressing:</strong> In case of a collision, the Hash Table probes the array for the next available position of inserting. There are more than one way to find the next available slot:</p>
+<ul>
+<li>Linear Probing.</li>
+<li>Quadratic Probing.</li>
+<li>Double Hashing.</li>
+</ul>
+<p>While for linear probing, when the array gets too full, the performance for searching and insertion degrades drastically. It keeps relatively good performance when the array is under 50% full.</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://blog.kevinhu.me/2015/01/09/Algorithm-I-Summary/" data-id="clndtserd0009z0ey0v1e1kku" class="article-share-link">Share</a>
+      
+        <a href="https://blog.kevinhu.me/2015/01/09/Algorithm-I-Summary/#disqus_thread" class="article-comment-link">Comments</a>
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Algorithm/" rel="tag">Algorithm</a></li></ul>
+
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2015/03/07/Bithacks/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          BitHacks
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2015/01/02/Paper-Reading-Fundamental-Concepts-In-Programming-Languages/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">Paper Reading - Fundamental Concepts In Programming Languages</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+
+<section id="comments">
+  <div id="disqus_thread">
+    <noscript>Please enable JavaScript to view the <a target="_blank" rel="noopener" href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+  </div>
+</section>
+</section>
+        
+          <aside id="sidebar">
+  
+    
+    <div class="widget-wrap">
+        <h3 class="widget-title">Follow Me</h3>
+        <div class="widget">
+            <a target="_blank" rel="noopener" href="https://twitter.com/Oldgunix?ref_src=twsrc%5Etfw" class="twitter-follow-button"
+                data-show-count="false">Follow @Oldgunix</a>
+            <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+        </div>
+    </div>
+    
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recents</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2024/02/24/25-making-a-toygrad/">Making a Toy Gradient Descent Implementation</a>
+          </li>
+        
+          <li>
+            <a href="/2023/09/02/03-Paper-Readings-on-LLM-Task-Performing-ii/">Paper Readings on LLM Task Performing - II</a>
+          </li>
+        
+          <li>
+            <a href="/2023/07/09/Hacking-LangChain-for-fun-and-profit/">Hacking LangChain For Fun and Profit - I</a>
+          </li>
+        
+          <li>
+            <a href="/2023/06/11/Paper-Readings-on-LLM-Task-Performing/">Paper Readings on LLM Task Performing</a>
+          </li>
+        
+          <li>
+            <a href="/2022/09/03/03-openapi-generator/">OpenAPI Generator For Go Web Development</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Categories</h3>
+    <div class="widget">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Algorithm/">Algorithm</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/BookReview/">BookReview</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/CodeReading/">CodeReading</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Coding/">Coding</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/ComputerSystem/">ComputerSystem</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Diary/">Diary</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Golang/">Golang</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Learning/">Learning</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Paper/">Paper</a><span class="category-list-count">5</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/PaperReading/">PaperReading</a><span class="category-list-count">11</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Programming/">Programming</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/ProgrammingLanguage/">ProgrammingLanguage</a><span class="category-list-count">4</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Reading/">Reading</a><span class="category-list-count">25</span></li></ul>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tag Cloud</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/AI/" style="font-size: 15px;">AI</a> <a href="/tags/API/" style="font-size: 10px;">API</a> <a href="/tags/Algorithm/" style="font-size: 10px;">Algorithm</a> <a href="/tags/Aurora/" style="font-size: 10px;">Aurora</a> <a href="/tags/BitHacks/" style="font-size: 10px;">BitHacks</a> <a href="/tags/BookReview/" style="font-size: 16.67px;">BookReview</a> <a href="/tags/Borg/" style="font-size: 10px;">Borg</a> <a href="/tags/C/" style="font-size: 10px;">C</a> <a href="/tags/C/" style="font-size: 10px;">C++</a> <a href="/tags/C-C/" style="font-size: 11.67px;">C/C++</a> <a href="/tags/Cassandra/" style="font-size: 13.33px;">Cassandra</a> <a href="/tags/Channel/" style="font-size: 11.67px;">Channel</a> <a href="/tags/ChatGPT/" style="font-size: 13.33px;">ChatGPT</a> <a href="/tags/CodeReading/" style="font-size: 11.67px;">CodeReading</a> <a href="/tags/Coding/" style="font-size: 10px;">Coding</a> <a href="/tags/Compilers/" style="font-size: 11.67px;">Compilers</a> <a href="/tags/Concurrency/" style="font-size: 10px;">Concurrency</a> <a href="/tags/Data-Science/" style="font-size: 10px;">Data Science</a> <a href="/tags/Database/" style="font-size: 15px;">Database</a> <a href="/tags/Datacenter/" style="font-size: 10px;">Datacenter</a> <a href="/tags/Debug/" style="font-size: 10px;">Debug</a> <a href="/tags/DistributedSystems/" style="font-size: 16.67px;">DistributedSystems</a> <a href="/tags/Docker/" style="font-size: 10px;">Docker</a> <a href="/tags/FPGA/" style="font-size: 10px;">FPGA</a> <a href="/tags/Golang/" style="font-size: 15px;">Golang</a> <a href="/tags/HPC/" style="font-size: 10px;">HPC</a> <a href="/tags/Hugepage/" style="font-size: 10px;">Hugepage</a> <a href="/tags/Internet/" style="font-size: 10px;">Internet</a> <a href="/tags/Julia/" style="font-size: 10px;">Julia</a> <a href="/tags/Kafka/" style="font-size: 10px;">Kafka</a> <a href="/tags/LLM/" style="font-size: 13.33px;">LLM</a> <a href="/tags/Learning/" style="font-size: 20px;">Learning</a> <a href="/tags/Linux/" style="font-size: 13.33px;">Linux</a> <a href="/tags/Log/" style="font-size: 10px;">Log</a> <a href="/tags/Machine-Learning/" style="font-size: 10px;">Machine Learning</a> <a href="/tags/Mesos/" style="font-size: 10px;">Mesos</a> <a href="/tags/Multithread/" style="font-size: 10px;">Multithread</a> <a href="/tags/Mutex/" style="font-size: 10px;">Mutex</a> <a href="/tags/NLP/" style="font-size: 13.33px;">NLP</a> <a href="/tags/NoSQL/" style="font-size: 13.33px;">NoSQL</a> <a href="/tags/Paper/" style="font-size: 10px;">Paper</a> <a href="/tags/PaperReading/" style="font-size: 20px;">PaperReading</a> <a href="/tags/Password/" style="font-size: 11.67px;">Password</a> <a href="/tags/Programming/" style="font-size: 13.33px;">Programming</a> <a href="/tags/ProgrammingLanguage/" style="font-size: 13.33px;">ProgrammingLanguage</a> <a href="/tags/Python/" style="font-size: 13.33px;">Python</a> <a href="/tags/Ray/" style="font-size: 10px;">Ray</a> <a href="/tags/Reading/" style="font-size: 18.33px;">Reading</a> <a href="/tags/Social/" style="font-size: 10px;">Social</a> <a href="/tags/Sociology/" style="font-size: 10px;">Sociology</a> <a href="/tags/Technology/" style="font-size: 13.33px;">Technology</a> <a href="/tags/Undefined-Behavior/" style="font-size: 11.67px;">Undefined Behavior</a> <a href="/tags/WeeklyPaper/" style="font-size: 10px;">WeeklyPaper</a> <a href="/tags/WorldWideWeb/" style="font-size: 10px;">WorldWideWeb</a> <a href="/tags/Zookeeper/" style="font-size: 10px;">Zookeeper</a> <a href="/tags/infrastructure/" style="font-size: 10px;">infrastructure</a> <a href="/tags/openAPI/" style="font-size: 10px;">openAPI</a> <a href="/tags/systems/" style="font-size: 10px;">systems</a> <a href="/tags/tracing/" style="font-size: 10px;">tracing</a> <a href="/tags/web/" style="font-size: 10px;">web</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/02/">February 2024</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/09/">September 2023</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/07/">July 2023</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/06/">June 2023</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/09/">September 2022</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/06/">June 2022</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/09/">September 2021</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/08/">August 2021</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/05/">May 2021</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/04/">April 2021</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/11/">November 2020</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/07/">July 2020</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/04/">April 2020</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/01/">January 2020</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/11/">November 2019</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/09/">September 2019</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/08/">August 2019</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/05/">May 2019</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/04/">April 2019</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/03/">March 2019</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/02/">February 2019</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/01/">January 2019</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/10/">October 2018</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/09/">September 2018</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/07/">July 2018</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/05/">May 2018</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/06/">June 2017</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/03/">March 2017</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/01/">January 2017</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/11/">November 2016</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/09/">September 2016</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/08/">August 2016</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/05/">May 2016</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/02/">February 2016</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/12/">December 2015</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/11/">November 2015</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/10/">October 2015</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/04/">April 2015</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/03/">March 2015</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/01/">January 2015</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/11/">November 2014</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/10/">October 2014</a><span class="archive-list-count">4</span></li></ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2024 Kevin Hu<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/About/" class="mobile-nav-link">About</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+<script>
+  var disqus_shortname = 'kevinhustechblog';
+  
+  var disqus_url = 'https://blog.kevinhu.me/2015/01/09/Algorithm-I-Summary/';
+  
+  (function(){
+    var dsq = document.createElement('script');
+    dsq.type = 'text/javascript';
+    dsq.async = true;
+    dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+    (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+  })();
+</script>
+
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+
+  
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+
+
+<script src="/js/script.js"></script>
+
+
+  </div>
+</body>
+</html>
