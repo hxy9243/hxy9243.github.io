@@ -10,12 +10,13 @@ tags: ['Learning', 'AI']
 # 1 Introduction
 
 I've recently came across a few of [Andrej Karpathy](https://karpathy.ai/)'s
-[video tutorial series](https://www.youtube.com/@AndrejKarpathy) on various topics
+[video tutorial series](https://www.youtube.com/@AndrejKarpathy)
 on Machine Learning and I found them immensely fun and educational.
 I highly appreciate his hands-on approach to teaching basic concepts of Machine Learning.
 
-Richard Feynman once famously stated that "What I cannot create, I do not understand".
-So here's my attempt to create a toy implementation to better understand the core algorithm that powers Deep Learning,
+Richard Feynman once famously stated that "What I cannot create, I do not understand."
+So here's my attempt to create a toy implementation of gradient descent,
+to better understand the core algorithm that powers Deep Learning
 after learning from by Karpathy's [video tutorial of micrograd](https://www.youtube.com/@AndrejKarpathy):
 
 https://github.com/hxy9243/toygrad
@@ -35,7 +36,7 @@ And this blog post is my notes during this experience. Even writing this post he
 
 ## 2.1 Chain Rule
 
-In differentiation, the chain rule shows the basic rules for finding the derivative
+In Calculus, the chain rule of derivative shows the basic rules for finding the derivatives
 of the composite functions.
 
 As we learned from Calculus class, the chain rule states:
@@ -58,7 +59,7 @@ It calcuates the gradient backwards through the feed-foward network from the las
 
 There are 4 steps to the Backpropagation algorithm:
 
-- __Forward Pass__: where the input data is fed through the model (e.g. a Dense Neural Network) and get the prediction output.
+- __Forward Pass__: where the input data is fed through the model (e.g. a Deep Neural Network) and get the prediction output.
 - __Loss Computation__: where the prediction output is compared with the actual fed data with a function
   (e.g. Mean Squred Error, or Cross Entropy Loss). This is the loss function that we'll aim to minimize ($loss = J(w)$).
 - __Backward Pass__: this is where gradient descent comes in.
@@ -67,20 +68,19 @@ There are 4 steps to the Backpropagation algorithm:
 - __Update Parameters__: After getting the gradients for each parameter, we update all parameters by substracting the gradient timed by
   a small value that we call the learning rate.
 
-And we repeat this 4-step process until we reach close to the minimal loss value.
+And we repeat this 4-step process until the loss is close to the minimal value.
 
 Conceptually, the gradients represent the slope rate at the level of the current parameters. So we could substract the parameters at
 the direction of the gradient by a small amount (decided by the learning rate). It's a process of moving the loss function closer
-to the minimal value, at the speed of the learning rate.
+to the minimal value, at a speed defined by learning rate.
+
+There are a lot of tricks and optimizations to adjusting the learning rate, but that's outside the scope of this discussion.
 
 ## 2.3 AutoGrad
 
 AutoGrad, or Automatic Differentiation, is the core of the backpropagation algorithm in the backward step.
-It applies the gradient by chain rule in a reverse manner, calculating the derivative of all
-the function inputs by applying the gradient backwards in the compute graph.
-
-It's the core of training any ML model with Gradient Descent. It applies the backpropagation
-on the loss of the function and the training data, to find the optimal model parameters.
+It computes the gradients of all parameters in a reverse manner, calculating the derivative of all
+parameters of the function by applying the gradient backwards in the compute graph.
 
 And here's the explanation why the AutoGrad algorithm makes sense.
 
@@ -88,7 +88,7 @@ https://pytorch.org/tutorials/beginner/blitz/autograd_tutorial.html#differentiat
 
 ![Autograd explanation, from Karpathy's tutorial](https://raw.githubusercontent.com/karpathy/micrograd/c911406e5ace8742e5841a7e0df113ecb5d54685/gout.svg)
 
-The AutoGrad algorithm could be derived by:
+The AutoGrad algorithm could be derived by the chain rule. The chain rule in Calculus states that:
 
 $$
 \frac{\partial y}{\partial x} = \frac{\partial y}{\partial w1} \cdot \frac{\partial w1}{\partial x}
@@ -96,8 +96,8 @@ $$
 = ((\frac{\partial y}{\partial w3} \cdot \frac{\partial w3}{\partial w2}) \cdot \frac{\partial w2}{\partial w1}) \cdot \frac{\partial w1}{\partial x}
 $$
 
-Assuming in this simple case, where w3 is the result of a computation from w2, i.e. the successor of w2 in the compute graph,
-we can derive:
+Assuming in this simple case, w3 is the result of a computation from w2, i.e. the successor of w2 in the compute graph,
+we can derive that:
 
 $$
 \frac{\partial y}{\partial w2} = \frac{\partial y}{\partial w3} \cdot \frac{\partial w3}{\partial w2}
@@ -109,8 +109,8 @@ $$ \bar{w}_{i} = \frac{\partial{y}}{\partial w_{i}} $$
 
 would be the sum of all gradients of its successors in the operation.
 
-
-With this chain rule in mind, we could start with the seed 1 at the result of the equation (as $\frac{\partial y}{\partial y} = 1$), and back-propagate the gradients back to all intermediate variables and parameters.
+With this chain rule in mind, we could start with the final result of the equation and work upward the compute graph.
+It has a seed gradient value of 1 (as $\frac{\partial y}{\partial y} = 1$), and back-propagate the gradients back to all intermediate parameters.
 
 See more at: https://en.wikipedia.org/wiki/Automatic_differentiation#Reverse_accumulation
 
@@ -154,6 +154,12 @@ class Value:
     ...
 ```
 
+By calling `backward()` on the final result of the compute graph, we first assign a gradient of 1 to the final value,
+and compute the gradients of all operands of the final value. We can do it in two steps:
+
+- Create a compute order by reversely traversing the compute graph (a reverse topological sort).
+- Apply the `backward()` function on each one of the values in the compute order, thus updating the gradients of all parameters.
+
 ## 3.2 Neural Network Design
 
 With the Value engine designed, we could now chain these value computation to form a feed-forward neural network
@@ -163,9 +169,10 @@ with dense layers, where all Values are connected to the next layer's values.
 
 We'll also need code for:
 
-- Neural network: create the layers and the whole neural network. Each layer could be defined as the matrix multiplication of the weights and previous layer added by bias.
-- Parameter update: for each step, update the parameters.
-- Input and output: define the input and output of the neural network.
+- __Linear Dense Layer__: a dense layer connects to all weights from previous layer, added by a bias: $y = W \cdot X + b$.
+- __Neural network__: create the layers and the whole neural network. Each layer could be defined as the matrix multiplication of the weights and previous layer added by bias. We can then call the `forward()` and `backward()` step on the neural network after feeding it the training input and output data.
+- __Parameter update__: for each training iteration step, update all the parameters. This is usually done by the optimizer in a real implementation.
+- __Training process__: we glue everything together in the training step implementation.
 
 Here's an outline of the code that describes the steps to a model definition and training process:
 
@@ -217,7 +224,7 @@ class Model(Module):
 
 If you reached this far, I highly recommend the [video tutorial of micrograd](https://www.youtube.com/@AndrejKarpathy)
 from Andrej Karpathy himself, along with [his implementation](https://github.com/karpathy/micrograd).
-He explains it much better than I could.
+He explains it way better than I could.
 
 Also let me know if you found any problems in this blog post or my version of implementation:
 
