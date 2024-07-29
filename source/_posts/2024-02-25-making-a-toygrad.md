@@ -28,9 +28,11 @@ and didn't really fully understand.
 
 And this blog post is my notes during this experience. Even writing this post helped my understanding in many ways.
 
+![Training and inference example using toygrad](input_predict_chart.png)
+
 <!--more-->
 
-![Training and inference example using toygrad](input_predict_chart.png)
+
 
 # 2 Key Concepts
 
@@ -41,11 +43,15 @@ of the composite functions.
 
 As we learned from Calculus class, the chain rule states:
 
-$$ \frac{df(g(x))}{dx} = \frac{df}{dg} \cdot \frac{dg}{dx} $$
+$$
+\frac{df(g(x))}{dx} = \frac{df}{dg} \cdot \frac{dg}{dx} 
+$$
 
 For example, the derivative of the function $f(x) = sin x^2$ is:
 
-$$ \frac{dsin(x^2)}{dx} = \frac{dsin(x^2)}{dx} \cdot \frac{dx^2}{x} = cos(x^2) \cdot 2x $$
+$$
+\frac{dsin(x^2)}{dx} = \frac{dsin(x^2)}{dx} \cdot \frac{dx^2}{x} = cos(x^2) \cdot 2x
+$$
 
 With chain-rule, we could derive the auto-grad algorithm to implement backpropagation
 on complex compute graphs.
@@ -105,7 +111,7 @@ $$
 
 When we need to find the gradients of all the parameters, we just need to apply this chain rule backward the computational graph. The gradient of each intermediate variables, denoted as:
 
-$$ \bar{w}_{i} = \frac{\partial{y}}{\partial w_{i}} $$
+$$ \bar w_{i} = \frac{\partial{y}}{\partial w_{i}} $$
 
 would be the sum of all gradients of its successors in the operation.
 
@@ -165,7 +171,7 @@ and compute the gradients of all operands of the final value. We can do it in tw
 With the Value engine designed, we could now chain these value computation to form a feed-forward neural network
 with dense layers, where all Values are connected to the next layer's values.
 
-![Example Neural Network, form Wikipedia](https://upload.wikimedia.org/wikipedia/en/5/54/Feed_forward_neural_net.gif)
+![Example Neural Network, form Wikipedia](https://upload.wikimedia.org/wikipedia/commons/5/54/Feed_forward_neural_net.gif)
 
 We'll also need code for:
 
