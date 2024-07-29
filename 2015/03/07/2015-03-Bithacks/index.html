@@ -1,0 +1,351 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>BitHacks | Kevin Hu&#39;s Blog</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="I’ve recently come across a very interesting article on BitHacks – the low level magics for bit level operations. Some of the tricks introduced here are really excellently clever, some of them may eve">
+<meta property="og:type" content="article">
+<meta property="og:title" content="BitHacks">
+<meta property="og:url" content="https://blog.kevinhu.me/2015/03/07/2015-03-Bithacks/index.html">
+<meta property="og:site_name" content="Kevin Hu&#39;s Blog">
+<meta property="og:description" content="I’ve recently come across a very interesting article on BitHacks – the low level magics for bit level operations. Some of the tricks introduced here are really excellently clever, some of them may eve">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2015-03-08T05:22:30.000Z">
+<meta property="article:modified_time" content="2024-07-28T05:40:13.497Z">
+<meta property="article:author" content="Kevin Hu">
+<meta property="article:tag" content="BitHacks">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:creator" content="@Oldgunix">
+  
+    <link rel="alternative" href="/atom.xml" title="Kevin Hu&#39;s Blog" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  
+
+
+    <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-8ENJJHKTMX"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+
+    gtag('config', 'G-8ENJJHKTMX');
+  </script>
+
+<!-- hexo injector head_end start -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.css">
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/hexo-math@4.0.0/dist/style.css">
+<!-- hexo injector head_end end --><meta name="generator" content="Hexo 7.3.0"></head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">Kevin Hu&#39;s Blog</a>
+      </h1>
+      
+        <h2 id="subtitle-wrap">
+          <a href="/" id="subtitle">A Hungry Fool</a>
+        </h2>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/About/">About</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="https://blog.kevinhu.me"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-2015-03-Bithacks" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2015/03/07/2015-03-Bithacks/" class="article-date">
+  <time datetime="2015-03-08T05:22:30.000Z" itemprop="datePublished">03 07 2015</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/Algorithm/">Algorithm</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      BitHacks
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>I’ve recently come across a very interesting article on <a href="https://graphics.stanford.edu/~seander/bithacks.html">BitHacks</a> – the low level magics for bit level operations. Some of the tricks introduced here are really excellently clever, some of them may even make you exclaim for their genius!</p>
+<p>I had a lot of fun reading through some of the BitHacks. It’s also worth noticing these BitHacks are not only for intellectual pleasures, they provide actual boosts to algorithm performance as well. When an operations is used often enough, the overall performance benefits to the whole program might be significant.</p>
+<p>I couldn’t help but keep wondering how on earth did these clever CS guys ever come up with such algorithms. I tried very hard to find some answers and the following are some patterns I noticed in this attempt. Still, honestly, I highly doubt if I can come up with same solutions myself if I ever run into these problems again. Some of them are just to clever.</p>
+<span id="more"></span>
+
+<h2 id="Some-examples"><a href="#Some-examples" class="headerlink" title="Some examples"></a>Some examples</h2><ul>
+<li><a href="https://graphics.stanford.edu/~seander/bithacks.html#CopyIntegerSign">Compute the sign of an integer</a></li>
+</ul>
+<p>The beauty part of bit hackings is that most of the times they avoid branching in CPU, which could be expensive for modern pipelining CPUs, as a misprediction in branching means flushing operations, causing waste in time and power.</p>
+<p>For example, to compute the sign of an integer, instead of using branching, we can use the following code:</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">int</span> v;       <span class="comment">// the integer</span></span><br><span class="line"><span class="type">int</span> sign;    <span class="comment">// the sign of the integer</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// CHAR_BIT is the number of bits per byte (normally 8). </span></span><br><span class="line"><span class="comment">// But for compatibility issues, here uses CHAR_BIT instead.</span></span><br><span class="line"></span><br><span class="line">sign = - (v &lt; <span class="number">0</span>);   <span class="comment">// sign = -1 when v is negative</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// return -1 when v is negative, 0 when 0, and 1 when positive:</span></span><br><span class="line"><span class="comment">// cast v to be unsigned, right shift the sign bit to the LSB, cast it back</span></span><br><span class="line"><span class="comment">// to integer, and assign the sign.</span></span><br><span class="line">sign = (v != <span class="number">0</span>) | -(<span class="type">int</span>)((<span class="type">unsigned</span>)((<span class="type">int</span> v) &gt;&gt; (<span class="keyword">sizeof</span>(<span class="type">int</span>) * CHAR_BIT - <span class="number">1</span>));</span><br><span class="line"></span><br><span class="line"><span class="comment">// Or for better speed</span></span><br><span class="line">sign = (v &gt; <span class="number">0</span>) - (v &lt; <span class="number">0</span>);</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li><a href="https://graphics.stanford.edu/~seander/bithacks.html#DetermineIfPowerOf2">Determine if integer is power of 2</a></li>
+</ul>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// One interesting feature of an integer to the power of 2:</span></span><br><span class="line"><span class="comment">// v &amp; (v - 1) == 0</span></span><br><span class="line"><span class="comment">// 0 is also incorrectly considered to be a power of 2 with</span></span><br><span class="line"><span class="comment">// the above equation, but the fix is simple</span></span><br><span class="line"></span><br><span class="line">f = v &amp;&amp; !(v &amp; (v - <span class="number">1</span>));</span><br></pre></td></tr></table></figure>
+
+
+<ul>
+<li><a href="https://graphics.stanford.edu/~seander/bithacks.html#IntegerMinOrMax">Find the min or max of two integers</a>.</li>
+</ul>
+<p>The effect shall be the same as</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">max = x &gt; y ? x : y;</span><br><span class="line">min = x &lt; y ? x : y;</span><br></pre></td></tr></table></figure>
+
+<p>Somehow the above approach also use branch to determine value. A BitHack way is to:</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">result = x ^ ((x ^ y) &amp; -(x &lt; y));</span><br></pre></td></tr></table></figure>
+
+<p>Amazing! Isn’t it? Here when x &lt; y, -(x &lt; y) evaluates to -1, which is all 1s in binary representation. The result will then evaluates to:</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">x ^ (x ^ y)</span><br></pre></td></tr></table></figure>
+
+<p>Which is y. While when x &gt; y, -(x &lt; y) evaluates to 0, and the result will be assigned x.</p>
+<p>This is a very interesting feature of the XOR operation. Remember how XOR could be used to exchange the value of two numbers without extra memory:</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">a = a ^ b;</span><br><span class="line">b = a ^ b;  <span class="comment">// (a ^ b) ^ b</span></span><br><span class="line">a = a ^ b;  <span class="comment">// (a ^ b) ^ a</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// Here a and b are exchanged</span></span><br></pre></td></tr></table></figure>
+
+<p>XOR has many interesting features, and is a very important operations in BitHacks. Here’s another example.</p>
+<ul>
+<li><a href="https://graphics.stanford.edu/~seander/bithacks.html#IntegerAbs">Absolute value of an integer</a></li>
+</ul>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">mask = v &gt;&gt; (<span class="keyword">sizeof</span>(<span class="type">int</span>) * CHAR_BIT - <span class="number">1</span>);</span><br><span class="line"></span><br><span class="line">result = (v + mask) ^ mask;</span><br></pre></td></tr></table></figure>
+
+<p>When v is positive, mask is 0, result will be assigned v. And when v is negative, mask will evaluate to -1 (all 1s in binary), and the result will be (v - 1) ^ (-1). As XORing all 1s gives the NOT of an integer (v ^ -1 &#x3D;&#x3D; ~v), the result becomes ~(v - 1). Not surprisingly, this is the negative value of v.</p>
+<p>An alternative but similar approach is:</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">result = (v ^ mask) - mask;</span><br></pre></td></tr></table></figure>
+
+
+<h2 id="Some-Observations"><a href="#Some-Observations" class="headerlink" title="Some Observations"></a>Some Observations</h2><p>I believe some general guidelines could be useful for inventing our own BitHacks could be useful, but the post did not mention any special techniques, and some of the hacks seems really ad-hoc (sure, that’s why they’re called “hacks”, right?). Nevertheless, the following is some observations I had when reading. Keeping these in mind might help the next time when inventing BitHacks.</p>
+<h3 id="Use-AND-OR-shift-and-masking"><a href="#Use-AND-OR-shift-and-masking" class="headerlink" title="Use AND, OR, shift and masking"></a>Use AND, OR, shift and masking</h3><p>Use AND to clear the bit field, OR to set the bit field, and use shift to move important bit to the right position. Use a carefully designed mask to clear or set the fields.</p>
+<p>An excellent example could be found in <a href="https://graphics.stanford.edu/~seander/bithacks.html#CountBitsSetParallel">here: counting bit set, in parallel</a>.</p>
+<p>In the example, instead of iterating all the bit fields in the given integer, we could use a mask to mask the fields, and merge the all the counts, a bit like reduce in the map-reduce. In this way, no loops are required to count the bit sets.</p>
+<p>The operations could be explained as follows:</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// first, I randomly pick a 32-bit integer to count bits set</span></span><br><span class="line"><span class="comment">// value: 0110 1000 1011 0100  0101 1001 1011 1110</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// MASK1: 0101 0101 0101 0101  0101 0101 0101 0101</span></span><br><span class="line"><span class="comment">//         1 0  0 0  0 1  1 0   1 1  0 1  0 1  1 0</span></span><br><span class="line"><span class="comment">// +       0 1  1 0  1 1  0 0   0 0  1 0  1 1  1 1</span></span><br><span class="line"><span class="comment">// c   :  0101 0100 0110 0100  0101 0101 0110 1001</span></span><br><span class="line"><span class="comment">// The idea is to find the bit counts for every two bits.</span></span><br><span class="line"><span class="comment">// To achieve so, using mask and shift, we can shift the value</span></span><br><span class="line"><span class="comment">// 1 to the right and add the masked original value together,</span></span><br><span class="line"><span class="comment">// as following:</span></span><br><span class="line"></span><br><span class="line">c = ((v &gt;&gt; <span class="number">1</span>) &amp; MASK0) + (v &amp; MASK0);</span><br><span class="line"></span><br><span class="line"><span class="comment">// Although here the post uses a faster way;</span></span><br><span class="line"><span class="comment">// c = v - ((v &gt;&gt; 1) &amp; MASK0);</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// Then add the counts for each 4 bits. The mask becomes:</span></span><br><span class="line"><span class="comment">// MASK1: 0011 0011 0011 0011  0011 0011 0011 0011</span></span><br><span class="line"></span><br><span class="line">c = ((c &gt;&gt; <span class="number">2</span>) &amp; MASK1) + (c &amp; MASK1);</span><br><span class="line"></span><br><span class="line"><span class="comment">// After this operation, then find the count in every 8 bits,</span></span><br><span class="line"><span class="comment">// and every 16 bits, and every 32 bits. The final count would</span></span><br><span class="line"><span class="comment">// be what we want.</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// MASK2: 0000 1111 0000 1111  0000 1111 0000 1111</span></span><br><span class="line"><span class="comment">// MASK3: 0000 0000 1111 1111  0000 0000 1111 1111</span></span><br><span class="line"><span class="comment">// MASK4: 0000 0000 0000 0000  1111 1111 1111 1111</span></span><br><span class="line"></span><br><span class="line">c = ((c &gt;&gt; <span class="number">4</span>) &amp; MASK2) + (c &amp; MASK2);</span><br><span class="line">c = ((c &gt;&gt; <span class="number">8</span>) &amp; MASK3) + (c &amp; MASK3);</span><br><span class="line">c = ((c &gt;&gt; <span class="number">16</span>) &amp; MASK4) + (c &amp; MASK4);</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<h3 id="XOR-operation"><a href="#XOR-operation" class="headerlink" title="XOR operation"></a>XOR operation</h3><p>The XOR operation has many interesting features which could be used cleverly in BitHacks.</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">int</span> value, other;</span><br><span class="line"></span><br><span class="line">value ^ <span class="number">0</span> == value;</span><br><span class="line">value ^ <span class="number">0xFFFFFFFF</span> == ~value;</span><br><span class="line">value ^ (<span class="number">-1</span>) == ~value;           <span class="comment">// same as above</span></span><br><span class="line">value ^ value == <span class="number">0</span></span><br><span class="line">value ^ (value ^ other) == other;</span><br></pre></td></tr></table></figure>
+
+<p>The previous, and some following examples all uses these features to efficiently “hack the bits”. For example: exchanging values without extra memory, finding absolute value, finding the min or max of two values.</p>
+<h3 id="Two’s-complements"><a href="#Two’s-complements" class="headerlink" title="Two’s complements"></a>Two’s complements</h3><p>In the previous example: Absolute value of an integer, a mask was used to conditionally find the original and the negative value, by setting the mask to either 0 or all 1s, which is -1 in integer representation. The negative value of v could be found by very simple operations:</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">v = ~v + <span class="number">1</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// here to find the value of ~v, one could use v ^ -1.</span></span><br><span class="line"><span class="comment">// And since (v ^ 0 == v), we can easily come up with</span></span><br><span class="line"><span class="comment">// the solution to find the abs of v.</span></span><br><span class="line"></span><br><span class="line">v = (v ^ mask) - mask</span><br><span class="line"></span><br><span class="line"><span class="comment">// or its alternative, as described previously</span></span><br><span class="line">v = (v + mask) ^ mask</span><br></pre></td></tr></table></figure>
+
+<p>Taking advantage of this property, we can also come up with a way to <a href="https://graphics.stanford.edu/~seander/bithacks.html#ConditionalNegate">conditionally negate a value</a>:</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">result = (v ^ -flag) + flag;</span><br></pre></td></tr></table></figure>
+
+
+<h3 id="Lookup-table"><a href="#Lookup-table" class="headerlink" title="Lookup table"></a>Lookup table</h3><p>A lot of complicated operations could be accomplished by using lookup tables, one example could be the counting bits set as above. Some other examples includes:</p>
+<ul>
+<li><a href="https://graphics.stanford.edu/~seander/bithacks.html#ParityLookupTable">Compute parity by lookup table</a></li>
+<li><a href="https://graphics.stanford.edu/~seander/bithacks.html#BitReverseTable">Reverse bits lookup table</a></li>
+<li><a href="https://graphics.stanford.edu/~seander/bithacks.html#IntegerLogLookup">Find the log base 2 of an integer with a lookup table</a></li>
+</ul>
+<p>Although it might take up more space for memory, it’s often worthwhile to trade some amount of memory for speed. Memory operations may be more expensive, but considering prefetching is now prevalent in modern CPUs, fetching data from the cache is way faster than a misprediction in branch operations. </p>
+<h2 id="Afterthoughts"><a href="#Afterthoughts" class="headerlink" title="Afterthoughts"></a>Afterthoughts</h2><p>There are many other interesting and mind-opening techniques, tricks and hacks to speed up your program in <a href="https://graphics.stanford.edu/~seander/bithacks.html#CopyIntegerSign">this post</a>. I have a hunch that I might actually use some of them in the future, or come up with my own BitHacks with similar mindset. Before this, I didn’t even realize I could play with bit operations in C&#x2F;C++ this way. Also, <a href="https://graphics.stanford.edu/~seander/bithacks.html#CopyIntegerSign">this post</a> could serve as a great reference when a performance critical part needs optimization with BitHacks.</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://blog.kevinhu.me/2015/03/07/2015-03-Bithacks/" data-id="clz54sp98000ehreyho2xfvei" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/BitHacks/" rel="tag">BitHacks</a></li></ul>
+
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2015/04/16/2015-04-A-Small-Discovery-In-C/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          A Small Discovery In C Linker
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2015/01/10/2015-01-Algorithm-I-Summary/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">Algorithm I Summary</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+    <div class="widget-wrap">
+        <h3 class="widget-title">Follow Me</h3>
+        <div class="widget">
+            <a href="https://twitter.com/Oldgunix?ref_src=twsrc%5Etfw" class="twitter-follow-button"
+                data-show-count="false">Follow @Oldgunix</a>
+            <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+        </div>
+    </div>
+    
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recents</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2024/02/24/25-making-a-toygrad/">Making a Toy Gradient Descent Implementation</a>
+          </li>
+        
+          <li>
+            <a href="/2023/09/03/2023-09-03-Paper-Readings-on-LLM-Task-Performing-ii/">Paper Readings on LLM Task Performing - II</a>
+          </li>
+        
+          <li>
+            <a href="/2023/07/10/Hacking-LangChain-for-fun-and-profit/">Hacking LangChain For Fun and Profit - I</a>
+          </li>
+        
+          <li>
+            <a href="/2023/06/12/2023-06-Paper-Readings-on-LLM-Task-Performing/">Paper Readings on LLM Task Performing</a>
+          </li>
+        
+          <li>
+            <a href="/2022/09/03/2022-09-03-openapi-generator/">OpenAPI Generator For Go Web Development</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Categories</h3>
+    <div class="widget">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Algorithm/">Algorithm</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/BookReview/">BookReview</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/CodeReading/">CodeReading</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Coding/">Coding</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/ComputerSystem/">ComputerSystem</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Diary/">Diary</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Golang/">Golang</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Learning/">Learning</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Paper/">Paper</a><span class="category-list-count">5</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/PaperReading/">PaperReading</a><span class="category-list-count">11</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Programming/">Programming</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/ProgrammingLanguage/">ProgrammingLanguage</a><span class="category-list-count">4</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Reading/">Reading</a><span class="category-list-count">25</span></li></ul>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tag Cloud</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/AI/" style="font-size: 15px;">AI</a> <a href="/tags/API/" style="font-size: 10px;">API</a> <a href="/tags/Algorithm/" style="font-size: 10px;">Algorithm</a> <a href="/tags/Aurora/" style="font-size: 10px;">Aurora</a> <a href="/tags/BitHacks/" style="font-size: 10px;">BitHacks</a> <a href="/tags/BookReview/" style="font-size: 16.67px;">BookReview</a> <a href="/tags/Borg/" style="font-size: 10px;">Borg</a> <a href="/tags/C/" style="font-size: 10px;">C</a> <a href="/tags/C/" style="font-size: 10px;">C++</a> <a href="/tags/C-C/" style="font-size: 11.67px;">C/C++</a> <a href="/tags/Cassandra/" style="font-size: 13.33px;">Cassandra</a> <a href="/tags/Channel/" style="font-size: 11.67px;">Channel</a> <a href="/tags/ChatGPT/" style="font-size: 13.33px;">ChatGPT</a> <a href="/tags/CodeReading/" style="font-size: 11.67px;">CodeReading</a> <a href="/tags/Coding/" style="font-size: 10px;">Coding</a> <a href="/tags/Compilers/" style="font-size: 11.67px;">Compilers</a> <a href="/tags/Concurrency/" style="font-size: 10px;">Concurrency</a> <a href="/tags/Data-Science/" style="font-size: 10px;">Data Science</a> <a href="/tags/Database/" style="font-size: 15px;">Database</a> <a href="/tags/Datacenter/" style="font-size: 10px;">Datacenter</a> <a href="/tags/Debug/" style="font-size: 10px;">Debug</a> <a href="/tags/DistributedSystems/" style="font-size: 16.67px;">DistributedSystems</a> <a href="/tags/Docker/" style="font-size: 10px;">Docker</a> <a href="/tags/FPGA/" style="font-size: 10px;">FPGA</a> <a href="/tags/Golang/" style="font-size: 15px;">Golang</a> <a href="/tags/HPC/" style="font-size: 10px;">HPC</a> <a href="/tags/Hugepage/" style="font-size: 10px;">Hugepage</a> <a href="/tags/Internet/" style="font-size: 10px;">Internet</a> <a href="/tags/Julia/" style="font-size: 10px;">Julia</a> <a href="/tags/Kafka/" style="font-size: 10px;">Kafka</a> <a href="/tags/LLM/" style="font-size: 13.33px;">LLM</a> <a href="/tags/Learning/" style="font-size: 20px;">Learning</a> <a href="/tags/Linux/" style="font-size: 13.33px;">Linux</a> <a href="/tags/Log/" style="font-size: 10px;">Log</a> <a href="/tags/Machine-Learning/" style="font-size: 10px;">Machine Learning</a> <a href="/tags/Mesos/" style="font-size: 10px;">Mesos</a> <a href="/tags/Multithread/" style="font-size: 10px;">Multithread</a> <a href="/tags/Mutex/" style="font-size: 10px;">Mutex</a> <a href="/tags/NLP/" style="font-size: 13.33px;">NLP</a> <a href="/tags/NoSQL/" style="font-size: 13.33px;">NoSQL</a> <a href="/tags/Paper/" style="font-size: 10px;">Paper</a> <a href="/tags/PaperReading/" style="font-size: 20px;">PaperReading</a> <a href="/tags/Password/" style="font-size: 11.67px;">Password</a> <a href="/tags/Programming/" style="font-size: 13.33px;">Programming</a> <a href="/tags/ProgrammingLanguage/" style="font-size: 13.33px;">ProgrammingLanguage</a> <a href="/tags/Python/" style="font-size: 13.33px;">Python</a> <a href="/tags/Ray/" style="font-size: 10px;">Ray</a> <a href="/tags/Reading/" style="font-size: 18.33px;">Reading</a> <a href="/tags/Social/" style="font-size: 10px;">Social</a> <a href="/tags/Sociology/" style="font-size: 10px;">Sociology</a> <a href="/tags/Technology/" style="font-size: 13.33px;">Technology</a> <a href="/tags/Undefined-Behavior/" style="font-size: 11.67px;">Undefined Behavior</a> <a href="/tags/WeeklyPaper/" style="font-size: 10px;">WeeklyPaper</a> <a href="/tags/WorldWideWeb/" style="font-size: 10px;">WorldWideWeb</a> <a href="/tags/Zookeeper/" style="font-size: 10px;">Zookeeper</a> <a href="/tags/infrastructure/" style="font-size: 10px;">infrastructure</a> <a href="/tags/openAPI/" style="font-size: 10px;">openAPI</a> <a href="/tags/systems/" style="font-size: 10px;">systems</a> <a href="/tags/tracing/" style="font-size: 10px;">tracing</a> <a href="/tags/web/" style="font-size: 10px;">web</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/02/">February 2024</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/09/">September 2023</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/07/">July 2023</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/06/">June 2023</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/09/">September 2022</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/06/">June 2022</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/09/">September 2021</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/08/">August 2021</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/05/">May 2021</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/04/">April 2021</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/11/">November 2020</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/07/">July 2020</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/04/">April 2020</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/01/">January 2020</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/11/">November 2019</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/09/">September 2019</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/08/">August 2019</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/05/">May 2019</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/04/">April 2019</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/03/">March 2019</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/02/">February 2019</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/01/">January 2019</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/10/">October 2018</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/09/">September 2018</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/07/">July 2018</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/05/">May 2018</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/06/">June 2017</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/03/">March 2017</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/01/">January 2017</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/11/">November 2016</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/09/">September 2016</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/08/">August 2016</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/05/">May 2016</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/02/">February 2016</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/12/">December 2015</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/11/">November 2015</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/10/">October 2015</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/04/">April 2015</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/03/">March 2015</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/01/">January 2015</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/11/">November 2014</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/10/">October 2014</a><span class="archive-list-count">4</span></li></ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2024 Kevin Hu<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/About/" class="mobile-nav-link">About</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+
+  
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+
+
+<script src="/js/script.js"></script>
+
+
+  </div>
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
+            processEscapes: true
+        }
+    });
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax();
+        for (var i = 0; i < all.length; ++i)
+            all[i].SourceElement().parentNode.className += ' has-jax';
+    });
+</script>
+<script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+</body>
+</html>

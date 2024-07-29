@@ -22,7 +22,6 @@
     <link rel="icon" href="/favicon.png">
   
   <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
-<link href="//https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.9.0/katex.min.css" rel="stylesheet" type="text/css">
   
 <link rel="stylesheet" href="/css/style.css">
 
@@ -39,7 +38,12 @@
     gtag('config', 'G-8ENJJHKTMX');
   </script>
 
-<meta name="generator" content="Hexo 5.4.0"></head>
+<!-- hexo injector head_end start -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.css">
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/hexo-math@4.0.0/dist/style.css">
+<!-- hexo injector head_end end --><meta name="generator" content="Hexo 7.3.0"></head>
+
 <body>
   <div id="container">
     <div id="wrap">
@@ -108,21 +112,21 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h1 id="1-introduction"><a class="markdownIt-Anchor" href="#1-introduction"></a> 1 Introduction</h1>
-<p>I’ve recently came across a few of <a target="_blank" rel="noopener" href="https://karpathy.ai/">Andrej Karpathy</a>’s
-<a target="_blank" rel="noopener" href="https://www.youtube.com/@AndrejKarpathy">video tutorial series</a>
+        <h1 id="1-Introduction"><a href="#1-Introduction" class="headerlink" title="1 Introduction"></a>1 Introduction</h1><p>I’ve recently came across a few of <a href="https://karpathy.ai/">Andrej Karpathy</a>‘s
+<a href="https://www.youtube.com/@AndrejKarpathy">video tutorial series</a>
 on Machine Learning and I found them immensely fun and educational.
 I highly appreciate his hands-on approach to teaching basic concepts of Machine Learning.</p>
 <p>Richard Feynman once famously stated that “What I cannot create, I do not understand.”
 So here’s my attempt to create a toy implementation of gradient descent,
 to better understand the core algorithm that powers Deep Learning
-after learning from by Karpathy’s <a target="_blank" rel="noopener" href="https://www.youtube.com/@AndrejKarpathy">video tutorial of micrograd</a>:</p>
-<p><a target="_blank" rel="noopener" href="https://github.com/hxy9243/toygrad">https://github.com/hxy9243/toygrad</a></p>
+after learning from by Karpathy’s <a href="https://www.youtube.com/@AndrejKarpathy">video tutorial of micrograd</a>:</p>
+<p>https:&#x2F;&#x2F;github.com&#x2F;hxy9243&#x2F;toygrad</p>
 <p>Even though there’s a plethora of books, blogs, and references that explains the gradient descent algorithm,
 it’s a totally different experience when you get to build it yourself from the scratch.
 During this course I found there are quite a few knowledge gaps for myself, things that I’ve taken for granted
 and didn’t really fully understand.</p>
 <p>And this blog post is my notes during this experience. Even writing this post helped my understanding in many ways.</p>
+<p><img src="/2024/02/24/25-making-a-toygrad/input_predict_chart.png" alt="Training and inference example using toygrad"></p>
         
           <p class="article-more-link">
             <a href="/2024/02/24/25-making-a-toygrad/#more">Read More</a>
@@ -131,9 +135,7 @@ and didn’t really fully understand.</p>
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://blog.kevinhu.me/2024/02/24/25-making-a-toygrad/" data-id="clt23oxig00001eeygseu0zjm" class="article-share-link">Share</a>
-      
-        <a href="https://blog.kevinhu.me/2024/02/24/25-making-a-toygrad/#disqus_thread" class="article-comment-link">Comments</a>
+      <a data-url="https://blog.kevinhu.me/2024/02/24/25-making-a-toygrad/" data-id="clz54zqak001cqoeybbrb7xfo" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/AI/" rel="tag">AI</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Learning/" rel="tag">Learning</a></li></ul>
@@ -154,7 +156,7 @@ and didn’t really fully understand.</p>
     <div class="widget-wrap">
         <h3 class="widget-title">Follow Me</h3>
         <div class="widget">
-            <a target="_blank" rel="noopener" href="https://twitter.com/Oldgunix?ref_src=twsrc%5Etfw" class="twitter-follow-button"
+            <a href="https://twitter.com/Oldgunix?ref_src=twsrc%5Etfw" class="twitter-follow-button"
                 data-show-count="false">Follow @Oldgunix</a>
             <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
         </div>
@@ -172,19 +174,19 @@ and didn’t really fully understand.</p>
           </li>
         
           <li>
-            <a href="/2023/09/02/03-Paper-Readings-on-LLM-Task-Performing-ii/">Paper Readings on LLM Task Performing - II</a>
+            <a href="/2023/09/03/2023-09-03-Paper-Readings-on-LLM-Task-Performing-ii/">Paper Readings on LLM Task Performing - II</a>
           </li>
         
           <li>
-            <a href="/2023/07/09/Hacking-LangChain-for-fun-and-profit/">Hacking LangChain For Fun and Profit - I</a>
+            <a href="/2023/07/10/Hacking-LangChain-for-fun-and-profit/">Hacking LangChain For Fun and Profit - I</a>
           </li>
         
           <li>
-            <a href="/2023/06/11/Paper-Readings-on-LLM-Task-Performing/">Paper Readings on LLM Task Performing</a>
+            <a href="/2023/06/12/2023-06-Paper-Readings-on-LLM-Task-Performing/">Paper Readings on LLM Task Performing</a>
           </li>
         
           <li>
-            <a href="/2022/09/03/03-openapi-generator/">OpenAPI Generator For Go Web Development</a>
+            <a href="/2022/09/03/2022-09-03-openapi-generator/">OpenAPI Generator For Go Web Development</a>
           </li>
         
       </ul>
@@ -242,18 +244,6 @@ and didn’t really fully understand.</p>
   
 </nav>
     
-<script>
-  var disqus_shortname = 'kevinhustechblog';
-  
-  (function(){
-    var dsq = document.createElement('script');
-    dsq.type = 'text/javascript';
-    dsq.async = true;
-    dsq.src = '//' + disqus_shortname + '.disqus.com/count.js';
-    (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
-  })();
-</script>
-
 
 <script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
 
@@ -271,5 +261,20 @@ and didn’t really fully understand.</p>
 
 
   </div>
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
+            processEscapes: true
+        }
+    });
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax();
+        for (var i = 0; i < all.length; ++i)
+            all[i].SourceElement().parentNode.className += ' has-jax';
+    });
+</script>
+<script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
 </body>
 </html>

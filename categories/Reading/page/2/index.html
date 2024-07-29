@@ -22,7 +22,6 @@
     <link rel="icon" href="/favicon.png">
   
   <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
-<link href="//https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.9.0/katex.min.css" rel="stylesheet" type="text/css">
   
 <link rel="stylesheet" href="/css/style.css">
 
@@ -39,7 +38,12 @@
     gtag('config', 'G-8ENJJHKTMX');
   </script>
 
-<meta name="generator" content="Hexo 5.4.0"></head>
+<!-- hexo injector head_end start -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.css">
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/hexo-math@4.0.0/dist/style.css">
+<!-- hexo injector head_end end --><meta name="generator" content="Hexo 7.3.0"></head>
+
 <body>
   <div id="container">
     <div id="wrap">
@@ -82,10 +86,10 @@
       <div class="outer">
         <section id="main">
   
-    <article id="post-14-Reading-Summary-2018-10" class="article article-type-post" itemscope itemprop="blogPost">
+    <article id="post-2018-10-14-Reading-Summary-2018-10" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
-    <a href="/2018/10/14/14-Reading-Summary-2018-10/" class="article-date">
-  <time datetime="2018-10-14T20:52:00.000Z" itemprop="datePublished">10 14 2018</time>
+    <a href="/2018/10/14/2018-10-14-Reading-Summary-2018-10/" class="article-date">
+  <time datetime="2018-10-14T22:52:00.000Z" itemprop="datePublished">10 14 2018</time>
 </a>
     
   <div class="article-category">
@@ -100,7 +104,7 @@
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2018/10/14/14-Reading-Summary-2018-10/">Reading-Summary 2018-10-14</a>
+      <a class="article-title" href="/2018/10/14/2018-10-14-Reading-Summary-2018-10/">Reading-Summary 2018-10-14</a>
     </h1>
   
 
@@ -109,38 +113,26 @@
     <div class="article-entry" itemprop="articleBody">
       
         <p>Posts I find interesting around the web:</p>
-<h2 id="miscalleneous-posts"><a class="markdownIt-Anchor" href="#miscalleneous-posts"></a> Miscalleneous Posts</h2>
-<h3 id="augumenting-long-term-memory"><a class="markdownIt-Anchor" href="#augumenting-long-term-memory"></a> <a target="_blank" rel="noopener" href="http://augmentingcognition.com/ltm.html">Augumenting Long-term Memory</a></h3>
-<p>A very interesting posts on augumenting long-term memory, based on Ebbinghaus’ forgetting curve theory: use flashcards to memorize everything you’ve learned, and even trivias like your friends’ birthday, etc… It uses Anki flashcard software to go through the list of stuff.</p>
+<h2 id="Miscalleneous-Posts"><a href="#Miscalleneous-Posts" class="headerlink" title="Miscalleneous Posts"></a>Miscalleneous Posts</h2><h3 id="Augumenting-Long-term-Memory"><a href="#Augumenting-Long-term-Memory" class="headerlink" title="Augumenting Long-term Memory"></a><a href="http://augmentingcognition.com/ltm.html">Augumenting Long-term Memory</a></h3><p>A very interesting posts on augumenting long-term memory, based on Ebbinghaus’ forgetting curve theory: use flashcards to memorize everything you’ve learned, and even trivias like your friends’ birthday, etc.. It uses Anki flashcard software to go through the list of stuff.</p>
 <p>Author also reasoned about the benefits of memorizing all the details, concepts, and “everything”: the details are the building blocks of a field of knowledge, and memorizing them dramatically helps the understanding this field.</p>
 <p>It’s a long read but a deep discussion, and I find it a joyful read.</p>
-<h3 id="how-to-get-rich"><a class="markdownIt-Anchor" href="#how-to-get-rich"></a> <a target="_blank" rel="noopener" href="https://www.edge.org/conversation/jared_diamond-how-to-get-rich">How To Get Rich</a></h3>
-<p>An interesting talk from Jared Diamond, the author of <em>Guns, Germs, and Steel</em>. Despite the kind of misleading title, it’s an interesting take on history and the progress of human civilizations, and how competitions between civilizations influence their prosperity.</p>
-<h2 id="systems-design-and-distributed-systems"><a class="markdownIt-Anchor" href="#systems-design-and-distributed-systems"></a> Systems Design and Distributed Systems</h2>
-<h3 id="softwarearch-you-are-going-to-need-it-using-interfaces-and-dependency-injection-to-future-proof-your-designs"><a class="markdownIt-Anchor" href="#softwarearch-you-are-going-to-need-it-using-interfaces-and-dependency-injection-to-future-proof-your-designs"></a> <a target="_blank" rel="noopener" href="https://medium.com/dm03514-tech-blog/you-are-going-to-need-it-using-interfaces-and-dependency-injection-to-future-proof-your-designs-2cf6f58db192">SoftwareArch: You are going to need it — Using Interfaces and Dependency Injection to future proof your designs</a></h3>
-<p>An introduction to interfaces in Golang, and how dependency injection can help you design large projects.</p>
-<h3 id="system-design-primer"><a class="markdownIt-Anchor" href="#system-design-primer"></a> <a target="_blank" rel="noopener" href="https://github.com/donnemartin/system-design-primer">System Design Primer</a></h3>
-<p>The basic concepts of system design, web design, basic principals and distributed systems design. A collaborated effort on Github.</p>
-<h3 id="distributed-periodic-scheduling-with-cron"><a class="markdownIt-Anchor" href="#distributed-periodic-scheduling-with-cron"></a> <a target="_blank" rel="noopener" href="https://landing.google.com/sre/book/chapters/distributed-periodic-scheduling.html">Distributed Periodic Scheduling with Cron</a></h3>
-<p>A chapter from Google’s new Site Reliability Engineering book, on how to design a distributed cron job daemon, and handle problems including fault-tolerance, repeatedly scheduled jobs, overloading the cluster, etc… The whole book is a very valuable summary of experience of automation and distributed systems design at Google, and at Google scale. Definitely will read through other chapters.</p>
-<h3 id="go-hits-the-concurrency-nail-right-on-the-head"><a class="markdownIt-Anchor" href="#go-hits-the-concurrency-nail-right-on-the-head"></a> <a target="_blank" rel="noopener" href="https://eli.thegreenplace.net/2018/go-hits-the-concurrency-nail-right-on-the-head/">Go hits the concurrency nail right on the head</a></h3>
-<p>Eli Bendersky’s blog post on why Golang gracefully handles the problems of concurrency at language level, that other major languages handles rather awkwardly.</p>
+<h3 id="How-To-Get-Rich"><a href="#How-To-Get-Rich" class="headerlink" title="How To Get Rich"></a><a href="https://www.edge.org/conversation/jared_diamond-how-to-get-rich">How To Get Rich</a></h3><p>An interesting talk from Jared Diamond, the author of <em>Guns, Germs, and Steel</em>. Despite the kind of misleading title, it’s an interesting take on history and the progress of human civilizations, and how competitions between civilizations influence their prosperity.</p>
+<h2 id="Systems-Design-and-Distributed-Systems"><a href="#Systems-Design-and-Distributed-Systems" class="headerlink" title="Systems Design and Distributed Systems"></a>Systems Design and Distributed Systems</h2><h3 id="SoftwareArch-You-are-going-to-need-it-—-Using-Interfaces-and-Dependency-Injection-to-future-proof-your-designs"><a href="#SoftwareArch-You-are-going-to-need-it-—-Using-Interfaces-and-Dependency-Injection-to-future-proof-your-designs" class="headerlink" title="SoftwareArch: You are going to need it — Using Interfaces and Dependency Injection to future proof your designs"></a><a href="https://medium.com/dm03514-tech-blog/you-are-going-to-need-it-using-interfaces-and-dependency-injection-to-future-proof-your-designs-2cf6f58db192">SoftwareArch: You are going to need it — Using Interfaces and Dependency Injection to future proof your designs</a></h3><p>An introduction to interfaces in Golang, and how dependency injection can help you design large projects.</p>
+<h3 id="System-Design-Primer"><a href="#System-Design-Primer" class="headerlink" title="System Design Primer"></a><a href="https://github.com/donnemartin/system-design-primer">System Design Primer</a></h3><p>The basic concepts of system design, web design, basic principals and distributed systems design. A collaborated effort on Github.</p>
+<h3 id="Distributed-Periodic-Scheduling-with-Cron"><a href="#Distributed-Periodic-Scheduling-with-Cron" class="headerlink" title="Distributed Periodic Scheduling with Cron"></a><a href="https://landing.google.com/sre/book/chapters/distributed-periodic-scheduling.html">Distributed Periodic Scheduling with Cron</a></h3><p>A chapter from Google’s new Site Reliability Engineering book, on how to design a distributed cron job daemon, and handle problems including fault-tolerance, repeatedly scheduled jobs, overloading the cluster, etc.. The whole book is a very valuable summary of experience of automation and distributed systems design at Google, and at Google scale. Definitely will read through other chapters.</p>
+<h3 id="Go-hits-the-concurrency-nail-right-on-the-head"><a href="#Go-hits-the-concurrency-nail-right-on-the-head" class="headerlink" title="Go hits the concurrency nail right on the head"></a><a href="https://eli.thegreenplace.net/2018/go-hits-the-concurrency-nail-right-on-the-head/">Go hits the concurrency nail right on the head</a></h3><p>Eli Bendersky’s blog post on why Golang gracefully handles the problems of concurrency at language level, that other major languages handles rather awkwardly.</p>
 <ul>
 <li>Use goroutine to unify the interface to coroutines and thread.</li>
 <li>Use channels to enforce the ‘share memory by communicating’ pattern.</li>
 </ul>
 <p>Which greatly reduces the programmer’s mental burden of design highly concurrent systems.</p>
-<h3 id="getting-started-with-python-in-hpc"><a class="markdownIt-Anchor" href="#getting-started-with-python-in-hpc"></a> <a target="_blank" rel="noopener" href="http://andy.terrel.us/blog/2012/09/27/starting-with-python/">Getting started with Python in HPC</a></h3>
-<p>An introduction to learning Python in HPC, from introduction to Python language, to distributed HPC frameworks for Python.</p>
-<h3 id="a-whirlwind-tour-of-distributed-systems"><a class="markdownIt-Anchor" href="#a-whirlwind-tour-of-distributed-systems"></a> <a target="_blank" rel="noopener" href="https://medium.com/@marinsmiljanic/a-whirlwind-tour-of-distributed-systems-918d6632eb78">A Whirlwind Tour of Distributed Systems</a></h3>
-<p>A list of concepts, papers, and interesting blog posts on distributed systems design.</p>
+<h3 id="Getting-started-with-Python-in-HPC"><a href="#Getting-started-with-Python-in-HPC" class="headerlink" title="Getting started with Python in HPC"></a><a href="http://andy.terrel.us/blog/2012/09/27/starting-with-python/">Getting started with Python in HPC</a></h3><p>An introduction to learning Python in HPC, from introduction to Python language, to distributed HPC frameworks for Python.</p>
+<h3 id="A-Whirlwind-Tour-of-Distributed-Systems"><a href="#A-Whirlwind-Tour-of-Distributed-Systems" class="headerlink" title="A Whirlwind Tour of Distributed Systems"></a><a href="https://medium.com/@marinsmiljanic/a-whirlwind-tour-of-distributed-systems-918d6632eb78">A Whirlwind Tour of Distributed Systems</a></h3><p>A list of concepts, papers, and interesting blog posts on distributed systems design.</p>
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://blog.kevinhu.me/2018/10/14/14-Reading-Summary-2018-10/" data-id="clndtserq0024z0ey34wg0glv" class="article-share-link">Share</a>
-      
-        <a href="https://blog.kevinhu.me/2018/10/14/14-Reading-Summary-2018-10/#disqus_thread" class="article-comment-link">Comments</a>
+      <a data-url="https://blog.kevinhu.me/2018/10/14/2018-10-14-Reading-Summary-2018-10/" data-id="clz54sp9i0023hrey60yab7dy" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/systems/" rel="tag">systems</a></li></ul>
@@ -152,10 +144,10 @@
 
 
   
-    <article id="post-09-2018-07-09-Reading-Summary" class="article article-type-post" itemscope itemprop="blogPost">
+    <article id="post-2018-07-09-2018-07-09-Reading-Summary" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
-    <a href="/2018/07/08/09-2018-07-09-Reading-Summary/" class="article-date">
-  <time datetime="2018-07-09T05:04:23.000Z" itemprop="datePublished">07 08 2018</time>
+    <a href="/2018/07/09/2018-07-09-2018-07-09-Reading-Summary/" class="article-date">
+  <time datetime="2018-07-09T07:04:23.000Z" itemprop="datePublished">07 09 2018</time>
 </a>
     
   <div class="article-category">
@@ -170,7 +162,7 @@
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2018/07/08/09-2018-07-09-Reading-Summary/">Reading-Summary 2018-06</a>
+      <a class="article-title" href="/2018/07/09/2018-07-09-2018-07-09-Reading-Summary/">Reading-Summary 2018-06</a>
     </h1>
   
 
@@ -179,12 +171,9 @@
     <div class="article-entry" itemprop="articleBody">
       
         <p>Posts I found interesting around the web:</p>
-<h3 id="man7-linux-cgroups"><a class="markdownIt-Anchor" href="#man7-linux-cgroups"></a> <a target="_blank" rel="noopener" href="http://man7.org/linux/man-pages/man7/cgroups.7.html">man7 Linux cgroups</a></h3>
-<p>Linux manual page to cgroups feature in the kernel, which restricts Linux processes CPU, max process numbers, memory usage, network setup and etc…</p>
-<h3 id="man7-linux-namespaces"><a class="markdownIt-Anchor" href="#man7-linux-namespaces"></a> <a target="_blank" rel="noopener" href="http://man7.org/linux/man-pages/man7/namespaces.7.html">man7 Linux namespaces</a></h3>
-<p>Linux manual page to namespaces feature in the kernel. Namespaces can be specified by the <code>clone</code> syscall, and isolates the child process’ cgroup, IPC, network, mount, domain names, and etc…</p>
-<h3 id="goto-2018-containers-from-scratch"><a class="markdownIt-Anchor" href="#goto-2018-containers-from-scratch"></a> <a target="_blank" rel="noopener" href="https://www.youtube.com/watch?v=8fi7uSYlOdc">GOTO 2018 Containers From Scratch</a></h3>
-<p>When all the ingredients come together, it’s the foundation where Docker is built upon. This very interesting talk from GOTO2018 demonstrates how you can use the following technologies already built-in the Linux kernel to create your own very small proof-of-concept docker:</p>
+<h3 id="man7-Linux-cgroups"><a href="#man7-Linux-cgroups" class="headerlink" title="man7 Linux cgroups"></a><a href="http://man7.org/linux/man-pages/man7/cgroups.7.html">man7 Linux cgroups</a></h3><p>Linux manual page to cgroups feature in the kernel, which restricts Linux processes CPU, max process numbers, memory usage, network setup and etc..</p>
+<h3 id="man7-Linux-namespaces"><a href="#man7-Linux-namespaces" class="headerlink" title="man7 Linux namespaces"></a><a href="http://man7.org/linux/man-pages/man7/namespaces.7.html">man7 Linux namespaces</a></h3><p>Linux manual page to namespaces feature in the kernel. Namespaces can be specified by the <code>clone</code> syscall, and isolates the child process’ cgroup, IPC, network, mount, domain names, and etc..</p>
+<h3 id="GOTO-2018-Containers-From-Scratch"><a href="#GOTO-2018-Containers-From-Scratch" class="headerlink" title="GOTO 2018 Containers From Scratch"></a><a href="https://www.youtube.com/watch?v=8fi7uSYlOdc">GOTO 2018 Containers From Scratch</a></h3><p>When all the ingredients come together, it’s the foundation where Docker is built upon. This very interesting talk from GOTO2018 demonstrates how you can use the following technologies already built-in the Linux kernel to create your own very small proof-of-concept docker:</p>
 <ul>
 <li><code>chroot</code></li>
 <li><code>namespace</code></li>
@@ -195,20 +184,14 @@
 <li>You’ll need to mount the <code>/proc</code> virtual file systems for your ‘containerized’ child process.</li>
 <li>You’ll need to provide ‘UnshareFlag’ <code>CLONE_NEWNS</code> to the <code>clone</code> system call, to ‘unshare’ the mount point from the child process from the parent process, so that parent doesn’t see child’s mount points (which could be many and messy).</li>
 </ul>
-<h3 id="a-classical-math-problem-gets-pulled-into-the-modern-world"><a class="markdownIt-Anchor" href="#a-classical-math-problem-gets-pulled-into-the-modern-world"></a> <a target="_blank" rel="noopener" href="https://www.quantamagazine.org/a-classical-math-problem-gets-pulled-into-the-modern-world-20180523/">A Classical Math Problem Gets Pulled Into the Modern World</a></h3>
-<p>An optimization problem is being used in AI, and therefore all AI applications, including self-driving, etc. Math is magical.</p>
-<h3 id="wikipedia-is-fixing-one-of-internets-biggest-flaws"><a class="markdownIt-Anchor" href="#wikipedia-is-fixing-one-of-internets-biggest-flaws"></a> <a target="_blank" rel="noopener" href="https://www.washingtonpost.com/news/wonk/wp/2016/10/25/somethings-terribly-wrong-with-the-internet-and-wikipedia-might-be-able-to-fix-it/?utm_term=.9594628c76ca">Wikipedia is fixing one of Internet’s biggest flaws</a></h3>
-<p>As it actually encourages collaborations, discussions, and exposure to opposing views.</p>
-<h3 id="golang-patterns-part-2"><a class="markdownIt-Anchor" href="#golang-patterns-part-2"></a> <a target="_blank" rel="noopener" href="https://dev.to/napicellatwit/golang-patterns---part-2-1906">Golang Patterns - Part 2</a></h3>
-<h3 id="technical-writing-learning-from-kernighan"><a class="markdownIt-Anchor" href="#technical-writing-learning-from-kernighan"></a> <a target="_blank" rel="noopener" href="https://two-wrongs.com/technical-writing-learning-from-kernighan.html">Technical Writing: Learning from Kernighan</a></h3>
-<p>Learning technical writing from the author of your favorite C programming book, ‘The C Programming Language’.</p>
+<h3 id="A-Classical-Math-Problem-Gets-Pulled-Into-the-Modern-World"><a href="#A-Classical-Math-Problem-Gets-Pulled-Into-the-Modern-World" class="headerlink" title="A Classical Math Problem Gets Pulled Into the Modern World"></a><a href="https://www.quantamagazine.org/a-classical-math-problem-gets-pulled-into-the-modern-world-20180523/">A Classical Math Problem Gets Pulled Into the Modern World</a></h3><p>An optimization problem is being used in AI, and therefore all AI applications, including self-driving, etc. Math is magical.</p>
+<h3 id="Wikipedia-is-fixing-one-of-Internet’s-biggest-flaws"><a href="#Wikipedia-is-fixing-one-of-Internet’s-biggest-flaws" class="headerlink" title="Wikipedia is fixing one of Internet’s biggest flaws"></a><a href="https://www.washingtonpost.com/news/wonk/wp/2016/10/25/somethings-terribly-wrong-with-the-internet-and-wikipedia-might-be-able-to-fix-it/?utm_term=.9594628c76ca">Wikipedia is fixing one of Internet’s biggest flaws</a></h3><p>As it actually encourages collaborations, discussions, and exposure to opposing views.</p>
+<h3 id="Golang-Patterns-Part-2"><a href="#Golang-Patterns-Part-2" class="headerlink" title="Golang Patterns - Part 2"></a><a href="https://dev.to/napicellatwit/golang-patterns---part-2-1906">Golang Patterns - Part 2</a></h3><h3 id="Technical-Writing-Learning-from-Kernighan"><a href="#Technical-Writing-Learning-from-Kernighan" class="headerlink" title="Technical Writing: Learning from Kernighan"></a><a href="https://two-wrongs.com/technical-writing-learning-from-kernighan.html">Technical Writing: Learning from Kernighan</a></h3><p>Learning technical writing from the author of your favorite C programming book, ‘The C Programming Language’.</p>
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://blog.kevinhu.me/2018/07/08/09-2018-07-09-Reading-Summary/" data-id="clndtsero001pz0ey7up5330n" class="article-share-link">Share</a>
-      
-        <a href="https://blog.kevinhu.me/2018/07/08/09-2018-07-09-Reading-Summary/#disqus_thread" class="article-comment-link">Comments</a>
+      <a data-url="https://blog.kevinhu.me/2018/07/09/2018-07-09-2018-07-09-Reading-Summary/" data-id="clz54sp9h001vhreyc1b11vv6" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Docker/" rel="tag">Docker</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Linux/" rel="tag">Linux</a></li></ul>
@@ -220,10 +203,10 @@
 
 
   
-    <article id="post-2018-05-21-Reading-Summary" class="article article-type-post" itemscope itemprop="blogPost">
+    <article id="post-2018-05-2018-05-21-Reading-Summary" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
-    <a href="/2018/05/20/2018-05-21-Reading-Summary/" class="article-date">
-  <time datetime="2018-05-21T05:48:06.000Z" itemprop="datePublished">05 20 2018</time>
+    <a href="/2018/05/21/2018-05-2018-05-21-Reading-Summary/" class="article-date">
+  <time datetime="2018-05-21T07:48:06.000Z" itemprop="datePublished">05 21 2018</time>
 </a>
     
   <div class="article-category">
@@ -238,7 +221,7 @@
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2018/05/20/2018-05-21-Reading-Summary/">Reading-Summary 2018-05</a>
+      <a class="article-title" href="/2018/05/21/2018-05-2018-05-21-Reading-Summary/">Reading-Summary 2018-05</a>
     </h1>
   
 
@@ -247,27 +230,19 @@
     <div class="article-entry" itemprop="articleBody">
       
         <p>Posts I found interesting during my reading:</p>
-<h3 id="writing-a-time-series-database-from-scratch"><a class="markdownIt-Anchor" href="#writing-a-time-series-database-from-scratch"></a> <a target="_blank" rel="noopener" href="https://fabxc.org/tsdb/">Writing a Time Series Database from Scratch</a></h3>
-<p>The author’s experience in writing a time-series database from groundup, for Prometheus.</p>
-<h3 id="introducing-thanos-prometheus-at-scale"><a class="markdownIt-Anchor" href="#introducing-thanos-prometheus-at-scale"></a> <a target="_blank" rel="noopener" href="https://improbable.io/games/blog/thanos-prometheus-at-scale">Introducing Thanos: Prometheus at Scale</a></h3>
-<p>The effort to scale Prometheus with a new project Thanos, with Kubernetes sidecar pattern, to read data from individual nodes, pre-process (e.g. sampling), and submit to a
-centralized data storage and display.</p>
-<h3 id="a-beginners-guide-to-scaling-to-11-million-users-on-amazons-aws"><a class="markdownIt-Anchor" href="#a-beginners-guide-to-scaling-to-11-million-users-on-amazons-aws"></a> <a target="_blank" rel="noopener" href="http://highscalability.com/blog/2016/1/11/a-beginners-guide-to-scaling-to-11-million-users-on-amazons.html">A Beginner’s Guide To Scaling To 11 Million+ Users On Amazon’s AWS</a></h3>
-<p>What kind of machine/cluster you’ll need for different size of user base (from 1 to billions).</p>
-<h3 id="nexflix-flamescope"><a class="markdownIt-Anchor" href="#nexflix-flamescope"></a> <a target="_blank" rel="noopener" href="https://medium.com/netflix-techblog/netflix-flamescope-a57ca19d47bb">Nexflix FlameScope</a></h3>
-<p>A display of CPU trace as a Github-style texture tiles.</p>
-<h3 id="a-usable-c-dialect-that-is-safe-against-memory-corruption"><a class="markdownIt-Anchor" href="#a-usable-c-dialect-that-is-safe-against-memory-corruption"></a> <a target="_blank" rel="noopener" href="http://ithare.com/a-usable-c-dialect-that-is-safe-against-memory-corruption/">A Usable C++ Dialect that is Safe Against Memory Corruption</a></h3>
-<p>IT-‘No Bug’-Hare is an interesting blog I found recently, focused on system, C++ language and game design. A good read for C++ fanatics and system designers.</p>
-<hr />
+<h3 id="Writing-a-Time-Series-Database-from-Scratch"><a href="#Writing-a-Time-Series-Database-from-Scratch" class="headerlink" title="Writing a Time Series Database from Scratch"></a><a href="https://fabxc.org/tsdb/">Writing a Time Series Database from Scratch</a></h3><p>The author’s experience in writing a time-series database from groundup, for Prometheus.</p>
+<h3 id="Introducing-Thanos-Prometheus-at-Scale"><a href="#Introducing-Thanos-Prometheus-at-Scale" class="headerlink" title="Introducing Thanos: Prometheus at Scale"></a><a href="https://improbable.io/games/blog/thanos-prometheus-at-scale">Introducing Thanos: Prometheus at Scale</a></h3><p>The effort to scale Prometheus with a new project Thanos, with Kubernetes sidecar pattern, to read data from individual nodes, pre-process (e.g. sampling), and submit to a<br>centralized data storage and display.</p>
+<h3 id="A-Beginner’s-Guide-To-Scaling-To-11-Million-Users-On-Amazon’s-AWS"><a href="#A-Beginner’s-Guide-To-Scaling-To-11-Million-Users-On-Amazon’s-AWS" class="headerlink" title="A Beginner’s Guide To Scaling To 11 Million+ Users On Amazon’s AWS"></a><a href="http://highscalability.com/blog/2016/1/11/a-beginners-guide-to-scaling-to-11-million-users-on-amazons.html">A Beginner’s Guide To Scaling To 11 Million+ Users On Amazon’s AWS</a></h3><p>What kind of machine&#x2F;cluster you’ll need for different size of user base (from 1 to billions).</p>
+<h3 id="Nexflix-FlameScope"><a href="#Nexflix-FlameScope" class="headerlink" title="Nexflix FlameScope"></a><a href="https://medium.com/netflix-techblog/netflix-flamescope-a57ca19d47bb">Nexflix FlameScope</a></h3><p>A display of CPU trace as a Github-style texture tiles.</p>
+<h3 id="A-Usable-C-Dialect-that-is-Safe-Against-Memory-Corruption"><a href="#A-Usable-C-Dialect-that-is-Safe-Against-Memory-Corruption" class="headerlink" title="A Usable C++ Dialect that is Safe Against Memory Corruption"></a><a href="http://ithare.com/a-usable-c-dialect-that-is-safe-against-memory-corruption/">A Usable C++ Dialect that is Safe Against Memory Corruption</a></h3><p>IT-‘No Bug’-Hare is an interesting blog I found recently, focused on system, C++ language and game design. A good read for C++ fanatics and system designers.</p>
+<hr>
 <p>I’m feeling guilty for not updating for so long. But on the bright side: I’m back.</p>
 <p>As a part of work requirements I’m taking on Golang and some small distributed system design jobs. It’s an interesting language for this task: network, systems, infrastructures, etc. I’m having mixed but mostly positive feelings about this language, and maybe will share my experience when I got a chance.</p>
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://blog.kevinhu.me/2018/05/20/2018-05-21-Reading-Summary/" data-id="clndtserp001sz0ey10hk92so" class="article-share-link">Share</a>
-      
-        <a href="https://blog.kevinhu.me/2018/05/20/2018-05-21-Reading-Summary/#disqus_thread" class="article-comment-link">Comments</a>
+      <a data-url="https://blog.kevinhu.me/2018/05/21/2018-05-2018-05-21-Reading-Summary/" data-id="clz54sp9g001ohrey15hmfn9e" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Technology/" rel="tag">Technology</a></li></ul>
@@ -279,10 +254,10 @@ centralized data storage and display.</p>
 
 
   
-    <article id="post-Reading-Summary-2017-06" class="article article-type-post" itemscope itemprop="blogPost">
+    <article id="post-2017-06-Reading-Summary-2017-06" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
-    <a href="/2017/06/11/Reading-Summary-2017-06/" class="article-date">
-  <time datetime="2017-06-12T00:54:11.000Z" itemprop="datePublished">06 11 2017</time>
+    <a href="/2017/06/11/2017-06-Reading-Summary-2017-06/" class="article-date">
+  <time datetime="2017-06-12T02:54:11.000Z" itemprop="datePublished">06 11 2017</time>
 </a>
     
   <div class="article-category">
@@ -297,7 +272,7 @@ centralized data storage and display.</p>
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2017/06/11/Reading-Summary-2017-06/">Reading Summary 2017-06</a>
+      <a class="article-title" href="/2017/06/11/2017-06-Reading-Summary-2017-06/">Reading Summary 2017-06</a>
     </h1>
   
 
@@ -306,34 +281,27 @@ centralized data storage and display.</p>
     <div class="article-entry" itemprop="articleBody">
       
         <p>It’s been a while since I ever post a reading summary never mention a new blog post. Writing is a time demanding job.</p>
-<h1 id="society-and-technology"><a class="markdownIt-Anchor" href="#society-and-technology"></a> Society and Technology</h1>
-<h3 id="why-do-we-manage-academia-so-badly"><a class="markdownIt-Anchor" href="#why-do-we-manage-academia-so-badly"></a> <a target="_blank" rel="noopener" href="https://svpow.com/2017/03/22/why-do-we-manage-academia-so-badly/">Why do we manage academia so badly?</a></h3>
-<p><strong>&quot;Managers want metrics that are easy to calculate, easy to understand, and quick to yield a value …
-metrics with these desirable properties are almost always worse than useless.&quot;</strong></p>
+<h1 id="Society-and-Technology"><a href="#Society-and-Technology" class="headerlink" title="Society and Technology"></a>Society and Technology</h1><h3 id="Why-do-we-manage-academia-so-badly"><a href="#Why-do-we-manage-academia-so-badly" class="headerlink" title="Why do we manage academia so badly?"></a><a href="https://svpow.com/2017/03/22/why-do-we-manage-academia-so-badly/">Why do we manage academia so badly?</a></h3><p><strong>“Managers want metrics that are easy to calculate, easy to understand, and quick to yield a value …<br>metrics with these desirable properties are almost always worse than useless.”</strong></p>
 <p>Easy metrics are also easily “hacked” - people “hack” the metrics to make statistics look good, while deviate from the original purpose of academia: to achieve good quality research.</p>
 <p>See also:</p>
-<p><a target="_blank" rel="noopener" href="https://svpow.com/2017/03/17/every-attempt-to-manage-academia-makes-it-worse/">Every attempt to manage academia makes it worse</a></p>
-<h3 id="did-reddits-april-fools-gag-solve-the-issue-of-online-hate-speech"><a class="markdownIt-Anchor" href="#did-reddits-april-fools-gag-solve-the-issue-of-online-hate-speech"></a> <a target="_blank" rel="noopener" href="https://arstechnica.com/gaming/2017/04/in-memoriam-reddits-72-hour-live-graffiti-wall-as-a-social-experiment/">Did Reddit’s April Fool’s gag solve the issue of online hate speech?</a></h3>
-<p>An interesting, anarchic style experiment on Reddit: let thousands of Redditers draw a picture all at the same time, what would possibly happen? It turned out to be surprisingly good.</p>
-<h3 id="tim-berners-lee-i-invented-the-web-here-are-three-things-we-need-to-change-to-save-it"><a class="markdownIt-Anchor" href="#tim-berners-lee-i-invented-the-web-here-are-three-things-we-need-to-change-to-save-it"></a> <a target="_blank" rel="noopener" href="https://www.theguardian.com/technology/2017/mar/11/tim-berners-lee-web-inventor-save-internet">Tim Berners-Lee: I invented the web. Here are three things we need to change to save it</a></h3>
-<p>Tim Berners-Lee: The Father of the World Wide Web and Turing Award winner believes the web nowadays has serious flaws, namely the loss of control of personal privacy, rampant spreading of misinformation on the web, and manipulations from the political campaigns online. It took everyone to build the web we have today, and it takes everyone to fix it now.</p>
+<p><a href="https://svpow.com/2017/03/17/every-attempt-to-manage-academia-makes-it-worse/">Every attempt to manage academia makes it worse</a></p>
+<h3 id="Did-Reddit’s-April-Fool’s-gag-solve-the-issue-of-online-hate-speech"><a href="#Did-Reddit’s-April-Fool’s-gag-solve-the-issue-of-online-hate-speech" class="headerlink" title="Did Reddit’s April Fool’s gag solve the issue of online hate speech?"></a><a href="https://arstechnica.com/gaming/2017/04/in-memoriam-reddits-72-hour-live-graffiti-wall-as-a-social-experiment/">Did Reddit’s April Fool’s gag solve the issue of online hate speech?</a></h3><p>An interesting, anarchic style experiment on Reddit: let thousands of Redditers draw a picture all at the same time, what would possibly happen? It turned out to be surprisingly good.</p>
+<h3 id="Tim-Berners-Lee-I-invented-the-web-Here-are-three-things-we-need-to-change-to-save-it"><a href="#Tim-Berners-Lee-I-invented-the-web-Here-are-three-things-we-need-to-change-to-save-it" class="headerlink" title="Tim Berners-Lee: I invented the web. Here are three things we need to change to save it"></a><a href="https://www.theguardian.com/technology/2017/mar/11/tim-berners-lee-web-inventor-save-internet">Tim Berners-Lee: I invented the web. Here are three things we need to change to save it</a></h3><p>Tim Berners-Lee: The Father of the World Wide Web and Turing Award winner believes the web nowadays has serious flaws, namely the loss of control of personal privacy, rampant spreading of misinformation on the web, and manipulations from the political campaigns online. It took everyone to build the web we have today, and it takes everyone to fix it now.</p>
 <p>More reports and readings on Tim Berners-Lee:</p>
 <ul>
-<li><a target="_blank" rel="noopener" href="https://www.theguardian.com/technology/2009/mar/11/berners-lee-internet-data">Web inventor warns against third-party internet snooping</a></li>
-<li><a target="_blank" rel="noopener" href="https://www.theguardian.com/technology/2017/apr/04/tim-berners-lee-online-privacy-interview-turing-award">Tim Berners-Lee: selling private citizens’ browsing data is ‘disgusting’</a></li>
-<li><a target="_blank" rel="noopener" href="https://www.w3.org/DesignIssues/GovData.html">Putting Government Data Online</a></li>
+<li><a href="https://www.theguardian.com/technology/2009/mar/11/berners-lee-internet-data">Web inventor warns against third-party internet snooping</a></li>
+<li><a href="https://www.theguardian.com/technology/2017/apr/04/tim-berners-lee-online-privacy-interview-turing-award">Tim Berners-Lee: selling private citizens’ browsing data is ‘disgusting’</a></li>
+<li><a href="https://www.w3.org/DesignIssues/GovData.html">Putting Government Data Online</a></li>
 </ul>
         
           <p class="article-more-link">
-            <a href="/2017/06/11/Reading-Summary-2017-06/#more">Read More</a>
+            <a href="/2017/06/11/2017-06-Reading-Summary-2017-06/#more">Read More</a>
           </p>
         
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://blog.kevinhu.me/2017/06/11/Reading-Summary-2017-06/" data-id="clndtserp001wz0eyg0vbejyn" class="article-share-link">Share</a>
-      
-        <a href="https://blog.kevinhu.me/2017/06/11/Reading-Summary-2017-06/#disqus_thread" class="article-comment-link">Comments</a>
+      <a data-url="https://blog.kevinhu.me/2017/06/11/2017-06-Reading-Summary-2017-06/" data-id="clz54sp9f001ihreygdhi4dqp" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Technology/" rel="tag">Technology</a></li></ul>
@@ -345,10 +313,10 @@ metrics with these desirable properties are almost always worse than useless.&qu
 
 
   
-    <article id="post-Reading-Summary-2017-03" class="article article-type-post" itemscope itemprop="blogPost">
+    <article id="post-2017-03-Reading-Summary-2017-03" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
-    <a href="/2017/03/26/Reading-Summary-2017-03/" class="article-date">
-  <time datetime="2017-03-27T02:14:00.000Z" itemprop="datePublished">03 26 2017</time>
+    <a href="/2017/03/26/2017-03-Reading-Summary-2017-03/" class="article-date">
+  <time datetime="2017-03-27T04:14:00.000Z" itemprop="datePublished">03 26 2017</time>
 </a>
     
   <div class="article-category">
@@ -363,7 +331,7 @@ metrics with these desirable properties are almost always worse than useless.&qu
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2017/03/26/Reading-Summary-2017-03/">Reading Summary 2017-03</a>
+      <a class="article-title" href="/2017/03/26/2017-03-Reading-Summary-2017-03/">Reading Summary 2017-03</a>
     </h1>
   
 
@@ -371,26 +339,20 @@ metrics with these desirable properties are almost always worse than useless.&qu
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h1 id="programming"><a class="markdownIt-Anchor" href="#programming"></a> Programming</h1>
-<h3 id="episode-51-mechanics-of-building-a-carpooling-service-introduction"><a class="markdownIt-Anchor" href="#episode-51-mechanics-of-building-a-carpooling-service-introduction"></a> <a target="_blank" rel="noopener" href="https://sysadmincasts.com/episodes/51-mechanics-of-building-a-carpooling-service-introduction">Episode #51 - Mechanics of Building a Carpooling Service - Introduction</a></h3>
-<p>Sysadmin Casts is back again, and this time with more stuff: how to turn an idea into a MVP.</p>
-<h1 id="technology"><a class="markdownIt-Anchor" href="#technology"></a> Technology</h1>
-<h3 id="technology-review-10-breakthroughs-technologies-2016"><a class="markdownIt-Anchor" href="#technology-review-10-breakthroughs-technologies-2016"></a> <a target="_blank" rel="noopener" href="https://www.technologyreview.com/lists/technologies/2016/">Technology Review: 10 Breakthroughs Technologies 2016</a></h3>
-<p>Artificial Intelligence for better conversational interfaces, Elon Musk’s companies, and biological technologies are back to people’s attention again.</p>
+        <h1 id="Programming"><a href="#Programming" class="headerlink" title="Programming"></a>Programming</h1><h3 id="Episode-51-Mechanics-of-Building-a-Carpooling-Service-Introduction"><a href="#Episode-51-Mechanics-of-Building-a-Carpooling-Service-Introduction" class="headerlink" title="Episode #51 - Mechanics of Building a Carpooling Service - Introduction"></a><a href="https://sysadmincasts.com/episodes/51-mechanics-of-building-a-carpooling-service-introduction">Episode #51 - Mechanics of Building a Carpooling Service - Introduction</a></h3><p>Sysadmin Casts is back again, and this time with more stuff: how to turn an idea into a MVP.</p>
+<h1 id="Technology"><a href="#Technology" class="headerlink" title="Technology"></a>Technology</h1><h3 id="Technology-Review-10-Breakthroughs-Technologies-2016"><a href="#Technology-Review-10-Breakthroughs-Technologies-2016" class="headerlink" title="Technology Review: 10 Breakthroughs Technologies 2016"></a><a href="https://www.technologyreview.com/lists/technologies/2016/">Technology Review: 10 Breakthroughs Technologies 2016</a></h3><p>Artificial Intelligence for better conversational interfaces, Elon Musk’s companies, and biological technologies are back to people’s attention again.</p>
         
           <p class="article-more-link">
-            <a href="/2017/03/26/Reading-Summary-2017-03/#more">Read More</a>
+            <a href="/2017/03/26/2017-03-Reading-Summary-2017-03/#more">Read More</a>
           </p>
         
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://blog.kevinhu.me/2017/03/26/Reading-Summary-2017-03/" data-id="clndtsern001jz0eyab7gg60i" class="article-share-link">Share</a>
-      
-        <a href="https://blog.kevinhu.me/2017/03/26/Reading-Summary-2017-03/#disqus_thread" class="article-comment-link">Comments</a>
+      <a data-url="https://blog.kevinhu.me/2017/03/26/2017-03-Reading-Summary-2017-03/" data-id="clz54sp9f001khrey48v1c583" class="article-share-link">Share</a>
       
       
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/C-C/" rel="tag">C/C++</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Python/" rel="tag">Python</a></li></ul>
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/C-C/" rel="tag">C&#x2F;C++</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Python/" rel="tag">Python</a></li></ul>
 
     </footer>
   </div>
@@ -399,10 +361,10 @@ metrics with these desirable properties are almost always worse than useless.&qu
 
 
   
-    <article id="post-Reading-Summary-2016-12" class="article article-type-post" itemscope itemprop="blogPost">
+    <article id="post-2017-01-Reading-Summary-2016-12" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
-    <a href="/2017/01/08/Reading-Summary-2016-12/" class="article-date">
-  <time datetime="2017-01-09T05:15:00.000Z" itemprop="datePublished">01 08 2017</time>
+    <a href="/2017/01/08/2017-01-Reading-Summary-2016-12/" class="article-date">
+  <time datetime="2017-01-09T07:15:00.000Z" itemprop="datePublished">01 08 2017</time>
 </a>
     
   <div class="article-category">
@@ -417,7 +379,7 @@ metrics with these desirable properties are almost always worse than useless.&qu
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2017/01/08/Reading-Summary-2016-12/">Reading Summary 2016-12</a>
+      <a class="article-title" href="/2017/01/08/2017-01-Reading-Summary-2016-12/">Reading Summary 2016-12</a>
     </h1>
   
 
@@ -425,30 +387,23 @@ metrics with these desirable properties are almost always worse than useless.&qu
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h1 id="cc"><a class="markdownIt-Anchor" href="#cc"></a> C/C++</h1>
-<h3 id="how-to-find-size-of-an-array-in-c-without-sizeof"><a class="markdownIt-Anchor" href="#how-to-find-size-of-an-array-in-c-without-sizeof"></a> <a target="_blank" rel="noopener" href="http://arjunsreedharan.org/post/69303442896/the-difference-between-arr-and-arr-how-to-find">How to find size of an array in C without sizeof</a></h3>
-<p>The difference between arr and &amp;arr - basically, arr is of type int *, and &amp;arr is of type (int *)[size].</p>
-<p>Very excellent article on the fundamentals of C/C++!</p>
-<h3 id="what-every-c-programmer-should-know-about-undefined-behavior"><a class="markdownIt-Anchor" href="#what-every-c-programmer-should-know-about-undefined-behavior"></a> <a target="_blank" rel="noopener" href="http://blog.llvm.org/2011/05/what-every-c-programmer-should-know_14.html">What Every C Programmer Should Know About Undefined Behavior</a></h3>
-<p>Some “gotchas” and pitfalls in the C programming language and how sometimes compiler optimizations can make it worse. Long story short is, steer away from undefined behaviors.</p>
+        <h1 id="C-C"><a href="#C-C" class="headerlink" title="C&#x2F;C++"></a>C&#x2F;C++</h1><h3 id="How-to-find-size-of-an-array-in-C-without-sizeof"><a href="#How-to-find-size-of-an-array-in-C-without-sizeof" class="headerlink" title="How to find size of an array in C without sizeof"></a><a href="http://arjunsreedharan.org/post/69303442896/the-difference-between-arr-and-arr-how-to-find">How to find size of an array in C without sizeof</a></h3><p>The difference between arr and &amp;arr - basically, arr is of type int *, and &amp;arr is of type (int *)[size].</p>
+<p>Very excellent article on the fundamentals of C&#x2F;C++!</p>
+<h3 id="What-Every-C-Programmer-Should-Know-About-Undefined-Behavior"><a href="#What-Every-C-Programmer-Should-Know-About-Undefined-Behavior" class="headerlink" title="What Every C Programmer Should Know About Undefined Behavior"></a><a href="http://blog.llvm.org/2011/05/what-every-c-programmer-should-know_14.html">What Every C Programmer Should Know About Undefined Behavior</a></h3><p>Some “gotchas” and pitfalls in the C programming language and how sometimes compiler optimizations can make it worse. Long story short is, steer away from undefined behaviors.</p>
 <p>This post is from Chris Lattner himeself. Really nice article.</p>
-<h1 id="python"><a class="markdownIt-Anchor" href="#python"></a> Python</h1>
-<h3 id="python-has-big-impact-at-red-hat"><a class="markdownIt-Anchor" href="#python-has-big-impact-at-red-hat"></a> <a target="_blank" rel="noopener" href="http://community.redhat.com/blog/2016/12/python-has-big-impact-at-red-hat/">Python Has Big Impact At Red Hat</a></h3>
-<p>Why Python is such a cool language and how Python is used in Redhat. Most of redhat’s important infrastructure is written in Python, including but not limited to <code>firewalld</code>, <code>yum</code>, and its successor <code>dnf</code>, and many cloud PaaS tools for OpenShift.</p>
+<h1 id="Python"><a href="#Python" class="headerlink" title="Python"></a>Python</h1><h3 id="Python-Has-Big-Impact-At-Red-Hat"><a href="#Python-Has-Big-Impact-At-Red-Hat" class="headerlink" title="Python Has Big Impact At Red Hat"></a><a href="http://community.redhat.com/blog/2016/12/python-has-big-impact-at-red-hat/">Python Has Big Impact At Red Hat</a></h3><p>Why Python is such a cool language and how Python is used in Redhat. Most of redhat’s important infrastructure is written in Python, including but not limited to <code>firewalld</code>, <code>yum</code>, and its successor <code>dnf</code>, and many cloud PaaS tools for OpenShift.</p>
         
           <p class="article-more-link">
-            <a href="/2017/01/08/Reading-Summary-2016-12/#more">Read More</a>
+            <a href="/2017/01/08/2017-01-Reading-Summary-2016-12/#more">Read More</a>
           </p>
         
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://blog.kevinhu.me/2017/01/08/Reading-Summary-2016-12/" data-id="clndtserm001gz0ey49my9m3j" class="article-share-link">Share</a>
-      
-        <a href="https://blog.kevinhu.me/2017/01/08/Reading-Summary-2016-12/#disqus_thread" class="article-comment-link">Comments</a>
+      <a data-url="https://blog.kevinhu.me/2017/01/08/2017-01-Reading-Summary-2016-12/" data-id="clz54sp9e001ghrey9p782gn3" class="article-share-link">Share</a>
       
       
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/C-C/" rel="tag">C/C++</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Compilers/" rel="tag">Compilers</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Python/" rel="tag">Python</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Undefined-Behavior/" rel="tag">Undefined Behavior</a></li></ul>
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/C-C/" rel="tag">C&#x2F;C++</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Compilers/" rel="tag">Compilers</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Python/" rel="tag">Python</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Undefined-Behavior/" rel="tag">Undefined Behavior</a></li></ul>
 
     </footer>
   </div>
@@ -457,10 +412,10 @@ metrics with these desirable properties are almost always worse than useless.&qu
 
 
   
-    <article id="post-Reading-Summary-2016-11" class="article article-type-post" itemscope itemprop="blogPost">
+    <article id="post-2016-11-Reading-Summary-2016-11" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
-    <a href="/2016/11/27/Reading-Summary-2016-11/" class="article-date">
-  <time datetime="2016-11-28T05:56:03.000Z" itemprop="datePublished">11 27 2016</time>
+    <a href="/2016/11/27/2016-11-Reading-Summary-2016-11/" class="article-date">
+  <time datetime="2016-11-28T07:56:03.000Z" itemprop="datePublished">11 27 2016</time>
 </a>
     
   <div class="article-category">
@@ -475,7 +430,7 @@ metrics with these desirable properties are almost always worse than useless.&qu
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2016/11/27/Reading-Summary-2016-11/">Reading Summary 2016-11</a>
+      <a class="article-title" href="/2016/11/27/2016-11-Reading-Summary-2016-11/">Reading Summary 2016-11</a>
     </h1>
   
 
@@ -483,20 +438,16 @@ metrics with these desirable properties are almost always worse than useless.&qu
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h1 id="cc"><a class="markdownIt-Anchor" href="#cc"></a> C/C++</h1>
-<h3 id="effective-c-and-c-in-a-nutshell"><a class="markdownIt-Anchor" href="#effective-c-and-c-in-a-nutshell"></a> “Effective C++” and “C++ In A Nutshell”</h3>
-<p>Finished most part of “C++ In A Nutshell”, and Scott Meyer’s “Effective C++”, and started to learn the basics of C++ language. Really great books to start to learn the basics of C++, and some of the fundamental problems in the language.</p>
+        <h1 id="C-C"><a href="#C-C" class="headerlink" title="C&#x2F;C++"></a>C&#x2F;C++</h1><h3 id="“Effective-C-”-and-“C-In-A-Nutshell”"><a href="#“Effective-C-”-and-“C-In-A-Nutshell”" class="headerlink" title="“Effective C++” and “C++ In A Nutshell”"></a>“Effective C++” and “C++ In A Nutshell”</h3><p>Finished most part of “C++ In A Nutshell”, and Scott Meyer’s “Effective C++”, and started to learn the basics of C++ language. Really great books to start to learn the basics of C++, and some of the fundamental problems in the language.</p>
         
           <p class="article-more-link">
-            <a href="/2016/11/27/Reading-Summary-2016-11/#more">Read More</a>
+            <a href="/2016/11/27/2016-11-Reading-Summary-2016-11/#more">Read More</a>
           </p>
         
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://blog.kevinhu.me/2016/11/27/Reading-Summary-2016-11/" data-id="clndtserm001cz0ey5gx8holj" class="article-share-link">Share</a>
-      
-        <a href="https://blog.kevinhu.me/2016/11/27/Reading-Summary-2016-11/#disqus_thread" class="article-comment-link">Comments</a>
+      <a data-url="https://blog.kevinhu.me/2016/11/27/2016-11-Reading-Summary-2016-11/" data-id="clz54sp9e001chreyaw4tblqc" class="article-share-link">Share</a>
       
       
     </footer>
@@ -506,10 +457,10 @@ metrics with these desirable properties are almost always worse than useless.&qu
 
 
   
-    <article id="post-Reading-Summary-2016-09" class="article article-type-post" itemscope itemprop="blogPost">
+    <article id="post-2016-09-Reading-Summary-2016-09" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
-    <a href="/2016/09/27/Reading-Summary-2016-09/" class="article-date">
-  <time datetime="2016-09-28T05:11:03.000Z" itemprop="datePublished">09 27 2016</time>
+    <a href="/2016/09/28/2016-09-Reading-Summary-2016-09/" class="article-date">
+  <time datetime="2016-09-28T07:11:03.000Z" itemprop="datePublished">09 28 2016</time>
 </a>
     
   <div class="article-category">
@@ -524,7 +475,7 @@ metrics with these desirable properties are almost always worse than useless.&qu
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2016/09/27/Reading-Summary-2016-09/">Reading Summary 2016-09</a>
+      <a class="article-title" href="/2016/09/28/2016-09-Reading-Summary-2016-09/">Reading Summary 2016-09</a>
     </h1>
   
 
@@ -532,21 +483,14 @@ metrics with these desirable properties are almost always worse than useless.&qu
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h1 id="reading"><a class="markdownIt-Anchor" href="#reading"></a> Reading</h1>
-<h3 id="a-bit-of-python"><a class="markdownIt-Anchor" href="#a-bit-of-python"></a> <a target="_blank" rel="noopener" href="https://access.redhat.com/blogs/766093/posts/2592591">A Bit of Python</a></h3>
-<p>Some security pitfalls in Python language. Very interesting read, from RedHat.</p>
-<h3 id="improving-workflow-by-using-clang-based-tools"><a class="markdownIt-Anchor" href="#improving-workflow-by-using-clang-based-tools"></a> <a target="_blank" rel="noopener" href="https://omtcyfz.github.io/2016/08/30/Improving-workflow-by-using-Clang-based-tools.html">Improving Workflow By Using Clang-based Tools</a></h3>
-<h3 id="tips-for-productive-debugging-with-gdb"><a class="markdownIt-Anchor" href="#tips-for-productive-debugging-with-gdb"></a> <a target="_blank" rel="noopener" href="https://metricpanda.com/tips-for-productive-debugging-with-gdb">Tips For Productive Debugging With GDB</a></h3>
-<p>A very beautifully crafted GDB init file. Worth taking a look.</p>
-<h3 id="the-definitive-guide-to-python-exceptions"><a class="markdownIt-Anchor" href="#the-definitive-guide-to-python-exceptions"></a> <a target="_blank" rel="noopener" href="https://julien.danjou.info/blog/2016/python-exceptions-guide">The Definitive Guide to Python Exceptions</a></h3>
-<p>From the author of ‘The Hacker’s Guide to Python’.</p>
+        <h1 id="Reading"><a href="#Reading" class="headerlink" title="Reading"></a>Reading</h1><h3 id="A-Bit-of-Python"><a href="#A-Bit-of-Python" class="headerlink" title="A Bit of Python"></a><a href="https://access.redhat.com/blogs/766093/posts/2592591">A Bit of Python</a></h3><p>Some security pitfalls in Python language. Very interesting read, from RedHat.</p>
+<h3 id="Improving-Workflow-By-Using-Clang-based-Tools"><a href="#Improving-Workflow-By-Using-Clang-based-Tools" class="headerlink" title="Improving Workflow By Using Clang-based Tools"></a><a href="https://omtcyfz.github.io/2016/08/30/Improving-workflow-by-using-Clang-based-tools.html">Improving Workflow By Using Clang-based Tools</a></h3><h3 id="Tips-For-Productive-Debugging-With-GDB"><a href="#Tips-For-Productive-Debugging-With-GDB" class="headerlink" title="Tips For Productive Debugging With GDB"></a><a href="https://metricpanda.com/tips-for-productive-debugging-with-gdb">Tips For Productive Debugging With GDB</a></h3><p>A very beautifully crafted GDB init file. Worth taking a look.</p>
+<h3 id="The-Definitive-Guide-to-Python-Exceptions"><a href="#The-Definitive-Guide-to-Python-Exceptions" class="headerlink" title="The Definitive Guide to Python Exceptions"></a><a href="https://julien.danjou.info/blog/2016/python-exceptions-guide">The Definitive Guide to Python Exceptions</a></h3><p>From the author of ‘The Hacker’s Guide to Python’.</p>
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://blog.kevinhu.me/2016/09/27/Reading-Summary-2016-09/" data-id="clndtserl001bz0ey8b6m1yxy" class="article-share-link">Share</a>
-      
-        <a href="https://blog.kevinhu.me/2016/09/27/Reading-Summary-2016-09/#disqus_thread" class="article-comment-link">Comments</a>
+      <a data-url="https://blog.kevinhu.me/2016/09/28/2016-09-Reading-Summary-2016-09/" data-id="clz54sp9d001ahrey1gcba1ne" class="article-share-link">Share</a>
       
       
     </footer>
@@ -556,10 +500,10 @@ metrics with these desirable properties are almost always worse than useless.&qu
 
 
   
-    <article id="post-Reading-Summary-2016-08" class="article article-type-post" itemscope itemprop="blogPost">
+    <article id="post-2016-08-Reading-Summary-2016-08" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
-    <a href="/2016/08/15/Reading-Summary-2016-08/" class="article-date">
-  <time datetime="2016-08-16T04:51:14.000Z" itemprop="datePublished">08 15 2016</time>
+    <a href="/2016/08/15/2016-08-Reading-Summary-2016-08/" class="article-date">
+  <time datetime="2016-08-16T06:51:14.000Z" itemprop="datePublished">08 15 2016</time>
 </a>
     
   <div class="article-category">
@@ -574,7 +518,7 @@ metrics with these desirable properties are almost always worse than useless.&qu
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2016/08/15/Reading-Summary-2016-08/">Reading Summary 2016-08</a>
+      <a class="article-title" href="/2016/08/15/2016-08-Reading-Summary-2016-08/">Reading Summary 2016-08</a>
     </h1>
   
 
@@ -582,23 +526,15 @@ metrics with these desirable properties are almost always worse than useless.&qu
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h1 id="reading"><a class="markdownIt-Anchor" href="#reading"></a> Reading</h1>
-<h3 id="alan-kays-reading-list"><a class="markdownIt-Anchor" href="#alan-kays-reading-list"></a> <a target="_blank" rel="noopener" href="http://www.squeakland.org/resources/books/readingList.jsp">Alan Kay’s Reading List</a></h3>
-<p>If this site is reliable, this is Alan Kay’s reading list for all his students. He’s a great thinker, not just in Computer Science, but human intelligence in general. His list is a constant reminder how much I’m trailing the great minds of this generation, and how much I should pick up the pace in reading.</p>
-<h2 id="how-to-use-your-full-brain-when-writing-code"><a class="markdownIt-Anchor" href="#how-to-use-your-full-brain-when-writing-code"></a> <a target="_blank" rel="noopener" href="http://chrismm.com/blog/how-to-use-your-full-brain-when-writing-code/">How to use your full brain when writing code</a></h2>
-<p>Tips on being an efficient programmer.</p>
-<h1 id="digital-rights"><a class="markdownIt-Anchor" href="#digital-rights"></a> Digital Rights</h1>
-<h3 id="how-technology-hijacks-peoples-minds-from-a-magician-and-googles-design-ethicist"><a class="markdownIt-Anchor" href="#how-technology-hijacks-peoples-minds-from-a-magician-and-googles-design-ethicist"></a> <a target="_blank" rel="noopener" href="https://medium.com/swlh/how-technology-hijacks-peoples-minds-from-a-magician-and-google-s-design-ethicist-56d62ef5edf3#.c9i8kx8cg">How Technology Hijacks People’s Minds -from a Magician and Google’s Design Ethicist</a></h3>
-<p>Interestingly how big companies like Facebook and Google use techniques to enchant you to stay on their page for more time, or click on more of their links. I think it’s an interesting read that raises our awareness against cases such tricks, and help us defend ourselves from such exploitation.</p>
-<h3 id="reweaving-the-web"><a class="markdownIt-Anchor" href="#reweaving-the-web"></a> <a target="_blank" rel="noopener" href="http://www.economist.com/news/business/21700642-slew-startups-trying-decentralise-online-world-reweaving-web?fsrc=scn/tw/te/pe/ed/reweavingtheweb">Reweaving the web</a></h3>
-<p>How a slew of new startup decide to use the latest technology such as “Blockchain” and “Ethereum” to decentralize the key web infrastructures and the World Wide Web they support, to compete against giant cooperations like Google and Facebook. It’s an interesting to trend to keep an eye on, but so far I don’t know if I have the optimism that they’ll succeed.</p>
+        <h1 id="Reading"><a href="#Reading" class="headerlink" title="Reading"></a>Reading</h1><h3 id="Alan-Kay’s-Reading-List"><a href="#Alan-Kay’s-Reading-List" class="headerlink" title="Alan Kay’s Reading List"></a><a href="http://www.squeakland.org/resources/books/readingList.jsp">Alan Kay’s Reading List</a></h3><p>If this site is reliable, this is Alan Kay’s reading list for all his students. He’s a great thinker, not just in Computer Science, but human intelligence in general. His list is a constant reminder how much I’m trailing the great minds of this generation, and how much I should pick up the pace in reading.</p>
+<h2 id="How-to-use-your-full-brain-when-writing-code"><a href="#How-to-use-your-full-brain-when-writing-code" class="headerlink" title="How to use your full brain when writing code"></a><a href="http://chrismm.com/blog/how-to-use-your-full-brain-when-writing-code/">How to use your full brain when writing code</a></h2><p>Tips on being an efficient programmer.</p>
+<h1 id="Digital-Rights"><a href="#Digital-Rights" class="headerlink" title="Digital Rights"></a>Digital Rights</h1><h3 id="How-Technology-Hijacks-People’s-Minds-from-a-Magician-and-Google’s-Design-Ethicist"><a href="#How-Technology-Hijacks-People’s-Minds-from-a-Magician-and-Google’s-Design-Ethicist" class="headerlink" title="How Technology Hijacks People’s Minds -from a Magician and Google’s Design Ethicist"></a><a href="https://medium.com/swlh/how-technology-hijacks-peoples-minds-from-a-magician-and-google-s-design-ethicist-56d62ef5edf3#.c9i8kx8cg">How Technology Hijacks People’s Minds -from a Magician and Google’s Design Ethicist</a></h3><p>Interestingly how big companies like Facebook and Google use techniques to enchant you to stay on their page for more time, or click on more of their links. I think it’s an interesting read that raises our awareness against cases such tricks, and help us defend ourselves from such exploitation.</p>
+<h3 id="Reweaving-the-web"><a href="#Reweaving-the-web" class="headerlink" title="Reweaving the web"></a><a href="http://www.economist.com/news/business/21700642-slew-startups-trying-decentralise-online-world-reweaving-web?fsrc=scn/tw/te/pe/ed/reweavingtheweb">Reweaving the web</a></h3><p>How a slew of new startup decide to use the latest technology such as “Blockchain” and “Ethereum” to decentralize the key web infrastructures and the World Wide Web they support, to compete against giant cooperations like Google and Facebook. It’s an interesting to trend to keep an eye on, but so far I don’t know if I have the optimism that they’ll succeed.</p>
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://blog.kevinhu.me/2016/08/15/Reading-Summary-2016-08/" data-id="clndtserl0017z0eybtgggz4b" class="article-share-link">Share</a>
-      
-        <a href="https://blog.kevinhu.me/2016/08/15/Reading-Summary-2016-08/#disqus_thread" class="article-comment-link">Comments</a>
+      <a data-url="https://blog.kevinhu.me/2016/08/15/2016-08-Reading-Summary-2016-08/" data-id="clz54sp9d0016hrey0x8l5p21" class="article-share-link">Share</a>
       
       
     </footer>
@@ -608,10 +544,10 @@ metrics with these desirable properties are almost always worse than useless.&qu
 
 
   
-    <article id="post-Reading-Summary-2016-04" class="article article-type-post" itemscope itemprop="blogPost">
+    <article id="post-2016-05-Reading-Summary-2016-04" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
-    <a href="/2016/05/05/Reading-Summary-2016-04/" class="article-date">
-  <time datetime="2016-05-06T06:34:31.000Z" itemprop="datePublished">05 05 2016</time>
+    <a href="/2016/05/06/2016-05-Reading-Summary-2016-04/" class="article-date">
+  <time datetime="2016-05-06T08:34:31.000Z" itemprop="datePublished">05 06 2016</time>
 </a>
     
   <div class="article-category">
@@ -626,7 +562,7 @@ metrics with these desirable properties are almost always worse than useless.&qu
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2016/05/05/Reading-Summary-2016-04/">Reading Summary 2016-04</a>
+      <a class="article-title" href="/2016/05/06/2016-05-Reading-Summary-2016-04/">Reading Summary 2016-04</a>
     </h1>
   
 
@@ -634,24 +570,18 @@ metrics with these desirable properties are almost always worse than useless.&qu
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h1 id="programming"><a class="markdownIt-Anchor" href="#programming"></a> Programming</h1>
-<h3 id="eli-benderskys-website"><a class="markdownIt-Anchor" href="#eli-benderskys-website"></a> <a target="_blank" rel="noopener" href="http://eli.thegreenplace.net/">Eli Bendersky’s Website</a></h3>
-<p>Eli Bendersky’s blog has always been a must-read to me. He never fails to regularly come up with posts of interesting and insightful ideas, or detailed tutorials.</p>
-<p>He also actively participates in LLVM-dev mailing list and based on his blogs, has board interests in programming language, computer systems and etc…</p>
-<h1 id="computer-science"><a class="markdownIt-Anchor" href="#computer-science"></a> Computer Science</h1>
-<h3 id="what-is-hci-research-and-what-is-its-relationship-to-computer-science"><a class="markdownIt-Anchor" href="#what-is-hci-research-and-what-is-its-relationship-to-computer-science"></a> <a target="_blank" rel="noopener" href="http://www.pgbovine.net/what-is-hci-research.htm">What is HCI research? And what is its relationship to computer science?</a></h3>
-<p>Phillip Guo is another one of my favorite bloggers. This time he wrote an intro to HCI research.</p>
+        <h1 id="Programming"><a href="#Programming" class="headerlink" title="Programming"></a>Programming</h1><h3 id="Eli-Bendersky’s-Website"><a href="#Eli-Bendersky’s-Website" class="headerlink" title="Eli Bendersky’s Website"></a><a href="http://eli.thegreenplace.net/">Eli Bendersky’s Website</a></h3><p>Eli Bendersky’s blog has always been a must-read to me. He never fails to regularly come up with posts of interesting and insightful ideas, or detailed tutorials.</p>
+<p>He also actively participates in LLVM-dev mailing list and based on his blogs, has board interests in programming language, computer systems and etc..</p>
+<h1 id="Computer-Science"><a href="#Computer-Science" class="headerlink" title="Computer Science"></a>Computer Science</h1><h3 id="What-is-HCI-research-And-what-is-its-relationship-to-computer-science"><a href="#What-is-HCI-research-And-what-is-its-relationship-to-computer-science" class="headerlink" title="What is HCI research? And what is its relationship to computer science?"></a><a href="http://www.pgbovine.net/what-is-hci-research.htm">What is HCI research? And what is its relationship to computer science?</a></h3><p>Phillip Guo is another one of my favorite bloggers. This time he wrote an intro to HCI research.</p>
         
           <p class="article-more-link">
-            <a href="/2016/05/05/Reading-Summary-2016-04/#more">Read More</a>
+            <a href="/2016/05/06/2016-05-Reading-Summary-2016-04/#more">Read More</a>
           </p>
         
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://blog.kevinhu.me/2016/05/05/Reading-Summary-2016-04/" data-id="clndtserk0014z0ey9tgba44g" class="article-share-link">Share</a>
-      
-        <a href="https://blog.kevinhu.me/2016/05/05/Reading-Summary-2016-04/#disqus_thread" class="article-comment-link">Comments</a>
+      <a data-url="https://blog.kevinhu.me/2016/05/06/2016-05-Reading-Summary-2016-04/" data-id="clz54sp9c0013hreyd4ajdlbz" class="article-share-link">Share</a>
       
       
     </footer>
@@ -663,7 +593,7 @@ metrics with these desirable properties are almost always worse than useless.&qu
   
   
     <nav id="page-nav">
-      <a class="extend prev" rel="prev" href="/categories/Reading/">&amp;laquo; Prev</a><a class="page-number" href="/categories/Reading/">1</a><span class="page-number current">2</span><a class="page-number" href="/categories/Reading/page/3/">3</a><a class="extend next" rel="next" href="/categories/Reading/page/3/">Next &amp;raquo;</a>
+      <a class="extend prev" rel="prev" href="/categories/Reading/">&laquo; Prev</a><a class="page-number" href="/categories/Reading/">1</a><span class="page-number current">2</span><a class="page-number" href="/categories/Reading/page/3/">3</a><a class="extend next" rel="next" href="/categories/Reading/page/3/">Next &raquo;</a>
     </nav>
   
 </section>
@@ -674,7 +604,7 @@ metrics with these desirable properties are almost always worse than useless.&qu
     <div class="widget-wrap">
         <h3 class="widget-title">Follow Me</h3>
         <div class="widget">
-            <a target="_blank" rel="noopener" href="https://twitter.com/Oldgunix?ref_src=twsrc%5Etfw" class="twitter-follow-button"
+            <a href="https://twitter.com/Oldgunix?ref_src=twsrc%5Etfw" class="twitter-follow-button"
                 data-show-count="false">Follow @Oldgunix</a>
             <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
         </div>
@@ -692,19 +622,19 @@ metrics with these desirable properties are almost always worse than useless.&qu
           </li>
         
           <li>
-            <a href="/2023/09/02/03-Paper-Readings-on-LLM-Task-Performing-ii/">Paper Readings on LLM Task Performing - II</a>
+            <a href="/2023/09/03/2023-09-03-Paper-Readings-on-LLM-Task-Performing-ii/">Paper Readings on LLM Task Performing - II</a>
           </li>
         
           <li>
-            <a href="/2023/07/09/Hacking-LangChain-for-fun-and-profit/">Hacking LangChain For Fun and Profit - I</a>
+            <a href="/2023/07/10/Hacking-LangChain-for-fun-and-profit/">Hacking LangChain For Fun and Profit - I</a>
           </li>
         
           <li>
-            <a href="/2023/06/11/Paper-Readings-on-LLM-Task-Performing/">Paper Readings on LLM Task Performing</a>
+            <a href="/2023/06/12/2023-06-Paper-Readings-on-LLM-Task-Performing/">Paper Readings on LLM Task Performing</a>
           </li>
         
           <li>
-            <a href="/2022/09/03/03-openapi-generator/">OpenAPI Generator For Go Web Development</a>
+            <a href="/2022/09/03/2022-09-03-openapi-generator/">OpenAPI Generator For Go Web Development</a>
           </li>
         
       </ul>
@@ -762,18 +692,6 @@ metrics with these desirable properties are almost always worse than useless.&qu
   
 </nav>
     
-<script>
-  var disqus_shortname = 'kevinhustechblog';
-  
-  (function(){
-    var dsq = document.createElement('script');
-    dsq.type = 'text/javascript';
-    dsq.async = true;
-    dsq.src = '//' + disqus_shortname + '.disqus.com/count.js';
-    (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
-  })();
-</script>
-
 
 <script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
 
@@ -791,5 +709,20 @@ metrics with these desirable properties are almost always worse than useless.&qu
 
 
   </div>
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
+            processEscapes: true
+        }
+    });
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax();
+        for (var i = 0; i < all.length; ++i)
+            all[i].SourceElement().parentNode.className += ' has-jax';
+    });
+</script>
+<script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
 </body>
 </html>

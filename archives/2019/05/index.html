@@ -22,7 +22,6 @@
     <link rel="icon" href="/favicon.png">
   
   <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
-<link href="//https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.9.0/katex.min.css" rel="stylesheet" type="text/css">
   
 <link rel="stylesheet" href="/css/style.css">
 
@@ -39,7 +38,12 @@
     gtag('config', 'G-8ENJJHKTMX');
   </script>
 
-<meta name="generator" content="Hexo 5.4.0"></head>
+<!-- hexo injector head_end start -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.css">
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/hexo-math@4.0.0/dist/style.css">
+<!-- hexo injector head_end end --><meta name="generator" content="Hexo 7.3.0"></head>
+
 <body>
   <div id="container">
     <div id="wrap">
@@ -82,10 +86,10 @@
       <div class="outer">
         <section id="main">
   
-    <article id="post-05-Reading-Summary-201905" class="article article-type-post" itemscope itemprop="blogPost">
+    <article id="post-2019-05-05-Reading-Summary-201905" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
-    <a href="/2019/05/05/05-Reading-Summary-201905/" class="article-date">
-  <time datetime="2019-05-06T03:40:34.000Z" itemprop="datePublished">05 05 2019</time>
+    <a href="/2019/05/05/2019-05-05-Reading-Summary-201905/" class="article-date">
+  <time datetime="2019-05-06T05:40:34.000Z" itemprop="datePublished">05 05 2019</time>
 </a>
     
   <div class="article-category">
@@ -100,7 +104,7 @@
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2019/05/05/05-Reading-Summary-201905/">Reading Summary 2019-04</a>
+      <a class="article-title" href="/2019/05/05/2019-05-05-Reading-Summary-201905/">Reading Summary 2019-04</a>
     </h1>
   
 
@@ -108,38 +112,19 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h2 id="an-overview-of-gos-tooling"><a class="markdownIt-Anchor" href="#an-overview-of-gos-tooling"></a> <a target="_blank" rel="noopener" href="https://www.alexedwards.net/blog/an-overview-of-go-tooling#diagnosing-problems-and-making-optimizations">An Overview of Go’s Tooling</a></h2>
-<p>If go is one of your favorite languages as well, this is a must read:
-it introduces all the basic tooling that comes with Go’s ecosystem, which
-might greatly save your time.</p>
-<h2 id="hackernews-thread-on-tla"><a class="markdownIt-Anchor" href="#hackernews-thread-on-tla"></a> <a target="_blank" rel="noopener" href="https://news.ycombinator.com/item?id=19634915">HackerNews thread on TLA+:</a></h2>
-<p>A thread from HackerNews, discussing the importance of formal verification
-for distributed systems.</p>
-<p>TLA+ and formal verification is notoriously known for its complexity and steep
-learning curve. This might be one of my very future goals.</p>
-<h2 id="are-you-a-software-architect"><a class="markdownIt-Anchor" href="#are-you-a-software-architect"></a> <a target="_blank" rel="noopener" href="https://www.infoq.com/articles/brown-are-you-a-software-architect">Are You a Software Architect?</a></h2>
-<p>What it takes to be a software architect, a great blog post from InfoQ.</p>
-<h2 id="influxdata-is-building-a-fast-implementation-of-apache-arrow-in-go-using-c2goasm-and-simd"><a class="markdownIt-Anchor" href="#influxdata-is-building-a-fast-implementation-of-apache-arrow-in-go-using-c2goasm-and-simd"></a> <a target="_blank" rel="noopener" href="https://www.influxdata.com/blog/influxdata-apache-arrow-go-implementation/">InfluxData is Building a Fast Implementation of Apache Arrow in Go Using c2goasm and SIMD</a></h2>
-<p>TIL that it is possible to convert your C/C++ assembly into Go’s assembly, and
-call from Go’s code. InfluxData leverages the tooling to embed AVX/SSE instructions
-into Golang’s assembly, thus boosts Go code’s performance, sometimes by orders
-of magnitude.</p>
-<p>More information on this tool, c2goasm, <a target="_blank" rel="noopener" href="https://github.com/minio/c2goasm">work from Minio</a>.</p>
-<h2 id="org-mode-is-one-of-the-most-reasonable-markup-languages-to-use-for-text"><a class="markdownIt-Anchor" href="#org-mode-is-one-of-the-most-reasonable-markup-languages-to-use-for-text"></a> <a target="_blank" rel="noopener" href="https://karl-voit.at/2017/09/23/orgmode-as-markup-only/">Org-Mode Is One of the Most Reasonable Markup Languages to Use for Text</a></h2>
-<p>I think so, too. But it’ll require a community and proper tooling to see it
-really prosper. Hope to see that some day.</p>
-<h2 id="why-and-how-capitalism-needs-to-be-reformed"><a class="markdownIt-Anchor" href="#why-and-how-capitalism-needs-to-be-reformed"></a> <a target="_blank" rel="noopener" href="https://www.economicprinciples.org/Why-and-How-Capitalism-Needs-To-Be-Reformed/">Why and How Capitalism Needs to Be Reformed</a></h2>
-<p>A great piece from <a target="_blank" rel="noopener" href="https://en.wikipedia.org/wiki/Ray_Dalio">Ray Dalio</a>, the
-founder of investment firm Bridgewaters, a seasoned investor, discusses in his
-recent long post why American capitalism is sick in distributing resources,
-especially educational resources, and needs to be reformed to stay healthy.</p>
+        <h2 id="An-Overview-of-Go’s-Tooling"><a href="#An-Overview-of-Go’s-Tooling" class="headerlink" title="An Overview of Go’s Tooling"></a><a href="https://www.alexedwards.net/blog/an-overview-of-go-tooling#diagnosing-problems-and-making-optimizations">An Overview of Go’s Tooling</a></h2><p>If go is one of your favorite languages as well, this is a must read:<br>it introduces all the basic tooling that comes with Go’s ecosystem, which<br>might greatly save your time.</p>
+<h2 id="HackerNews-thread-on-TLA"><a href="#HackerNews-thread-on-TLA" class="headerlink" title="HackerNews thread on TLA+:"></a><a href="https://news.ycombinator.com/item?id=19634915">HackerNews thread on TLA+:</a></h2><p>A thread from HackerNews, discussing the importance of formal verification<br>for distributed systems.</p>
+<p>TLA+ and formal verification is notoriously known for its complexity and steep<br>learning curve. This might be one of my very future goals.</p>
+<h2 id="Are-You-a-Software-Architect"><a href="#Are-You-a-Software-Architect" class="headerlink" title="Are You a Software Architect?"></a><a href="https://www.infoq.com/articles/brown-are-you-a-software-architect">Are You a Software Architect?</a></h2><p>What it takes to be a software architect, a great blog post from InfoQ.</p>
+<h2 id="InfluxData-is-Building-a-Fast-Implementation-of-Apache-Arrow-in-Go-Using-c2goasm-and-SIMD"><a href="#InfluxData-is-Building-a-Fast-Implementation-of-Apache-Arrow-in-Go-Using-c2goasm-and-SIMD" class="headerlink" title="InfluxData is Building a Fast Implementation of Apache Arrow in Go Using c2goasm and SIMD"></a><a href="https://www.influxdata.com/blog/influxdata-apache-arrow-go-implementation/">InfluxData is Building a Fast Implementation of Apache Arrow in Go Using c2goasm and SIMD</a></h2><p>TIL that it is possible to convert your C&#x2F;C++ assembly into Go’s assembly, and<br>call from Go’s code. InfluxData leverages the tooling to embed AVX&#x2F;SSE instructions<br>into Golang’s assembly, thus boosts Go code’s performance, sometimes by orders<br>of magnitude.</p>
+<p>More information on this tool, c2goasm, <a href="https://github.com/minio/c2goasm">work from Minio</a>.</p>
+<h2 id="Org-Mode-Is-One-of-the-Most-Reasonable-Markup-Languages-to-Use-for-Text"><a href="#Org-Mode-Is-One-of-the-Most-Reasonable-Markup-Languages-to-Use-for-Text" class="headerlink" title="Org-Mode Is One of the Most Reasonable Markup Languages to Use for Text"></a><a href="https://karl-voit.at/2017/09/23/orgmode-as-markup-only/">Org-Mode Is One of the Most Reasonable Markup Languages to Use for Text</a></h2><p>I think so, too. But it’ll require a community and proper tooling to see it<br>really prosper. Hope to see that some day.</p>
+<h2 id="Why-and-How-Capitalism-Needs-to-Be-Reformed"><a href="#Why-and-How-Capitalism-Needs-to-Be-Reformed" class="headerlink" title="Why and How Capitalism Needs to Be Reformed"></a><a href="https://www.economicprinciples.org/Why-and-How-Capitalism-Needs-To-Be-Reformed/">Why and How Capitalism Needs to Be Reformed</a></h2><p>A great piece from <a href="https://en.wikipedia.org/wiki/Ray_Dalio">Ray Dalio</a>, the<br>founder of investment firm Bridgewaters, a seasoned investor, discusses in his<br>recent long post why American capitalism is sick in distributing resources,<br>especially educational resources, and needs to be reformed to stay healthy.</p>
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://blog.kevinhu.me/2019/05/05/05-Reading-Summary-201905/" data-id="clndtserw0033z0eyddzibbxo" class="article-share-link">Share</a>
-      
-        <a href="https://blog.kevinhu.me/2019/05/05/05-Reading-Summary-201905/#disqus_thread" class="article-comment-link">Comments</a>
+      <a data-url="https://blog.kevinhu.me/2019/05/05/2019-05-05-Reading-Summary-201905/" data-id="clz54sp9m0032hrey82hwe460" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Reading/" rel="tag">Reading</a></li></ul>
@@ -160,7 +145,7 @@ especially educational resources, and needs to be reformed to stay healthy.</p>
     <div class="widget-wrap">
         <h3 class="widget-title">Follow Me</h3>
         <div class="widget">
-            <a target="_blank" rel="noopener" href="https://twitter.com/Oldgunix?ref_src=twsrc%5Etfw" class="twitter-follow-button"
+            <a href="https://twitter.com/Oldgunix?ref_src=twsrc%5Etfw" class="twitter-follow-button"
                 data-show-count="false">Follow @Oldgunix</a>
             <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
         </div>
@@ -178,19 +163,19 @@ especially educational resources, and needs to be reformed to stay healthy.</p>
           </li>
         
           <li>
-            <a href="/2023/09/02/03-Paper-Readings-on-LLM-Task-Performing-ii/">Paper Readings on LLM Task Performing - II</a>
+            <a href="/2023/09/03/2023-09-03-Paper-Readings-on-LLM-Task-Performing-ii/">Paper Readings on LLM Task Performing - II</a>
           </li>
         
           <li>
-            <a href="/2023/07/09/Hacking-LangChain-for-fun-and-profit/">Hacking LangChain For Fun and Profit - I</a>
+            <a href="/2023/07/10/Hacking-LangChain-for-fun-and-profit/">Hacking LangChain For Fun and Profit - I</a>
           </li>
         
           <li>
-            <a href="/2023/06/11/Paper-Readings-on-LLM-Task-Performing/">Paper Readings on LLM Task Performing</a>
+            <a href="/2023/06/12/2023-06-Paper-Readings-on-LLM-Task-Performing/">Paper Readings on LLM Task Performing</a>
           </li>
         
           <li>
-            <a href="/2022/09/03/03-openapi-generator/">OpenAPI Generator For Go Web Development</a>
+            <a href="/2022/09/03/2022-09-03-openapi-generator/">OpenAPI Generator For Go Web Development</a>
           </li>
         
       </ul>
@@ -248,18 +233,6 @@ especially educational resources, and needs to be reformed to stay healthy.</p>
   
 </nav>
     
-<script>
-  var disqus_shortname = 'kevinhustechblog';
-  
-  (function(){
-    var dsq = document.createElement('script');
-    dsq.type = 'text/javascript';
-    dsq.async = true;
-    dsq.src = '//' + disqus_shortname + '.disqus.com/count.js';
-    (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
-  })();
-</script>
-
 
 <script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
 
@@ -277,5 +250,20 @@ especially educational resources, and needs to be reformed to stay healthy.</p>
 
 
   </div>
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
+            processEscapes: true
+        }
+    });
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax();
+        for (var i = 0; i < all.length; ++i)
+            all[i].SourceElement().parentNode.className += ' has-jax';
+    });
+</script>
+<script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
 </body>
 </html>

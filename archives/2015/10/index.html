@@ -22,7 +22,6 @@
     <link rel="icon" href="/favicon.png">
   
   <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
-<link href="//https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.9.0/katex.min.css" rel="stylesheet" type="text/css">
   
 <link rel="stylesheet" href="/css/style.css">
 
@@ -39,7 +38,12 @@
     gtag('config', 'G-8ENJJHKTMX');
   </script>
 
-<meta name="generator" content="Hexo 5.4.0"></head>
+<!-- hexo injector head_end start -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.css">
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/hexo-math@4.0.0/dist/style.css">
+<!-- hexo injector head_end end --><meta name="generator" content="Hexo 7.3.0"></head>
+
 <body>
   <div id="container">
     <div id="wrap">
@@ -82,10 +86,10 @@
       <div class="outer">
         <section id="main">
   
-    <article id="post-Reading-Summary-in-2015-10" class="article article-type-post" itemscope itemprop="blogPost">
+    <article id="post-2015-10-Reading-Summary-in-2015-10" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
-    <a href="/2015/10/23/Reading-Summary-in-2015-10/" class="article-date">
-  <time datetime="2015-10-24T06:38:05.000Z" itemprop="datePublished">10 23 2015</time>
+    <a href="/2015/10/24/2015-10-Reading-Summary-in-2015-10/" class="article-date">
+  <time datetime="2015-10-24T08:38:05.000Z" itemprop="datePublished">10 24 2015</time>
 </a>
     
   <div class="article-category">
@@ -100,7 +104,7 @@
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2015/10/23/Reading-Summary-in-2015-10/">Reading Summary in 2015/10</a>
+      <a class="article-title" href="/2015/10/24/2015-10-Reading-Summary-in-2015-10/">Reading Summary in 2015/10</a>
     </h1>
   
 
@@ -108,23 +112,15 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h1 id="compilers"><a class="markdownIt-Anchor" href="#compilers"></a> Compilers</h1>
-<h3 id="troubles-with-gcc-signed-integer-overflow-optimization"><a class="markdownIt-Anchor" href="#troubles-with-gcc-signed-integer-overflow-optimization"></a> <a target="_blank" rel="noopener" href="http://thiemonagel.de/2010/01/signed-integer-overflow/">Troubles with GCC signed integer overflow optimization</a></h3>
-<h3 id="bug-30475-assertint100int-optimized-away"><a class="markdownIt-Anchor" href="#bug-30475-assertint100int-optimized-away"></a> <a target="_blank" rel="noopener" href="https://gcc.gnu.org/bugzilla/show_bug.cgi?id=30475">BUG 30475 - assert(int+100&gt;int) optimized away</a></h3>
-<p>An interesting ‘bug’ in some versions of GCC (and Clang as well) implementation. Since it’s <strong>‘undefined’</strong> behavior after all, compiler is not obliged to implement it as a defined behavior. Use <code>-fwrapv</code> flag in GCC to inform the compiler that integer value wraps.</p>
-<h1 id="python"><a class="markdownIt-Anchor" href="#python"></a> Python</h1>
-<h3 id="profiling-python-in-production"><a class="markdownIt-Anchor" href="#profiling-python-in-production"></a> <a target="_blank" rel="noopener" href="https://nylas.com/blog/performance">Profiling Python in Production</a></h3>
-<p>Signal timeout for every small amount of time (say, 1ms in this case) and record the current stack, and we can infer time spent in each function precisely enough. A smart way of profiling large Python programs.</p>
+        <h1 id="Compilers"><a href="#Compilers" class="headerlink" title="Compilers"></a>Compilers</h1><h3 id="Troubles-with-GCC-signed-integer-overflow-optimization"><a href="#Troubles-with-GCC-signed-integer-overflow-optimization" class="headerlink" title="Troubles with GCC signed integer overflow optimization"></a><a href="http://thiemonagel.de/2010/01/signed-integer-overflow/">Troubles with GCC signed integer overflow optimization</a></h3><h3 id="BUG-30475-assert-int-100-int-optimized-away"><a href="#BUG-30475-assert-int-100-int-optimized-away" class="headerlink" title="BUG 30475 - assert(int+100&gt;int) optimized away"></a><a href="https://gcc.gnu.org/bugzilla/show_bug.cgi?id=30475">BUG 30475 - assert(int+100&gt;int) optimized away</a></h3><p>An interesting ‘bug’ in some versions of GCC (and Clang as well) implementation. Since it’s <strong>‘undefined’</strong> behavior after all, compiler is not obliged to implement it as a defined behavior. Use <code>-fwrapv</code> flag in GCC to inform the compiler that integer value wraps.</p>
+<h1 id="Python"><a href="#Python" class="headerlink" title="Python"></a>Python</h1><h3 id="Profiling-Python-in-Production"><a href="#Profiling-Python-in-Production" class="headerlink" title="Profiling Python in Production"></a><a href="https://nylas.com/blog/performance">Profiling Python in Production</a></h3><p>Signal timeout for every small amount of time (say, 1ms in this case) and record the current stack, and we can infer time spent in each function precisely enough. A smart way of profiling large Python programs.</p>
 <p>Note: python signal callback passes signal type and signal handler, and signal handler takes signal number and current stack frame.</p>
-<h3 id="hitchhikers-guide-to-python"><a class="markdownIt-Anchor" href="#hitchhikers-guide-to-python"></a> <a target="_blank" rel="noopener" href="http://docs.python-guide.org/en/latest/">Hitchhiker’s Guide to Python</a></h3>
-<p>Great book to Python, covering code style, best practices and scenario guide. Just started reading it.</p>
+<h3 id="Hitchhiker’s-Guide-to-Python"><a href="#Hitchhiker’s-Guide-to-Python" class="headerlink" title="Hitchhiker’s Guide to Python"></a><a href="http://docs.python-guide.org/en/latest/">Hitchhiker’s Guide to Python</a></h3><p>Great book to Python, covering code style, best practices and scenario guide. Just started reading it.</p>
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://blog.kevinhu.me/2015/10/23/Reading-Summary-in-2015-10/" data-id="clndtserg000kz0ey606r1uu4" class="article-share-link">Share</a>
-      
-        <a href="https://blog.kevinhu.me/2015/10/23/Reading-Summary-in-2015-10/#disqus_thread" class="article-comment-link">Comments</a>
+      <a data-url="https://blog.kevinhu.me/2015/10/24/2015-10-Reading-Summary-in-2015-10/" data-id="clz54sp99000jhrey043hcfcx" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Compilers/" rel="tag">Compilers</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Python/" rel="tag">Python</a></li></ul>
@@ -145,7 +141,7 @@
     <div class="widget-wrap">
         <h3 class="widget-title">Follow Me</h3>
         <div class="widget">
-            <a target="_blank" rel="noopener" href="https://twitter.com/Oldgunix?ref_src=twsrc%5Etfw" class="twitter-follow-button"
+            <a href="https://twitter.com/Oldgunix?ref_src=twsrc%5Etfw" class="twitter-follow-button"
                 data-show-count="false">Follow @Oldgunix</a>
             <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
         </div>
@@ -163,19 +159,19 @@
           </li>
         
           <li>
-            <a href="/2023/09/02/03-Paper-Readings-on-LLM-Task-Performing-ii/">Paper Readings on LLM Task Performing - II</a>
+            <a href="/2023/09/03/2023-09-03-Paper-Readings-on-LLM-Task-Performing-ii/">Paper Readings on LLM Task Performing - II</a>
           </li>
         
           <li>
-            <a href="/2023/07/09/Hacking-LangChain-for-fun-and-profit/">Hacking LangChain For Fun and Profit - I</a>
+            <a href="/2023/07/10/Hacking-LangChain-for-fun-and-profit/">Hacking LangChain For Fun and Profit - I</a>
           </li>
         
           <li>
-            <a href="/2023/06/11/Paper-Readings-on-LLM-Task-Performing/">Paper Readings on LLM Task Performing</a>
+            <a href="/2023/06/12/2023-06-Paper-Readings-on-LLM-Task-Performing/">Paper Readings on LLM Task Performing</a>
           </li>
         
           <li>
-            <a href="/2022/09/03/03-openapi-generator/">OpenAPI Generator For Go Web Development</a>
+            <a href="/2022/09/03/2022-09-03-openapi-generator/">OpenAPI Generator For Go Web Development</a>
           </li>
         
       </ul>
@@ -233,18 +229,6 @@
   
 </nav>
     
-<script>
-  var disqus_shortname = 'kevinhustechblog';
-  
-  (function(){
-    var dsq = document.createElement('script');
-    dsq.type = 'text/javascript';
-    dsq.async = true;
-    dsq.src = '//' + disqus_shortname + '.disqus.com/count.js';
-    (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
-  })();
-</script>
-
 
 <script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
 
@@ -262,5 +246,20 @@
 
 
   </div>
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
+            processEscapes: true
+        }
+    });
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax();
+        for (var i = 0; i < all.length; ++i)
+            all[i].SourceElement().parentNode.className += ' has-jax';
+    });
+</script>
+<script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
 </body>
 </html>
