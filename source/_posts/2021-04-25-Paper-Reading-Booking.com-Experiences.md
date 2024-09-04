@@ -29,7 +29,7 @@ Booking.com uses an abundance of Machine Learning models in its website service.
 
 From experience in the paper, all model families can provide value in the real world. Though some values are hard to quantify, the multiplying effort is clear.
 
-What struck me most from this section is the number of models which is deployed for a service and how many aspects of user experience can be modeled, optimized, and fine-tuned with the power of Machine Learning. 
+What struck me most from this section is the number of models which is deployed for a service and how many aspects of user experience can be modeled, optimized, and fine-tuned with the power of Machine Learning.
 
 Everything we see now on modern websites can be decided by a Machine Learning model behind it, and it learns our interactions with it to feedback our experience.
 
@@ -59,7 +59,7 @@ Coming up with better models to unlock business values can require many iteratio
 
 # 4. Deployment: Time Is Money
 
-This section introduces an important observation that website response speed correlates to user conversion. 
+This section introduces an important observation that website response speed correlates to user conversion.
 
 > Visual inspection shows a clear trend, in which an increase of about 30% in latency costs more than 0.5% in conversion rate (a relevant cost for our business).
 
