@@ -6,7 +6,6 @@ categories: "Coding"
 tags: ['Learning', 'Golang', 'API', 'openAPI', 'web']
 ---
 
-
 The [Openapi Generator](https://openapi-generator.tech/) for Go API and Go web app development works surprisingly well,
 but somehow I found that it's not so often mentioned.
 Recently I've tried it in one of my projects, and in my (limited) experience with it, I was pleasantly surprised by how good it was.
