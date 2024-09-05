@@ -1,0 +1,352 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>Paper Reading: 150 Successful Machine Learning Models Deployed: 6 Lessons Learned At Booking.com | Kevin Hu&#39;s Blog</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="Paper link: https:&#x2F;&#x2F;www.kdd.org&#x2F;kdd2019&#x2F;accepted-papers&#x2F;view&#x2F;150-successful-machine-learning-models-6-lessons-learned-at-booking.com Or download. First published in KDD f">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Paper Reading: 150 Successful Machine Learning Models Deployed: 6 Lessons Learned At Booking.com">
+<meta property="og:url" content="https://blog.kevinhu.me/2021/04/25/25-Paper-Reading-Booking.com-Experiences/index.html">
+<meta property="og:site_name" content="Kevin Hu&#39;s Blog">
+<meta property="og:description" content="Paper link: https:&#x2F;&#x2F;www.kdd.org&#x2F;kdd2019&#x2F;accepted-papers&#x2F;view&#x2F;150-successful-machine-learning-models-6-lessons-learned-at-booking.com Or download. First published in KDD f">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://blog.kevinhu.me/2021/04/25/25-Paper-Reading-Booking.com-Experiences/examples_distribution_charts.png">
+<meta property="og:image" content="https://blog.kevinhu.me/2021/04/25/25-Paper-Reading-Booking.com-Experiences/experiment_design.png">
+<meta property="article:published_time" content="2021-04-26T00:39:34.000Z">
+<meta property="article:modified_time" content="2024-09-04T05:56:25.332Z">
+<meta property="article:author" content="Kevin Hu">
+<meta property="article:tag" content="Learning">
+<meta property="article:tag" content="Machine Learning">
+<meta property="article:tag" content="Data Science">
+<meta property="article:tag" content="AI">
+<meta property="article:tag" content="Paper">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://blog.kevinhu.me/2021/04/25/25-Paper-Reading-Booking.com-Experiences/examples_distribution_charts.png">
+<meta name="twitter:creator" content="@Oldgunix">
+  
+    <link rel="alternative" href="/atom.xml" title="Kevin Hu&#39;s Blog" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  
+
+
+    <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-8ENJJHKTMX"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+
+    gtag('config', 'G-8ENJJHKTMX');
+  </script>
+
+<!-- hexo injector head_end start -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.css">
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/hexo-math@4.0.0/dist/style.css">
+<!-- hexo injector head_end end --><meta name="generator" content="Hexo 7.3.0"></head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">Kevin Hu&#39;s Blog</a>
+      </h1>
+      
+        <h2 id="subtitle-wrap">
+          <a href="/" id="subtitle">A Hungry Fool</a>
+        </h2>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/About/">About</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="https://blog.kevinhu.me"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-25-Paper-Reading-Booking.com-Experiences" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2021/04/25/25-Paper-Reading-Booking.com-Experiences/" class="article-date">
+  <time datetime="2021-04-26T00:39:34.000Z" itemprop="datePublished">04 25 2021</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/PaperReading/">PaperReading</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      Paper Reading: 150 Successful Machine Learning Models Deployed: 6 Lessons Learned At Booking.com
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>Paper link: https:&#x2F;&#x2F;www.kdd.org&#x2F;kdd2019&#x2F;accepted-papers&#x2F;view&#x2F;150-successful-machine-learning-models-6-lessons-learned-at-booking.com</p>
+<p>Or <a href="bernardi2019.pdf">download</a>.</p>
+<p>First published in KDD from booking.com, the paper described its lessons from deploying Machine Learning models in their production service. It provided some intriguing insights. I believe many are very valuable to understanding applying Machine Learning in real-world scenarios.</p>
+<p>Here are some of my takeaways.</p>
+<span id="more"></span>
+
+<h1 id="1-Model-Families-Machine-Learning-is-Applied-Everywhere-In-The-Service"><a href="#1-Model-Families-Machine-Learning-is-Applied-Everywhere-In-The-Service" class="headerlink" title="1. Model Families: Machine Learning is Applied Everywhere In The Service"></a>1. Model Families: Machine Learning is Applied Everywhere In The Service</h1><p>Booking.com uses an abundance of Machine Learning models in its website service. Example includes:</p>
+<ul>
+<li><strong>Traveller Preference Models:</strong> predict the users’ flexibility in terms of traveling date, property location, property price.</li>
+<li><strong>Traveller Context Models:</strong> gives the context of the traveler. E.g., if one’s traveling for family, with friends, or for business. This data can be used to optimize recommendations and user experience at the website.</li>
+<li><strong>Item Space Navigation Model:</strong> gathers information about user interactions with the website to optimize the experience.</li>
+<li><strong>User Interface Optimization Models:</strong> optimizes font sizes, number of items in the list, background colors or images, with Machine Learning models based on user context.</li>
+<li><strong>Content Curation:</strong> curates content from different sources and formats of information to best display to human users.</li>
+<li><strong>Content Augmentation:</strong> based on user context, predicts the best value for the end-user and predicts the reservation price in the future.</li>
+</ul>
+<p>From experience in the paper, all model families can provide value in the real world. Though some values are hard to quantify, the multiplying effort is clear.</p>
+<p>What struck me most from this section is the number of models which is deployed for a service and how many aspects of user experience can be modeled, optimized, and fine-tuned with the power of Machine Learning.</p>
+<p>Everything we see now on modern websites can be decided by a Machine Learning model behind it, and it learns our interactions with it to feedback our experience.</p>
+<h1 id="2-Modeling-Offline-Model-Performance-Is-Just-A-Health-Check"><a href="#2-Modeling-Offline-Model-Performance-Is-Just-A-Health-Check" class="headerlink" title="2. Modeling: Offline Model Performance Is Just A Health Check"></a>2. Modeling: Offline Model Performance Is Just A Health Check</h1><p>The one-sentence takeaway: model performance offline can not be directly translated to business value, i.e., a model that excels in performance in the lab doesn’t necessarily do well in the real world!</p>
+<p>There are some possible explanations for this effect. For example, the saturation of a model: a model cannot drive business value to infinite after you optimize it to a threshold. Or the uncanny valley effect (which I found to be interesting): when you optimize a model too well, it can scare the users and bring negative value.</p>
+<p>As the paper summarizes, the offline model performance can be entirely uncorrelated to business outcomes!</p>
+<h1 id="3-Modeling-Before-Solving-A-Problem-Design-It"><a href="#3-Modeling-Before-Solving-A-Problem-Design-It" class="headerlink" title="3. Modeling: Before Solving A Problem, Design It"></a>3. Modeling: Before Solving A Problem, Design It</h1><p>This section introduces the experience of designing Machine Learning models and the challenges.</p>
+<p>For example, when modeling very subjective concepts, target variables are not given as ground truth. They are constructed. Therefore some setups are harder than others from a learning perspective. For some setups, data is closer to the concept we want to model.</p>
+<p>Another common problem is the Selection Bias issue. For example, if you gather data by the user filling in the questionnaire, the data collected is strongly biased toward those who fill in.</p>
+<p>The paper provided a mouthful to explain the detection of Selection Bias:</p>
+<blockquote>
+<p>Diagnosing selection bias is straightforward: consider a sample of the natural observation space (users or sessions in the dates flexibility case), we can then construct a classification problem that classifies each observation into the class of the observations for which a target variable can be computed and the class of the observations for which a target variable cannot be computed. If this classification problem is easy (in the sense that a simple algorithm performs significantly better than random), then the bias is severe and must be addressed.</p>
+</blockquote>
+<p>The way I understand it: construct a classification problem to classify if the target variable can be computed (e.g., those who fill in the questionnaire) and those who cannot. And if the classification is easy (better than random), it means the selection process (in this case, the questionnaire filter) <strong>is not random</strong>!</p>
+<p>Coming up with better models to unlock business values can require many iterations.</p>
+<h1 id="4-Deployment-Time-Is-Money"><a href="#4-Deployment-Time-Is-Money" class="headerlink" title="4. Deployment: Time Is Money"></a>4. Deployment: Time Is Money</h1><p>This section introduces an important observation that website response speed correlates to user conversion.</p>
+<blockquote>
+<p>Visual inspection shows a clear trend, in which an increase of about 30% in latency costs more than 0.5% in conversion rate (a relevant cost for our business).</p>
+</blockquote>
+<p>The paper introduces some infrastructure optimization to amortize latency (redundancy, caching, etc.) and also emphasizes how some simple models (e.g., linear models) can actually outperform more accurate but slower models.</p>
+<h1 id="5-Monitoring-Unsupervised-Red-Flags"><a href="#5-Monitoring-Unsupervised-Red-Flags" class="headerlink" title="5. Monitoring: Unsupervised Red Flags"></a>5. Monitoring: Unsupervised Red Flags</h1><p>This section provides a great experience in monitoring model output based on output distribution and how it can be an indicator of model health in production.</p>
+<p><img src="/2021/04/25/25-Paper-Reading-Booking.com-Experiences/examples_distribution_charts.png" alt="Example Distribution Charts"></p>
+<p>For example, quoted from the original paper:</p>
+<ul>
+<li>A smooth unimodal distribution with a central mode might indicate high bias in the model or high Bayes error in the data</li>
+<li>An extreme, high frequency mode might indicate defects in the feature layer like wrong scaling or false outliers in the training data</li>
+<li>Non-smooth, very noisy distributions point to too excessively sparse models</li>
+<li>Difference in distributions between training and serving data may indicate concept drift, feature drift, bias in the training set, or other forms of training-serving skew.</li>
+<li>Smooth bimodal distributions with one clear stable point are signs of a model that successfully distinguishes two classes</li>
+</ul>
+<h1 id="6-Evaluation-Experiment-Design-Sophistication-Pays-Off"><a href="#6-Evaluation-Experiment-Design-Sophistication-Pays-Off" class="headerlink" title="6. Evaluation: Experiment Design Sophistication Pays Off"></a>6. Evaluation: Experiment Design Sophistication Pays Off</h1><p>This section introduces its experience through Experimentation through Randomized Controlled Trials (RCT). The experiment design and analysis gives a huge boost to understanding the data collected from the website and to the development of Machine Learning models.</p>
+<blockquote>
+<p>The large majority of the successful use cases of machine learning studied in this work have been enabled by sophisticated experiment designs, either to guide the development process or to detect their impact.</p>
+</blockquote>
+<p>The paper introduces a couple of methods for designing experiments for Machine Learning products.</p>
+<p>Terminology for understanding trigger-based experiment process:</p>
+<ul>
+<li><strong>Treatment:</strong> whether the change is applied to the end-user. If a user is treated, then she sees the studied change applied to the website (as compared to the control group.)</li>
+<li><strong>Triggered:</strong> whether the user should be included in the final analysis of the data, based on the conditions of her data.</li>
+</ul>
+<p><img src="/2021/04/25/25-Paper-Reading-Booking.com-Experiences/experiment_design.png" alt="Experiments Design"></p>
+<p>Experiment design:</p>
+<ul>
+<li><strong>Selective Triggering:</strong> Dividing the population into control and treatment groups. And <strong>trigger</strong> the users whose data is available for model features among the treated and non-treated.</li>
+<li><strong>Model-output Dependent Triggering:</strong> The treatment criteria might depend on one model output. Divide users into the control group where the model is not invoked and where the model is invoked. And where the model is invoked, further divide users into group 1: treatment, and group 2: non-treatment, where group 2 users are not treated even if the model output satisfies.
+Then the experiment is limited to users whose model satisfies.</li>
+<li><strong>Comparing Models:</strong> To evaluate a new model 2 against model 1, create a control group where only model 1 is invoked. Create experiment groups where both models are invoked, with group 1 uses model 2 output, and a compare group 2 which uses model 1 output. And only <strong>trigger</strong> the users where the two models disagree.</li>
+</ul>
+<p>In this way, we’re limiting the experiment subjects that are most interesting to model performance and limiting noise in the dataset.</p>
+<h1 id="Summary"><a href="#Summary" class="headerlink" title="Summary"></a>Summary</h1><p>This paper shares great experiences in understanding and tackling Machine Learning challenges in real-world services. And it provides guidance in designing and analyzing Machine Learning models in production.</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://blog.kevinhu.me/2021/04/25/25-Paper-Reading-Booking.com-Experiences/" data-id="cm0nhgtl7003wmjey8oif6csx" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/AI/" rel="tag">AI</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Data-Science/" rel="tag">Data Science</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Learning/" rel="tag">Learning</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Machine-Learning/" rel="tag">Machine Learning</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Paper/" rel="tag">Paper</a></li></ul>
+
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2021/05/31/31-go-channel-examples/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          Golang Channel Idioms
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2020/11/14/08-Book-Review-Death-Of-Expertise/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">Book Review: The Death of Expertise</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+    <div class="widget-wrap">
+        <h3 class="widget-title">Follow Me</h3>
+        <div class="widget">
+            <a href="https://twitter.com/Oldgunix?ref_src=twsrc%5Etfw" class="twitter-follow-button"
+                data-show-count="false">Follow @Oldgunix</a>
+            <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+        </div>
+    </div>
+    
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recents</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2024/02/24/25-making-a-toygrad/">Making a Toy Gradient Descent Implementation</a>
+          </li>
+        
+          <li>
+            <a href="/2023/09/03/03-Paper-Readings-on-LLM-Task-Performing-ii/">Paper Readings on LLM Task Performing - II</a>
+          </li>
+        
+          <li>
+            <a href="/2023/07/10/Hacking-LangChain-for-fun-and-profit/">Hacking LangChain For Fun and Profit - I</a>
+          </li>
+        
+          <li>
+            <a href="/2023/06/12/Paper-Readings-on-LLM-Task-Performing/">Paper Readings on LLM Task Performing</a>
+          </li>
+        
+          <li>
+            <a href="/2022/09/03/03-openapi-generator/">OpenAPI Generator For Go Web Development</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Categories</h3>
+    <div class="widget">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Algorithm/">Algorithm</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/BookReview/">BookReview</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Coding/">Coding</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/ComputerSystem/">ComputerSystem</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Golang/">Golang</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Learning/">Learning</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Paper/">Paper</a><span class="category-list-count">5</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/PaperReading/">PaperReading</a><span class="category-list-count">11</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Programming/">Programming</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/ProgrammingLanguage/">ProgrammingLanguage</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Reading/">Reading</a><span class="category-list-count">25</span></li></ul>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tag Cloud</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/AI/" style="font-size: 15.71px;">AI</a> <a href="/tags/API/" style="font-size: 10px;">API</a> <a href="/tags/Algorithm/" style="font-size: 10px;">Algorithm</a> <a href="/tags/Aurora/" style="font-size: 10px;">Aurora</a> <a href="/tags/BitHacks/" style="font-size: 10px;">BitHacks</a> <a href="/tags/BookReview/" style="font-size: 17.14px;">BookReview</a> <a href="/tags/Borg/" style="font-size: 10px;">Borg</a> <a href="/tags/C/" style="font-size: 10px;">C</a> <a href="/tags/C/" style="font-size: 10px;">C++</a> <a href="/tags/C-C/" style="font-size: 11.43px;">C/C++</a> <a href="/tags/Cassandra/" style="font-size: 12.86px;">Cassandra</a> <a href="/tags/Channel/" style="font-size: 11.43px;">Channel</a> <a href="/tags/ChatGPT/" style="font-size: 12.86px;">ChatGPT</a> <a href="/tags/Coding/" style="font-size: 10px;">Coding</a> <a href="/tags/Compilers/" style="font-size: 11.43px;">Compilers</a> <a href="/tags/Concurrency/" style="font-size: 10px;">Concurrency</a> <a href="/tags/Data-Science/" style="font-size: 10px;">Data Science</a> <a href="/tags/Database/" style="font-size: 14.29px;">Database</a> <a href="/tags/Datacenter/" style="font-size: 10px;">Datacenter</a> <a href="/tags/Debug/" style="font-size: 10px;">Debug</a> <a href="/tags/DistributedSystems/" style="font-size: 15.71px;">DistributedSystems</a> <a href="/tags/Docker/" style="font-size: 10px;">Docker</a> <a href="/tags/FPGA/" style="font-size: 10px;">FPGA</a> <a href="/tags/Golang/" style="font-size: 14.29px;">Golang</a> <a href="/tags/HPC/" style="font-size: 10px;">HPC</a> <a href="/tags/Hugepage/" style="font-size: 10px;">Hugepage</a> <a href="/tags/Internet/" style="font-size: 10px;">Internet</a> <a href="/tags/Julia/" style="font-size: 10px;">Julia</a> <a href="/tags/Kafka/" style="font-size: 10px;">Kafka</a> <a href="/tags/LLM/" style="font-size: 12.86px;">LLM</a> <a href="/tags/Learning/" style="font-size: 18.57px;">Learning</a> <a href="/tags/Linux/" style="font-size: 12.86px;">Linux</a> <a href="/tags/Log/" style="font-size: 10px;">Log</a> <a href="/tags/Machine-Learning/" style="font-size: 10px;">Machine Learning</a> <a href="/tags/Mesos/" style="font-size: 10px;">Mesos</a> <a href="/tags/Multithread/" style="font-size: 10px;">Multithread</a> <a href="/tags/Mutex/" style="font-size: 10px;">Mutex</a> <a href="/tags/NLP/" style="font-size: 12.86px;">NLP</a> <a href="/tags/NoSQL/" style="font-size: 12.86px;">NoSQL</a> <a href="/tags/Paper/" style="font-size: 10px;">Paper</a> <a href="/tags/PaperReading/" style="font-size: 20px;">PaperReading</a> <a href="/tags/Programming/" style="font-size: 12.86px;">Programming</a> <a href="/tags/ProgrammingLanguage/" style="font-size: 11.43px;">ProgrammingLanguage</a> <a href="/tags/Python/" style="font-size: 12.86px;">Python</a> <a href="/tags/Ray/" style="font-size: 10px;">Ray</a> <a href="/tags/Reading/" style="font-size: 18.57px;">Reading</a> <a href="/tags/Social/" style="font-size: 10px;">Social</a> <a href="/tags/Sociology/" style="font-size: 10px;">Sociology</a> <a href="/tags/Technology/" style="font-size: 12.86px;">Technology</a> <a href="/tags/Undefined-Behavior/" style="font-size: 11.43px;">Undefined Behavior</a> <a href="/tags/WeeklyPaper/" style="font-size: 10px;">WeeklyPaper</a> <a href="/tags/WorldWideWeb/" style="font-size: 10px;">WorldWideWeb</a> <a href="/tags/Zookeeper/" style="font-size: 10px;">Zookeeper</a> <a href="/tags/infrastructure/" style="font-size: 10px;">infrastructure</a> <a href="/tags/openAPI/" style="font-size: 10px;">openAPI</a> <a href="/tags/systems/" style="font-size: 10px;">systems</a> <a href="/tags/tracing/" style="font-size: 10px;">tracing</a> <a href="/tags/web/" style="font-size: 10px;">web</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/02/">February 2024</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/09/">September 2023</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/07/">July 2023</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/06/">June 2023</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/09/">September 2022</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/09/">September 2021</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/08/">August 2021</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/05/">May 2021</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/04/">April 2021</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/11/">November 2020</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/07/">July 2020</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/04/">April 2020</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/01/">January 2020</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/11/">November 2019</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/09/">September 2019</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/08/">August 2019</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/05/">May 2019</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/04/">April 2019</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/03/">March 2019</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/02/">February 2019</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/01/">January 2019</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/10/">October 2018</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/09/">September 2018</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/07/">July 2018</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/05/">May 2018</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/06/">June 2017</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/03/">March 2017</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/01/">January 2017</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/11/">November 2016</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/09/">September 2016</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/08/">August 2016</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/05/">May 2016</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/02/">February 2016</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/12/">December 2015</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/11/">November 2015</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/10/">October 2015</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/04/">April 2015</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/03/">March 2015</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/01/">January 2015</a><span class="archive-list-count">2</span></li></ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2024 Kevin Hu<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/About/" class="mobile-nav-link">About</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+
+  
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+
+
+<script src="/js/script.js"></script>
+
+
+  </div>
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
+            processEscapes: true
+        }
+    });
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax();
+        for (var i = 0; i < all.length; ++i)
+            all[i].SourceElement().parentNode.className += ' has-jax';
+    });
+</script>
+<script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+</body>
+</html>
