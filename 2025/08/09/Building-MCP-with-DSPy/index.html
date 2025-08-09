@@ -1,0 +1,401 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>Building MCP Server with DSPy | Kevin Hu&#39;s Blog</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="Recently I’ve been looking into MCP and how it integrates with development framework. I tried with some hands-on tinkering, and learned quite a bit. Here’s my learning and some reflections. Code here:">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Building MCP Server with DSPy">
+<meta property="og:url" content="https://blog.kevinhu.me/2025/08/09/Building-MCP-with-DSPy/index.html">
+<meta property="og:site_name" content="Kevin Hu&#39;s Blog">
+<meta property="og:description" content="Recently I’ve been looking into MCP and how it integrates with development framework. I tried with some hands-on tinkering, and learned quite a bit. Here’s my learning and some reflections. Code here:">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2025-08-09T20:13:04.000Z">
+<meta property="article:modified_time" content="2025-08-09T20:18:07.601Z">
+<meta property="article:author" content="Kevin Hu">
+<meta property="article:tag" content="Learning">
+<meta property="article:tag" content="AI">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:creator" content="@Oldgunix">
+  
+    <link rel="alternative" href="/atom.xml" title="Kevin Hu&#39;s Blog" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  
+
+
+    <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-8ENJJHKTMX"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+
+    gtag('config', 'G-8ENJJHKTMX');
+  </script>
+
+<!-- hexo injector head_end start -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.css">
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/hexo-math@4.0.0/dist/style.css">
+<!-- hexo injector head_end end --><meta name="generator" content="Hexo 7.3.0"></head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">Kevin Hu&#39;s Blog</a>
+      </h1>
+      
+        <h2 id="subtitle-wrap">
+          <a href="/" id="subtitle">A Hungry Fool</a>
+        </h2>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/About/">About</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="https://blog.kevinhu.me"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-Building-MCP-with-DSPy" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2025/08/09/Building-MCP-with-DSPy/" class="article-date">
+  <time datetime="2025-08-09T20:13:04.000Z" itemprop="datePublished">08 09 2025</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/Programming/">Programming</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      Building MCP Server with DSPy
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>Recently I’ve been looking into MCP and how it integrates with development framework.
+I tried with some hands-on tinkering, and learned quite a bit. Here’s my learning and
+some reflections.</p>
+<p>Code here: https:&#x2F;&#x2F;github.com&#x2F;hxy9243&#x2F;agents&#x2F;tree&#x2F;main&#x2F;librarian</p>
+<h1 id="What’s-MCP"><a href="#What’s-MCP" class="headerlink" title="What’s MCP"></a>What’s MCP</h1><h2 id="Bird’s-Eye-View"><a href="#Bird’s-Eye-View" class="headerlink" title="Bird’s Eye View"></a>Bird’s Eye View</h2><p><a href="https://modelcontextprotocol.io/docs/getting-started/intro">MCP (Model Context Protocol)</a>
+is a standard way for AI agents to securely connect to your services.
+It provides a uniform interface for tools, resources, and prompts, enabling seamless
+integration between AI systems and external services.</p>
+<p>Clients like VSCode, Gemini Code, or Claude Code can now integrate with different tools and services
+and become incredibly powerful, from reading PDFs, search for websites,
+read your Google Drive files, or book plane tickets for you. You could implement the
+MCP service once and easily install in all kinds of the AI assistants of your
+choice.</p>
+<p>With this standardization, you can implement your MCP server and they can directly
+integrate with your user’s agents, assistants, or more complicated workflows.
+They can call and leverage your tools with a standardized interface.</p>
+<p>Think of an AppStore moment for app discovery and AI integration.</p>
+<span id="more"></span>
+
+
+<h1 id="Building-with-FastMCP"><a href="#Building-with-FastMCP" class="headerlink" title="Building with FastMCP"></a>Building with FastMCP</h1><h2 id="FastMCP"><a href="#FastMCP" class="headerlink" title="FastMCP"></a>FastMCP</h2><p><strong>FastMCP</strong> is a Python library that makes it easy to build MCP servers.
+It handles the protocol implementation, allowing you to focus on defining your
+tools and business logic.</p>
+<p>The first thing that comes to mind is the School Library management tool, the one
+we did when we were in college learning about relational databases.</p>
+<p>I quickly drafted a Library implementation in Python:</p>
+<h2 id="Define-Basic-Library-Class"><a href="#Define-Basic-Library-Class" class="headerlink" title="Define Basic Library Class"></a>Define Basic Library Class</h2><p>Create a basic Python class for managing library:</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Library</span>:</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">add_book</span>(<span class="params">self</span>): ...</span><br><span class="line"></span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">add_member</span>(<span class="params">self</span>): ...</span><br><span class="line"></span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">borrow_book</span>(<span class="params">self</span>): ...</span><br><span class="line">    ...</span><br></pre></td></tr></table></figure>
+
+<p>I used an in-memory database with Python dictionaries, since it’s for demo
+purpose only.</p>
+<h2 id="Define-MCP-Tools"><a href="#Define-MCP-Tools" class="headerlink" title="Define MCP Tools"></a>Define MCP Tools</h2><p>Tools in MCP are functions that agents can call to perform specific actions.
+FastMCP uses decorators to expose functions as MCP tools, the same way to use FastAPI or Flask:</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@mcp.tool()</span></span><br><span class="line"><span class="keyword">async</span> <span class="keyword">def</span> <span class="title function_">search</span>(<span class="params">query: <span class="built_in">str</span></span>) -&gt; <span class="type">List</span>[Book]:</span><br><span class="line">    <span class="string">&quot;&quot;&quot;Searches for books by title or author.&quot;&quot;&quot;</span></span><br><span class="line">    <span class="keyword">return</span> library.search_books(query)</span><br></pre></td></tr></table></figure>
+
+<p>Each tool includes:</p>
+<ul>
+<li>Type annotations for query parameters.</li>
+<li>Definition and type annotations for return values.</li>
+<li>Descriptive docstrings for agent understanding. This will be part of list tool and can instruct
+your LLM behavior as well.</li>
+</ul>
+<h2 id="Define-Transport"><a href="#Define-Transport" class="headerlink" title="Define Transport"></a>Define Transport</h2><p>MCP supports multiple transport mechanisms:</p>
+<ul>
+<li><p><strong>StreamableHTTP</strong>: Uses HTTP with streaming support,
+suitable for API-based integrations. Supports authentication headers and custom middleware.
+provides real-time streaming with built-in reconnection handling.
+Underlying, it uses SSE streaming for fast and efficient communication.</p>
+<p>This is ideal when you’re building and exposing a service.</p>
+</li>
+<li><p><strong>Studio Integration</strong>: Client reads MCP server stdio directly. This is most common
+for local setups, where MCP server and client are both deployed locally, and
+there’s less communication overheads.</p>
+</li>
+</ul>
+<h2 id="Client-Integration-with-DSPy"><a href="#Client-Integration-with-DSPy" class="headerlink" title="Client Integration with DSPy"></a>Client Integration with DSPy</h2><p><a href="https://dspy.ai/learn/">DSPy</a> is a powerful LLM agentic framework that helps you
+build your agent by focusing on the signature instead of the prompt tweaking.
+It can handle the prompt generation for you and can even optimize the prompts for you.
+For this use case we’ll use its powerful <code>Signature</code> feature to quickly create a chatbot.</p>
+<p>Also, DSPy has already implemented MCP support: (https:&#x2F;&#x2F;dspy.ai&#x2F;tutorials&#x2F;mcp&#x2F;),
+which enables you to conveniently implement your agent with MCP integration.</p>
+<p>In this case, I can quickly implement something to handle user requests:</p>
+<p>The <code>LibrarianAgent</code> class integrates MCP with DSPy’s reasoning framework:</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">LibrarianSignature</span>(dspy.Signature):</span><br><span class="line">    <span class="string">&quot;&quot;&quot;You are a librarian. You are given a list of tools to handle user requests.&quot;&quot;&quot;</span></span><br><span class="line">    user_request: <span class="built_in">str</span> = dspy.InputField()</span><br><span class="line">    process_result: <span class="built_in">str</span> = dspy.OutputField()</span><br></pre></td></tr></table></figure>
+
+<p>And the agent can integrate with MCP tools by converting them into DSPy tools:</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">async</span> <span class="keyword">with</span> Client(<span class="string">&quot;http://localhost:5400/mcp&quot;</span>) <span class="keyword">as</span> client:</span><br><span class="line">    tools = <span class="keyword">await</span> client.session.list_tools()</span><br><span class="line">    dspy_tools = []</span><br><span class="line">    <span class="keyword">for</span> tool <span class="keyword">in</span> tools.tools:</span><br><span class="line">        dspy_tools.append(dspy.Tool.from_mcp_tool(client.session, tool))</span><br><span class="line"></span><br><span class="line">    lm = dspy.ReAct(</span><br><span class="line">        signature=LibrarianSignature,</span><br><span class="line">        tools=dspy_tools,</span><br><span class="line">    )</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>Notice a small detail that both <code>FastMCP.client.Client</code> and <code>mcp.ClientSession</code>
+provides <code>list_tool()</code> function call.</p>
+<p>But DSPy integrates with <code>mcp.ClientSession</code>,
+<code>mcp.Tool</code> and <code>mcp.CallToolResult</code>. There’ll be incompatibility issues when you pass in
+in <code>FastMCP.client.Client</code> as the MCP session.</p>
+</blockquote>
+<p>Example results in terminal:</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">Library &gt; What books do you have?</span><br><span class="line">We have a diverse collection of books available! Here&#x27;s our current catalog:</span><br><span class="line">1. The Hitchhiker&#x27;s Guide to the Galaxy by Douglas Adams</span><br><span class="line">2. The Lord of the Rings by J.R.R. Tolkien</span><br><span class="line">3. The Da Vinci Code by Dan Brown</span><br><span class="line">4. The Hunger Games by Suzanne Collins</span><br><span class="line">5. The Martian by Andy Weir</span><br><span class="line">6. Fahrenheit 451 by Ray Bradbury</span><br><span class="line"></span><br><span class="line">...</span><br></pre></td></tr></table></figure>
+
+<p>Code here: https:&#x2F;&#x2F;github.com&#x2F;hxy9243&#x2F;agents&#x2F;tree&#x2F;main&#x2F;librarian</p>
+<h1 id="Reflections"><a href="#Reflections" class="headerlink" title="Reflections"></a>Reflections</h1><p>I quickly realized the limitation of this implementation
+when I’m half-way through this: this could come handy
+for a librarian with full access to the system. It could accomplish:</p>
+<ul>
+<li>Searching books.</li>
+<li>Checking out books as a librarian for user.</li>
+<li>Return book for the user.</li>
+</ul>
+<p><strong>But to provide a real automated library service accessible to everyone,
+we definitely need more setup with user Authentication and Authorization.</strong></p>
+<p>I jumped to the implementation quickly and didn’t think it through. And a local
+Library module with full access to the underlying data structure wouldn’t be
+quite a useful protected service.</p>
+<p>Think of this agent is at the local library computer self-service desk, where you could login,
+converse with the agent, and check out books. The agent needs to verify that
+you’re you, and your book is checked out &#x2F; returned to your account.</p>
+<p>Currently there are two paradigms of MCP implementation:</p>
+<p>See Github MCP Service introduction: https:&#x2F;&#x2F;github.blog&#x2F;ai-and-ml&#x2F;generative-ai&#x2F;a-practical-guide-on-how-to-use-the-github-mcp-server&#x2F;</p>
+<ul>
+<li><p><strong>Local Deployment:</strong> A local integration, running MCP server along with
+the client (with npx, python, docker, etc). It uses a Bearer token for authentication.</p>
+<p>For our use case, we can setup a proxy MCP server locally, which communicates with
+remote API service.</p>
+</li>
+<li><p><strong>Server Deployment:</strong>: Either an dedicated MCP server or MCP proxy that wraps an existing
+API endpoint. It could use OAuth or Bearer token.</p>
+<p>This is useful since users don’t have to worry about setting up npx or docker locally.
+You can upgrade the service without nudging users to upgrade. It takes some extra
+steps to host and maintain the service, but like a web service, it’s transparent to the user.</p>
+</li>
+</ul>
+<p>These trade-offs need to be considered during implementation.</p>
+<h1 id="Next-Steps"><a href="#Next-Steps" class="headerlink" title="Next Steps"></a>Next Steps</h1><p>I made a naive implementation of a Library and demo-ed how it could be integrated
+with frameworks like DSPy.
+To make a useful MCP server for service, we need to provide a service and
+consider security concerns like authentication.</p>
+<p>The next steps could be:</p>
+<ul>
+<li>Multi-tenant support</li>
+<li>Role-based permissions (librarian vs member)</li>
+<li>API key management</li>
+</ul>
+<h1 id="References"><a href="#References" class="headerlink" title="References"></a>References</h1><ul>
+<li>MCP Protocol: https:&#x2F;&#x2F;modelcontextprotocol.io&#x2F;docs&#x2F;getting-started&#x2F;intro</li>
+<li>FastMCP reference: https:&#x2F;&#x2F;gofastmcp.com&#x2F;getting-started&#x2F;welcome</li>
+<li>DeepLearning.ai tutorial https:&#x2F;&#x2F;learn.deeplearning.ai&#x2F;courses&#x2F;mcp-build-rich-context-ai-apps-with-anthropic&#x2F;lesson&#x2F;dbabg&#x2F;creating-an-mcp-server</li>
+<li>Github MCP: https:&#x2F;&#x2F;github.blog&#x2F;ai-and-ml&#x2F;generative-ai&#x2F;a-practical-guide-on-how-to-use-the-github-mcp-server&#x2F;</li>
+<li>DSPy MCP Support: https:&#x2F;&#x2F;dspy.ai&#x2F;tutorials&#x2F;mcp&#x2F;</li>
+<li>Understanding DSPy: https:&#x2F;&#x2F;dspy.ai&#x2F;learn&#x2F;</li>
+</ul>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://blog.kevinhu.me/2025/08/09/Building-MCP-with-DSPy/" data-id="cme4p3k3l0000lfey1i0y1jhz" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/AI/" rel="tag">AI</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Learning/" rel="tag">Learning</a></li></ul>
+
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+  
+    <a href="/2025/06/22/Agentic-Programming/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">Learning AI Agent Programming (with DSPy)</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+    <div class="widget-wrap">
+        <h3 class="widget-title">Follow Me</h3>
+        <div class="widget">
+            <a href="https://twitter.com/Oldgunix?ref_src=twsrc%5Etfw" class="twitter-follow-button"
+                data-show-count="false">Follow @Oldgunix</a>
+            <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+        </div>
+    </div>
+    
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recents</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2025/08/09/Building-MCP-with-DSPy/">Building MCP Server with DSPy</a>
+          </li>
+        
+          <li>
+            <a href="/2025/06/22/Agentic-Programming/">Learning AI Agent Programming (with DSPy)</a>
+          </li>
+        
+          <li>
+            <a href="/2024/02/24/25-making-a-toygrad/">Making a Toy Gradient Descent Implementation</a>
+          </li>
+        
+          <li>
+            <a href="/2023/09/03/03-Paper-Readings-on-LLM-Task-Performing-ii/">Paper Readings on LLM Task Performing - II</a>
+          </li>
+        
+          <li>
+            <a href="/2023/07/10/Hacking-LangChain-for-fun-and-profit/">Hacking LangChain For Fun and Profit - I</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Categories</h3>
+    <div class="widget">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Algorithm/">Algorithm</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/BookReview/">BookReview</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Coding/">Coding</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/ComputerSystem/">ComputerSystem</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Golang/">Golang</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Learning/">Learning</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Paper/">Paper</a><span class="category-list-count">5</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/PaperReading/">PaperReading</a><span class="category-list-count">11</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Programming/">Programming</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/ProgrammingLanguage/">ProgrammingLanguage</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Reading/">Reading</a><span class="category-list-count">25</span></li></ul>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tag Cloud</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/AI/" style="font-size: 16.67px;">AI</a> <a href="/tags/API/" style="font-size: 10px;">API</a> <a href="/tags/Algorithm/" style="font-size: 10px;">Algorithm</a> <a href="/tags/Aurora/" style="font-size: 10px;">Aurora</a> <a href="/tags/BitHacks/" style="font-size: 10px;">BitHacks</a> <a href="/tags/BookReview/" style="font-size: 15.56px;">BookReview</a> <a href="/tags/Borg/" style="font-size: 10px;">Borg</a> <a href="/tags/C/" style="font-size: 10px;">C</a> <a href="/tags/C/" style="font-size: 10px;">C++</a> <a href="/tags/C-C/" style="font-size: 11.11px;">C/C++</a> <a href="/tags/Cassandra/" style="font-size: 12.22px;">Cassandra</a> <a href="/tags/Channel/" style="font-size: 11.11px;">Channel</a> <a href="/tags/ChatGPT/" style="font-size: 12.22px;">ChatGPT</a> <a href="/tags/Coding/" style="font-size: 10px;">Coding</a> <a href="/tags/Compilers/" style="font-size: 11.11px;">Compilers</a> <a href="/tags/Concurrency/" style="font-size: 10px;">Concurrency</a> <a href="/tags/Data-Science/" style="font-size: 10px;">Data Science</a> <a href="/tags/Database/" style="font-size: 13.33px;">Database</a> <a href="/tags/Datacenter/" style="font-size: 10px;">Datacenter</a> <a href="/tags/Debug/" style="font-size: 10px;">Debug</a> <a href="/tags/DistributedSystems/" style="font-size: 14.44px;">DistributedSystems</a> <a href="/tags/Docker/" style="font-size: 10px;">Docker</a> <a href="/tags/FPGA/" style="font-size: 10px;">FPGA</a> <a href="/tags/Golang/" style="font-size: 13.33px;">Golang</a> <a href="/tags/HPC/" style="font-size: 10px;">HPC</a> <a href="/tags/Hugepage/" style="font-size: 10px;">Hugepage</a> <a href="/tags/Internet/" style="font-size: 10px;">Internet</a> <a href="/tags/Julia/" style="font-size: 10px;">Julia</a> <a href="/tags/Kafka/" style="font-size: 10px;">Kafka</a> <a href="/tags/LLM/" style="font-size: 12.22px;">LLM</a> <a href="/tags/Learning/" style="font-size: 20px;">Learning</a> <a href="/tags/Linux/" style="font-size: 12.22px;">Linux</a> <a href="/tags/Log/" style="font-size: 10px;">Log</a> <a href="/tags/Machine-Learning/" style="font-size: 10px;">Machine Learning</a> <a href="/tags/Mesos/" style="font-size: 10px;">Mesos</a> <a href="/tags/Multithread/" style="font-size: 10px;">Multithread</a> <a href="/tags/Mutex/" style="font-size: 10px;">Mutex</a> <a href="/tags/NLP/" style="font-size: 12.22px;">NLP</a> <a href="/tags/NoSQL/" style="font-size: 12.22px;">NoSQL</a> <a href="/tags/Paper/" style="font-size: 10px;">Paper</a> <a href="/tags/PaperReading/" style="font-size: 18.89px;">PaperReading</a> <a href="/tags/Programming/" style="font-size: 12.22px;">Programming</a> <a href="/tags/ProgrammingLanguage/" style="font-size: 11.11px;">ProgrammingLanguage</a> <a href="/tags/Python/" style="font-size: 12.22px;">Python</a> <a href="/tags/Ray/" style="font-size: 10px;">Ray</a> <a href="/tags/Reading/" style="font-size: 17.78px;">Reading</a> <a href="/tags/Social/" style="font-size: 10px;">Social</a> <a href="/tags/Sociology/" style="font-size: 10px;">Sociology</a> <a href="/tags/Technology/" style="font-size: 12.22px;">Technology</a> <a href="/tags/Undefined-Behavior/" style="font-size: 11.11px;">Undefined Behavior</a> <a href="/tags/WeeklyPaper/" style="font-size: 10px;">WeeklyPaper</a> <a href="/tags/WorldWideWeb/" style="font-size: 10px;">WorldWideWeb</a> <a href="/tags/Zookeeper/" style="font-size: 10px;">Zookeeper</a> <a href="/tags/infrastructure/" style="font-size: 10px;">infrastructure</a> <a href="/tags/openAPI/" style="font-size: 10px;">openAPI</a> <a href="/tags/systems/" style="font-size: 10px;">systems</a> <a href="/tags/tracing/" style="font-size: 10px;">tracing</a> <a href="/tags/web/" style="font-size: 10px;">web</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2025/08/">August 2025</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2025/06/">June 2025</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/02/">February 2024</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/09/">September 2023</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/07/">July 2023</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/06/">June 2023</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/09/">September 2022</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/09/">September 2021</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/08/">August 2021</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/05/">May 2021</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/04/">April 2021</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/11/">November 2020</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/07/">July 2020</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/04/">April 2020</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/01/">January 2020</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/11/">November 2019</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/09/">September 2019</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/08/">August 2019</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/05/">May 2019</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/04/">April 2019</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/03/">March 2019</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/02/">February 2019</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/01/">January 2019</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/10/">October 2018</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/09/">September 2018</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/07/">July 2018</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/05/">May 2018</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/06/">June 2017</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/03/">March 2017</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/01/">January 2017</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/11/">November 2016</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/09/">September 2016</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/08/">August 2016</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/05/">May 2016</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/02/">February 2016</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/12/">December 2015</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/11/">November 2015</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/10/">October 2015</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/04/">April 2015</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/03/">March 2015</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/01/">January 2015</a><span class="archive-list-count">2</span></li></ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2025 Kevin Hu<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/About/" class="mobile-nav-link">About</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+
+  
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+
+
+<script src="/js/script.js"></script>
+
+
+  </div>
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
+            processEscapes: true
+        }
+    });
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax();
+        for (var i = 0; i < all.length; ++i)
+            all[i].SourceElement().parentNode.className += ' has-jax';
+    });
+</script>
+<script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+</body>
+</html>
