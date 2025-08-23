@@ -1,4 +1,4 @@
-title: Building MCP Server with DSPy
+title: Building a School Library Assistant with FastMCP and DSPy (I)
 date: 2025-08-09 13:13:04
 comments: true
 categories: 'Programming'
