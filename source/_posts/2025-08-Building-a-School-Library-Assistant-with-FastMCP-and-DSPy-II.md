@@ -46,8 +46,8 @@ there are more than one way to provide MCP service to client/users.
   the endpoint, with no more indirections in between.
 
 The benefit of a service endpoint is that you don't have to worry about local setup, deployment, and upgrade.
-Over time I believe this is the right direction for services who want to provide a good experience.
-You only need to provide a single HTTP endpoint, and the users need to worry nothing else.
+Over time, I believe this is the right direction for services that want to provide a good experience.
+You only need to provide a single HTTP endpoint, and the users need to worry about nothing else.
 
 # FastMCP Middleware
 
@@ -95,7 +95,7 @@ of the library, each with their own login and authorization. They can
 access their own information with enhanced security.
 
 Like described in the last blog, we can now integrate the MCP tools into
-DSPy agent and create an chat application:
+a DSPy agent and create an chat application:
 
 ```python
     # self.mcp_session is session from MCP client session member
@@ -150,9 +150,9 @@ See more: https://gofastmcp.com/clients/auth/oauth
 
 # Final Thoughts
 
-Like HTTP web protocol, MCP is a powerful abstraction to connect services, capabilities,
-and functionalities to end users. It's reused a lot of concepts and even implementation
-from HTTP protocol. There's nothing mysterious about it. With enough digging we can
+Like the HTTP web protocol, MCP is a powerful abstraction to connect services, capabilities,
+and functionalities to end users. It reuses a lot of concepts and even implementations from the HTTP protocol.
+There's nothing mysterious about it. With enough digging, we can
 implement cool and interesting ideas around it.
 
 There's so much more to MCP security setup if we want to use this in production, think
