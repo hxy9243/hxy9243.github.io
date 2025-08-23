@@ -27,6 +27,8 @@ Code here: https://github.com/hxy9243/agents/tree/main/librarian
 See last blog: https://blog.kevinhu.me/2025/08/09/Building-MCP-with-DSPy/
 
 
+<!--more-->
+
 # MCP Service Architecture
 
 As mentioned here on [Github MCP service introduction](https://github.blog/ai-and-ml/generative-ai/a-practical-guide-on-how-to-use-the-github-mcp-server/),
