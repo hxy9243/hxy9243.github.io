@@ -13,7 +13,7 @@
 <meta property="og:description" content="The last time I dived into building a toy MCP service for a school library assistant, which helps you search for books, borrow copies, and return them. I quickly realized this wasn’t practical. Withou">
 <meta property="og:locale" content="en_US">
 <meta property="article:published_time" content="2025-08-23T04:56:34.000Z">
-<meta property="article:modified_time" content="2025-08-23T04:58:48.773Z">
+<meta property="article:modified_time" content="2025-08-23T05:10:36.649Z">
 <meta property="article:author" content="Kevin Hu">
 <meta property="article:tag" content="Learning">
 <meta property="article:tag" content="AI">
@@ -145,8 +145,8 @@ the endpoint, with no more indirections in between.</p>
 </li>
 </ul>
 <p>The benefit of a service endpoint is that you don’t have to worry about local setup, deployment, and upgrade.
-Over time I believe this is the right direction for services who want to provide a good experience.
-You only need to provide a single HTTP endpoint, and the users need to worry nothing else.</p>
+Over time, I believe this is the right direction for services that want to provide a good experience.
+You only need to provide a single HTTP endpoint, and the users need to worry about nothing else.</p>
 <h1 id="FastMCP-Middleware"><a href="#FastMCP-Middleware" class="headerlink" title="FastMCP Middleware"></a>FastMCP Middleware</h1><p><a href="https://github.com/jlowin/fastmcp">FastMCP</a> is quite a nifty framework for quickly
 setting up MCP servers&#x2F;clients in Python.
 It recently introduced Middleware for MCP server. Users can now easily use that to
@@ -163,7 +163,7 @@ the entire lifecycle of a client request. See: https:&#x2F;&#x2F;gofastmcp.com&#
 of the library, each with their own login and authorization. They can
 access their own information with enhanced security.</p>
 <p>Like described in the last blog, we can now integrate the MCP tools into
-DSPy agent and create an chat application:</p>
+a DSPy agent and create an chat application:</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># self.mcp_session is session from MCP client session member</span></span><br><span class="line"><span class="keyword">async</span> <span class="keyword">with</span> Client(...) <span class="keyword">as</span> client:</span><br><span class="line">    mcp_session = client.session</span><br><span class="line"></span><br><span class="line">    tools = <span class="keyword">await</span> mcp_session.list_tools()</span><br><span class="line">    <span class="keyword">for</span> tool <span class="keyword">in</span> tools.tools:</span><br><span class="line">        dspy_tools.append(dspy.Tool.from_mcp_tool(mcp_session, tool))</span><br><span class="line"></span><br><span class="line">    <span class="variable language_">self</span>.lm = dspy.ReAct(</span><br><span class="line">        signature=LibrarianSignature,</span><br><span class="line">        tools=dspy_tools,</span><br><span class="line">    )</span><br></pre></td></tr></table></figure>
 
 <p>(Notice, DSPy requires <code>mcp.session</code> and <code>mcp.types.ListToolResult</code> instead of types defined in FastMCP.
@@ -178,9 +178,9 @@ However, FastMCP provides easy way of conversion.)</p>
 <h1 id="FastMCP-OAuth"><a href="#FastMCP-OAuth" class="headerlink" title="FastMCP OAuth"></a>FastMCP OAuth</h1><p>OAuth is a common pattern for HTTP services, and FastMCP has incorporated it in the framework
 as well. You can delegate Authentication to third-party services.</p>
 <p>See more: https:&#x2F;&#x2F;gofastmcp.com&#x2F;clients&#x2F;auth&#x2F;oauth</p>
-<h1 id="Final-Thoughts"><a href="#Final-Thoughts" class="headerlink" title="Final Thoughts"></a>Final Thoughts</h1><p>Like HTTP web protocol, MCP is a powerful abstraction to connect services, capabilities,
-and functionalities to end users. It’s reused a lot of concepts and even implementation
-from HTTP protocol. There’s nothing mysterious about it. With enough digging we can
+<h1 id="Final-Thoughts"><a href="#Final-Thoughts" class="headerlink" title="Final Thoughts"></a>Final Thoughts</h1><p>Like the HTTP web protocol, MCP is a powerful abstraction to connect services, capabilities,
+and functionalities to end users. It reuses a lot of concepts and even implementations from the HTTP protocol.
+There’s nothing mysterious about it. With enough digging, we can
 implement cool and interesting ideas around it.</p>
 <p>There’s so much more to MCP security setup if we want to use this in production, think
 about TLS, OAuth, namespace, user capability management, Authorization setup, etc,
