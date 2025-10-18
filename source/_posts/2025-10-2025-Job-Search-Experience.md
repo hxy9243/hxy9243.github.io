@@ -3,7 +3,7 @@ date: 2025-10-17 17:04:52
 tags:
 ---
 
-Here I can share some experience (mostly lessons) pursuing a Senior Software Engineer role in the last couple of months. It's no longer secret that in 2025, the tech job market is pretty tough. And I hope my experience could be somewhat useful to you, too.
+Here I'd like to share some experience (mostly lessons) searching for a job in the tech industry in the last couple of months. It's no longer secret that in 2025, the tech job market is pretty tough. And I hope my experience could be somewhat useful to you, too.
 
 <!--more-->
 
