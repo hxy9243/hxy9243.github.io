@@ -3,8 +3,7 @@ date: 2025-10-17 17:04:52
 tags:
 ---
 
-Here I'd like to share some experience (mostly lessons) searching for a job in the tech industry in the last couple of months. It's no longer secret that in 2025, the tech job market is pretty tough. And I hope my experience could be somewhat useful to you, too.
-
+Here I’d like to share some experience (mostly lessons) searching for a job in the tech industry over the last couple of months. It’s no longer secret that in 2025, the tech job market is pretty tough. I also hope my experience can be somewhat useful to you.
 <!--more-->
 
 # Recap
@@ -99,9 +98,9 @@ Or for some startups:
 - Take home exercise in limited time, use as much AI as you want.
 - Onsite chat with founders.
 
-Coding rounds is becoming more interesting. I cannot disclose too much details, but I noticed a few interesting trends:
+Coding rounds are becoming more interesting. I cannot disclose too many details, but I noticed a few interesting trends:
 
-- Traditional companies use LeetCode more, Nvidia, Amazon, TikTok, Meta, etc. They follow the abovementioned procedure pretty closely.
+- Traditional companies use LeetCode more, such as Nvidia, Amazon, TikTok, Meta, etc. They follow the abovementioned procedure pretty closely.
 - Startups are somehow getting much more creative with testing coding skills. From my experience they might ask you to:
 	- Implement an actual small system or component, derived from a real system, to show your coding skills. And write test cases to verify your solution. It often comes with levels of updated requirements and levels of complexity.
 	- Dig deep into a specific area (Python thread, ML knowledge, PyTorch knowledge, debugging thought process), e.g. to design a small system with multiple threads and handle synchronization.
@@ -116,15 +115,15 @@ With AI being prevalent, I strongly believe there needs to be a shift in the ind
 
 I also interviewed at some early stage startups. And they're drastically different experiences. Each startup is unique, heavily influenced by the founders' or founding engineers' personal touch.
 
-Some founders particularly value communication skills. And some founders value your sense of product and acuteness for the market too (which I'm pretty bad at). I actually got turned down once because the founder thought I don't have the communication skills that their team needs.
+Some founders particularly value communication skills. And some founders value your sense of product and acuteness for the market too (which I'm pretty bad at). I actually got turned down once because the founder thought I don't have the communication skills that their team needed.
 
-What they're looking for is also way more different than regular engineers who punch cards at big companies. It's not just 9-6-6, but requires a strong sense of ownership, incredible passion, and a sense of mission. Skill wise, aside from being able to build from scratch, they require a lot of soft skills like adaptability, communication, and a good product sense. Interviewing at startups can feel more unstructured, has more unexpected elements, but it's definitely more demanding. Also networking is more important, since startups have less resource for recruiting and building trust.
+What they're looking for is also way more different than regular engineers who punch cards at big companies. It's not just 9-6-6, but requires a strong sense of ownership, incredible passion, and a sense of mission. Skill wise, aside from being able to build from scratch, they require a lot of soft skills like adaptability, communication, and good product sense. Interviewing at startups can feel more unstructured, has more unexpected elements, but it's definitely more demanding. Also networking is more important, since startups have less resource for recruiting and building trust.
 
 I appreciate my experience talking to some of the founding teams. It gave me a peek of their enthusiasm and the way they think about problems. In a few years I might come to interviewing startups again and this experience can help.
 
 ## The AI Engineering Landscape
 
-AI Engineering is a hot topic right now. So many people are talking about it, but there's no clear definition on what it really means. It's an umbrella concept that covers a number of smaller specialties. From my experience getting in touch with different companies, there are the following areas of focus.
+AI Engineering is a hot topic right now. So many people are talking about it, but there's no clear definition of what it really means. It's an umbrella concept that covers a number of smaller specialties. Based on my experience interacting with various companies, I've identified the following key areas of focus.
 
 - Lower level system: design and write high-performing custom CUDA kernels, tuning compilers, optimize computation on GPUs.
 - AI infrastructure: there are startups that requires building infra, like cloud native, micro-service applications. Building AI inference serving or training infrastructure.
@@ -153,9 +152,9 @@ To summarize, my lessons for interviews boil down to:
 - If you're interviewing at a startup, understand the startup you're applying for well enough. Do a thorough research. Even try their product a little. Big companies look for employees, startups look for co-founders. Show your passion and care really make a difference.
 - Treat yourself well. If you're unfortunately going through a lay-off, it's wise to take care of your own mental health to sail through this hardship.
 
-# Advises to Interviewers
+# For Interviewers
 
-At last, I have a few advises for all the companies hiring people, too. Some companies really value their whole interview experience, some felt more outright chaotic. I had an experience where the interviewers showed up, looking distracted, and felt even more unprepared than I was. We went through some easy problems, and I got a rejection letter a week later with no explanations. Some companies simply ghost you for weeks.
+At last, my two cents for all the companies hiring people, too. Some companies really value their whole interview experience, some felt more outright chaotic. I had an experience where the interviewers showed up, looking distracted, and felt even more unprepared than I was. We went through some easy problems, and I got a rejection letter a week later with no explanations. Some companies simply ghost you for weeks.
 
 On the other hand I had some really good experience, too, like OpenAI and Intuit, even though I didn't land on an offer with them. The recruiters even forwarded some feedback from the team after the interviews. And this feedback helped me quickly re-focus on my weak points, since sometimes I made mistakes on places I didn't even notice.
 
