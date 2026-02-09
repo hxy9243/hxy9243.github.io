@@ -1,0 +1,409 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>Golang Dojo Project I - Rate Limiter | Kevin Hu&#39;s Blog</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="Learning Golang with Real ProjectsThere’s a particular itch I get when learning new tech concepts. Reading docs and watching tutorials helps, but the knowledge stays hazy until I open the hood and bui">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Golang Dojo Project I - Rate Limiter">
+<meta property="og:url" content="https://blog.kevinhu.me/2026/02/08/go-dojo-i-ratelimiter/index.html">
+<meta property="og:site_name" content="Kevin Hu&#39;s Blog">
+<meta property="og:description" content="Learning Golang with Real ProjectsThere’s a particular itch I get when learning new tech concepts. Reading docs and watching tutorials helps, but the knowledge stays hazy until I open the hood and bui">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://blog.kevinhu.me/2026/02/08/go-dojo-i-ratelimiter/architecture.svg">
+<meta property="article:published_time" content="2026-02-09T01:45:08.000Z">
+<meta property="article:modified_time" content="2026-02-09T03:10:16.441Z">
+<meta property="article:author" content="Kevin Hu">
+<meta property="article:tag" content="opensource">
+<meta property="article:tag" content="programming">
+<meta property="article:tag" content="computer system">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://blog.kevinhu.me/2026/02/08/go-dojo-i-ratelimiter/architecture.svg">
+<meta name="twitter:creator" content="@Oldgunix">
+  
+    <link rel="alternative" href="/atom.xml" title="Kevin Hu&#39;s Blog" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  
+
+
+    <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-8ENJJHKTMX"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+
+    gtag('config', 'G-8ENJJHKTMX');
+  </script>
+
+<!-- hexo injector head_end start -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.css">
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/hexo-math@4.0.0/dist/style.css">
+<!-- hexo injector head_end end --><meta name="generator" content="Hexo 7.3.0"></head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">Kevin Hu&#39;s Blog</a>
+      </h1>
+      
+        <h2 id="subtitle-wrap">
+          <a href="/" id="subtitle">A Hungry Fool</a>
+        </h2>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/About/">About</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="https://blog.kevinhu.me"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-go-dojo-i-ratelimiter" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2026/02/08/go-dojo-i-ratelimiter/" class="article-date">
+  <time datetime="2026-02-09T01:45:08.000Z" itemprop="datePublished">02 08 2026</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      Golang Dojo Project I - Rate Limiter
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="Learning-Golang-with-Real-Projects"><a href="#Learning-Golang-with-Real-Projects" class="headerlink" title="Learning Golang with Real Projects"></a>Learning Golang with Real Projects</h1><p>There’s a particular itch I get when learning new tech concepts. Reading docs and watching tutorials helps, but the knowledge stays hazy until I open the hood and build something myself. So I started a project: implement small but interesting systems in Go, working with the garage door open.</p>
+<p>This isn’t pure “vibe coding.” I’m using AI to scaffold and accelerate, but the goal is understanding, not just shipping. The first “Hello World” system: a <strong>rate limiter</strong>. It has enough complexity to be interesting, bounded enough to complete in a short span.</p>
+<p>I started off the implementation by auto-complete with an AI copilot first, nothing more. And throughout this project, I’ve learned more than I expected. Now I truly believe that creating something greatly helps understanding. And AI helps much of the implementation burdens.</p>
+<p>In the future, I’ll experiment with more sophisticated “vibe-coding” techniques and see how far I’ll go.</p>
+<span id="more"></span>
+
+<h2 id="Architecture-and-Algorithm"><a href="#Architecture-and-Algorithm" class="headerlink" title="Architecture and Algorithm"></a>Architecture and Algorithm</h2><h2 id="Sliding-Window"><a href="#Sliding-Window" class="headerlink" title="Sliding Window"></a>Sliding Window</h2><p>Three common approaches:</p>
+<ul>
+<li><strong>Fixed Window</strong><ul>
+<li>Pro: Simple, memory efficient</li>
+<li>Con: Burst at window boundaries</li>
+</ul>
+</li>
+<li><strong>Sliding Window</strong><ul>
+<li>Pro: Smooth rate limiting, no bursts</li>
+<li>Con: More complex, requires sorted data</li>
+</ul>
+</li>
+<li><strong>Token Bucket</strong><ul>
+<li>Pro: Allows bursts, easy to understand</li>
+<li>Con: Can be complex to implement at scale</li>
+</ul>
+</li>
+</ul>
+<p>I chose <strong>sliding window log</strong> because it provides the smoothest limiting and avoids the bursting problem at window boundaries.</p>
+<p>The trade-off: it’s slightly more complicated, as you need to store and query timestamps efficiently.</p>
+<h2 id="The-Data-Structure-Skip-Lists-in-Redis"><a href="#The-Data-Structure-Skip-Lists-in-Redis" class="headerlink" title="The Data Structure: Skip Lists in Redis"></a>The Data Structure: Skip Lists in Redis</h2><p>Here’s where it gets interesting. To implement sliding window, you need to:</p>
+<ol>
+<li><strong>Insert</strong> a new timestamp (when request arrives)</li>
+<li><strong>Delete</strong> timestamps outside the current window</li>
+<li><strong>Count</strong> remaining timestamps (to check against limit)</li>
+</ol>
+<p>All of these need to be fast—this runs on every API request.</p>
+<p>Redis implements sorted sets using a <strong>skip list</strong>. They’re beautiful: a probabilistic data structure that gives O(log N) search&#x2F;insert&#x2F;delete with less complexity than balanced trees.</p>
+<p>A skip list is essentially a linked list with “express lanes.” Each element has a random “height” (typically coin-flip based). Level 0 connects all elements. Higher levels skip ahead:</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">Level 2:  head ──────────────────────► 50</span><br><span class="line">              │                         │</span><br><span class="line">Level 1:  head ─────────► 20 ─────────► 50 ──────► 80</span><br><span class="line">              │            │            │           │</span><br><span class="line">Level 0:  head ──► 10 ──► 20 ──► 30 ──► 50 ──► 70 ──► 80 ──► 100</span><br></pre></td></tr></table></figure>
+
+<p><strong>Why this matters for us:</strong></p>
+<ul>
+<li>Insert: <code>ZADD</code>, <code>O(log N)</code>, Log new request timestamp</li>
+<li>Range delete: <code>ZREMRANGEBYSCORE</code>, <code>O(log N + M)</code>, Remove old timestamps outside window</li>
+<li>Count: <code>ZCARD</code>, <code>O(1)*</code>, Check current request count</li>
+</ul>
+<p>Compare to a simple list: insertion might be O(1) but finding and removing old entries is O(N).</p>
+<h2 id="Architecture-Diagram"><a href="#Architecture-Diagram" class="headerlink" title="Architecture Diagram"></a>Architecture Diagram</h2><p>The meat of the problem focuses on the Rate Limiter Middleware. But to demo the work, I’ve created example
+services to showcase how the middleware could be used as a part of the service implementation.</p>
+<p><img src="/./2026/02/08/go-dojo-i-ratelimiter/architecture.svg" alt="Architecture Diagram"></p>
+<h1 id="Implementation"><a href="#Implementation" class="headerlink" title="Implementation"></a>Implementation</h1><h2 id="The-Lua-Script"><a href="#The-Lua-Script" class="headerlink" title="The Lua Script"></a>The Lua Script</h2><p>The critical path needs to be atomic — no race conditions when multiple requests hit simultaneously. Redis Lua scripts execute atomically.</p>
+<p>For the atomic operation, you’ll need to:</p>
+<ul>
+<li>Determine if the count is already over the limit.<ul>
+<li>Remove the records outside the window (<code>ZREMRANGEBYSCORE</code>).</li>
+<li>Count the current score using <code>ZCARD</code>.</li>
+</ul>
+</li>
+<li>If less than limit:<ul>
+<li>Add a new record (<code>ZADD</code>), optionally set an expiry.</li>
+</ul>
+</li>
+<li>Else:<ul>
+<li>Immediately return over-the-limit error.</li>
+</ul>
+</li>
+</ul>
+<p>The algorithm should be straight-forward enough to do in a Lua script:</p>
+<figure class="highlight lua"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">local</span> key = KEYS[<span class="number">1</span>]           <span class="comment">-- rate limit key (e.g., &quot;ratelimit:user123&quot;)</span></span><br><span class="line"><span class="keyword">local</span> value = KEYS[<span class="number">2</span>]         <span class="comment">-- unique request identifier (timestamp + random)</span></span><br><span class="line"><span class="keyword">local</span> limit = <span class="built_in">tonumber</span>(ARGV[<span class="number">1</span>])    <span class="comment">-- max requests allowed</span></span><br><span class="line"><span class="keyword">local</span> window = <span class="built_in">tonumber</span>(ARGV[<span class="number">2</span>])   <span class="comment">-- window size in seconds</span></span><br><span class="line"><span class="keyword">local</span> now = <span class="built_in">tonumber</span>(ARGV[<span class="number">3</span>])      <span class="comment">-- current timestamp in ms</span></span><br><span class="line"></span><br><span class="line"><span class="comment">-- Remove all timestamps outside the sliding window</span></span><br><span class="line">redis.call(<span class="string">&#x27;ZREMRANGEBYSCORE&#x27;</span>, key, <span class="number">0</span>, now - (<span class="number">1000</span> * window))</span><br><span class="line"></span><br><span class="line"><span class="comment">-- Count how many requests remain in current window</span></span><br><span class="line"><span class="keyword">local</span> current = redis.call(<span class="string">&#x27;ZCARD&#x27;</span>, key)</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> current &lt; limit <span class="keyword">then</span></span><br><span class="line">    <span class="comment">-- Under limit: add this request and set expiry</span></span><br><span class="line">    redis.call(<span class="string">&#x27;ZADD&#x27;</span>, key, now, value)</span><br><span class="line">    redis.call(<span class="string">&#x27;EXPIRE&#x27;</span>, key, <span class="number">2</span> * window)</span><br><span class="line">    <span class="keyword">return</span> <span class="number">1</span>  <span class="comment">-- Allow request</span></span><br><span class="line"><span class="keyword">else</span></span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>  <span class="comment">-- Rate limit exceeded</span></span><br><span class="line"><span class="keyword">end</span></span><br></pre></td></tr></table></figure>
+
+
+
+<h2 id="Go-Middleware-Skeleton"><a href="#Go-Middleware-Skeleton" class="headerlink" title="Go Middleware Skeleton"></a>Go Middleware Skeleton</h2><p>To create the Go Middleware, you can use the Go HTTP library. This part should be straightforward enough, it:</p>
+<ul>
+<li>Accepts request from the previous service, checks for the expected header (<code>X-Client-Id</code>).</li>
+<li>Queries Redis for rate limits.</li>
+<li>If success: queries the backend service and return.</li>
+<li>If Error: returns 429.</li>
+</ul>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">type</span> RateLimiterOptions <span class="keyword">struct</span> &#123;</span><br><span class="line">	Limit  <span class="type">int64</span></span><br><span class="line">	Window <span class="type">int64</span></span><br><span class="line"></span><br><span class="line">	MasterName    <span class="type">string</span></span><br><span class="line">	SentinelAddrs []<span class="type">string</span></span><br><span class="line">	Password      <span class="type">string</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">type</span> RateLimiterClient <span class="keyword">struct</span> &#123;</span><br><span class="line">	redisConn   *redis.Client</span><br><span class="line">	redisScript *redis.Script</span><br><span class="line">	options     RateLimiterOptions</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// Middleware returns an HTTP middleware for HTTP servers to check rate limits</span></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="params">(rl *RateLimiterClient)</span></span> Middleware(next http.Handler) http.Handler &#123;</span><br><span class="line">	<span class="keyword">return</span> http.HandlerFunc(<span class="function"><span class="keyword">func</span><span class="params">(w http.ResponseWriter, r *http.Request)</span></span> &#123;</span><br><span class="line">		<span class="comment">// get request client identifier from request header</span></span><br><span class="line">		clientId := r.Header.Get(<span class="string">&quot;X-Client-Id&quot;</span>)</span><br><span class="line">		<span class="keyword">if</span> clientId == <span class="string">&quot;&quot;</span> &#123;</span><br><span class="line">			log.Print(<span class="string">&quot;X-Client-Id header is required&quot;</span>)</span><br><span class="line"></span><br><span class="line">			w.WriteHeader(http.StatusBadRequest)</span><br><span class="line">			json.NewEncoder(w).Encode(<span class="keyword">map</span>[<span class="type">string</span>]<span class="keyword">interface</span>&#123;&#125;&#123;<span class="string">&quot;error&quot;</span>: <span class="string">&quot;X-Client-Id header is required&quot;</span>, <span class="string">&quot;status&quot;</span>: http.StatusBadRequest&#125;)</span><br><span class="line">			<span class="keyword">return</span></span><br><span class="line">		&#125;</span><br><span class="line"></span><br><span class="line">		allow, err := rl.Allow(r.Context(), clientId)</span><br><span class="line">		<span class="keyword">if</span> err != <span class="literal">nil</span> &#123;</span><br><span class="line">			log.Printf(<span class="string">&quot;Error checking rate limiter: %s&quot;</span>, err)</span><br><span class="line"></span><br><span class="line">			w.WriteHeader(http.StatusInternalServerError)</span><br><span class="line">			json.NewEncoder(w).Encode(<span class="keyword">map</span>[<span class="type">string</span>]<span class="keyword">interface</span>&#123;&#125;&#123;<span class="string">&quot;error&quot;</span>: <span class="string">&quot;Internal error&quot;</span>, <span class="string">&quot;status&quot;</span>: http.StatusInternalServerError&#125;)</span><br><span class="line">			<span class="keyword">return</span></span><br><span class="line">		&#125;</span><br><span class="line"></span><br><span class="line">		<span class="keyword">if</span> !allow &#123;</span><br><span class="line">			log.Printf(<span class="string">&quot;Too many requests from: %s&quot;</span>, clientId)</span><br><span class="line"></span><br><span class="line">			w.WriteHeader(http.StatusTooManyRequests)</span><br><span class="line">			json.NewEncoder(w).Encode(<span class="keyword">map</span>[<span class="type">string</span>]<span class="keyword">interface</span>&#123;&#125;&#123;<span class="string">&quot;error&quot;</span>: <span class="string">&quot;Too many requests&quot;</span>, <span class="string">&quot;status&quot;</span>: http.StatusTooManyRequests&#125;)</span><br><span class="line">			<span class="keyword">return</span></span><br><span class="line">		&#125;</span><br><span class="line"></span><br><span class="line">		next.ServeHTTP(w, r)</span><br><span class="line">	&#125;)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+<h2 id="Redis-High-Availability-What-I-Learned"><a href="#Redis-High-Availability-What-I-Learned" class="headerlink" title="Redis High Availability: What I Learned"></a>Redis High Availability: What I Learned</h2><p>I used to treat Redis as a “magic fast database.” Building this forced me to understand the operational side.</p>
+<p>In order to use Redis in production, you’ll need to take into account scalability and reliability. There are a few methods of
+deploying them.</p>
+<h3 id="Sentinel-vs-Clustering-Mode"><a href="#Sentinel-vs-Clustering-Mode" class="headerlink" title="Sentinel vs Clustering Mode"></a>Sentinel vs Clustering Mode</h3><ul>
+<li><strong>Sentinel</strong>: High availability with automatic failover. Single primary (write bottleneck), simpler.</li>
+<li><strong>Clustering</strong>: Horizontal scaling, data sharding. Complex client setup, resharding challenges.</li>
+</ul>
+<p>For a rate limiter, Sentinel is usually sufficient—you’re doing simple key operations that don’t need sharding. But knowing the difference matters when you hit scale.</p>
+<h3 id="Production-Considerations"><a href="#Production-Considerations" class="headerlink" title="Production Considerations"></a>Production Considerations</h3><ul>
+<li><strong>Memory pressure</strong>: Sliding windows with many clients &#x3D; memory growth. Set appropriate <code>MAXMEMORY</code> policies</li>
+<li><strong>Availability and Scalability</strong>: You need to consider for your use case, whether setting up Redis Sentinel is sufficient. Redis Cluster provides better scalability and availability, at the cost of consistency. See more:<ul>
+<li>Redis Sentinel Mode: https:&#x2F;&#x2F;redis.io&#x2F;docs&#x2F;latest&#x2F;operate&#x2F;oss_and_stack&#x2F;management&#x2F;sentinel&#x2F;</li>
+<li>Redis Clustering Mode: https:&#x2F;&#x2F;redis.io&#x2F;docs&#x2F;latest&#x2F;operate&#x2F;oss_and_stack&#x2F;management&#x2F;scaling&#x2F;</li>
+</ul>
+</li>
+</ul>
+<h2 id="Kubernetes-Deployment"><a href="#Kubernetes-Deployment" class="headerlink" title="Kubernetes Deployment"></a>Kubernetes Deployment</h2><p>One of the joys of vibe coding with AI: generating Kubernetes manifests is now trivial. But understanding what they do is still your responsibility.</p>
+<p>Key insight: <strong>the rate limiter is stateless</strong>. All state lives in Redis. This means you can scale the Go service horizontally without coordination headaches. The complexity is pushed to Redis, which is designed for exactly this.</p>
+<h1 id="Vibe-Coding"><a href="#Vibe-Coding" class="headerlink" title="Vibe Coding"></a>Vibe Coding</h1><p>Here’s how I actually worked on this:</p>
+<ul>
+<li><strong>Design Discussion</strong>: Spent some good quality time discussing with ChatGPT on the overall architecture, algorithm, and technical choices.</li>
+<li><strong>Scaffold</strong>: Have the AI create a boilerplate.</li>
+<li><strong>Implementation</strong>: I fill in the actual implementation with the help of Copilot autocomplete. For core algorithms and Lua Script, do the research, create the implementation and validate with AI conversations.</li>
+<li><strong>Infrastructure &amp; Deployment</strong>: Create the KIND setup, dockerfile, with the assistance of AI, and bootstrap the project.</li>
+<li><strong>Testing</strong>: Actual manual testing. AI can help generating scripts to test the system locally.</li>
+</ul>
+<h1 id="What-I-Learned"><a href="#What-I-Learned" class="headerlink" title="What I Learned"></a>What I Learned</h1><p>AI greatly helped and remove much of the pain for bootstrapping the project:</p>
+<ul>
+<li>It accelerates scaffolding by at least 10x, like Dockerfile, K8s Helm, environment setup, etc.</li>
+<li>It can debate with you and help you design the overall system architecture.</li>
+<li>Writing tests forces you to understand behavior the AI implied but didn’t guarantee.</li>
+</ul>
+<p>Sure, AI can greatly improve education of Software Engineering concepts. And it can greatly smoothen
+the entire implementation process.</p>
+<p>But, feel free to point out that I’m wrong on this, AI still doesn’t fully replace:</p>
+<ul>
+<li>A good grasp of the data structure, algorithm, system knowledge.</li>
+<li>For designing the architecture of a complicated system.</li>
+<li>Decide on the trade-offs in a system design, and implement the system from end-to-end.</li>
+</ul>
+<p>That’s why I still believe good system engineering cannot be easily replaced by AI yet.
+I’ll keep playing around with vibe-coding and find out AI’s limits.</p>
+<h1 id="Final-Thoughts"><a href="#Final-Thoughts" class="headerlink" title="Final Thoughts"></a>Final Thoughts</h1><p>Disclaimer: the project is for demo and educational purpose, and by no means production-ready.</p>
+<p>Everything is open source: <a href="https://github.com/hxy9243/go-dojo">https:&#x2F;&#x2F;github.com&#x2F;hxy9243&#x2F;go-dojo</a></p>
+<p>The repo includes:</p>
+<ul>
+<li>Complete rate limiter implementation.</li>
+<li>A demo server deployable on K8s environment.</li>
+<li>KIND setup for local development.</li>
+<li>Helm charts for K8s deployment.</li>
+</ul>
+<p>Building a rate limiter scratched the itch, but there are more small system concepts that could be built. Each one teaches something different about the boundaries between algorithms, data structures, and real-world constraints.</p>
+<p>Feedback and suggestions are welcome! Hit me up—always curious how others approach system building with AI assistance.</p>
+<h1 id="References"><a href="#References" class="headerlink" title="References"></a>References</h1><ul>
+<li>Rate Limiter Design: <a href="https://medium.com/phyllo-engineering-blog/rate-limiter-using-sorted-set-in-cache-redis-bee5d939448d">https:&#x2F;&#x2F;medium.com&#x2F;phyllo-engineering-blog&#x2F;rate-limiter-using-sorted-set-in-cache-redis-bee5d939448d</a></li>
+<li>Rate Limiting with Redis: <a href="https://redis.io/tutorials/howtos/ratelimiting/">https:&#x2F;&#x2F;redis.io&#x2F;tutorials&#x2F;howtos&#x2F;ratelimiting&#x2F;</a></li>
+<li>Redis Sentinel Mode: <a href="https://redis.io/docs/latest/operate/oss_and_stack/management/sentinel/">https:&#x2F;&#x2F;redis.io&#x2F;docs&#x2F;latest&#x2F;operate&#x2F;oss_and_stack&#x2F;management&#x2F;sentinel&#x2F;</a></li>
+<li>Redis Clustering Mode: <a href="https://redis.io/docs/latest/operate/oss_and_stack/management/scaling/">https:&#x2F;&#x2F;redis.io&#x2F;docs&#x2F;latest&#x2F;operate&#x2F;oss_and_stack&#x2F;management&#x2F;scaling&#x2F;</a></li>
+</ul>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://blog.kevinhu.me/2026/02/08/go-dojo-i-ratelimiter/" data-id="cmleje1n3000035eybtii3e5s" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/computer-system/" rel="tag">computer system</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/opensource/" rel="tag">opensource</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/programming/" rel="tag">programming</a></li></ul>
+
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+  
+    <a href="/2025/10/17/2025-Job-Search-Experience/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">My 2025 Job Search Experience</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+    <div class="widget-wrap">
+        <h3 class="widget-title">Follow Me</h3>
+        <div class="widget">
+            <a href="https://twitter.com/Oldgunix?ref_src=twsrc%5Etfw" class="twitter-follow-button"
+                data-show-count="false">Follow @Oldgunix</a>
+            <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+        </div>
+    </div>
+    
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recents</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2026/02/08/go-dojo-i-ratelimiter/">Golang Dojo Project I - Rate Limiter</a>
+          </li>
+        
+          <li>
+            <a href="/2025/10/17/2025-Job-Search-Experience/">My 2025 Job Search Experience</a>
+          </li>
+        
+          <li>
+            <a href="/2025/08/22/Building-a-School-Library-Assistant-with-FastMCP-and-DSPy-II/">Building a School Library Assistant with FastMCP and DSPy (II)</a>
+          </li>
+        
+          <li>
+            <a href="/2025/08/09/Building-MCP-with-DSPy/">Building a School Library Assistant with FastMCP and DSPy (I)</a>
+          </li>
+        
+          <li>
+            <a href="/2025/06/22/Agentic-Programming/">Learning AI Agent Programming (with DSPy)</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Categories</h3>
+    <div class="widget">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Algorithm/">Algorithm</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/BookReview/">BookReview</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Coding/">Coding</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/ComputerSystem/">ComputerSystem</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Golang/">Golang</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Learning/">Learning</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Paper/">Paper</a><span class="category-list-count">5</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/PaperReading/">PaperReading</a><span class="category-list-count">11</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Programming/">Programming</a><span class="category-list-count">4</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/ProgrammingLanguage/">ProgrammingLanguage</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Reading/">Reading</a><span class="category-list-count">25</span></li></ul>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tag Cloud</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/AI/" style="font-size: 17.5px;">AI</a> <a href="/tags/API/" style="font-size: 10px;">API</a> <a href="/tags/Algorithm/" style="font-size: 10px;">Algorithm</a> <a href="/tags/Aurora/" style="font-size: 10px;">Aurora</a> <a href="/tags/BitHacks/" style="font-size: 10px;">BitHacks</a> <a href="/tags/BookReview/" style="font-size: 16.25px;">BookReview</a> <a href="/tags/Borg/" style="font-size: 10px;">Borg</a> <a href="/tags/C/" style="font-size: 10px;">C</a> <a href="/tags/C/" style="font-size: 10px;">C++</a> <a href="/tags/C-C/" style="font-size: 11.25px;">C/C++</a> <a href="/tags/Cassandra/" style="font-size: 12.5px;">Cassandra</a> <a href="/tags/Channel/" style="font-size: 11.25px;">Channel</a> <a href="/tags/ChatGPT/" style="font-size: 12.5px;">ChatGPT</a> <a href="/tags/Coding/" style="font-size: 10px;">Coding</a> <a href="/tags/Compilers/" style="font-size: 11.25px;">Compilers</a> <a href="/tags/Concurrency/" style="font-size: 10px;">Concurrency</a> <a href="/tags/Data-Science/" style="font-size: 10px;">Data Science</a> <a href="/tags/Database/" style="font-size: 13.75px;">Database</a> <a href="/tags/Datacenter/" style="font-size: 10px;">Datacenter</a> <a href="/tags/Debug/" style="font-size: 10px;">Debug</a> <a href="/tags/DistributedSystems/" style="font-size: 15px;">DistributedSystems</a> <a href="/tags/Docker/" style="font-size: 10px;">Docker</a> <a href="/tags/FPGA/" style="font-size: 10px;">FPGA</a> <a href="/tags/Golang/" style="font-size: 13.75px;">Golang</a> <a href="/tags/HPC/" style="font-size: 10px;">HPC</a> <a href="/tags/Hugepage/" style="font-size: 10px;">Hugepage</a> <a href="/tags/Internet/" style="font-size: 10px;">Internet</a> <a href="/tags/Julia/" style="font-size: 10px;">Julia</a> <a href="/tags/Kafka/" style="font-size: 10px;">Kafka</a> <a href="/tags/LLM/" style="font-size: 12.5px;">LLM</a> <a href="/tags/Learning/" style="font-size: 20px;">Learning</a> <a href="/tags/Linux/" style="font-size: 12.5px;">Linux</a> <a href="/tags/Log/" style="font-size: 10px;">Log</a> <a href="/tags/Machine-Learning/" style="font-size: 10px;">Machine Learning</a> <a href="/tags/Mesos/" style="font-size: 10px;">Mesos</a> <a href="/tags/Multithread/" style="font-size: 10px;">Multithread</a> <a href="/tags/Mutex/" style="font-size: 10px;">Mutex</a> <a href="/tags/NLP/" style="font-size: 12.5px;">NLP</a> <a href="/tags/NoSQL/" style="font-size: 12.5px;">NoSQL</a> <a href="/tags/Paper/" style="font-size: 10px;">Paper</a> <a href="/tags/PaperReading/" style="font-size: 18.75px;">PaperReading</a> <a href="/tags/Programming/" style="font-size: 12.5px;">Programming</a> <a href="/tags/ProgrammingLanguage/" style="font-size: 11.25px;">ProgrammingLanguage</a> <a href="/tags/Python/" style="font-size: 12.5px;">Python</a> <a href="/tags/Ray/" style="font-size: 10px;">Ray</a> <a href="/tags/Reading/" style="font-size: 17.5px;">Reading</a> <a href="/tags/Social/" style="font-size: 10px;">Social</a> <a href="/tags/Sociology/" style="font-size: 10px;">Sociology</a> <a href="/tags/Technology/" style="font-size: 12.5px;">Technology</a> <a href="/tags/Undefined-Behavior/" style="font-size: 11.25px;">Undefined Behavior</a> <a href="/tags/WeeklyPaper/" style="font-size: 10px;">WeeklyPaper</a> <a href="/tags/WorldWideWeb/" style="font-size: 10px;">WorldWideWeb</a> <a href="/tags/Zookeeper/" style="font-size: 10px;">Zookeeper</a> <a href="/tags/computer-system/" style="font-size: 10px;">computer system</a> <a href="/tags/infrastructure/" style="font-size: 10px;">infrastructure</a> <a href="/tags/openAPI/" style="font-size: 10px;">openAPI</a> <a href="/tags/opensource/" style="font-size: 10px;">opensource</a> <a href="/tags/programming/" style="font-size: 10px;">programming</a> <a href="/tags/systems/" style="font-size: 10px;">systems</a> <a href="/tags/tracing/" style="font-size: 10px;">tracing</a> <a href="/tags/web/" style="font-size: 10px;">web</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2026/02/">February 2026</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2025/10/">October 2025</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2025/08/">August 2025</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2025/06/">June 2025</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/02/">February 2024</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/09/">September 2023</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/07/">July 2023</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/06/">June 2023</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/09/">September 2022</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/09/">September 2021</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/08/">August 2021</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/05/">May 2021</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/04/">April 2021</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/11/">November 2020</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/07/">July 2020</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/04/">April 2020</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/01/">January 2020</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/11/">November 2019</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/09/">September 2019</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/08/">August 2019</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/05/">May 2019</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/04/">April 2019</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/03/">March 2019</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/02/">February 2019</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/01/">January 2019</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/10/">October 2018</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/09/">September 2018</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/07/">July 2018</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/05/">May 2018</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/06/">June 2017</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/03/">March 2017</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/01/">January 2017</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/11/">November 2016</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/09/">September 2016</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/08/">August 2016</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/05/">May 2016</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/02/">February 2016</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/12/">December 2015</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/11/">November 2015</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/10/">October 2015</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/04/">April 2015</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/03/">March 2015</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/01/">January 2015</a><span class="archive-list-count">2</span></li></ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2026 Kevin Hu<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/About/" class="mobile-nav-link">About</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+
+  
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+
+
+<script src="/js/script.js"></script>
+
+
+  </div>
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
+            processEscapes: true
+        }
+    });
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax();
+        for (var i = 0; i < all.length; ++i)
+            all[i].SourceElement().parentNode.className += ' has-jax';
+    });
+</script>
+<script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+</body>
+</html>
