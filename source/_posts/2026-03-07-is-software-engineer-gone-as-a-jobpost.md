@@ -4,6 +4,8 @@ tags: ["AI","Software Engineering"]
 category: "Tech"
 ---
 
+# Will AI Replace Software Engineers?
+
 AI has taken the programming world by storm in 2026.
 
 In just a matter of months, almost all the programmer friends I know have started using AI for their daily tasks. This brought about two conflicting feelings: "Wow, this is incredibly cool," and "Damn, I'm going to lose my job." It's odd to experience so much optimism and pessimism at the exact same moment.
@@ -16,7 +18,7 @@ Probably not.
 
 <!--more-->
 
-# 2 Software Engineering is Here to Stay
+# Software Engineering is Here to Stay
 
 My bold prediction is this: software engineering is here to stay. And this isn't just because I myself am a software engineer who would very much like to keep my job.
 
