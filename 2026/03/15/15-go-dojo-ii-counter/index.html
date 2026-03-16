@@ -1,0 +1,367 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>Golang Dojo Project II - Distributed Counter | Kevin Hu&#39;s Blog</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="IntroductionI recently took a stab at a scalable distributed counter implementation. The inspiration comes from an common System Design interview question: “Design a distributed counter that can handl">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Golang Dojo Project II - Distributed Counter">
+<meta property="og:url" content="https://blog.kevinhu.me/2026/03/15/15-go-dojo-ii-counter/index.html">
+<meta property="og:site_name" content="Kevin Hu&#39;s Blog">
+<meta property="og:description" content="IntroductionI recently took a stab at a scalable distributed counter implementation. The inspiration comes from an common System Design interview question: “Design a distributed counter that can handl">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2026-03-16T00:45:08.000Z">
+<meta property="article:modified_time" content="2026-03-16T04:20:52.293Z">
+<meta property="article:author" content="Kevin Hu">
+<meta property="article:tag" content="opensource">
+<meta property="article:tag" content="programming">
+<meta property="article:tag" content="computer system">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:creator" content="@Oldgunix">
+  
+    <link rel="alternative" href="/atom.xml" title="Kevin Hu&#39;s Blog" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  
+
+
+    <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-8ENJJHKTMX"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+
+    gtag('config', 'G-8ENJJHKTMX');
+  </script>
+
+<!-- hexo injector head_end start -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.css">
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/hexo-math@4.0.0/dist/style.css">
+<!-- hexo injector head_end end --><meta name="generator" content="Hexo 7.3.0"></head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">Kevin Hu&#39;s Blog</a>
+      </h1>
+      
+        <h2 id="subtitle-wrap">
+          <a href="/" id="subtitle">A Hungry Fool</a>
+        </h2>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/About/">About</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="https://blog.kevinhu.me"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-15-go-dojo-ii-counter" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2026/03/15/15-go-dojo-ii-counter/" class="article-date">
+  <time datetime="2026-03-16T00:45:08.000Z" itemprop="datePublished">03 15 2026</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/Golang/">Golang</a>►<a class="article-category-link" href="/categories/Golang/ComputerSystem/">ComputerSystem</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      Golang Dojo Project II - Distributed Counter
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="Introduction"><a href="#Introduction" class="headerlink" title="Introduction"></a>Introduction</h1><p>I recently took a stab at a scalable distributed counter implementation. The inspiration comes from an common System Design interview question: “Design a distributed counter that can handle millions of events per second and provide near real-time read access to the current count.”</p>
+<p>I read some about it in theory and design interview questions, but I never actually see it in action. Thanks to the advance of AI, a lot of the implementation burden can be handed off to an AI agent, while I focus more on the overall design.</p>
+<p>So now I added it to the Golang Dojo project as I thought it could be a fun and education project to deepen my understanding of distributed systems, and also to explore how AI can assist in such process.</p>
+<p>Source code is at: <a href="https://github.com/hxy9243/go-dojo/tree/main/src/counter">https:&#x2F;&#x2F;github.com&#x2F;hxy9243&#x2F;go-dojo&#x2F;tree&#x2F;main&#x2F;src&#x2F;counter</a></p>
+<span id="more"></span>
+
+<h1 id="Problem-Break-Down"><a href="#Problem-Break-Down" class="headerlink" title="Problem Break-Down"></a>Problem Break-Down</h1><p>The problem can be broken down into several key requirements:</p>
+<ul>
+<li><strong>High Write Throughput</strong>: The system must be able to handle a very high volume of increment events (millions per second), which means it needs to be horizontally scalable and efficient at handling concurrent writes.</li>
+<li><strong>Fault Tolerance</strong>: The system should be resilient to failures, ensuring that increments are not lost and that the count remains accurate even in the face of node failures or network issues.</li>
+<li><strong>Scalability</strong>: The system should be able to scale horizontally to accommodate increasing load, both in terms of write throughput and read access.</li>
+<li><strong>Latency</strong>: The system should provide near real-time read access, with a delay of a few seconds. This means that the read path should be optimized for low latency, even under high load.</li>
+</ul>
+<p>An interesting part of the design is the data consistency model.</p>
+<p>For a counter, we can often tolerate eventual consistency for higher availability and lower latency. This allows us to use distributed systems that prioritize availability and partition tolerance while still providing a reasonably accurate count.</p>
+<p>There’s still a question of accuracy vs availability.</p>
+<p>To achieve the requirements of the system, we need to consider the following areas of design.</p>
+<h2 id="Write-Path-Design"><a href="#Write-Path-Design" class="headerlink" title="Write Path Design"></a>Write Path Design</h2><p>The write path of the system can be designed with the following requirements in mind:</p>
+<ol>
+<li>To decouple the write API from the database, allowing for asynchronous processing and better handling of spikes in traffic, providing better throughput under high loads.</li>
+<li>To enable horizontal scalability of the write path.</li>
+<li>To provide durability and fault tolerance for incoming events.</li>
+</ol>
+<p>Kafka is a natural choice for the streaming component of the system. It provides a distributed, partitioned streaming service the decouples the write API from writing to the database.</p>
+<p>The topic design is: we use a single topic called <code>counter</code> with multiple partitions (e.g., 3 in this toy example). Each increment event is published to Kafka with the <code>eventkey</code> as the message key. In real-world production systems, these would likely be to be tuned.</p>
+<h2 id="Aggregation-and-Batching"><a href="#Aggregation-and-Batching" class="headerlink" title="Aggregation and Batching"></a>Aggregation and Batching</h2><p>After the events are published to Kafka, we need a component that consumes these events, aggregates them in memory.
+They’ll need to periodically flush the aggregated counts to the database. This allows us to reduce the number of write operations to the database, which can be a bottleneck.</p>
+<p>They’ll also need to be independently scalable and fault tolerant. They could run multiple replicas, each reading from different partitions of the Kafka topic.</p>
+<h2 id="Backend-Database"><a href="#Backend-Database" class="headerlink" title="Backend Database"></a>Backend Database</h2><p>The backend database needs to be able to handle high write throughput, fault tolerant, and scalable, to store the aggregated counts.</p>
+<p>A distributed NoSQL database like Cassandra comes to mind.</p>
+<p>I’ve used Cassandra’s <code>counter</code> data type to efficiently store and update the counts, built specifically for this use case.</p>
+<p><strong>Notice:</strong> The trade-off of using this data type is that it can lead to over-counting in edge cases (e.g., if the aggregator crashes after updating the counter but before updating the offset). However, for many use cases (like counting views or likes), this level of precision could be acceptable in exchange for high availability and performance.</p>
+<p>The alternative would be to use a locking mechanism to ensure strict consistency, but this will lead to more compute and latency overhead, especially under high write loads. It really depends on the specific use case and requirements.</p>
+<h2 id="Read-API-Design"><a href="#Read-API-Design" class="headerlink" title="Read API Design"></a>Read API Design</h2><p>The read API needs to provide a low-latency, highly available interface for retrieving the current count for a given key. To achieve this, we can use a caching layer (like Redis) in front of the database to serve read requests quickly.</p>
+<p>The read API will first check the cache for the count value. We’ll also need to tune the cache TTL to balance between read performance and data freshness.</p>
+<h1 id="Architecture-Design-Overview"><a href="#Architecture-Design-Overview" class="headerlink" title="Architecture Design Overview"></a>Architecture Design Overview</h1><p>With these considerations in mind, the overall architecture of the system can be visualized as follows:</p>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">[Write API Worker] --&gt; [Kafka] --&gt; [Aggregator Worker] --+</span><br><span class="line">                                                          |</span><br><span class="line">                                                          v</span><br><span class="line">                                                  [Backend Database]</span><br><span class="line">                                                          ^</span><br><span class="line">                                                          |</span><br><span class="line">[Read API Worker] --&gt; [Cache] ----------------------------+</span><br></pre></td></tr></table></figure>
+
+<p>The counter application is a distributed, event-driven system designed to handle high-throughput counting operations. It is split into three main components:</p>
+<ol>
+<li><p><strong>Write API Worker (<code>write-api</code>)</strong>:
+ An HTTP server that accepts count increments via a <code>POST /event</code> endpoint. It acts as a producer, taking incoming requests and publishing them as messages to a Kafka topic.</p>
+<p> The write API can instantly acknowledge write requests without waiting for a slow database transaction. This acts as a shock absorber during traffic spikes.</p>
+</li>
+<li><p><strong>Kafka Streamer</strong>:
+ A Kafka topic (<code>counter</code>) that serves as a durable, partitioned log of increment events. It decouples the write API from the database, allowing for asynchronous processing and better handling of traffic spikes.</p>
+</li>
+<li><p><strong>Aggregator Worker (<code>consumer</code>)</strong>:
+ A background worker that consumes messages from the Kafka topic. It aggregates the increments in memory and periodically flushes the aggregated counts to a persistent database (Cassandra).</p>
+</li>
+<li><p><strong>Backend Database (Cassandra)</strong>:
+ A distributed NoSQL database that stores the aggregated counts. It uses Cassandra’s <code>counter</code> data type for efficient counting operations.</p>
+<p> <strong>Tables</strong>:</p>
+<ul>
+<li><code>partitions (partition int PRIMARY KEY, offset bigint)</code>: Stores the latest processed Kafka offset for each partition.</li>
+<li><code>counters (key text PRIMARY KEY, counter counter)</code>: Stores the actual aggregated counter values using Cassandra’s native <code>counter</code> data type.</li>
+</ul>
+<p> This way the aggregator can track which messages have been processed and provide some level of deduplication in case of consumer restarts or rebalances.</p>
+</li>
+<li><p><strong>Read API Worker (<code>read-api</code>)</strong>:
+ An HTTP server that serves the current count for a given key via a <code>GET /counter</code> endpoint. It uses Redis as a caching layer to serve high-volume read requests quickly, falling back to Cassandra when the cache is empty.</p>
+<p> Redis stores the counter values as basic key-value pairs with a TTL (Time-To-Live). Also uses a <code>.counter-lock</code> key for distributed locking.
+ Since exact up-to-the-millisecond precision is often not critical for counters, caching the value for a short TTL (e.g., 500ms) saves Cassandra from heavy read loads.</p>
+</li>
+</ol>
+<h1 id="Implementation-Details"><a href="#Implementation-Details" class="headerlink" title="Implementation Details"></a>Implementation Details</h1><ul>
+<li><strong>Cache Stampede Prevention</strong>: In the Read API, if a cache miss occurs, the worker attempts to acquire a distributed lock in Redis (<code>SETNX</code> on <code>key.counter-lock</code>). Only the worker that acquires this lock will query Cassandra to fetch the latest value and populate the cache. Other concurrent requests will wait and retry reading from the cache. This prevents the “thundering herd” problem where a cache miss on a hot key causes a massive spike in database queries.</li>
+<li><strong>Exactly-Once Semantics (Deduplication)</strong>: The Aggregator manually tracks Kafka partition offsets in the <code>partitions</code> Cassandra table. Before processing a message, it checks if the message’s offset is less than or equal to the stored offset. This mechanism helps skip redelivered messages, providing exactly-once (or deduplicated) processing guarantees under normal conditions.</li>
+<li><strong>Graceful Shutdown and Rebalancing</strong>: The Aggregator listens for Kafka partition rebalance events (<code>kafka.RevokedPartitions</code>) and system signals (SIGINT&#x2F;SIGTERM). When a partition leaves the consumer or the program stops, it flushes any pending in-memory counts to Cassandra to ensure no data is lost.</li>
+</ul>
+<h1 id="Deployment"><a href="#Deployment" class="headerlink" title="Deployment"></a>Deployment</h1><p>I’ve created a Helm chart to deploy the application on Kubernetes. The chart includes deployments for the Write API, Aggregator, and Read API workers, as well as services to expose the APIs.</p>
+<p>Each component can be scaled independently based on the load. For example, during high write traffic, we can scale up the Write API workers, while during high read traffic, we can scale up the Read API workers.</p>
+<p>See more at: https:&#x2F;&#x2F;github.com&#x2F;hxy9243&#x2F;go-dojo&#x2F;tree&#x2F;main&#x2F;src&#x2F;counter&#x2F;helm&#x2F;counter-app</p>
+<h1 id="Future-Work"><a href="#Future-Work" class="headerlink" title="Future Work"></a>Future Work</h1><p>Alas, this project is meant for my own exploration and education. And it isn’t a production-ready system. There are many areas for improvement and further development</p>
+<ul>
+<li><strong>In-Memory Map Bounding for Aggregator</strong>: The Aggregator’s in-memory <code>Counters</code> map could grow unboundedly if there’s a huge surge of unique keys within the 500ms flush window. Adding a maximum capacity and an LRU eviction policy to force early flushes would protect the worker from out-of-memory errors.</li>
+<li><strong>Idempotency Edge Cases</strong>: Updating the Cassandra <code>counter</code> and <code>partitions</code> offset happens in the same execution flow but not in an isolated, fully ACID transaction. If the program crashes exactly between updating the <code>counters</code> table and the <code>partitions</code> table, a message could be re-processed upon restart, slightly over-counting.</li>
+<li><strong>Saving historical time-series data</strong>: The current design only keeps the latest count for each key. If we wanted to keep a history of counts over time (e.g., for analytics or trend analysis), we would need to modify the database schema and aggregation logic to store time-series data.</li>
+<li><strong>Adjust partitions</strong>: The number of Kafka partitions can be tuned based on the expected load and the number of consumer instances. More partitions can allow for higher parallelism but also increase complexity in managing offsets and ensuring order.</li>
+<li><strong>Testing and Validation</strong>: Implementing comprehensive testing, including unit tests, integration tests, and load testing, would be crucial to ensure the reliability and performance of the system under various conditions.</li>
+<li><strong>Auto-Scaling</strong>: Implementing auto-scaling for the different components based on metrics like CPU usage, memory usage, or request latency would help maintain performance during traffic spikes. This could be achieved using Kubernetes Horizontal Pod Autoscaler (HPA).</li>
+<li><strong>Monitoring and Alerting</strong>: Implementing monitoring for Kafka consumer lag, database performance, and API response times would be crucial for maintaining the health of the system. Tools like Prometheus and Grafana could be used for this purpose.</li>
+</ul>
+<p>This is an educational project so there might be some design and implementation choices that are not optimal for a production system.</p>
+<p>If you’ve read this far, please let me know if you have any suggestions or feedback on the overall design and implementation!</p>
+<h1 id="Summary"><a href="#Summary" class="headerlink" title="Summary"></a>Summary</h1><p>Over the course of this small project, I’ve started with an idea in mind, and had a long conversation with ChatGPT over the design, implementation of this system. I’ve learned much about from AI by simply providing a direction. Also AI has freed me from the burdens of creating boilerplate (like using the library and creating Helm for k8s deployment). In the process I’ve also learned about many implementation details on installing and using the libraries for Kafka. This turned out to be valuable learning experience developing with AI assistance.</p>
+<p>With the advancement of far more autonomous AI coding agents, software development is going to be more focused on higher-level system architecture understanding, trade-offs discussions.
+So I’d explored more with this Dojo way of learning systems with Golang. As I believe a thorough understanding of the underlying system design and architecture is still crucial in the age of AI. The future is about learning with AI, instead of replacing all understanding.</p>
+<p>Source code is at: <a href="https://github.com/hxy9243/go-dojo/tree/main/src/counter">https:&#x2F;&#x2F;github.com&#x2F;hxy9243&#x2F;go-dojo&#x2F;tree&#x2F;main&#x2F;src&#x2F;counter</a></p>
+<h1 id="References"><a href="#References" class="headerlink" title="References"></a>References</h1><ul>
+<li>https:&#x2F;&#x2F;netflixtechblog.com&#x2F;netflixs-distributed-counter-abstraction-8d0c45eb66b2</li>
+<li>https:&#x2F;&#x2F;systemdesign.one&#x2F;distributed-counter-system-design&#x2F;</li>
+<li>https:&#x2F;&#x2F;docs.confluent.io&#x2F;kafka&#x2F;introduction.html</li>
+</ul>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://blog.kevinhu.me/2026/03/15/15-go-dojo-ii-counter/" data-id="cmmsfykaw00000veyend34heg" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/computer-system/" rel="tag">computer system</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/opensource/" rel="tag">opensource</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/programming/" rel="tag">programming</a></li></ul>
+
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+  
+    <a href="/2026/03/07/07-is-software-engineer-gone-as-a-jobpost/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">Is Software Engineering Gone as a Job?</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+    <div class="widget-wrap">
+        <h3 class="widget-title">Follow Me</h3>
+        <div class="widget">
+            <a href="https://twitter.com/Oldgunix?ref_src=twsrc%5Etfw" class="twitter-follow-button"
+                data-show-count="false">Follow @Oldgunix</a>
+            <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+        </div>
+    </div>
+    
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recents</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2026/03/15/15-go-dojo-ii-counter/">Golang Dojo Project II - Distributed Counter</a>
+          </li>
+        
+          <li>
+            <a href="/2026/03/07/07-is-software-engineer-gone-as-a-jobpost/">Is Software Engineering Gone as a Job?</a>
+          </li>
+        
+          <li>
+            <a href="/2026/02/08/go-dojo-i-ratelimiter/">Golang Dojo Project I - Rate Limiter</a>
+          </li>
+        
+          <li>
+            <a href="/2025/10/17/2025-Job-Search-Experience/">My 2025 Job Search Experience</a>
+          </li>
+        
+          <li>
+            <a href="/2025/08/22/Building-a-School-Library-Assistant-with-FastMCP-and-DSPy-II/">Building a School Library Assistant with FastMCP and DSPy (II)</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Categories</h3>
+    <div class="widget">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Algorithm/">Algorithm</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/BookReview/">BookReview</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Coding/">Coding</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/ComputerSystem/">ComputerSystem</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Golang/">Golang</a><span class="category-list-count">2</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/Golang/ComputerSystem/">ComputerSystem</a><span class="category-list-count">1</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/Learning/">Learning</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Paper/">Paper</a><span class="category-list-count">5</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/PaperReading/">PaperReading</a><span class="category-list-count">11</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Programming/">Programming</a><span class="category-list-count">4</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/ProgrammingLanguage/">ProgrammingLanguage</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Reading/">Reading</a><span class="category-list-count">25</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Tech/">Tech</a><span class="category-list-count">1</span></li></ul>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tag Cloud</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/AI/" style="font-size: 18.75px;">AI</a> <a href="/tags/API/" style="font-size: 10px;">API</a> <a href="/tags/Algorithm/" style="font-size: 10px;">Algorithm</a> <a href="/tags/Aurora/" style="font-size: 10px;">Aurora</a> <a href="/tags/BitHacks/" style="font-size: 10px;">BitHacks</a> <a href="/tags/BookReview/" style="font-size: 16.25px;">BookReview</a> <a href="/tags/Borg/" style="font-size: 10px;">Borg</a> <a href="/tags/C/" style="font-size: 10px;">C</a> <a href="/tags/C/" style="font-size: 10px;">C++</a> <a href="/tags/C-C/" style="font-size: 11.25px;">C/C++</a> <a href="/tags/Cassandra/" style="font-size: 12.5px;">Cassandra</a> <a href="/tags/Channel/" style="font-size: 11.25px;">Channel</a> <a href="/tags/ChatGPT/" style="font-size: 12.5px;">ChatGPT</a> <a href="/tags/Coding/" style="font-size: 10px;">Coding</a> <a href="/tags/Compilers/" style="font-size: 11.25px;">Compilers</a> <a href="/tags/Concurrency/" style="font-size: 10px;">Concurrency</a> <a href="/tags/Data-Science/" style="font-size: 10px;">Data Science</a> <a href="/tags/Database/" style="font-size: 13.75px;">Database</a> <a href="/tags/Datacenter/" style="font-size: 10px;">Datacenter</a> <a href="/tags/Debug/" style="font-size: 10px;">Debug</a> <a href="/tags/DistributedSystems/" style="font-size: 15px;">DistributedSystems</a> <a href="/tags/Docker/" style="font-size: 10px;">Docker</a> <a href="/tags/FPGA/" style="font-size: 10px;">FPGA</a> <a href="/tags/Golang/" style="font-size: 13.75px;">Golang</a> <a href="/tags/HPC/" style="font-size: 10px;">HPC</a> <a href="/tags/Hugepage/" style="font-size: 10px;">Hugepage</a> <a href="/tags/Internet/" style="font-size: 10px;">Internet</a> <a href="/tags/Julia/" style="font-size: 10px;">Julia</a> <a href="/tags/Kafka/" style="font-size: 10px;">Kafka</a> <a href="/tags/LLM/" style="font-size: 12.5px;">LLM</a> <a href="/tags/Learning/" style="font-size: 20px;">Learning</a> <a href="/tags/Linux/" style="font-size: 12.5px;">Linux</a> <a href="/tags/Log/" style="font-size: 10px;">Log</a> <a href="/tags/Machine-Learning/" style="font-size: 10px;">Machine Learning</a> <a href="/tags/Mesos/" style="font-size: 10px;">Mesos</a> <a href="/tags/Multithread/" style="font-size: 10px;">Multithread</a> <a href="/tags/Mutex/" style="font-size: 10px;">Mutex</a> <a href="/tags/NLP/" style="font-size: 12.5px;">NLP</a> <a href="/tags/NoSQL/" style="font-size: 12.5px;">NoSQL</a> <a href="/tags/Paper/" style="font-size: 10px;">Paper</a> <a href="/tags/PaperReading/" style="font-size: 18.75px;">PaperReading</a> <a href="/tags/Programming/" style="font-size: 12.5px;">Programming</a> <a href="/tags/ProgrammingLanguage/" style="font-size: 11.25px;">ProgrammingLanguage</a> <a href="/tags/Python/" style="font-size: 12.5px;">Python</a> <a href="/tags/Ray/" style="font-size: 10px;">Ray</a> <a href="/tags/Reading/" style="font-size: 17.5px;">Reading</a> <a href="/tags/Social/" style="font-size: 10px;">Social</a> <a href="/tags/Sociology/" style="font-size: 10px;">Sociology</a> <a href="/tags/Software-Engineering/" style="font-size: 10px;">Software Engineering</a> <a href="/tags/Technology/" style="font-size: 12.5px;">Technology</a> <a href="/tags/Undefined-Behavior/" style="font-size: 11.25px;">Undefined Behavior</a> <a href="/tags/WeeklyPaper/" style="font-size: 10px;">WeeklyPaper</a> <a href="/tags/WorldWideWeb/" style="font-size: 10px;">WorldWideWeb</a> <a href="/tags/Zookeeper/" style="font-size: 10px;">Zookeeper</a> <a href="/tags/computer-system/" style="font-size: 11.25px;">computer system</a> <a href="/tags/infrastructure/" style="font-size: 10px;">infrastructure</a> <a href="/tags/openAPI/" style="font-size: 10px;">openAPI</a> <a href="/tags/opensource/" style="font-size: 11.25px;">opensource</a> <a href="/tags/programming/" style="font-size: 11.25px;">programming</a> <a href="/tags/systems/" style="font-size: 10px;">systems</a> <a href="/tags/tracing/" style="font-size: 10px;">tracing</a> <a href="/tags/web/" style="font-size: 10px;">web</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2026/03/">March 2026</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2026/02/">February 2026</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2025/10/">October 2025</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2025/08/">August 2025</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2025/06/">June 2025</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/02/">February 2024</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/09/">September 2023</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/07/">July 2023</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/06/">June 2023</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/09/">September 2022</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/09/">September 2021</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/08/">August 2021</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/05/">May 2021</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/04/">April 2021</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/11/">November 2020</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/07/">July 2020</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/04/">April 2020</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/01/">January 2020</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/11/">November 2019</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/09/">September 2019</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/08/">August 2019</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/05/">May 2019</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/04/">April 2019</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/03/">March 2019</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/02/">February 2019</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/01/">January 2019</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/10/">October 2018</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/09/">September 2018</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/07/">July 2018</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/05/">May 2018</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/06/">June 2017</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/03/">March 2017</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/01/">January 2017</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/11/">November 2016</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/09/">September 2016</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/08/">August 2016</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/05/">May 2016</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/02/">February 2016</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/12/">December 2015</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/11/">November 2015</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/10/">October 2015</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/04/">April 2015</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/03/">March 2015</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/01/">January 2015</a><span class="archive-list-count">2</span></li></ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2026 Kevin Hu<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/About/" class="mobile-nav-link">About</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+
+  
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+
+
+<script src="/js/script.js"></script>
+
+
+  </div>
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
+            processEscapes: true
+        }
+    });
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax();
+        for (var i = 0; i < all.length; ++i)
+            all[i].SourceElement().parentNode.className += ' has-jax';
+    });
+</script>
+<script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+</body>
+</html>
