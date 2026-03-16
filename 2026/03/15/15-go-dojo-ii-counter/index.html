@@ -13,7 +13,7 @@
 <meta property="og:description" content="IntroductionI recently took a stab at a scalable distributed counter implementation. The inspiration comes from an common System Design interview question: “Design a distributed counter that can handl">
 <meta property="og:locale" content="en_US">
 <meta property="article:published_time" content="2026-03-16T00:45:08.000Z">
-<meta property="article:modified_time" content="2026-03-16T04:20:52.293Z">
+<meta property="article:modified_time" content="2026-03-16T04:30:31.559Z">
 <meta property="article:author" content="Kevin Hu">
 <meta property="article:tag" content="opensource">
 <meta property="article:tag" content="programming">
@@ -128,6 +128,7 @@
 <li><strong>Scalability</strong>: The system should be able to scale horizontally to accommodate increasing load, both in terms of write throughput and read access.</li>
 <li><strong>Latency</strong>: The system should provide near real-time read access, with a delay of a few seconds. This means that the read path should be optimized for low latency, even under high load.</li>
 </ul>
+<p>The data schema will be simple as this is a proof-of-concept project. The input will be key-value pair and the output will be the current count for that key. This could be data from a website (e.g., counting page views, likes, or ad clicks).</p>
 <p>An interesting part of the design is the data consistency model.</p>
 <p>For a counter, we can often tolerate eventual consistency for higher availability and lower latency. This allows us to use distributed systems that prioritize availability and partition tolerance while still providing a reasonably accurate count.</p>
 <p>There’s still a question of accuracy vs availability.</p>
@@ -140,6 +141,9 @@
 </ol>
 <p>Kafka is a natural choice for the streaming component of the system. It provides a distributed, partitioned streaming service the decouples the write API from writing to the database.</p>
 <p>The topic design is: we use a single topic called <code>counter</code> with multiple partitions (e.g., 3 in this toy example). Each increment event is published to Kafka with the <code>eventkey</code> as the message key. In real-world production systems, these would likely be to be tuned.</p>
+<p>The API design for the write path is simple: a <code>POST /event</code> endpoint that accepts a JSON payload with the <code>key</code> to be incremented:</p>
+<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">POST /api/event</span><br><span class="line"></span><br><span class="line"><span class="punctuation">&#123;</span></span><br><span class="line">    <span class="attr">&quot;key&quot;</span><span class="punctuation">:</span> <span class="string">&quot;some-key&quot;</span><span class="punctuation">,</span></span><br><span class="line">    <span class="attr">&quot;increment&quot;</span><span class="punctuation">:</span> <span class="number">1</span></span><br><span class="line"><span class="punctuation">&#125;</span></span><br></pre></td></tr></table></figure>
+
 <h2 id="Aggregation-and-Batching"><a href="#Aggregation-and-Batching" class="headerlink" title="Aggregation and Batching"></a>Aggregation and Batching</h2><p>After the events are published to Kafka, we need a component that consumes these events, aggregates them in memory.
 They’ll need to periodically flush the aggregated counts to the database. This allows us to reduce the number of write operations to the database, which can be a bottleneck.</p>
 <p>They’ll also need to be independently scalable and fault tolerant. They could run multiple replicas, each reading from different partitions of the Kafka topic.</p>
@@ -150,6 +154,9 @@ They’ll need to periodically flush the aggregated counts to the database. This
 <p>The alternative would be to use a locking mechanism to ensure strict consistency, but this will lead to more compute and latency overhead, especially under high write loads. It really depends on the specific use case and requirements.</p>
 <h2 id="Read-API-Design"><a href="#Read-API-Design" class="headerlink" title="Read API Design"></a>Read API Design</h2><p>The read API needs to provide a low-latency, highly available interface for retrieving the current count for a given key. To achieve this, we can use a caching layer (like Redis) in front of the database to serve read requests quickly.</p>
 <p>The read API will first check the cache for the count value. We’ll also need to tune the cache TTL to balance between read performance and data freshness.</p>
+<p>The API design for the read path is a simple <code>GET /counter</code> endpoint that accepts a query parameter for the <code>key</code>:</p>
+<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">GET /api/counter</span><br><span class="line"></span><br><span class="line"><span class="punctuation">&#123;</span></span><br><span class="line">    <span class="attr">&quot;key&quot;</span><span class="punctuation">:</span> <span class="string">&quot;some-key&quot;</span><span class="punctuation">,</span></span><br><span class="line">    <span class="attr">&quot;count&quot;</span><span class="punctuation">:</span> <span class="number">12345</span></span><br><span class="line"><span class="punctuation">&#125;</span></span><br></pre></td></tr></table></figure>
+
 <h1 id="Architecture-Design-Overview"><a href="#Architecture-Design-Overview" class="headerlink" title="Architecture Design Overview"></a>Architecture Design Overview</h1><p>With these considerations in mind, the overall architecture of the system can be visualized as follows:</p>
 <figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">[Write API Worker] --&gt; [Kafka] --&gt; [Aggregator Worker] --+</span><br><span class="line">                                                          |</span><br><span class="line">                                                          v</span><br><span class="line">                                                  [Backend Database]</span><br><span class="line">                                                          ^</span><br><span class="line">                                                          |</span><br><span class="line">[Read API Worker] --&gt; [Cache] ----------------------------+</span><br></pre></td></tr></table></figure>
 
