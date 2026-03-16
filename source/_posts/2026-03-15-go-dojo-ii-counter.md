@@ -25,6 +25,8 @@ The problem can be broken down into several key requirements:
 - **Scalability**: The system should be able to scale horizontally to accommodate increasing load, both in terms of write throughput and read access.
 - **Latency**: The system should provide near real-time read access, with a delay of a few seconds. This means that the read path should be optimized for low latency, even under high load.
 
+The data schema will be simple as this is a proof-of-concept project. The input will be key-value pair and the output will be the current count for that key. This could be data from a website (e.g., counting page views, likes, or ad clicks).
+
 An interesting part of the design is the data consistency model.
 
 For a counter, we can often tolerate eventual consistency for higher availability and lower latency. This allows us to use distributed systems that prioritize availability and partition tolerance while still providing a reasonably accurate count.
@@ -44,6 +46,17 @@ The write path of the system can be designed with the following requirements in 
 Kafka is a natural choice for the streaming component of the system. It provides a distributed, partitioned streaming service the decouples the write API from writing to the database.
 
 The topic design is: we use a single topic called `counter` with multiple partitions (e.g., 3 in this toy example). Each increment event is published to Kafka with the `eventkey` as the message key. In real-world production systems, these would likely be to be tuned.
+
+The API design for the write path is simple: a `POST /event` endpoint that accepts a JSON payload with the `key` to be incremented:
+
+```json
+POST /api/event
+
+{
+    "key": "some-key",
+    "increment": 1
+}
+```
 
 ## Aggregation and Batching
 
@@ -69,6 +82,17 @@ The alternative would be to use a locking mechanism to ensure strict consistency
 The read API needs to provide a low-latency, highly available interface for retrieving the current count for a given key. To achieve this, we can use a caching layer (like Redis) in front of the database to serve read requests quickly.
 
 The read API will first check the cache for the count value. We'll also need to tune the cache TTL to balance between read performance and data freshness.
+
+The API design for the read path is a simple `GET /counter` endpoint that accepts a query parameter for the `key`:
+
+```json
+GET /api/counter
+
+{
+    "key": "some-key",
+    "count": 12345
+}
+```
 
 # Architecture Design Overview
 
