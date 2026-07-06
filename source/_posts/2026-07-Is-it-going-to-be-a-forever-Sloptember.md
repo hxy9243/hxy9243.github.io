@@ -1,4 +1,4 @@
-title: Is it going to be a forever Sloptember?
+title: Is It Going To Be a Forever Sloptember?
 date: 2026-07-05 23:03:36
 categories: [AI, "Software Engineering"]
 tags: ["AI", "programming", "software engineering"]
